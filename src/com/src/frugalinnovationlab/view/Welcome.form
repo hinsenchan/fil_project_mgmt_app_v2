@@ -6,6 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -40,7 +41,7 @@
               <Group type="102" attributes="0">
                   <Component id="menuTreePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="contentPanel" pref="0" max="32767" attributes="0"/>
+                  <Component id="contentPanel" pref="602" max="32767" attributes="0"/>
               </Group>
               <Component id="headerPanel" max="32767" attributes="0"/>
           </Group>
@@ -102,7 +103,7 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code="Frugal Lab&#xa; Project&#xa;  Add New Project&#xa;  View All Projects&#xa;  Add Participant&#xa;  Edit Project&#xa;   General Info&#xa;   Participants&#xa;   Multimedia&#xa; Users&#xa;  Add New User&#xa;  View All Users&#xa; Explore&#xa;  Search&#xa;  Advanced Search"/>
+                      <TreeModel code="Frugal Lab&#xa; Project&#xa;  Add New Project&#xa;  View All Projects&#xa;  Add Participant&#xa;  Edit Project&#xa;   General Info&#xa;   Participants&#xa;   Multimedia&#xa;  View Project&#xa;   General Info&#xa;   Participants&#xa;   Multimedia&#xa; Users&#xa;  Add New User&#xa;  View All Users&#xa; Explore&#xa;  Search&#xa;  Advanced Search"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Explore"/>
                   </Properties>

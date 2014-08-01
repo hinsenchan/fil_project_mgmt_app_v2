@@ -30,6 +30,7 @@ public class Welcome extends javax.swing.JFrame {
     EditGeneralProjectInformation editGeneralProjectInformation;
     final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
+    ViewGeneralProjectInformation viewGeneralProjectInformation;
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
     /**
@@ -92,6 +93,14 @@ public class Welcome extends javax.swing.JFrame {
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Multimedia");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("View Project");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("General Info");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Participants");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Multimedia");
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Users");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Add New User");
@@ -113,10 +122,10 @@ public class Welcome extends javax.swing.JFrame {
             }
         });
         optionsMenuTree.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            }
             public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 optionsMenuTreeTreeExpanded(evt);
-            }
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
             }
         });
         menuTreeScrollPane.setViewportView(optionsMenuTree);
@@ -248,7 +257,7 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(welcomeMainPanelLayout.createSequentialGroup()
                 .addComponent(menuTreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 602, Short.MAX_VALUE))
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         welcomeMainPanelLayout.setVerticalGroup(
@@ -307,8 +316,10 @@ public class Welcome extends javax.swing.JFrame {
                     contentPanel.remove(editProjectMultimedia);
                 } else if (lastComponent.equals("Participants")) {
                     contentPanel.remove(editProjectParticipants);
-                } else if (lastComponent.equals("General Info")) {
+                } else if (lastComponent.equals("Edit Project General Info")) {
                     contentPanel.remove(editGeneralProjectInformation);
+                } else if (lastComponent.equals("View Project General Info")) {
+                    contentPanel.remove(viewGeneralProjectInformation);
                 }
 
             }
@@ -342,10 +353,14 @@ public class Welcome extends javax.swing.JFrame {
             } else if (path.toString().contains("Participants")) {
                 contentPanel.add(new EditProjectParticipants());
                 lastComponent = "Participants";
-            } else if (path.toString().contains("General Info")) {
+            } else if (path.toString().contains("Edit Project") && path.toString().contains("General Info")) {
                 editGeneralProjectInformation = new EditGeneralProjectInformation();
                 contentPanel.add(editGeneralProjectInformation);
-                lastComponent = "General Info";
+                lastComponent = "Edit Project General Info";
+            } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
+                viewGeneralProjectInformation = new ViewGeneralProjectInformation();
+                contentPanel.add(viewGeneralProjectInformation);
+                lastComponent = "View Project General Info";
             }
             contentPanel.revalidate();
             contentPanel.repaint();
