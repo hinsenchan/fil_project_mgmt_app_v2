@@ -2,32 +2,34 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="FrugalInnovationLabPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.src.frugalinnovationlab.Entity.UserRoles</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaAdobe</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaCode</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaPlaintext</class>
+    <class>com.src.frugalinnovationlab.Entity.Tags</class>
     <class>com.src.frugalinnovationlab.Entity.Department</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaWord</class>
-    <class>com.src.frugalinnovationlab.Entity.ProjectCategory</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaPdf</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaLocationmap</class>
-    <class>com.src.frugalinnovationlab.Entity.Users</class>
-    <class>com.src.frugalinnovationlab.Entity.ProjectStatus</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaVideo</class>
-    <class>com.src.frugalinnovationlab.Entity.Project</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaSpreadsheet</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaPhotos</class>
-    <class>com.src.frugalinnovationlab.Entity.MediaHyperlink</class>
-    <class>com.src.frugalinnovationlab.Entity.Studentrecord</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaAdobe</class>
     <class>com.src.frugalinnovationlab.Entity.MediaCad</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaCode</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaHyperlink</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaLocationmap</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaPdf</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaPhotos</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaPlaintext</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaSpreadsheet</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaVideo</class>
+    <class>com.src.frugalinnovationlab.Entity.MediaWord</class>
     <class>com.src.frugalinnovationlab.Entity.ParticipantDesignation</class>
-    <class>com.src.frugalinnovationlab.Entity.ProjectParticipants</class>
     <class>com.src.frugalinnovationlab.Entity.Participants</class>
+    <class>com.src.frugalinnovationlab.Entity.Project</class>
+    <class>com.src.frugalinnovationlab.Entity.ProjectCategory</class>
+    <class>com.src.frugalinnovationlab.Entity.ProjectParticipants</class>
+    <class>com.src.frugalinnovationlab.Entity.ProjectStatus</class>
+    <class>com.src.frugalinnovationlab.Entity.Studentrecord</class>
+    <class>com.src.frugalinnovationlab.Entity.UserRoles</class>
+    <class>com.src.frugalinnovationlab.Entity.Users</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frugalinnovationlab?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.password" value="13murp12"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

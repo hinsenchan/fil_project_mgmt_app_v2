@@ -21,6 +21,7 @@ import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Entity.ProjectParticipantsPK;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class AddNewProjectService {
             List<MediaVideo> videoList, List<MediaPlaintext> plainTextList, List<MediaAdobe> adobeFileList,
             List<MediaCad> cadFileList, List<MediaCode> codeFileList, List<MediaHyperlink> hyperLinkList,
             List<MediaPdf> pdfList, List<MediaPhotos> photosList, List<MediaSpreadsheet> spreadSheetList,
-            List<MediaWord> wordList) {
+            List<MediaWord> wordList, List<String> selectedTagsList) {
         boolean success = true;
         try {
 
@@ -92,21 +93,14 @@ public class AddNewProjectService {
             String scope = array[7];
             String outcome = array[8];
             int projectId = Integer.parseInt(array[9]);
-
-            /*String[] categoryArray = new String[array.length - 10];
-            for (int i = 10; i < array.length; i++) {
-                if (null != array[i]) {
-                    categoryArray[i - 10] = array[i];
-                }
-            }*/
-            System.out.println("Fetched Project Data");
             HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
-            
+            HashSet<Tags> projectTagsSet = new HashSet<Tags>();
+
             ProjectStatus projectStatus1 = manager.find(ProjectStatus.class, status);//new ProjectStatus();
             projectStatus1.setStatus(projectStatus1.getStatus());
 
-            Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope, 
-                    outcome, true, longDesc);
+            Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope,
+                    outcome, true, longDesc, location);
 
             HashSet<ProjectStatus> projectStatusSet = new HashSet<ProjectStatus>();
             projectStatusSet.add(projectStatus1);
@@ -114,19 +108,27 @@ public class AddNewProjectService {
 
             project1.setProjectStatusSet(projectStatusSet);
             project1.setProjectCategories(projectCategorySet);
+            project1.setTagsSet(projectTagsSet);
             //project1.setProjectParticipantsList(participantsList);
             Set<Project> projectSet = new HashSet<Project>();
             projectSet.add(project1);
             projectStatus1.setProjectSet(projectSet);
-            System.out.println("size is : "+categoriesList.size());
+            System.out.println("size is : " + categoriesList.size());
             for (int i = 0; i < categoriesList.size(); i++) {
-                
-                    System.out.println("category : " + categoriesList.get(i));
-                    ProjectCategory projectCategory = manager.find(ProjectCategory.class, categoriesList.get(i).trim());
-                    projectCategory.setName(projectCategory.getName());
-                    projectCategorySet.add(projectCategory);
-                    projectCategory.setProjects(projectSet);
-                
+
+                System.out.println("category : " + categoriesList.get(i));
+                ProjectCategory projectCategory = manager.find(ProjectCategory.class, categoriesList.get(i).trim());
+                projectCategory.setName(projectCategory.getName());
+                projectCategorySet.add(projectCategory);
+                projectCategory.setProjects(projectSet);
+
+            }
+
+            for (int i = 0; i < selectedTagsList.size(); i++) {                
+                Tags tag = manager.find(Tags.class, selectedTagsList.get(i).trim());
+                tag.setTagname(tag.getTagname());
+                projectTagsSet.add(tag);
+                tag.setProjectSet(projectSet);                
             }
 
             HashSet<MediaVideo> videoSet = new HashSet<MediaVideo>();
@@ -210,9 +212,11 @@ public class AddNewProjectService {
                 mediaWord.setProjects(project1);
             }
             project1.setWords(wordSet);
-            
+
+
+
             HashSet<ProjectParticipants> projectParticipantsSet = new HashSet<ProjectParticipants>();
-            if(participantsList.size() > 0){
+            if (participantsList.size() > 0) {
                 for (int i = 0; i < participantsList.size(); i++) {
                     AssignParticipantsToProject assigned = participantsList.get(i);
                     int participantId = Integer.parseInt(assigned.getParticipantId());
@@ -222,14 +226,14 @@ public class AddNewProjectService {
                     //projectParticipantsPk.setParticipantId(participantId);
                     //projectParticipantsPk.setDesignation(roleId);
                     projectParticipants.setProjectParticipantsPK(projectParticipantsPk);
-                    
+
                     projectParticipantsSet.add(projectParticipants);
                     projectParticipants.setProject(project1);
-                                      
+
                 }
             }
             project1.setProjectParticipantsSet(projectParticipantsSet);
-            
+
             manager.persist(project1);
             success = true;
             System.out.println("Project Added ");
@@ -258,7 +262,15 @@ public class AddNewProjectService {
         List<Participants> result = query.getResultList();
         return result;
     }
-    
+
+    public List<Tags> fetchTags() {
+        TypedQuery<Tags> query = manager.createQuery("SELECT NEW "
+                + "com.src.frugalinnovationlab.Entity.Tags(p.tagname) "
+                + "FROM Tags p", Tags.class);
+        List<Tags> result = query.getResultList();
+        return result;
+    }
+
     public boolean addParticipant(String[] array) {
         boolean success = false;
         String title = array[0];
@@ -266,11 +278,25 @@ public class AddNewProjectService {
         String middleName = array[2];
         String lastName = array[3];
         String position = array[4];
-        
+
         Participants participants = new Participants(title, firstName, middleName, lastName, position);
         manager.persist(participants);
         success = true;
-        
+
+        return success;
+    }
+
+    public boolean addNewTags(List<Tags> currentList, String[] array) {
+        boolean success = false;
+
+        for (int i = 0; i < array.length; i++) {
+            if (!currentList.contains(array[i].trim())) {
+                String tagName = array[i].trim();
+                Tags tags = new Tags(tagName);
+                manager.persist(tags);
+                success = true;
+            }
+        }
         return success;
     }
 }

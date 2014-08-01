@@ -18,6 +18,7 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Model.AddNewProjectModel;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import com.src.frugalinnovationlab.view.AddNewProjectPanel;
@@ -58,20 +59,32 @@ public class AddNewProjectController {
         return participantList;
     }
     
+    public List<Tags> getTagsFromDatabase() {
+        List<Tags> tagsList = addNewProjectModel.getTagsFromDatabase();
+        return tagsList;
+    }
+    
     public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
             List<MediaVideo> videoList, List<MediaPlaintext> plainTextList, List<MediaAdobe> adobeFileList, 
             List<MediaCad> cadFileList, List<MediaCode> codeFileList, List<MediaHyperlink> hyperLinkList,
             List<MediaPdf> pdfList, List<MediaPhotos> photosList, List<MediaSpreadsheet> spreadSheetList,
-            List<MediaWord> wordList){
+            List<MediaWord> wordList, List<String> selectedTagsList){
         boolean success = true;
         success = addNewProjectModel.addProject(array, categoriesList, participantsList, videoList, plainTextList
-                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, spreadSheetList, wordList);
+                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, 
+                spreadSheetList, wordList, selectedTagsList);
         return success;
     }
     
     public boolean addParticipant(String[] array){
         boolean success = true;
         success = addNewProjectModel.addParticipant(array);
+        return success;
+    }
+    
+    public boolean addNewTags(List<Tags> currentList, String[] array) {
+        boolean success = true;
+        success = addNewProjectModel.addNewTags(currentList, array);
         return success;
     }
 }

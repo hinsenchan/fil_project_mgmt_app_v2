@@ -450,6 +450,7 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         endDate.setDate(projList.get(0).getEndDate());
         scopeTextField.setText(projList.get(0).getScope());
         outcomeTextField.setText(projList.get(0).getOutcome());
+        projectLocationTextField.setText(projList.get(0).getLocation());
         Set<ProjectStatus> set = projList.get(0).getProjectStatusSet();
         for (ProjectStatus projectStatus : set) {
             System.out.println("status is : " + projectStatus.getStatus());
@@ -513,12 +514,12 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
             array[6] = endDate.getDate().toString();
             array[7] = scopeTextField.getText();
             array[8] = outcomeTextField.getText();
+            
 
             Object projectIdItem = chooseProjectComboBox.getSelectedItem();
             String projectIdValue = ((ComboItem) projectIdItem).getValue();
             array[9] = projectIdValue;
-
-
+            
             System.out.println("date : " + startDate.getDate());
             if (civilEngineeringCheckBox.isSelected()) {
                 categoriesList.add("Civil Engineering");

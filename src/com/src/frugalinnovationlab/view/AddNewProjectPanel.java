@@ -29,6 +29,7 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import java.io.File;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
-import javax.swing.JScrollPane;
+import javax.swing.JList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -54,6 +55,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     ArrayList categorySelected = new ArrayList();
     List<ParticipantDesignation> participantDesignationsList;
     List<Participants> participants;
+    List<Tags> tagsList;
     List<String> categoriesList;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<AssignParticipantsToProject> participantsList = new ArrayList<AssignParticipantsToProject>();
@@ -67,6 +69,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<MediaSpreadsheet> spreadSheetList = new ArrayList<MediaSpreadsheet>();
     List<MediaVideo> videoList = new ArrayList<MediaVideo>();
     List<MediaWord> wordList = new ArrayList<MediaWord>();
+    List<String> selectedTagsList;
 
     /**
      * Creates new form AddNewProjectPanel
@@ -78,9 +81,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         projectCategoryList = addNewProjectController.getProjectCategoriesFromDatabase();
         participantDesignationsList = addNewProjectController.getParticipantsDesignationFromDatabase();
         participants = addNewProjectController.getParticipantsFromDatabase();
-       
+        tagsList = addNewProjectController.getTagsFromDatabase();
         initComponents();
-
+        newTagsLabelField.setVisible(false);
+        newTagsTextField.setVisible(false);
         addParticipantPanel.setVisible(false);
     }
 
@@ -127,6 +131,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         logoLabel2 = new javax.swing.JLabel();
         logoLabel6 = new javax.swing.JLabel();
+        tagsOptionsLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        projectTagsOptions = new javax.swing.JList();
+        addNewTags = new javax.swing.JRadioButton();
+        newTagsLabelField = new javax.swing.JLabel();
+        newTagsTextField = new javax.swing.JTextField();
         participantsScrollPane = new javax.swing.JScrollPane();
         mainPanel3 = new javax.swing.JPanel();
         addNewProjectTextArea3 = new javax.swing.JLabel();
@@ -215,9 +225,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.setInheritsPopupMenu(true);
-        mainPanel.setPreferredSize(new java.awt.Dimension(400, 400));
-        mainPanel.setRequestFocusEnabled(false);
+        mainPanel.setPreferredSize(new java.awt.Dimension(716, 773));
 
         addNewProjectTextArea.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         addNewProjectTextArea.setText("Add New Project");
@@ -384,6 +392,31 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         logoLabel6.setBackground(new java.awt.Color(255, 255, 255));
         logoLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
 
+        tagsOptionsLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tagsOptionsLabel.setText("Tags");
+
+        String[] tagsArray = new String[tagsList.size()];
+        for (int i = 0; i < tagsList.size(); i++) {
+            String tagname = tagsList.get(i).getTagname();
+            tagsArray[i] = tagname;
+        }
+        projectTagsOptions = new JList(tagsArray);
+        jScrollPane2.setViewportView(projectTagsOptions);
+
+        addNewTags.setText("Add New Tags");
+        addNewTags.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewTagsActionPerformed(evt);
+            }
+        });
+
+        newTagsLabelField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        newTagsLabelField.setText("New Tags");
+
+        newTagsTextField.setColumns(20);
+        newTagsTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        newTagsTextField.setToolTipText("Outcome");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -399,10 +432,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                             .addComponent(statusProjectLabel)
                             .addComponent(categoryLabel)
                             .addComponent(locationLabel)
-                            .addComponent(startDateLabel)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(scopeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(outcomeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(outcomeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                                .addComponent(tagsOptionsLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(newTagsLabelField)
+                                .addComponent(startDateLabel)))
                         .addGap(38, 38, 38)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(projectLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +449,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addGap(42, 42, 42)
                                 .addComponent(electricalEngineeringCheckBox))
                             .addComponent(scopeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(outcomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -422,11 +457,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                             .addComponent(projectNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(projectIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(moveToParticipants)
                                 .addGroup(mainPanelLayout.createSequentialGroup()
                                     .addComponent(civilEngineeringCheckBox)
                                     .addGap(32, 32, 32)
-                                    .addComponent(mechanicalEngineeringCheckBox)))))
+                                    .addComponent(mechanicalEngineeringCheckBox))
+                                .addComponent(moveToParticipants))
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(outcomeTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(addNewTags)
+                            .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,17 +477,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(projectNameLabel)
                             .addComponent(jLabel1))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel2)
-                    .addContainerGap(260, Short.MAX_VALUE)))
+                    .addContainerGap(297, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel6)
-                    .addContainerGap(260, Short.MAX_VALUE)))
+                    .addContainerGap(297, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,19 +553,29 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(outcomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(outcomeLabel))
+                .addGap(31, 31, 31)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tagsOptionsLabel)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addNewTags)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newTagsLabelField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(moveToParticipants)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(200, Short.MAX_VALUE)))
+                    .addContainerGap(277, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(200, Short.MAX_VALUE)))
+                    .addContainerGap(277, Short.MAX_VALUE)))
         );
 
         bioengineeringCheckBox.getAccessibleContext().setAccessibleName("Bio Engineering");
@@ -842,7 +892,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addComponent(addParticipantButton)
                 .addGap(18, 18, 18)
                 .addComponent(addNewParticipantButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(listProjectParticipantsLabel)
@@ -857,17 +907,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(mainPanel3Layout.createSequentialGroup()
                     .addGap(90, 90, 90)
                     .addComponent(participantNameLabel)
-                    .addContainerGap(664, Short.MAX_VALUE)))
+                    .addContainerGap(713, Short.MAX_VALUE)))
             .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanel3Layout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
+                    .addContainerGap(277, Short.MAX_VALUE)))
             .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanel3Layout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
+                    .addContainerGap(277, Short.MAX_VALUE)))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
@@ -1324,12 +1374,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(clearWordButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addProjectButton)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(205, 205, 205)
                     .addComponent(logoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(205, Short.MAX_VALUE)))
+                    .addContainerGap(254, Short.MAX_VALUE)))
         );
 
         multimediaScrollPane.setViewportView(jPanel3);
@@ -1342,12 +1392,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1573,8 +1623,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             array[7] = scopeTextField.getText();
             array[8] = outcomeTextField.getText();
             array[9] = projectIdTextField.getText();
+            selectedTagsList = projectTagsOptions.getSelectedValuesList();
+
+            String newTags = newTagsTextField.getText();
+            if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
+                String[] newTagsArr = newTags.split(";");
+                addNewProjectController.addNewTags(tagsList, newTagsArr);
+                for (int i = 0; i < newTagsArr.length; i++) {
+                    selectedTagsList.add(newTagsArr[i]);
+                }
+            }
             
-            System.out.println("date : " + startDate.getDate());
             if (civilEngineeringCheckBox.isSelected()) {
                 categoriesList.add("Civil Engineering");
             }
@@ -1591,13 +1650,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 categoriesList.add("Computer Engineering");
             }
 
-            /*for (int i = 0; i < categorySelected.size(); i++) {
-             if (categorySelected.get(i) != null) {
-             array[10 + i] = categorySelected.get(i).toString();
-             }
-             }*/
-
-            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList, videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, spreadSheetList, wordList);
+            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
+                    videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
+                    pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
             if (success) {
                 /*for (Component C : this.getComponents()) {
                  System.out.println("ok here now :"+C.getClass());
@@ -1979,6 +2034,18 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void addNewParticipantRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantRoleComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addNewParticipantRoleComboBoxActionPerformed
+
+    private void addNewTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTagsActionPerformed
+        // TODO add your handling code here:
+        System.out.println("add new tags :: " +addNewTags.isSelected());
+        if (addNewTags.isSelected()) {
+            newTagsLabelField.setVisible(true);
+            newTagsTextField.setVisible(true);
+        } else if (!addNewTags.isSelected()) {
+            newTagsLabelField.setVisible(false);
+            newTagsTextField.setVisible(false);
+        }
+    }//GEN-LAST:event_addNewTagsActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addAdobeTextField;
     private javax.swing.JButton addButton;
@@ -1993,6 +2060,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addNewProjectTextArea;
     private javax.swing.JLabel addNewProjectTextArea2;
     private javax.swing.JLabel addNewProjectTextArea3;
+    private javax.swing.JRadioButton addNewTags;
     private javax.swing.JButton addPDFButton;
     private javax.swing.JButton addParticipantButton;
     private javax.swing.JButton addParticipantButton1;
@@ -2046,6 +2114,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane5;
@@ -2065,6 +2134,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox mechanicalEngineeringCheckBox;
     private javax.swing.JButton moveToParticipants;
     private javax.swing.JScrollPane multimediaScrollPane;
+    private javax.swing.JLabel newTagsLabelField;
+    private javax.swing.JTextField newTagsTextField;
     private javax.swing.JLabel outcomeLabel;
     private javax.swing.JTextField outcomeTextField;
     private javax.swing.JLabel participantNameLabel;
@@ -2078,6 +2149,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel projectNameLabel;
     private javax.swing.JTextField projectNameTextField;
     private javax.swing.JComboBox projectStatusComboBox;
+    private javax.swing.JList projectTagsOptions;
     private javax.swing.JComboBox roleComboBox;
     private javax.swing.JLabel scopeLabel;
     private javax.swing.JTextField scopeTextField;
@@ -2087,6 +2159,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel statusProjectLabel;
+    private javax.swing.JLabel tagsOptionsLabel;
     private javax.swing.JLabel videoLabel1;
     private javax.swing.JLabel wordDocumentLabel1;
     // End of variables declaration//GEN-END:variables

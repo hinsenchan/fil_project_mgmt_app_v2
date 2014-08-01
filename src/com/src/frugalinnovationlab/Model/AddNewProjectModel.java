@@ -18,6 +18,7 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Service.AddNewProjectService;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import com.src.frugalinnovationlab.helper.Constants;
@@ -67,17 +68,23 @@ public class AddNewProjectModel {
         List<Participants> participantsList = addNewProjectService.fetchParticipants();
         return participantsList;
     }
+    
+    public List<Tags> getTagsFromDatabase() {
+        List<Tags> tagsList = addNewProjectService.fetchTags();
+        return tagsList;
+    }
 
     public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
             List<MediaVideo> videoList, List<MediaPlaintext> plainTextList, List<MediaAdobe> adobeFileList, 
             List<MediaCad> cadFileList, List<MediaCode> codeFileList, List<MediaHyperlink> hyperLinkList,
             List<MediaPdf> pdfList, List<MediaPhotos> photosList, List<MediaSpreadsheet> spreadSheetList,
-            List<MediaWord> wordList) {
+            List<MediaWord> wordList, List<String> selectedTagsList) {
         boolean success = true;
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();
         success = addNewProjectService.addProject(array, categoriesList, participantsList, videoList, plainTextList
-                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, spreadSheetList, wordList);
+                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, 
+                spreadSheetList, wordList, selectedTagsList);
         usertransaction.commit();
         return success;
     }
@@ -87,6 +94,15 @@ public class AddNewProjectModel {
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();
         success = addNewProjectService.addParticipant(array);
+        usertransaction.commit();
+        return success;
+    }
+    
+    public boolean addNewTags(List<Tags> currentList, String[] array) {
+        boolean success = false;
+        EntityTransaction usertransaction = manager.getTransaction();
+        usertransaction.begin();
+        success = addNewProjectService.addNewTags(currentList, array);
         usertransaction.commit();
         return success;
     }

@@ -43,6 +43,15 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Project.findByDisplay", query = "SELECT p FROM Project p WHERE p.display = :display"),
     @NamedQuery(name = "Project.findByOutcome", query = "SELECT p FROM Project p WHERE p.outcome = :outcome")})
 public class Project implements Serializable {
+    @Column(name = "location")
+    private String location;
+    @JoinTable(name = "project_tag_map", joinColumns = {
+        @JoinColumn(name = "projectid", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "tagname", referencedColumnName = "tagname")})
+    @ManyToMany
+    private Set<Tags> tagsSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    private Set<MediaLocationmap> mediaLocationmapSet;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectParticipants> projectParticipantsSet;
@@ -157,7 +166,7 @@ public class Project implements Serializable {
     }
 
     public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, 
-            String scope, String outcome, boolean display, String description) {
+            String scope, String outcome, boolean display, String description, String location) {
         this.id = id;
         this.name = name;
         this.shortdesc = shortdesc;
@@ -167,6 +176,7 @@ public class Project implements Serializable {
         this.display = display;
         this.outcome = outcome;
         this.description = description;
+        this.location = location;
     }
     
     public Integer getId() {
@@ -428,5 +438,29 @@ public class Project implements Serializable {
       
        return colName;
    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Set<Tags> getTagsSet() {
+        return tagsSet;
+    }
+
+    public void setTagsSet(Set<Tags> tagsSet) {
+        this.tagsSet = tagsSet;
+    }
+
+    public Set<MediaLocationmap> getMediaLocationmapSet() {
+        return mediaLocationmapSet;
+    }
+
+    public void setMediaLocationmapSet(Set<MediaLocationmap> mediaLocationmapSet) {
+        this.mediaLocationmapSet = mediaLocationmapSet;
+    }
     
 }

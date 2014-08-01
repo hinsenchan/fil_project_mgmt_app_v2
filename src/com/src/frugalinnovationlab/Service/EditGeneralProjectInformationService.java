@@ -83,6 +83,7 @@ public class EditGeneralProjectInformationService {
             project.setName(projectName);
             project.setShortdesc(shortDesc);
             project.setDescription(longDesc);
+            project.setLocation(location);
 
             project.setStartDate(startDate);
             project.setEndDate(endDate);
