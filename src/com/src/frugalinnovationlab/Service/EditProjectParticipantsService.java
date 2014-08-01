@@ -123,4 +123,19 @@ public class EditProjectParticipantsService {
         }
         return success;
     }
+    
+    public boolean addParticipant(String[] array) {
+        boolean success = false;
+        String title = array[0];
+        String firstName = array[1];
+        String middleName = array[2];
+        String lastName = array[3];
+        String position = array[4];
+        
+        Participants participants = new Participants(title, firstName, middleName, lastName, position);
+        manager.persist(participants);
+        success = true;
+        
+        return success;
+    }
 }

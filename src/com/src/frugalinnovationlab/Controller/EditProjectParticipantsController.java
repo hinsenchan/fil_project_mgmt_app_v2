@@ -50,4 +50,10 @@ public class EditProjectParticipantsController {
         success = editProjectParticipantsModel.editProjectParticipants(projectId, participantsList);
         return success;
     }
+    
+    public boolean addParticipant(String[] array){
+        boolean success = true;
+        success = editProjectParticipantsModel.addParticipant(array);
+        return success;
+    }
 }

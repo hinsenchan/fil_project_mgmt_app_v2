@@ -68,4 +68,10 @@ public class AddNewProjectController {
                 , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, spreadSheetList, wordList);
         return success;
     }
+    
+    public boolean addParticipant(String[] array){
+        boolean success = true;
+        success = addNewProjectModel.addParticipant(array);
+        return success;
+    }
 }
