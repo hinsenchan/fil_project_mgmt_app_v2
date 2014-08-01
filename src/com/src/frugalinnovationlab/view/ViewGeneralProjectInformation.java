@@ -12,13 +12,15 @@ import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
 import java.util.List;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Set;
-import javax.swing.ListSelectionModel;
 
 /**
  *
- * @author fattymcphatfat
+ * @author Hinsen Chan
  */
 public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     ViewGeneralProjectInformationController viewGeneralProjectInformationController;
@@ -384,14 +386,16 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         Object projectIdItem = chooseProjectComboBox.getSelectedItem();
         String projectIdValue = ((ComboItem) projectIdItem).getValue();
         List<Project> projList = viewGeneralProjectInformationController.fetchProjectGeneralInformation(projectIdValue);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        
         projectNameTextField.setText(projList.get(0).getName());
         shortDescTextField.setText(projList.get(0).getShortdesc());
         genDescTextArea.setText(projList.get(0).getDescription());
         if (projList.get(0).getStartDate() != null) {
-            startDateTextField.setText(projList.get(0).getStartDate().toString());
+            startDateTextField.setText(dateFormat.format(projList.get(0).getStartDate()));
         }
         if (projList.get(0).getEndDate() != null) {
-            endDateTextField.setText(projList.get(0).getEndDate().toString());
+            endDateTextField.setText(dateFormat.format(projList.get(0).getEndDate()));
         }
         scopeTextField.setText(projList.get(0).getScope());
         outcomeTextArea.setText(projList.get(0).getOutcome());
