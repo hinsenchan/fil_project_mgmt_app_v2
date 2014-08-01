@@ -81,4 +81,13 @@ public class AddNewProjectModel {
         usertransaction.commit();
         return success;
     }
+    
+    public boolean addParticipant(String[] array) {
+        boolean success = false;
+        EntityTransaction usertransaction = manager.getTransaction();
+        usertransaction.begin();
+        success = addNewProjectService.addParticipant(array);
+        usertransaction.commit();
+        return success;
+    }
 }

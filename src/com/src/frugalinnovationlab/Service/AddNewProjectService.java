@@ -105,7 +105,8 @@ public class AddNewProjectService {
             ProjectStatus projectStatus1 = manager.find(ProjectStatus.class, status);//new ProjectStatus();
             projectStatus1.setStatus(projectStatus1.getStatus());
 
-            Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope, outcome, true);
+            Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope, 
+                    outcome, true, longDesc);
 
             HashSet<ProjectStatus> projectStatusSet = new HashSet<ProjectStatus>();
             projectStatusSet.add(projectStatus1);
@@ -256,5 +257,20 @@ public class AddNewProjectService {
                 + "FROM Participants p", Participants.class);
         List<Participants> result = query.getResultList();
         return result;
+    }
+    
+    public boolean addParticipant(String[] array) {
+        boolean success = false;
+        String title = array[0];
+        String firstName = array[1];
+        String middleName = array[2];
+        String lastName = array[3];
+        String position = array[4];
+        
+        Participants participants = new Participants(title, firstName, middleName, lastName, position);
+        manager.persist(participants);
+        success = true;
+        
+        return success;
     }
 }

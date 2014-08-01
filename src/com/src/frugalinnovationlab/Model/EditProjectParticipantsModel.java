@@ -9,7 +9,6 @@ import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Service.EditProjectParticipantsService;
-import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import com.src.frugalinnovationlab.helper.Constants;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -61,6 +60,15 @@ public class EditProjectParticipantsModel {
         usertransaction.commit();
         usertransaction.begin();
         success = editProjectParticipantsService.editProjectParticipants(projectId, participantsList);
+        usertransaction.commit();
+        return success;
+    }
+    
+    public boolean addParticipant(String[] array) {
+        boolean success = false;
+        EntityTransaction usertransaction = manager.getTransaction();
+        usertransaction.begin();
+        success = editProjectParticipantsService.addParticipant(array);
         usertransaction.commit();
         return success;
     }

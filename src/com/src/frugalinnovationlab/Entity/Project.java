@@ -156,7 +156,8 @@ public class Project implements Serializable {
         this.display = display;
     }
 
-    public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, String scope, String outcome, boolean display) {
+    public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, 
+            String scope, String outcome, boolean display, String description) {
         this.id = id;
         this.name = name;
         this.shortdesc = shortdesc;
@@ -165,6 +166,7 @@ public class Project implements Serializable {
         this.scope = scope;
         this.display = display;
         this.outcome = outcome;
+        this.description = description;
     }
     
     public Integer getId() {
