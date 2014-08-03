@@ -51,6 +51,11 @@ public class EditProjectParticipantsModel {
         List<ProjectParticipants> participantsList = editProjectParticipantsService.fetchParticipantsByProject(projectId);
         return participantsList;
     }
+
+    public List<Project> fetchProjectsByParticipant(String participantId) {
+        List<Project> participantsList = editProjectParticipantsService.fetchProjectsByParticipant(participantId);
+        return participantsList;
+    }    
     
     public boolean editProjectParticipants(String projectId, List<ProjectParticipants> participantsList){
         boolean success = true;

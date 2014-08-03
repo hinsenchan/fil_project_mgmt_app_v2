@@ -11,10 +11,10 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
-import static com.src.frugalinnovationlab.Entity.Project_.participantsList;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,16 +28,20 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     List<Participants> participants;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
+    Welcome mainApplication;
+    private String participantValue;
 
     /**
      * Creates new form ViewProjectParticipants
      */
-    public ViewProjectParticipants() {
+    public ViewProjectParticipants(Welcome welcome) {
+        mainApplication = welcome;
         viewProjectParticipantsController = new ViewProjectParticipantsController(this);
         projectList = viewProjectParticipantsController.getProjectsFromDatabase();
         participantDesignationsList = viewProjectParticipantsController.getParticipantsDesignationFromDatabase();
         participants = viewProjectParticipantsController.getParticipantsFromDatabase();        
-        initComponents();        
+        initComponents();                
+        table.getSelectionModel().addListSelectionListener(viewProjectParticipantsController);
     }
 
     /**
@@ -77,7 +81,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
         chooseProjectComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
+        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Projects" }));
         for (int i = 0; i < projectList.size(); i++) {
             chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
                 String.valueOf(projectList.get(i).getId())));
@@ -121,7 +125,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(chooseProjectComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(roleComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
             .addComponent(logoLabel2)
             .addContainerGap())
     );
@@ -246,30 +250,79 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
         }
         List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
         participantsList.clear();
-        //System.out.println("result size : " +result.size());
         for (int i = 0; i < result.size(); i++) {
             Object[] values = (Object[]) result.get(i);
-            //System.out.println(i+" -- "+values[0]+"; "+values[1]);
-            //System.out.println("part 1 : " +projectParticipants.getParticipants().getId());
-            //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
-            String participantValue = String.valueOf(values[3]);
+            participantValue = String.valueOf(values[3]);
             String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
             .concat(" ").concat(values[2].toString());
             String roleValue = values[4].toString();
             String roleItem = values[5].toString();
-            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
                 Integer.parseInt(roleValue));
             participantsList.add(a);
             //Object[] row = {participantValue, participantItem, roleValue, roleItem};
             Object[] row = {participantItem, roleItem};
             model = (DefaultTableModel) table.getModel();
             model.addRow(row);
-            //  System.out.println("here");
         }
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
-        // TODO add your handling code here:
+        Object projectItem = chooseProjectComboBox.getSelectedItem();
+        //  System.out.println("object item : " +projectItem);
+        String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+        //  System.out.println("project id : " + projectId);
+
+        Object roleItem = roleComboBox.getSelectedItem();
+        //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
+        
+        if (model.getRowCount() > 0) {
+            for (int i = model.getRowCount() - 1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
+        
+        List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
+        participantsList.clear();
+        
+        if (roleItem.toString().equals("All Roles")) {
+            for (int i = 0; i < result.size(); i++) {
+                Object[] values = (Object[]) result.get(i);
+                String participantValue = String.valueOf(values[3]);
+                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                .concat(" ").concat(values[2].toString());
+                String roleValue = values[4].toString();
+                String role = values[5].toString();
+
+                ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                    Integer.parseInt(roleValue));
+                participantsList.add(a);
+                //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                Object[] row = {participantItem, role};
+                model = (DefaultTableModel) table.getModel();
+                model.addRow(row);
+            }            
+        }
+        else {
+            for (int i = 0; i < result.size(); i++) {
+                Object[] values = (Object[]) result.get(i);
+                String participantValue = String.valueOf(values[3]);
+                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                .concat(" ").concat(values[2].toString());
+                String roleValue = values[4].toString();
+                String role = values[5].toString();
+
+                if (role.equals(roleItem.toString())) {
+                    ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                        Integer.parseInt(roleValue));
+                    participantsList.add(a);
+                    //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                    Object[] row = {participantItem, role};
+                    model = (DefaultTableModel) table.getModel();
+                    model.addRow(row);
+                }            
+            }
+        }
     }//GEN-LAST:event_roleComboBoxActionPerformed
 
 
@@ -287,4 +340,19 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     private javax.swing.JScrollPane tableScrollPane;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
+    
+    public Welcome getMainApplication() {
+        return mainApplication;
+    }
+    
+    public JTable getTable() {
+        return table;
+    }
+
+    /**
+     * @return the participantValue
+     */
+    public String getParticipantValue() {
+        return participantValue;
+    }
 }

@@ -20,7 +20,7 @@ public class TestFrame extends javax.swing.JFrame {
     public TestFrame() {
         initComponents();
         jPanel1.setLayout(new FlowLayout());
-        jPanel1.add(new ViewProjectParticipants());
+        //jPanel1.add(new ViewProjectParticipants());
         jPanel1.revalidate();
     }
 

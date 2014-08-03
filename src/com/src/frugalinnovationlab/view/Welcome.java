@@ -31,6 +31,8 @@ public class Welcome extends javax.swing.JFrame {
     final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
     ViewGeneralProjectInformation viewGeneralProjectInformation;
+    ViewProjectParticipants viewProjectParticipants;
+    ViewParticipantDetails viewParticipantDetails;
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
     /**
@@ -290,80 +292,89 @@ public class Welcome extends javax.swing.JFrame {
 
     private void optionsMenuTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionsMenuTreeMouseClicked
         // TODO add your handling code here:
-        contentPanel.setLayout(new java.awt.BorderLayout());
+        getContentPanel().setLayout(new java.awt.BorderLayout());
         TreePath path = optionsMenuTree.getPathForLocation(evt.getX(), evt.getY());
         System.out.println("path : " + path);
         if (path != null) {
             System.out.println("lastcomponent : " + lastComponent);
-            contentPanel.removeAll();
+            getContentPanel().removeAll();
             // Check the last added component and remove it
             if (!lastComponent.equals("")) {
                 if (lastComponent.equals("Add New Project")) {
-                    contentPanel.remove(addNewProjectPanel);
+                    getContentPanel().remove(addNewProjectPanel);
                 } else if (lastComponent.equals("View All Projects")) {
-                    contentPanel.remove(viewAllProjectsPanel);
+                    getContentPanel().remove(viewAllProjectsPanel);
                 } else if (lastComponent.equals("Add Participant")) {
-                    contentPanel.remove(addNewParticipantPanel);
+                    getContentPanel().remove(addNewParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
-                    contentPanel.remove(addNewUserPanel);
+                    getContentPanel().remove(addNewUserPanel);
                 } else if (lastComponent.equals("View All Users")) {
-                    contentPanel.remove(viewAllUsersPanel);
+                    getContentPanel().remove(viewAllUsersPanel);
                 } else if (lastComponent.equals("Advanced Search")) {
-                    contentPanel.remove(advancedSearchPanel);
+                    getContentPanel().remove(advancedSearchPanel);
                 } else if (lastComponent.equals("Search")) {
-                    contentPanel.remove(searchPanel);
+                    getContentPanel().remove(searchPanel);
                 } else if (lastComponent.equals("Multimedia")) {
-                    contentPanel.remove(editProjectMultimedia);
-                } else if (lastComponent.equals("Participants")) {
-                    contentPanel.remove(editProjectParticipants);
+                    getContentPanel().remove(editProjectMultimedia);
+                } else if (lastComponent.equals("Edit Project Participants")) {
+                    getContentPanel().remove(editProjectParticipants);
                 } else if (lastComponent.equals("Edit Project General Info")) {
-                    contentPanel.remove(editGeneralProjectInformation);
+                    getContentPanel().remove(editGeneralProjectInformation);
                 } else if (lastComponent.equals("View Project General Info")) {
-                    contentPanel.remove(viewGeneralProjectInformation);
-                }
+                    getContentPanel().remove(viewGeneralProjectInformation);
+                } else if (lastComponent.equals("View Project Participants")) {
+                    getContentPanel().remove(viewProjectParticipants);
+                } else if (lastComponent.equals("View Participant Details")) {
+                    getContentPanel().remove(viewParticipantDetails);
+                }                
 
             }
             // Add the new component on the frame
             // Depending on the Selected Tree Node
             if (path.toString().contains("Add New Project")) {
-                contentPanel.add(new AddNewProjectPanel());
+                getContentPanel().add(new AddNewProjectPanel());
                 lastComponent = "Add New Project";
             } else if (path.toString().contains("View All Projects")) {
-                contentPanel.add(new ViewAllProjectsPanel());
+                getContentPanel().add(new ViewAllProjectsPanel());
                 lastComponent = "View All Projects";
             } else if (path.toString().contains("Add Participant")) {
-                contentPanel.add(new AddNewParticipantPanel());
+                getContentPanel().add(new AddNewParticipantPanel());
 
                 lastComponent = "Add Participant";
             } else if (path.toString().contains("Add New User")) {
-                contentPanel.add(new AddNewUserPanel());
+                getContentPanel().add(new AddNewUserPanel());
                 lastComponent = "Add New User";
             } else if (path.toString().contains("View All Users")) {
-                contentPanel.add(new ViewAllUsersPanel());
+                getContentPanel().add(new ViewAllUsersPanel());
                 lastComponent = "View All Users";
             } else if (path.toString().contains("Advanced Search")) {
-                contentPanel.add(new AdvancedSearchPanel());
+                getContentPanel().add(new AdvancedSearchPanel());
                 lastComponent = "Advanced Search";
             } else if (path.toString().contains("Search")) {
-                contentPanel.add(new SearchPanel());
+                getContentPanel().add(new SearchPanel());
                 lastComponent = "Search";
             } else if (path.toString().contains("Multimedia")) {
-                contentPanel.add(new EditProjectMultimedia());
+                getContentPanel().add(new EditProjectMultimedia());
                 lastComponent = "Multimedia";
-            } else if (path.toString().contains("Participants")) {
-                contentPanel.add(new EditProjectParticipants());
-                lastComponent = "Participants";
+            } else if (path.toString().contains("Edit Project") && path.toString().contains("Participants")) {
+                getContentPanel().add(new EditProjectParticipants());
+                lastComponent = "Edit Project Participants";
             } else if (path.toString().contains("Edit Project") && path.toString().contains("General Info")) {
                 editGeneralProjectInformation = new EditGeneralProjectInformation();
-                contentPanel.add(editGeneralProjectInformation);
+                getContentPanel().add(editGeneralProjectInformation);
                 lastComponent = "Edit Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
-                viewGeneralProjectInformation = new ViewGeneralProjectInformation();
-                contentPanel.add(viewGeneralProjectInformation);
+                viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
+                getContentPanel().add(viewGeneralProjectInformation);
                 lastComponent = "View Project General Info";
+            } else if (path.toString().contains("View Project") && path.toString().contains("Participants")) {
+                viewProjectParticipants = new ViewProjectParticipants(this);
+                getContentPanel().add(viewProjectParticipants);
+                lastComponent = "View Project Participants";
             }
-            contentPanel.revalidate();
-            contentPanel.repaint();
+            
+            getContentPanel().revalidate();
+            getContentPanel().repaint();
         }
     }//GEN-LAST:event_optionsMenuTreeMouseClicked
 
@@ -379,12 +390,12 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void manageAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAccountButtonActionPerformed
-        contentPanel.setLayout(new java.awt.BorderLayout());
-        contentPanel.removeAll();
+        getContentPanel().setLayout(new java.awt.BorderLayout());
+        getContentPanel().removeAll();
         manageAccountInfoPanel = new ManageAccountInfoPanel(user);
-        contentPanel.add(manageAccountInfoPanel);
-        contentPanel.revalidate();
-        contentPanel.repaint();
+        getContentPanel().add(manageAccountInfoPanel);
+        getContentPanel().revalidate();
+        getContentPanel().repaint();
     }//GEN-LAST:event_manageAccountButtonActionPerformed
 
     /**
@@ -436,4 +447,43 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JLabel welcome;
     private javax.swing.JPanel welcomeMainPanel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the contentPanel
+     */
+    public javax.swing.JPanel getContentPanel() {
+        return contentPanel;
+    }
+    
+    public String getLastComponent() {
+        return lastComponent;
+    }
+    
+    public void setLastComponent(String lastComponent) {
+        this.lastComponent = lastComponent;
+    }
+    
+    public ViewParticipantDetails getViewParticipantDetails() {
+        return viewParticipantDetails;
+    }
+    
+    public void setViewParticipantDetails(ViewParticipantDetails viewParticipantDetails) {
+        this.viewParticipantDetails = viewParticipantDetails;
+    }
+    
+    public ViewProjectParticipants getViewProjectParticipants() {
+        return viewProjectParticipants;
+    }
+    
+    public void setViewProjectParticipants(ViewProjectParticipants viewProjectParticipants) {
+        this.viewProjectParticipants = viewProjectParticipants;
+    }
+
+    public ViewGeneralProjectInformation getViewGeneralProjectInformation() {
+        return viewGeneralProjectInformation;
+    }
+    
+    public void setViewGeneralProjectInformation(ViewGeneralProjectInformation viewGeneralProjectInformation) {
+        this.viewGeneralProjectInformation = viewGeneralProjectInformation;
+    }    
 }

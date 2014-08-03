@@ -153,7 +153,7 @@ public class Project implements Serializable {
     public Project(Integer id, String name) {
         this.id = id;
         this.name = name;
-    }
+    }    
 
     public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, String scope, boolean display) {
         this.id = id;

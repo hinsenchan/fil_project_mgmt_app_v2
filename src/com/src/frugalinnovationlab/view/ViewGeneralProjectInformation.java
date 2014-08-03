@@ -27,15 +27,17 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     List<Project> projectList;
     List<String> categoriesList;
     List<ProjectStatus> projectStatusList;
+    Welcome mainApplication;
 
     /**
      * Creates new form ViewGeneralProjectInformation
      */
-    public ViewGeneralProjectInformation() {
+    public ViewGeneralProjectInformation(Welcome welcome) {
         categoriesList = new ArrayList<String>();
         viewGeneralProjectInformationController = new ViewGeneralProjectInformationController(this);
         projectStatusList = viewGeneralProjectInformationController.getProjectStatusFromDatabase();
         projectList = viewGeneralProjectInformationController.getProjectsFromDatabase();
+        mainApplication = welcome;
         initComponents();
     }
 
@@ -473,4 +475,8 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel viewGenProjInfoLabel;
     // End of variables declaration//GEN-END:variables
+
+    public Welcome getMainApplication() {
+        return mainApplication;
+    }
 }
