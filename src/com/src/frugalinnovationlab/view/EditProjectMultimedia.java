@@ -416,7 +416,7 @@ public class EditProjectMultimedia extends javax.swing.JPanel {
         jComboBox1.setForeground(new java.awt.Color(0, 95, 45));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
         for (int i = 0; i < projectList.size(); i++) {
-            System.out.println("id : " +projectList.get(i).getId());
+            //System.out.println("id : " +projectList.get(i).getId());
             jComboBox1.addItem(new ComboItem(projectList.get(i).getName(),
                 String.valueOf(projectList.get(i).getId())));
     }

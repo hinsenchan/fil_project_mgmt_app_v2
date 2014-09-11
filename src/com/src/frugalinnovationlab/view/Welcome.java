@@ -30,9 +30,11 @@ public class Welcome extends javax.swing.JFrame {
     EditGeneralProjectInformation editGeneralProjectInformation;
     final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
-    ViewGeneralProjectInformation viewGeneralProjectInformation;
+    //ViewGeneralProjectInformation viewGeneralProjectInformation;
+    ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
     ViewProjectParticipants viewProjectParticipants;
     ViewParticipantDetails viewParticipantDetails;
+    ViewProjectPanel viewProjectPanel;
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
     /**
@@ -326,8 +328,9 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(viewProjectParticipants);
                 } else if (lastComponent.equals("View Participant Details")) {
                     getContentPanel().remove(viewParticipantDetails);
-                }                
-
+                } else if (lastComponent.equals("View Project")) {
+                    getContentPanel().remove(getViewProjectPanel());                                        
+                }                                
             }
             // Add the new component on the frame
             // Depending on the Selected Tree Node
@@ -339,7 +342,6 @@ public class Welcome extends javax.swing.JFrame {
                 lastComponent = "View All Projects";
             } else if (path.toString().contains("Add Participant")) {
                 getContentPanel().add(new AddNewParticipantPanel());
-
                 lastComponent = "Add Participant";
             } else if (path.toString().contains("Add New User")) {
                 getContentPanel().add(new AddNewUserPanel());
@@ -364,14 +366,18 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(editGeneralProjectInformation);
                 lastComponent = "Edit Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
-                viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
+                //viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
                 getContentPanel().add(viewGeneralProjectInformation);
                 lastComponent = "View Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("Participants")) {
-                viewProjectParticipants = new ViewProjectParticipants(this);
+                if (viewProjectParticipants == null) { viewProjectParticipants = new ViewProjectParticipants(this); }
                 getContentPanel().add(viewProjectParticipants);
                 lastComponent = "View Project Participants";
-            }
+            } else if (path.toString().contains("View Project")) {
+                if (viewProjectPanel == null) { viewProjectPanel = new ViewProjectPanel(this); } 
+                getContentPanel().add(viewProjectPanel);
+                lastComponent = "View Project";                
+            }            
             
             getContentPanel().revalidate();
             getContentPanel().repaint();
@@ -486,4 +492,18 @@ public class Welcome extends javax.swing.JFrame {
     public void setViewGeneralProjectInformation(ViewGeneralProjectInformation viewGeneralProjectInformation) {
         this.viewGeneralProjectInformation = viewGeneralProjectInformation;
     }    
+
+    /**
+     * @return the viewProjectPanel
+     */
+    public ViewProjectPanel getViewProjectPanel() {
+        return viewProjectPanel;
+    }
+
+    /**
+     * @param viewProjectPanel the viewProjectPanel to set
+     */
+    public void setViewProjectPanel(ViewProjectPanel viewProjectPanel) {
+        this.viewProjectPanel = viewProjectPanel;
+    }
 }

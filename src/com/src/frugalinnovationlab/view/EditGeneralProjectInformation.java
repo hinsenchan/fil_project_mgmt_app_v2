@@ -37,11 +37,13 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         projectStatusList = editGeneralProjectInformationController.getProjectStatusFromDatabase();
         projectList = editGeneralProjectInformationController.getProjectsFromDatabase();
         initComponents();
+        /*
         for (int i = 0; i < projectList.size(); i++) {
             //Project project = projectList.get(i);
             System.out.println("id : " + projectList.get(i).getId());
             System.out.println("name : " + projectList.get(i).getName());
         }
+        */
     }
 
     /**
@@ -243,7 +245,7 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
         chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
         for (int i = 0; i < projectList.size(); i++) {
-            System.out.println("id : " +projectList.get(i).getId());
+            //System.out.println("id : " +projectList.get(i).getId());
             chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
                 String.valueOf(projectList.get(i).getId())));
     }
@@ -313,12 +315,12 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
                     .addComponent(addNewProjectTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(11, Short.MAX_VALUE))
+            .addContainerGap(48, Short.MAX_VALUE))
         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addComponent(logoLabel2)
-                .addContainerGap(202, Short.MAX_VALUE)))
+                .addContainerGap(204, Short.MAX_VALUE)))
     );
     mainPanelLayout.setVerticalGroup(
         mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +347,7 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(statusProjectLabel)
                 .addComponent(projectStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -387,7 +389,7 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE)))
+                .addContainerGap(111, Short.MAX_VALUE)))
     );
 
     jScrollPane1.setViewportView(mainPanel);
@@ -458,7 +460,7 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         }
         Set<ProjectCategory> categorySet = projList.get(0).getProjectCategories();
         for (ProjectCategory projectCategory : categorySet) {
-            System.out.println("category is : " + projectCategory.getName());
+            //System.out.println("category is : " + projectCategory.getName());
             String name = projectCategory.getName();
             if (name.equals("Bio Engineering")) {
                 categorySelected.add(name);

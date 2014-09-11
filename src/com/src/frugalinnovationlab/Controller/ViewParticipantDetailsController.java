@@ -11,9 +11,9 @@ import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Model.EditProjectParticipantsModel;
 import com.src.frugalinnovationlab.view.ViewGeneralProjectInformation;
 import com.src.frugalinnovationlab.view.ViewParticipantDetails;
-import com.src.frugalinnovationlab.view.ViewProjectParticipants;
 import com.src.frugalinnovationlab.view.Welcome;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -62,22 +62,49 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) { 
         ListSelectionModel selectModel = (ListSelectionModel) e.getSource();
 	int firstIndex = selectModel.getMinSelectionIndex(); 
+        
         showViewGeneralProjectInformation();
+        //showViewGeneralProjectInformation(firstIndex);
+        //setViewGeneralProjectInformationComboBox(firstIndex);
+        
+        //System.out.println(gui.getTable().getModel().getValueAt(0, firstIndex));
+        //System.out.println(mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().getItemAt(0).toString());
+        
+        
+    }
+    
+    public void setViewGeneralProjectInformationComboBox() {
+    //public void setViewGeneralProjectInformationComboBox(int index) {
+        JComboBox comboBox = mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox();
+        /*
+        String selectedProject = (String)(gui.getTable().getModel().getValueAt(0, index));
+        for (int i=0; i<comboBox.getItemCount(); i++) {
+            if (comboBox.getItemAt(i).toString().equals(selectedProject)) {                
+                try {
+                    System.out.println(comboBox.getItemAt(i).toString());
+                    System.out.println(i);
+                    System.out.println(comboBox.getItemCount());
+                    //comboBox.setSelectedIndex(i+1);
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    break;
+                }
+            }
+        }
+                */
+        //System.out.println("dfadfadfdafa");
     }
     
     public void showViewGeneralProjectInformation() {
+    //public void showViewGeneralProjectInformation(int index) {
         mainApplication.setViewGeneralProjectInformation(new ViewGeneralProjectInformation(mainApplication));
+        //setViewGeneralProjectInformationComboBox(index);
         mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
         mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());
-        mainApplication.setLastComponent("View Project General Info");
+        mainApplication.setLastComponent("View Project General Info");        
         mainApplication.getContentPanel().revalidate();
-    }    
-    
-    public void showViewProjectParticipants() {
-        mainApplication.setViewProjectParticipants(new ViewProjectParticipants(mainApplication));
-        mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
-        mainApplication.getContentPanel().add(mainApplication.getViewProjectParticipants());
-        mainApplication.setLastComponent("View Project Participants");
-        mainApplication.getContentPanel().revalidate();
-    }      
+    }             
 }

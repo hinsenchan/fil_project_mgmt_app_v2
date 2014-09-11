@@ -128,7 +128,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseProjectComboBoxActionPerformed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for (int i = 0; i &lt; projectList.size(); i++) {&#xa;System.out.println(&quot;id : &quot; +projectList.get(i).getId());&#xa;    chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(), &#xa;        String.valueOf(projectList.get(i).getId())));&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for (int i = 0; i &lt; projectList.size(); i++) {&#xa;//System.out.println(&quot;id : &quot; +projectList.get(i).getId());&#xa;    chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(), &#xa;        String.valueOf(projectList.get(i).getId())));&#xa;}"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

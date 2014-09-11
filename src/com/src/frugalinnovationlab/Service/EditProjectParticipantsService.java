@@ -92,7 +92,7 @@ public class EditProjectParticipantsService {
         Query query = manager.createQuery(naiveQuery);
         query.setParameter("pid", pid);
         int i = query.executeUpdate();
-        System.out.println("i = " +i);
+        //System.out.println("i = " +i);
         return true;
     }
 

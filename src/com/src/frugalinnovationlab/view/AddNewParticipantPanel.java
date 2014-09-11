@@ -20,7 +20,7 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
      * Creates new form AddNewUserPanel
      */
     public AddNewParticipantPanel() {
-        System.out.println("AddNewParticipantPanel");
+        //System.out.println("AddNewParticipantPanel");
         addNewParticipantController = new AddNewParticipantController(this);
         initComponents();
     }

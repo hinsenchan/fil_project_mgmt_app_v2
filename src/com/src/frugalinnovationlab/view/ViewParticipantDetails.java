@@ -143,8 +143,6 @@ public class ViewParticipantDetails extends javax.swing.JPanel {
         projectsLabel.setText("Projects:");
         projectsLabel.setPreferredSize(new java.awt.Dimension(100, 17));
 
-        tableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
-
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -242,7 +240,7 @@ public class ViewParticipantDetails extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnToProjectParticipantsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnToProjectParticipantsButtonActionPerformed
-        controller.showViewProjectParticipants();
+        controller.showViewGeneralProjectInformation();
     }//GEN-LAST:event_returnToProjectParticipantsButtonActionPerformed
 
 

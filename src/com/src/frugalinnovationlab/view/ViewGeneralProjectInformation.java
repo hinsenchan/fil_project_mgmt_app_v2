@@ -94,7 +94,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
         chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
         for (int i = 0; i < projectList.size(); i++) {
-            System.out.println("id : " +projectList.get(i).getId());
+            //System.out.println("id : " +projectList.get(i).getId());
             chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
                 String.valueOf(projectList.get(i).getId())));
     }
@@ -327,7 +327,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(logoLabel2))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(startDateLabel)
                 .addComponent(endDateLabel))
@@ -385,7 +385,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         // TODO add your handling code here:
         //String selectedProjectId = chooseProjectComboBox.getSelectedItem().toString();
         
-        Object projectIdItem = chooseProjectComboBox.getSelectedItem();
+        Object projectIdItem = getChooseProjectComboBox().getSelectedItem();
         String projectIdValue = ((ComboItem) projectIdItem).getValue();
         List<Project> projList = viewGeneralProjectInformationController.fetchProjectGeneralInformation(projectIdValue);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -412,6 +412,13 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
             
         }
         categoryTextArea.setText(categoryText);
+        
+        if (mainApplication.getViewProjectParticipants() == null) {
+            ViewProjectParticipants panel = new ViewProjectParticipants(mainApplication);
+            mainApplication.setViewProjectParticipants(panel);
+        }
+        //System.out.println(getChooseProjectComboBox().getSelectedIndex());
+        mainApplication.getViewProjectParticipants().getChooseProjectComboBox().setSelectedIndex(getChooseProjectComboBox().getSelectedIndex());
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void projectNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNameTextFieldActionPerformed
@@ -478,5 +485,19 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     public Welcome getMainApplication() {
         return mainApplication;
+    }
+
+    /**
+     * @return the chooseProjectComboBox
+     */
+    public javax.swing.JComboBox getChooseProjectComboBox() {
+        return chooseProjectComboBox;
+    }
+
+    /**
+     * @param chooseProjectComboBox the chooseProjectComboBox to set
+     */
+    public void setChooseProjectComboBox(javax.swing.JComboBox chooseProjectComboBox) {
+        this.chooseProjectComboBox = chooseProjectComboBox;
     }
 }

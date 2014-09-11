@@ -131,7 +131,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaAdobe> mediaAdobeSet = new HashSet<MediaAdobe>();
         MediaAdobe mediaAdobe = new MediaAdobe();
     
@@ -142,8 +142,8 @@ public class EditProjectMultimediaService {
         
         for (MediaAdobe mediaAdobe1 : mediaAdobeSet) {
             
-            System.out.println("adobe id : " +mediaAdobe1.getMediaAdobePK().getProjectId());
-            System.out.println("adobe id : " +mediaAdobe1.getProjects().getId());
+            //System.out.println("adobe id : " +mediaAdobe1.getMediaAdobePK().getProjectId());
+            //System.out.println("adobe id : " +mediaAdobe1.getProjects().getId());
         }
         
         project.setAdobes(mediaAdobeSet);
@@ -158,7 +158,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaCad> mediaCadSet = new HashSet<MediaCad>();
         MediaCad mediaCad = new MediaCad();
     
@@ -178,7 +178,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaCode> mediaCodeSet = new HashSet<MediaCode>();
         MediaCode mediaCode = new MediaCode();
     
@@ -198,7 +198,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaPdf> mediaPdfSet = new HashSet<MediaPdf>();
         MediaPdf mediaPdf = new MediaPdf();
     
@@ -218,7 +218,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaPhotos> mediaPhotoSet = new HashSet<MediaPhotos>();
         MediaPhotos mediaPhoto = new MediaPhotos();
     
@@ -238,7 +238,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaPlaintext> mediaPlainSet = new HashSet<MediaPlaintext>();
         MediaPlaintext mediaPlainText = new MediaPlaintext();
     
@@ -258,7 +258,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaSpreadsheet> mediaSpreadSet = new HashSet<MediaSpreadsheet>();
         MediaSpreadsheet mediaSpread = new MediaSpreadsheet();
     
@@ -278,7 +278,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaVideo> mediaVideoSet = new HashSet<MediaVideo>();
         MediaVideo mediaVideo = new MediaVideo();
     
@@ -298,7 +298,7 @@ public class EditProjectMultimediaService {
         boolean success = false;
         int id = Integer.parseInt(projectId);
         Project project = manager.find(Project.class, id);
-        System.out.println("project id : " + id);
+        //System.out.println("project id : " + id);
         Set<MediaWord> mediaWordSet = new HashSet<MediaWord>();
         MediaWord mediaWord = new MediaWord();
     

@@ -238,7 +238,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
-        Object projectItem = chooseProjectComboBox.getSelectedItem();
+        Object projectItem = getChooseProjectComboBox().getSelectedItem();
         //  System.out.println("object item : " +projectItem);
         String projectId = String.valueOf(((ComboItem) projectItem).getValue());
         //  System.out.println("project id : " + projectId);
@@ -268,7 +268,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
-        Object projectItem = chooseProjectComboBox.getSelectedItem();
+        Object projectItem = getChooseProjectComboBox().getSelectedItem();
         //  System.out.println("object item : " +projectItem);
         String projectId = String.valueOf(((ComboItem) projectItem).getValue());
         //  System.out.println("project id : " + projectId);
@@ -354,5 +354,19 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
      */
     public String getParticipantValue() {
         return participantValue;
+    }
+
+    /**
+     * @return the chooseProjectComboBox
+     */
+    public javax.swing.JComboBox getChooseProjectComboBox() {
+        return chooseProjectComboBox;
+    }
+
+    /**
+     * @param chooseProjectComboBox the chooseProjectComboBox to set
+     */
+    public void setChooseProjectComboBox(javax.swing.JComboBox chooseProjectComboBox) {
+        this.chooseProjectComboBox = chooseProjectComboBox;
     }
 }

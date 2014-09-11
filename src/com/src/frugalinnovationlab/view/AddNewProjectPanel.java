@@ -326,7 +326,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         projectStatusComboBox.setForeground(new java.awt.Color(0, 95, 45));
         projectStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Status" }));
         Array [] arr = new Array[projectStatusList.size()];
-        System.out.println("arr = " +arr.toString());
+        //System.out.println("arr = " +arr.toString());
 
         for(int i = 0; i < projectStatusList.size(); i++){
             //projectStatusList.get(i).getStatus();
@@ -604,7 +604,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         roleComboBox.setForeground(new java.awt.Color(0, 95, 45));
         roleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Role" }));
         Array [] roleArray = new Array[participantDesignationsList.size()];
-        System.out.println("arr = " +roleArray.toString());
+        //System.out.println("arr = " +roleArray.toString());
         //designationComboBox.addItem("Your Choices");
         for(int i = 0; i < participantDesignationsList.size(); i++){
             //System.out.println(participantDesignationsList.get(i).getName());
@@ -792,7 +792,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(addTitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(firstNameLabel)
                     .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addNewParticipantPanelButton)
                     .addComponent(addNewParticipantRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1555,11 +1555,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             m.setMediaCadPK(mpk);
             cadFileList.add(m);
         }
+        /*
         for (int i = 0; i < cadFileList.size(); i++) {
             System.out.println("name : " + cadFileList.get(i).getTitle());
             System.out.println("name : " + cadFileList.get(i).getMediaCadPK().getFilePath());
-
         }
+        */
     }//GEN-LAST:event_addCADDocumentButtonActionPerformed
 
     private void chooseParticipantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseParticipantComboBoxActionPerformed
@@ -1616,7 +1617,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             array[1] = shortDescriptionTextField.getText();
             array[2] = jTextArea1.getText();
             array[3] = projectStatusComboBox.getSelectedItem().toString();
-            System.out.println("status : " + array[3]);
+            //System.out.println("status : " + array[3]);
             array[4] = projectLocationTextField.getText();
             array[5] = startDate.getDate().toString();
             array[6] = endDate.getDate().toString();
@@ -1671,10 +1672,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
     private void addParticipantButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButton1ActionPerformed
         // TODO add your handling code here:
+        /*
         for (int i = 0; i < participantsList.size(); i++) {
             System.out.println("Final part id : " + participantsList.get(i).getParticipantId());
             System.out.println("Final role id : " + participantsList.get(i).getRoleId());
         }
+        */
         jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_addParticipantButton1ActionPerformed
 
@@ -1694,8 +1697,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             Object[] row = {participantValue, participantItem, roleValue, roleItem};
             model = (DefaultTableModel) jTable1.getModel();
             model.addRow(row);
+            /*
             System.out.println("role : " + participantsList.get(0).getRoleId());
             System.out.println("participant : " + participantsList.get(0).getParticipantId());
+            */
         }
 
 
@@ -1710,16 +1715,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         String participantId = model.getValueAt(row, 0).toString();
         String roleId = model.getValueAt(row, 2).toString();
 
-        System.out.println("delete participant : " + participantId);
-        System.out.println("delete role : " + roleId);
+        //System.out.println("delete participant : " + participantId);
+        //System.out.println("delete role : " + roleId);
         AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleId);
-        System.out.println("contains : " + participantsList.contains(a));
+        //System.out.println("contains : " + participantsList.contains(a));
         Iterator<AssignParticipantsToProject> itr = participantsList.iterator();
         while (itr.hasNext()) {
             AssignParticipantsToProject x = itr.next();
-            System.out.println("x value : " + x.getParticipantId());
+            //System.out.println("x value : " + x.getParticipantId());
             if (a.getParticipantId() == x.getParticipantId() && a.getRoleId() == x.getRoleId()) {
-                System.out.println("Reomoved : ");
+                //System.out.println("Reomoved : ");
                 itr.remove();
             }
         }
@@ -1757,11 +1762,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             m.setMediaAdobePK(mpk);
             adobeFileList.add(m);
         }
+        /*
         for (int i = 0; i < adobeFileList.size(); i++) {
             System.out.println("name : " + adobeFileList.get(i).getTitle());
             System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
 
         }
+        */
     }//GEN-LAST:event_addadobefileButtonActionPerformed
 
     private void clearAdobeFilesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAdobeFilesButtonActionPerformed
@@ -1820,10 +1827,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             m.setMediaCodePK(mpk);
             codeFileList.add(m);
         }
+        /*
         for (int i = 0; i < codeFileList.size(); i++) {
             System.out.println("name : " + codeFileList.get(i).getTitle());
             System.out.println("name : " + codeFileList.get(i).getMediaCodePK().getFilePath());
         }
+        */
     }//GEN-LAST:event_addCodeButtonActionPerformed
 
     private void addLinkTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLinkTextFieldActionPerformed
@@ -2003,7 +2012,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 || array[0] == null || array[0].equals("Choose a Title")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter Participant Details");
         } else {
-            System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
+            //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
                 participants = addNewProjectController.getParticipantsFromDatabase();
@@ -2037,7 +2046,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
     private void addNewTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTagsActionPerformed
         // TODO add your handling code here:
-        System.out.println("add new tags :: " +addNewTags.isSelected());
+        //System.out.println("add new tags :: " +addNewTags.isSelected());
         if (addNewTags.isSelected()) {
             newTagsLabelField.setVisible(true);
             newTagsTextField.setVisible(true);

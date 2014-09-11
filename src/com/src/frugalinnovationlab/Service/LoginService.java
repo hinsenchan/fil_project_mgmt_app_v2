@@ -33,15 +33,15 @@ public class LoginService {
             }
             for (Object[] data : result) // System.out.println("username =" +data[0] + " password =  " + data[1] + "role =" + data[2]);
             {
-                System.out.println("now here ");
+                //System.out.println("now here ");
                 if (data[2].toString().equals("Administrator")) {
                     if (username.equalsIgnoreCase(data[0].toString()) && password.equals(data[1].toString())) {
                         flag = "Atrue";
-                        System.out.println("Its Admin");
+                        //System.out.println("Its Admin");
                     }
                 } else if (data[2].toString().equals("Viewer")) {
                     if (username.equalsIgnoreCase(data[0].toString()) && password.equals(data[1].toString())) {
-                        System.out.println("Its Viewer");
+                        //System.out.println("Its Viewer");
                         flag = "Vtrue";
                     }
                 }

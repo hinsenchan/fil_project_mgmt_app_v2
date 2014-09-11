@@ -76,10 +76,10 @@ public class EditGeneralProjectInformationService {
             String outcome = array[8];
             int projectId = Integer.parseInt(array[9]);
 
-            System.out.println("Project id : " + projectId);
-            System.out.println("project name : " + projectName);
+            //System.out.println("Project id : " + projectId);
+            //System.out.println("project name : " + projectName);
             Project project = manager.find(Project.class, projectId);
-            System.out.println("Setting project values");
+            //System.out.println("Setting project values");
             project.setName(projectName);
             project.setShortdesc(shortDesc);
             project.setDescription(longDesc);
@@ -89,24 +89,24 @@ public class EditGeneralProjectInformationService {
             project.setEndDate(endDate);
             project.setScope(scope);
             project.setOutcome(outcome);
-            System.out.println("setting categories");
+            //System.out.println("setting categories");
             
             Set<ProjectCategory> projectCategories = new HashSet<ProjectCategory>();
             ProjectCategory projectCategory = new ProjectCategory();
             for (int i = 0; i < categoriesList.size(); i++) {
                 String string = categoriesList.get(i);
-                System.out.println("cat : "+string);
+                //System.out.println("cat : "+string);
                 projectCategory = new ProjectCategory(string);
-                System.out.println("pcat : "+project.getProjectCategories().contains(projectCategory));
+                //System.out.println("pcat : "+project.getProjectCategories().contains(projectCategory));
                 if(project.getProjectCategories().contains(projectCategory)){
                     boolean removed = project.getProjectCategories().remove(projectCategory);
-                    System.out.println("removed : " +removed );
+                    //System.out.println("removed : " +removed );
                 }                
                 projectCategories.add(projectCategory);
                 
             }
             for (ProjectCategory projectCategory1 : projectCategories) {
-                System.out.println("here : " +projectCategory1.getName());
+                //System.out.println("here : " +projectCategory1.getName());
             }
             project.setProjectCategories(projectCategories);
             

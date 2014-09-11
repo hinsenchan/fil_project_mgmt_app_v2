@@ -483,7 +483,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
                     </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="Array [] arr = new Array[projectStatusList.size()];&#xa;System.out.println(&quot;arr = &quot; +arr.toString());&#xa;&#xa;for(int i = 0; i &lt; projectStatusList.size(); i++){&#xa;   //projectStatusList.get(i).getStatus();&#xa;   projectStatusComboBox.addItem(projectStatusList.get(i).getStatus());&#xa;}">
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="Array [] arr = new Array[projectStatusList.size()];&#xa;//System.out.println(&quot;arr = &quot; +arr.toString());&#xa;&#xa;for(int i = 0; i &lt; projectStatusList.size(); i++){&#xa;   //projectStatusList.get(i).getStatus();&#xa;   projectStatusComboBox.addItem(projectStatusList.get(i).getStatus());&#xa;}">
                       <StringArray count="1">
                         <StringItem index="0" value="Choose a Status"/>
                       </StringArray>
@@ -864,7 +864,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
                     </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="Array [] roleArray = new Array[participantDesignationsList.size()];&#xa;System.out.println(&quot;arr = &quot; +roleArray.toString());&#xa;//designationComboBox.addItem(&quot;Your Choices&quot;);&#xa;for(int i = 0; i &lt; participantDesignationsList.size(); i++){&#xa;   //System.out.println(participantDesignationsList.get(i).getName());&#xa;   roleComboBox.addItem(new ComboItem(participantDesignationsList.get(i).getName(), Integer.toString(participantDesignationsList.get(i).getId())));&#xa;}">
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="Array [] roleArray = new Array[participantDesignationsList.size()];&#xa;//System.out.println(&quot;arr = &quot; +roleArray.toString());&#xa;//designationComboBox.addItem(&quot;Your Choices&quot;);&#xa;for(int i = 0; i &lt; participantDesignationsList.size(); i++){&#xa;   //System.out.println(participantDesignationsList.get(i).getName());&#xa;   roleComboBox.addItem(new ComboItem(participantDesignationsList.get(i).getName(), Integer.toString(participantDesignationsList.get(i).getId())));&#xa;}">
                       <StringArray count="1">
                         <StringItem index="0" value="Choose a Role"/>
                       </StringArray>
@@ -1102,7 +1102,7 @@
                                   <Component id="firstNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="firstNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
+                              <EmptySpace pref="44" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="addNewParticipantPanelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="addNewParticipantRoleComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
