@@ -48,6 +48,12 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         logoLabel2 = new javax.swing.JLabel();
+        designationLabel1 = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        designationLabel2 = new javax.swing.JLabel();
+        phoneTextField = new javax.swing.JTextField();
+        organizationTextField = new javax.swing.JTextField();
+        designationLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 170, 153), 4));
@@ -116,6 +122,27 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
         logoLabel2.setBackground(new java.awt.Color(255, 255, 255));
         logoLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
 
+        designationLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        designationLabel1.setText("Email");
+
+        emailTextField.setColumns(11);
+        emailTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        emailTextField.setToolTipText("Enter Designation");
+
+        designationLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        designationLabel2.setText("Phone");
+
+        phoneTextField.setColumns(11);
+        phoneTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        phoneTextField.setToolTipText("Enter Designation");
+
+        organizationTextField.setColumns(11);
+        organizationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        organizationTextField.setToolTipText("Enter Designation");
+
+        designationLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        designationLabel3.setText("Organization");
+
         javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);
         centerPanel.setLayout(centerPanelLayout);
         centerPanelLayout.setHorizontalGroup(
@@ -123,74 +150,80 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
             .addGroup(centerPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(centerPanelLayout.createSequentialGroup()
-                        .addComponent(addNewUserTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 374, Short.MAX_VALUE))
+                    .addComponent(addNewUserTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(centerPanelLayout.createSequentialGroup()
                         .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameLabel)
                             .addComponent(firstNameLabel)
                             .addComponent(designationLabel)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(designationLabel1)
+                            .addComponent(designationLabel3)
+                            .addComponent(designationLabel2))
                         .addGap(57, 57, 57)
-                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(middlenameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(0, 325, Short.MAX_VALUE))))
-            .addGroup(centerPanelLayout.createSequentialGroup()
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(emailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                .addComponent(phoneTextField)
+                                .addComponent(organizationTextField)
+                                .addComponent(firstNameTextField)
+                                .addComponent(middlenameTextField))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(centerPanelLayout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(centerPanelLayout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(addButton)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(centerPanelLayout.createSequentialGroup()
-                    .addGap(212, 212, 212)
-                    .addComponent(logoLabel2)
-                    .addContainerGap(212, Short.MAX_VALUE)))
+                    .addComponent(addButton)
+                    .addComponent(logoLabel2))
+                .addGap(0, 70, Short.MAX_VALUE))
         );
         centerPanelLayout.setVerticalGroup(
             centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(centerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addNewUserTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(centerPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(firstNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addComponent(lastNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(designationLabel)
-                        .addGap(24, 24, 24))
-                    .addGroup(centerPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(middlenameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addNewUserTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(centerPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(firstNameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1))
+                            .addGroup(centerPanelLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(middlenameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lastNameLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(designationLabel))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(designationLabel1))
+                        .addGap(12, 12, 12)
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(designationLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(organizationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(designationLabel3)))
+                    .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(addButton)
-                .addContainerGap(326, Short.MAX_VALUE))
-            .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(centerPanelLayout.createSequentialGroup()
-                    .addGap(119, 119, 119)
-                    .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(120, Short.MAX_VALUE)))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -221,12 +254,15 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        String [] array = new String[5];
+        String [] array = new String[8];
         array[0] = jComboBox1.getSelectedItem().toString();
         array[1] = firstNameTextField.getText();
         array[2] = middlenameTextField.getText();
         array[3] = lastNameTextField.getText();
         array[4] = designationTextField.getText();
+        array[5] = emailTextField.getText();
+        array[6] = phoneTextField.getText();
+        array[7] = organizationTextField.getText();
         
         if(array[1] == null || array[1].equals("")){
             JOptionPane.showMessageDialog(centerPanel, "Please enter atleast First Name");
@@ -254,7 +290,11 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addNewUserTextArea;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JLabel designationLabel;
+    private javax.swing.JLabel designationLabel1;
+    private javax.swing.JLabel designationLabel2;
+    private javax.swing.JLabel designationLabel3;
     private javax.swing.JTextField designationTextField;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JComboBox jComboBox1;
@@ -264,5 +304,7 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JLabel logoLabel2;
     private javax.swing.JTextField middlenameTextField;
+    private javax.swing.JTextField organizationTextField;
+    private javax.swing.JTextField phoneTextField;
     // End of variables declaration//GEN-END:variables
 }

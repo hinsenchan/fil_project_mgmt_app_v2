@@ -61,50 +61,35 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
     
     public void valueChanged(ListSelectionEvent e) { 
         ListSelectionModel selectModel = (ListSelectionModel) e.getSource();
-	int firstIndex = selectModel.getMinSelectionIndex(); 
-        
-        showViewGeneralProjectInformation();
-        //showViewGeneralProjectInformation(firstIndex);
-        //setViewGeneralProjectInformationComboBox(firstIndex);
-        
-        //System.out.println(gui.getTable().getModel().getValueAt(0, firstIndex));
-        //System.out.println(mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().getItemAt(0).toString());
-        
-        
+        int firstIndex = selectModel.getMinSelectionIndex();
+        setSelectedProject(firstIndex);
+        if (firstIndex > -1) {
+            showViewGeneralProjectInformation();         
+        }
     }
     
-    public void setViewGeneralProjectInformationComboBox() {
-    //public void setViewGeneralProjectInformationComboBox(int index) {
-        JComboBox comboBox = mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox();
-        /*
-        String selectedProject = (String)(gui.getTable().getModel().getValueAt(0, index));
-        for (int i=0; i<comboBox.getItemCount(); i++) {
-            if (comboBox.getItemAt(i).toString().equals(selectedProject)) {                
-                try {
-                    System.out.println(comboBox.getItemAt(i).toString());
-                    System.out.println(i);
-                    System.out.println(comboBox.getItemCount());
-                    //comboBox.setSelectedIndex(i+1);
-                }
-                catch(Exception e) {
-                    e.printStackTrace();
-                }
-                finally {
-                    break;
-                }
-            }
-        }
-                */
-        //System.out.println("dfadfadfdafa");
-    }
+    public void setSelectedProject(int index) {
+        final int projectNameCol = 0;     
+        mainApplication.setSelectedProject((String)(gui.getTable().getValueAt(index, projectNameCol)));
+    }    
     
     public void showViewGeneralProjectInformation() {
-    //public void showViewGeneralProjectInformation(int index) {
-        mainApplication.setViewGeneralProjectInformation(new ViewGeneralProjectInformation(mainApplication));
-        //setViewGeneralProjectInformationComboBox(index);
         mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
         mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());
-        mainApplication.setLastComponent("View Project General Info");        
+        mainApplication.setLastComponent("View Project General Info");   
+        mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+        mainApplication.getViewProjectParticipants().refreshSelectedProject();        
         mainApplication.getContentPanel().revalidate();
-    }             
+        mainApplication.getContentPanel().repaint();
+    }
+    
+    public void showViewProjectParticipants() {
+        mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
+        mainApplication.getContentPanel().add(mainApplication.getViewProjectParticipants());
+        mainApplication.setLastComponent("View Project Participants");   
+        mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+        mainApplication.getViewProjectParticipants().refreshSelectedProject();        
+        mainApplication.getContentPanel().revalidate();
+        mainApplication.getContentPanel().repaint();
+    }     
 }

@@ -27,7 +27,6 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
     private EditProjectParticipantsModel editProjectParticipantsModel;
     private Welcome mainApplication;
     private ListSelectionModel selectModel;
-    private int firstIndex;
 
     public ViewProjectParticipantsController(ViewProjectParticipants gui) {
         this.gui = gui;
@@ -63,17 +62,18 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
     
     public void valueChanged(ListSelectionEvent e) { 
         selectModel = (ListSelectionModel) e.getSource();        
-	firstIndex = selectModel.getMinSelectionIndex(); 
-        showViewParticipantDetails();
+	int firstIndex = selectModel.getMinSelectionIndex(); 
+        if (firstIndex > -1) {
+            showViewParticipantDetails(firstIndex);
+        }
     }
     
-    public void showViewParticipantDetails() {
-        ViewParticipantDetails viewParticipantDetails = new ViewParticipantDetails(mainApplication);
-        mainApplication.setViewParticipantDetails(viewParticipantDetails);
-        String name = gui.getTable().getModel().getValueAt(firstIndex, 0).toString();
-        viewParticipantDetails.getNameTextField().setText(name);
+    public void showViewParticipantDetails(int index) {
+        String name = gui.getTable().getModel().getValueAt(index, 0).toString();
+
+        mainApplication.getViewParticipantDetails().getNameTextField().setText(name);
         List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
-        DefaultTableModel model = (DefaultTableModel) viewParticipantDetails.getTable().getModel();        
+        DefaultTableModel model = (DefaultTableModel) mainApplication.getViewParticipantDetails().getTable().getModel();        
         
         for (int i = 0; i < result.size(); i++) {
             Project values = (Project) result.get(i);
@@ -83,10 +83,13 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
             Object[] row = {projectName, projectShortDescription};            
             model.addRow(row);
         }        
+        
+        //mainApplication.getViewParticipantDetails().getEmailTextField().setText(name);
                
         mainApplication.getContentPanel().remove(mainApplication.getViewProjectParticipants());
         mainApplication.getContentPanel().add(mainApplication.getViewParticipantDetails());
         mainApplication.setLastComponent("View Participant Details");
         mainApplication.getContentPanel().revalidate();
+        mainApplication.getContentPanel().repaint();
     }
 }

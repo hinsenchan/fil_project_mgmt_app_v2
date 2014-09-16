@@ -41,7 +41,7 @@
               <Group type="102" attributes="0">
                   <Component id="menuTreePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="contentPanel" pref="602" max="32767" attributes="0"/>
+                  <Component id="contentPanel" pref="800" max="32767" attributes="0"/>
               </Group>
               <Component id="headerPanel" max="32767" attributes="0"/>
           </Group>
@@ -237,7 +237,7 @@
                       <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="logoLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <EmptySpace pref="304" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="logoutButton" min="-2" max="-2" attributes="0"/>

@@ -6,87 +6,34 @@
 package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.ViewProjectController;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author diptik
+ * @author Hinsen Chan
  */
 public class ViewProjectPanel extends javax.swing.JPanel {
     private Welcome mainApplication;
-    private JTable jtable1;
     private ViewProjectController viewProjectController;
 
-    /**
-     * Creates new form ViewAllProjectsPanel
-     */
+    //default constructor
     public ViewProjectPanel(Welcome welcome) {
         initComponents();
+        //set reference to main app class
         this.mainApplication = welcome;
+        //set reference to controller for this panel
         viewProjectController = new ViewProjectController(this);
-        addJTable();
-        jtable1.getSelectionModel().addListSelectionListener(viewProjectController);                
+        //set model for this table
+        updateTable();
+        //add this panel's controller as observer for this table
+        jTable1.getSelectionModel().addListSelectionListener(viewProjectController);          
     }
 
-    public void addJTable() {
-        // add the data and column names to a JTable  
-
-        jtable1 = new JTable(viewProjectController.getTableModel());
-
-
-        final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        tablePanel.setLayout(new BorderLayout());
-        tablePanel.add(scrollpane, BorderLayout.CENTER);
-
-        final int rows = 14;
-
-        Dimension d = jtable1.getPreferredSize();
-        scrollpane.setPreferredSize(new Dimension(d.width, jtable1.getRowHeight() * rows));
-
-        JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-
-        JButton next = new JButton(">");
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                int height = jtable1.getRowHeight() * (rows - 2);
-
-                JScrollBar bar = scrollpane.getVerticalScrollBar();
-                bar.setValue(bar.getValue() + height);
-            }
-        });
-        JButton previous = new JButton("<");
-        previous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                int height = jtable1.getRowHeight() * (rows - 2);
-
-                JScrollBar bar = scrollpane.getVerticalScrollBar();
-                bar.setValue(bar.getValue() - height);
-            }
-        });
-
-        navigation.add(previous);
-        navigation.add(next);
-
-
-        tablePanel.add(navigation, BorderLayout.SOUTH);
-
-
-
-    }
-
+    //update table data from controller
     public void updateTable() {
-
-        jtable1.setModel(viewProjectController.getTableModel());
-
-
-
-
+        jTable1.setModel(viewProjectController.getTableModel());        
     }
 
     /**
@@ -100,6 +47,8 @@ public class ViewProjectPanel extends javax.swing.JPanel {
 
         viewAllProjectsLabel = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         logoLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -112,15 +61,35 @@ public class ViewProjectPanel extends javax.swing.JPanel {
 
         tablePanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         logoLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,37 +100,43 @@ public class ViewProjectPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
-                .addComponent(logoLabel2)
-                .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLabel2;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel viewAllProjectsLabel;
     // End of variables declaration//GEN-END:variables
+    //return reference to main app class
     public Welcome getMainApplication() {
         return mainApplication;
+    }
+    //return table in this panel
+    public JTable getJTable() {
+        return jTable1;
     }
 }

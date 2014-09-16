@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Participants.findByFirstname", query = "SELECT p FROM Participants p WHERE p.firstname = :firstname"),
     @NamedQuery(name = "Participants.findByMiddlename", query = "SELECT p FROM Participants p WHERE p.middlename = :middlename"),
     @NamedQuery(name = "Participants.findByLastname", query = "SELECT p FROM Participants p WHERE p.lastname = :lastname"),
+    @NamedQuery(name = "Participants.findByPhone", query = "SELECT p FROM Participants p WHERE p.phone = :phone"),
+    @NamedQuery(name = "Participants.findByEmail", query = "SELECT p FROM Participants p WHERE p.email = :email"),
+    @NamedQuery(name = "Participants.findByOrganization", query = "SELECT p FROM Participants p WHERE p.organization = :organization"),
     @NamedQuery(name = "Participants.findByPosition", query = "SELECT p FROM Participants p WHERE p.position = :position")})
 public class Participants implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -55,6 +58,15 @@ public class Participants implements Serializable {
     @Column(name = "lastname")
     private String lastname;
     @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
+    @Basic(optional = false)
+    @Column(name = "phone")
+    private String phone;
+    @Basic(optional = false)
+    @Column(name = "organization")
+    private String organization;    
+    @Basic(optional = false)
     @Column(name = "position")
     private String position;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "participants")
@@ -67,22 +79,30 @@ public class Participants implements Serializable {
         this.id = id;
     }
 
-    public Participants(Integer id, String nameTitle, String firstname, String middlename, String lastname, String position) {
+    public Participants(Integer id, String nameTitle, String firstname, String middlename, 
+            String lastname, String position, String email, String phone, String organization) {
         this.id = id;
         this.nameTitle = nameTitle;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.position = position;
+        this.email = email;
+        this.phone = phone;
+        this.organization = organization;        
     }
     
-    public Participants(String nameTitle, String firstname, String middlename, String lastname, String position) {
+    public Participants(String nameTitle, String firstname, String middlename, 
+            String lastname, String position, String email, String phone, String organization) {
      
         this.nameTitle = nameTitle;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.position = position;
+        this.email = email;
+        this.phone = phone;
+        this.organization = organization;
     }
 
     public Integer getId() {
@@ -165,6 +185,48 @@ public class Participants implements Serializable {
     @Override
     public String toString() {
         return "com.src.frugalinnovationlab.Entity.Participants[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the organization
+     */
+    public String getOrganization() {
+        return organization;
+    }
+
+    /**
+     * @param organization the organization to set
+     */
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
     
 }

@@ -39,6 +39,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         projectList = viewGeneralProjectInformationController.getProjectsFromDatabase();
         mainApplication = welcome;
         initComponents();
+        refreshSelectedProject();
     }
 
     /**
@@ -92,7 +93,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
         chooseProjectComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
+        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a project..." }));
         for (int i = 0; i < projectList.size(); i++) {
             //System.out.println("id : " +projectList.get(i).getId());
             chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
@@ -111,7 +112,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         .addGroup(topPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(viewGenProjInfoLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
             .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
@@ -383,42 +384,39 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
-        //String selectedProjectId = chooseProjectComboBox.getSelectedItem().toString();
         
         Object projectIdItem = getChooseProjectComboBox().getSelectedItem();
-        String projectIdValue = ((ComboItem) projectIdItem).getValue();
-        List<Project> projList = viewGeneralProjectInformationController.fetchProjectGeneralInformation(projectIdValue);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        
-        projectNameTextField.setText(projList.get(0).getName());
-        shortDescTextField.setText(projList.get(0).getShortdesc());
-        genDescTextArea.setText(projList.get(0).getDescription());
-        if (projList.get(0).getStartDate() != null) {
-            startDateTextField.setText(dateFormat.format(projList.get(0).getStartDate()));
+        if (!projectIdItem.toString().equals("Choose a project...")) {
+            String projectIdValue = ((ComboItem) projectIdItem).getValue();
+            List<Project> projList = viewGeneralProjectInformationController.fetchProjectGeneralInformation(projectIdValue);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+            projectNameTextField.setText(projList.get(0).getName());
+            shortDescTextField.setText(projList.get(0).getShortdesc());
+            genDescTextArea.setText(projList.get(0).getDescription());
+            if (projList.get(0).getStartDate() != null) {
+                startDateTextField.setText(dateFormat.format(projList.get(0).getStartDate()));
+            }
+            if (projList.get(0).getEndDate() != null) {
+                endDateTextField.setText(dateFormat.format(projList.get(0).getEndDate()));
+            }
+            scopeTextField.setText(projList.get(0).getScope());
+            outcomeTextArea.setText(projList.get(0).getOutcome());
+            Set<ProjectStatus> set = projList.get(0).getProjectStatusSet();
+            for (ProjectStatus projectStatus : set) {
+                statusTextField.setText(projectStatus.getStatus());
+            }
+            Set<ProjectCategory> categorySet = projList.get(0).getProjectCategories();
+            String categoryText = "";
+            for (ProjectCategory projectCategory : categorySet) {
+                categoryText = categoryText + projectCategory.getName() + "\n";
+
+            }
+            categoryTextArea.setText(categoryText);
+
+            mainApplication.setSelectedProject(chooseProjectComboBox.getSelectedItem().toString());
+            mainApplication.getViewProjectParticipants().refreshSelectedProject();
         }
-        if (projList.get(0).getEndDate() != null) {
-            endDateTextField.setText(dateFormat.format(projList.get(0).getEndDate()));
-        }
-        scopeTextField.setText(projList.get(0).getScope());
-        outcomeTextArea.setText(projList.get(0).getOutcome());
-        Set<ProjectStatus> set = projList.get(0).getProjectStatusSet();
-        for (ProjectStatus projectStatus : set) {
-            statusTextField.setText(projectStatus.getStatus());
-        }
-        Set<ProjectCategory> categorySet = projList.get(0).getProjectCategories();
-        String categoryText = "";
-        for (ProjectCategory projectCategory : categorySet) {
-            categoryText = categoryText + projectCategory.getName() + "\n";
-            
-        }
-        categoryTextArea.setText(categoryText);
-        
-        if (mainApplication.getViewProjectParticipants() == null) {
-            ViewProjectParticipants panel = new ViewProjectParticipants(mainApplication);
-            mainApplication.setViewProjectParticipants(panel);
-        }
-        //System.out.println(getChooseProjectComboBox().getSelectedIndex());
-        mainApplication.getViewProjectParticipants().getChooseProjectComboBox().setSelectedIndex(getChooseProjectComboBox().getSelectedIndex());
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void projectNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNameTextFieldActionPerformed
@@ -499,5 +497,26 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
      */
     public void setChooseProjectComboBox(javax.swing.JComboBox chooseProjectComboBox) {
         this.chooseProjectComboBox = chooseProjectComboBox;
+    }
+    
+    public void refreshSelectedProject() {
+        String selectedProject = mainApplication.getSelectedProject();
+        if (selectedProject != null) {
+            int index = findSelectedProject(selectedProject);
+            if (index > -1) {
+                getChooseProjectComboBox().setSelectedIndex(index);
+            }
+        }
+    }
+    
+    public int findSelectedProject(String selectedProject) {
+        if (selectedProject != null) {
+            for (int i=0; i<chooseProjectComboBox.getItemCount(); i++) {
+                if (chooseProjectComboBox.getItemAt(i).toString().equals(selectedProject)) {
+                    return i;                    
+                }
+            }
+        }
+        return -1;
     }
 }

@@ -121,7 +121,6 @@ public class AddNewProjectService {
                 projectCategory.setName(projectCategory.getName());
                 projectCategorySet.add(projectCategory);
                 projectCategory.setProjects(projectSet);
-
             }
 
             for (int i = 0; i < selectedTagsList.size(); i++) {                
@@ -257,7 +256,7 @@ public class AddNewProjectService {
     public List<Participants> fetchParticipants() {
         TypedQuery<Participants> query = manager.createQuery("SELECT NEW "
                 + "com.src.frugalinnovationlab.Entity.Participants(p.id , p.nameTitle, p.firstname"
-                + ", p.middlename, p.lastname, p.position) "
+                + ", p.middlename, p.lastname, p.position, p.email, p.phone, p.organization) "
                 + "FROM Participants p", Participants.class);
         List<Participants> result = query.getResultList();
         return result;
@@ -278,8 +277,12 @@ public class AddNewProjectService {
         String middleName = array[2];
         String lastName = array[3];
         String position = array[4];
+        String email = array[5];
+        String phone = array[6];
+        String organization = array[7];
 
-        Participants participants = new Participants(title, firstName, middleName, lastName, position);
+        Participants participants = new Participants(title, firstName, middleName, 
+                lastName, position, email, phone, organization);
         manager.persist(participants);
         success = true;
 

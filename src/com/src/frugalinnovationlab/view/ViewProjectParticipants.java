@@ -42,6 +42,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
         participants = viewProjectParticipantsController.getParticipantsFromDatabase();        
         initComponents();                
         table.getSelectionModel().addListSelectionListener(viewProjectParticipantsController);
+        refreshSelectedProject();
     }
 
     /**
@@ -81,7 +82,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
         chooseProjectComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Projects" }));
+        chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a project..." }));
         for (int i = 0; i < projectList.size(); i++) {
             chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
                 String.valueOf(projectList.get(i).getId())));
@@ -157,8 +158,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
     bottomPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-    tableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
-
+    table.setAutoCreateRowSorter(true);
     table.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
@@ -239,31 +239,37 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
         Object projectItem = getChooseProjectComboBox().getSelectedItem();
-        //  System.out.println("object item : " +projectItem);
-        String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-        //  System.out.println("project id : " + projectId);
-
-        if (model.getRowCount() > 0) {
-            for (int i = model.getRowCount() - 1; i > -1; i--) {
-                model.removeRow(i);
+          //System.out.println("object item : " +projectItem);
+        
+        if (!projectItem.toString().equals("Choose a project...")) {        
+            String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+            //System.out.println("project id : " + projectId);
+        
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
             }
-        }
-        List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-        participantsList.clear();
-        for (int i = 0; i < result.size(); i++) {
-            Object[] values = (Object[]) result.get(i);
-            participantValue = String.valueOf(values[3]);
-            String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-            .concat(" ").concat(values[2].toString());
-            String roleValue = values[4].toString();
-            String roleItem = values[5].toString();
-            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
-                Integer.parseInt(roleValue));
-            participantsList.add(a);
-            //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-            Object[] row = {participantItem, roleItem};
-            model = (DefaultTableModel) table.getModel();
-            model.addRow(row);
+            List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
+            participantsList.clear();
+            for (int i = 0; i < result.size(); i++) {
+                Object[] values = (Object[]) result.get(i);
+                participantValue = String.valueOf(values[3]);
+                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                .concat(" ").concat(values[2].toString());
+                String roleValue = values[4].toString();
+                String roleItem = values[5].toString();
+                ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
+                    Integer.parseInt(roleValue));
+                participantsList.add(a);
+                //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                Object[] row = {participantItem, roleItem};
+                model = (DefaultTableModel) table.getModel();
+                model.addRow(row);
+            }
+
+            mainApplication.setSelectedProject(chooseProjectComboBox.getSelectedItem().toString());
+            mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
         }
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
@@ -369,4 +375,25 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     public void setChooseProjectComboBox(javax.swing.JComboBox chooseProjectComboBox) {
         this.chooseProjectComboBox = chooseProjectComboBox;
     }
+    
+    public void refreshSelectedProject() {
+        String selectedProject = mainApplication.getSelectedProject();
+        if (selectedProject != null) {
+            int index = findSelectedProject(selectedProject);
+            if (index > -1) {
+                getChooseProjectComboBox().setSelectedIndex(index);
+            }
+        }
+    }
+    
+    public int findSelectedProject(String selectedProject) {
+        if (selectedProject != null) {
+            for (int i=0; i<chooseProjectComboBox.getItemCount(); i++) {
+                if (chooseProjectComboBox.getItemAt(i).toString().equals(selectedProject)) {
+                    return i;                    
+                }
+            }
+        }
+        return -1;
+    }    
 }

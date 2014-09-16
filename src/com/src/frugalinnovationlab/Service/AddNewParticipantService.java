@@ -28,8 +28,12 @@ public class AddNewParticipantService {
         String middleName = array[2];
         String lastName = array[3];
         String position = array[4];
+        String email = array[5];
+        String phone = array[6];
+        String organization = array[7];
         
-        Participants participants = new Participants(title, firstName, middleName, lastName, position);
+        Participants participants = new Participants(title, firstName, 
+                middleName, lastName, position, email, phone, organization);
         manager.persist(participants);
         success = true;
         

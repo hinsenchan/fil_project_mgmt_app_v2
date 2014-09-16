@@ -30,13 +30,13 @@ public class Welcome extends javax.swing.JFrame {
     EditGeneralProjectInformation editGeneralProjectInformation;
     final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
-    //ViewGeneralProjectInformation viewGeneralProjectInformation;
-    ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
-    ViewProjectParticipants viewProjectParticipants;
-    ViewParticipantDetails viewParticipantDetails;
-    ViewProjectPanel viewProjectPanel;
+    private ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
+    private ViewProjectParticipants viewProjectParticipants = new ViewProjectParticipants(this);
+    private ViewParticipantDetails viewParticipantDetails = new ViewParticipantDetails(this);
+    private ViewProjectPanel viewProjectPanel = new ViewProjectPanel(this);
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
+    private String selectedProject = "";
     /**
      * Creates new form Welcome
      */
@@ -126,10 +126,10 @@ public class Welcome extends javax.swing.JFrame {
             }
         });
         optionsMenuTree.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
-            }
             public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 optionsMenuTreeTreeExpanded(evt);
+            }
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
             }
         });
         menuTreeScrollPane.setViewportView(optionsMenuTree);
@@ -232,7 +232,7 @@ public class Welcome extends javax.swing.JFrame {
                 .addComponent(logoLabel)
                 .addGap(18, 18, 18)
                 .addComponent(logoLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
                         .addComponent(logoutButton)
@@ -261,7 +261,7 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(welcomeMainPanelLayout.createSequentialGroup()
                 .addComponent(menuTreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 602, Short.MAX_VALUE))
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         welcomeMainPanelLayout.setVerticalGroup(
@@ -296,9 +296,9 @@ public class Welcome extends javax.swing.JFrame {
         // TODO add your handling code here:
         getContentPanel().setLayout(new java.awt.BorderLayout());
         TreePath path = optionsMenuTree.getPathForLocation(evt.getX(), evt.getY());
-        System.out.println("path : " + path);
+        //System.out.println("path : " + path);
         if (path != null) {
-            System.out.println("lastcomponent : " + lastComponent);
+            //System.out.println("lastcomponent : " + lastComponent);
             getContentPanel().removeAll();
             // Check the last added component and remove it
             if (!lastComponent.equals("")) {
@@ -323,7 +323,7 @@ public class Welcome extends javax.swing.JFrame {
                 } else if (lastComponent.equals("Edit Project General Info")) {
                     getContentPanel().remove(editGeneralProjectInformation);
                 } else if (lastComponent.equals("View Project General Info")) {
-                    getContentPanel().remove(viewGeneralProjectInformation);
+                    getContentPanel().remove(getViewGeneralProjectInformation());
                 } else if (lastComponent.equals("View Project Participants")) {
                     getContentPanel().remove(viewProjectParticipants);
                 } else if (lastComponent.equals("View Participant Details")) {
@@ -367,14 +367,16 @@ public class Welcome extends javax.swing.JFrame {
                 lastComponent = "Edit Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
                 //viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
+                viewGeneralProjectInformation.refreshSelectedProject();
                 getContentPanel().add(viewGeneralProjectInformation);
                 lastComponent = "View Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("Participants")) {
-                if (viewProjectParticipants == null) { viewProjectParticipants = new ViewProjectParticipants(this); }
+                //if (viewProjectParticipants == null) { viewProjectParticipants = new ViewProjectParticipants(this); }
+                viewProjectParticipants.refreshSelectedProject();
                 getContentPanel().add(viewProjectParticipants);
                 lastComponent = "View Project Participants";
             } else if (path.toString().contains("View Project")) {
-                if (viewProjectPanel == null) { viewProjectPanel = new ViewProjectPanel(this); } 
+                //if (viewProjectPanel == null) { viewProjectPanel = new ViewProjectPanel(this); } 
                 getContentPanel().add(viewProjectPanel);
                 lastComponent = "View Project";                
             }            
@@ -505,5 +507,19 @@ public class Welcome extends javax.swing.JFrame {
      */
     public void setViewProjectPanel(ViewProjectPanel viewProjectPanel) {
         this.viewProjectPanel = viewProjectPanel;
+    }
+
+    /**
+     * @return the selectedProject
+     */
+    public String getSelectedProject() {
+        return selectedProject;
+    }
+
+    /**
+     * @param selectedProject the selectedProject to set
+     */
+    public void setSelectedProject(String selectedProject) {
+        this.selectedProject = selectedProject;
     }
 }

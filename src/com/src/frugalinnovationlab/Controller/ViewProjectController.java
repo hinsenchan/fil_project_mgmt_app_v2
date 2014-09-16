@@ -39,40 +39,37 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
 
     @Override
     public void tableChanged(TableModelEvent e) {
-
         try {
-
             int firstIndex = e.getFirstRow();
-
-            viewallprojectsmodel = new ViewAllProjectsModel(viewallprojectsmodel.getList(), viewallprojectsmodel.getEntityManager());
+            viewallprojectsmodel = new ViewAllProjectsModel(
+                    viewallprojectsmodel.getList(), viewallprojectsmodel.getEntityManager());
             viewallprojectsmodel.addTableModelListener(this);
             // update the JTable with the data
             gui.updateTable();
-
             mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().setSelectedIndex(firstIndex);
-
-
         } catch (Exception exp) {
             exp.getMessage();
             exp.printStackTrace();
         }
-
-
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-
         ListSelectionModel selectModel = (ListSelectionModel) e.getSource();
         int firstIndex = selectModel.getMinSelectionIndex();
-        showViewGeneralProjectInformation(firstIndex);
+        setSelectedProject(firstIndex);
+        if (firstIndex > -1) {
+            showViewGeneralProjectInformation(firstIndex+1);
+        }
+    }
+    
+    public void setSelectedProject(int index) {
+        final int projectNameCol = 0;        
+        mainApplication.setSelectedProject((String)(gui.getJTable().getValueAt(index, projectNameCol)));
     }
 
     public TableModel getTableModel() {
-
         return viewallprojectsmodel;
-
-
     }
     
     public boolean deleteProject(String projectName){
@@ -82,13 +79,12 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
     }
     
     public void showViewGeneralProjectInformation(int index) {
-        mainApplication.getContentPanel().remove(mainApplication.getViewProjectPanel());        
-        ViewGeneralProjectInformation viewGeneralProjectInformation = 
-                new ViewGeneralProjectInformation(mainApplication);
-        mainApplication.setViewGeneralProjectInformation(viewGeneralProjectInformation);
-        mainApplication.getContentPanel().add(viewGeneralProjectInformation);                       
-        mainApplication.setLastComponent("View Project General Info");
-        viewGeneralProjectInformation.getChooseProjectComboBox().setSelectedIndex(index+1);
+        mainApplication.getContentPanel().remove(mainApplication.getViewProjectPanel());   
+        mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());                       
+        mainApplication.setLastComponent("View Project General Info");        
+        mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+        mainApplication.getViewProjectParticipants().refreshSelectedProject();
         mainApplication.getContentPanel().revalidate();
+        mainApplication.getContentPanel().repaint();
     }    
 }
