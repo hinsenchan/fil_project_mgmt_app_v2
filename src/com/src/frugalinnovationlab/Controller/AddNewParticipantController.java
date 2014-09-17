@@ -4,8 +4,10 @@
  */
 package com.src.frugalinnovationlab.Controller;
 
+import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Model.AddNewParticipantModel;
 import com.src.frugalinnovationlab.view.AddNewParticipantPanel;
+import java.util.List;
 
 /**
  *
@@ -27,4 +29,13 @@ public class AddNewParticipantController {
         return success;
     }
     
+    public List<Participants> getParticipantsFromDatabase() {
+        List<Participants> participantList = addNewParticipantModel.getParticipantsFromDatabase();
+        return participantList;
+    }
+    
+    public List<Participants> fetchParticipantsById(String participantId) {
+        List<Participants> participantsList = addNewParticipantModel.fetchParticipantsById(participantId);
+        return participantsList;
+    }
 }

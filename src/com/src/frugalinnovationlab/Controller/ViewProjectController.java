@@ -81,7 +81,7 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
     public void showViewGeneralProjectInformation(int index) {
         mainApplication.getContentPanel().remove(mainApplication.getViewProjectPanel());   
         mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());                       
-        mainApplication.setLastComponent("View Project General Info");        
+        mainApplication.setLastComponent("View Projects General Info");        
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
         mainApplication.getViewProjectParticipants().refreshSelectedProject();
         mainApplication.getContentPanel().revalidate();

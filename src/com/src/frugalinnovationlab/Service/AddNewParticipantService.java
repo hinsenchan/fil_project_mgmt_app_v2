@@ -5,7 +5,10 @@
 package com.src.frugalinnovationlab.Service;
 
 import com.src.frugalinnovationlab.Entity.Participants;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -31,13 +34,46 @@ public class AddNewParticipantService {
         String email = array[5];
         String phone = array[6];
         String organization = array[7];
+        int participantId = Integer.parseInt(array[8]);
+        Participants participants = manager.find(Participants.class, participantId);
         
-        Participants participants = new Participants(title, firstName, 
-                middleName, lastName, position, email, phone, organization);
+        participants.setNameTitle(title);
+        participants.setFirstname(firstName);
+        participants.setMiddlename(middleName);
+        participants.setLastname(lastName);
+        participants.setPosition(position);
+        participants.setEmail(email);
+        participants.setPhone(phone);
+        participants.setOrganization(organization);
+        
         manager.persist(participants);
         success = true;
         
         return success;
+    }
+    
+    public List<Participants> fetchParticipants() {
+        TypedQuery<Participants> query = manager.createQuery("SELECT NEW "
+                + "com.src.frugalinnovationlab.Entity.Participants(p.id , p.nameTitle, p.firstname"
+                + ", p.middlename, p.lastname, p.position, p.email, p.phone, p.organization) "
+                + "FROM Participants p", Participants.class);
+        List<Participants> result = query.getResultList();
+        return result;
+    }
+    
+    public List<Participants> fetchParticipantsById(String participantId) {
+        int pid = Integer.parseInt(participantId);
+
+        String naiveQuery = "SELECT p.nameTitle, p.firstname, p.lastname, p.id,"
+                + " p.middlename, p.email, p.phone, p.organization, p.position "
+                + "FROM Participants p"
+                + " where p.id = :pid";
+
+        Query query = manager.createQuery(naiveQuery, Participants.class);
+        query.setParameter("pid", pid);
+        List<Participants> result = query.getResultList();
+        
+        return result;
     }
     
 }

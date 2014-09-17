@@ -87,13 +87,11 @@ public class Welcome extends javax.swing.JFrame {
         optionsMenuTree.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Frugal Lab");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Project");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Add New Project");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("New Project");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("View All Projects");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Edit Participant");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Add Participant");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Edit Project");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Edit Projects");
         javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("General Info");
         treeNode3.add(treeNode4);
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Participants");
@@ -101,7 +99,7 @@ public class Welcome extends javax.swing.JFrame {
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Multimedia");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("View Project");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("View Projects");
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("General Info");
         treeNode3.add(treeNode4);
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Participants");
@@ -124,16 +122,16 @@ public class Welcome extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         optionsMenuTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         optionsMenuTree.setToolTipText("Explore");
-        optionsMenuTree.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                optionsMenuTreeMouseClicked(evt);
-            }
-        });
         optionsMenuTree.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
             public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 optionsMenuTreeTreeExpanded(evt);
             }
             public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            }
+        });
+        optionsMenuTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                optionsMenuTreeMouseClicked(evt);
             }
         });
         menuTreeScrollPane.setViewportView(optionsMenuTree);
@@ -306,11 +304,13 @@ public class Welcome extends javax.swing.JFrame {
             getContentPanel().removeAll();
             // Check the last added component and remove it
             if (!lastComponent.equals("")) {
-                if (lastComponent.equals("Add New Project")) {
+                if (lastComponent.equals("New Project")) {
                     getContentPanel().remove(addNewProjectPanel);
+                /*
                 } else if (lastComponent.equals("View All Projects")) {
                     getContentPanel().remove(viewAllProjectsPanel);
-                } else if (lastComponent.equals("Add Participant")) {
+                */
+                } else if (lastComponent.equals("Edit Participant")) {
                     getContentPanel().remove(addNewParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
                     getContentPanel().remove(addNewUserPanel);
@@ -322,31 +322,33 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(searchPanel);
                 } else if (lastComponent.equals("Multimedia")) {
                     getContentPanel().remove(editProjectMultimedia);
-                } else if (lastComponent.equals("Edit Project Participants")) {
+                } else if (lastComponent.equals("Edit Projects Participants")) {
                     getContentPanel().remove(editProjectParticipants);
-                } else if (lastComponent.equals("Edit Project General Info")) {
+                } else if (lastComponent.equals("Edit Projects General Info")) {
                     getContentPanel().remove(editGeneralProjectInformation);
-                } else if (lastComponent.equals("View Project General Info")) {
+                } else if (lastComponent.equals("View Projects General Info")) {
                     getContentPanel().remove(getViewGeneralProjectInformation());
-                } else if (lastComponent.equals("View Project Participants")) {
+                } else if (lastComponent.equals("View Projects Participants")) {
                     getContentPanel().remove(viewProjectParticipants);
                 } else if (lastComponent.equals("View Participant Details")) {
                     getContentPanel().remove(viewParticipantDetails);
-                } else if (lastComponent.equals("View Project")) {
+                } else if (lastComponent.equals("View Projects")) {
                     getContentPanel().remove(getViewProjectPanel());                                        
                 }                                
             }
             // Add the new component on the frame
             // Depending on the Selected Tree Node
-            if (path.toString().contains("Add New Project")) {
+            if (path.toString().contains("New Project")) {
                 getContentPanel().add(new AddNewProjectPanel());
-                lastComponent = "Add New Project";
+                lastComponent = "New Project";
+            /*
             } else if (path.toString().contains("View All Projects")) {
                 getContentPanel().add(new ViewAllProjectsPanel());
                 lastComponent = "View All Projects";
-            } else if (path.toString().contains("Add Participant")) {
+            */
+            } else if (path.toString().contains("Edit Participant")) {
                 getContentPanel().add(new AddNewParticipantPanel());
-                lastComponent = "Add Participant";
+                lastComponent = "Edit Participant";
             } else if (path.toString().contains("Add New User")) {
                 getContentPanel().add(new AddNewUserPanel());
                 lastComponent = "Add New User";
@@ -362,27 +364,27 @@ public class Welcome extends javax.swing.JFrame {
             } else if (path.toString().contains("Multimedia")) {
                 getContentPanel().add(new EditProjectMultimedia());
                 lastComponent = "Multimedia";
-            } else if (path.toString().contains("Edit Project") && path.toString().contains("Participants")) {
+            } else if (path.toString().contains("Edit Projects") && path.toString().contains("Participants")) {
                 getContentPanel().add(new EditProjectParticipants());
-                lastComponent = "Edit Project Participants";
-            } else if (path.toString().contains("Edit Project") && path.toString().contains("General Info")) {
+                lastComponent = "Edit Projects Participants";
+            } else if (path.toString().contains("Edit Projects") && path.toString().contains("General Info")) {
                 editGeneralProjectInformation = new EditGeneralProjectInformation();
                 getContentPanel().add(editGeneralProjectInformation);
-                lastComponent = "Edit Project General Info";
-            } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
+                lastComponent = "Edit Projects General Info";
+            } else if (path.toString().contains("View Projects") && path.toString().contains("General Info")) {
                 viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
                 viewGeneralProjectInformation.refreshSelectedProject();
                 getContentPanel().add(viewGeneralProjectInformation);
-                lastComponent = "View Project General Info";
-            } else if (path.toString().contains("View Project") && path.toString().contains("Participants")) {
+                lastComponent = "View Projects General Info";
+            } else if (path.toString().contains("View Projects") && path.toString().contains("Participants")) {
                 viewProjectParticipants = new ViewProjectParticipants(this);
                 viewProjectParticipants.refreshSelectedProject();
                 getContentPanel().add(viewProjectParticipants);
-                lastComponent = "View Project Participants";
-            } else if (path.toString().contains("View Project")) {   
+                lastComponent = "View Projects Participants";
+            } else if (path.toString().contains("View Projects")) {   
                 viewProjectPanel = new ViewProjectPanel(this);                
                 getContentPanel().add(viewProjectPanel);
-                lastComponent = "View Project";                
+                lastComponent = "View Projects";                
             }            
             
             getContentPanel().revalidate();

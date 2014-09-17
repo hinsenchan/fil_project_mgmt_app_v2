@@ -76,7 +76,7 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
     public void showViewGeneralProjectInformation() {
         mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
         mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());
-        mainApplication.setLastComponent("View Project General Info");   
+        mainApplication.setLastComponent("View Projects General Info");   
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
         mainApplication.getViewProjectParticipants().refreshSelectedProject();        
         mainApplication.getContentPanel().revalidate();
@@ -86,7 +86,7 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
     public void showViewProjectParticipants() {
         mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
         mainApplication.getContentPanel().add(mainApplication.getViewProjectParticipants());
-        mainApplication.setLastComponent("View Project Participants");   
+        mainApplication.setLastComponent("View Projects Participants");   
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
         mainApplication.getViewProjectParticipants().refreshSelectedProject();        
         mainApplication.getContentPanel().revalidate();
