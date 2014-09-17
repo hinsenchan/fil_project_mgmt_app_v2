@@ -19,6 +19,8 @@ import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,7 +154,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
     chooseParticipantComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     chooseParticipantComboBox.setForeground(new java.awt.Color(0, 95, 45));
-    chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant", " " }));
+    chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
+    this.sortParticipants();
     for(int i = 0; i < participants.size(); i++){
         String fullName = participants.get(i).getNameTitle().concat(" "+
             participants.get(i).getFirstname()).concat(" "+participants.get(i).getLastname());
@@ -654,10 +657,13 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 || array[0] == null || array[0].equals("Choose a Title")) {
             JOptionPane.showMessageDialog(jPanel1, "Please enter Participant Details");
         } else {
-            System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
+            //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = editProjectParticipantsController.addParticipant(array);
             if (success) {
                 participants = editProjectParticipantsController.getParticipantsFromDatabase();
+                this.sortParticipants();
+                chooseParticipantComboBox.removeAllItems();
+                chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
                     String fullName = participants.get(i).getNameTitle().concat(" "
                             + participants.get(i).getFirstname()).concat(" " + participants.get(i).getLastname());
@@ -758,4 +764,21 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private javax.swing.JComboBox roleComboBox;
     private javax.swing.JButton updateProjectButton;
     // End of variables declaration//GEN-END:variables
+    
+    public void sortParticipants() {
+        if (participants != null) {
+            Collections.sort(participants, new ParticipantsComparator());
+        }
+    }
+    
+    class ParticipantsComparator implements Comparator<Participants> {
+        public int compare(Participants a, Participants b) {
+            int retVal = -1;
+            retVal = a.getLastname().compareToIgnoreCase(b.getLastname());
+            if (retVal != 0) { return retVal; }
+            else {
+                return a.getFirstname().compareTo(b.getFirstname());
+            }
+        }
+    }
 }

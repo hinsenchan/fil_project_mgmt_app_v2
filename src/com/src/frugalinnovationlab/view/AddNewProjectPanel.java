@@ -37,6 +37,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
@@ -632,7 +634,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         chooseParticipantComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseParticipantComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant", " " }));
+        chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
+        this.sortParticipants();
         for(int i = 0; i < participants.size(); i++){
             String fullName = participants.get(i).getNameTitle().concat(" "+
                 participants.get(i).getFirstname()).concat(" "+participants.get(i).getLastname());
@@ -2011,6 +2014,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
                 participants = addNewProjectController.getParticipantsFromDatabase();
+                this.sortParticipants();       
+                chooseParticipantComboBox.removeAllItems();
+                chooseParticipantComboBox.addItem("Choose A Participant");                
                 for (int i = 0; i < participants.size(); i++) {
                     String fullName = participants.get(i).getNameTitle().concat(" "
                             + participants.get(i).getFirstname()).concat(" " + participants.get(i).getLastname());
@@ -2027,7 +2033,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 participantsList.add(a);
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
                 model = (DefaultTableModel) jTable1.getModel();
-                model.addRow(row);
+                model.addRow(row);                
                 JOptionPane.showMessageDialog(mainPanel, "Participant added succesfully");
             } else {
                 JOptionPane.showMessageDialog(mainPanel, "Participant could not be added");
@@ -2257,4 +2263,21 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel videoLabel1;
     private javax.swing.JLabel wordDocumentLabel1;
     // End of variables declaration//GEN-END:variables
+    
+    public void sortParticipants() {
+        if (participants != null) {
+            Collections.sort(participants, new ParticipantsComparator());
+        }
+    }
+    
+    class ParticipantsComparator implements Comparator<Participants> {
+        public int compare(Participants a, Participants b) {
+            int retVal = -1;
+            retVal = a.getLastname().compareToIgnoreCase(b.getLastname());
+            if (retVal != 0) { return retVal; }
+            else {
+                return a.getFirstname().compareTo(b.getFirstname());
+            }
+        }
+    }
 }

@@ -243,10 +243,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2d" green="5f" red="0" type="rgb"/>
                 </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="for(int i = 0; i &lt; participants.size(); i++){&#xa;           String fullName = participants.get(i).getNameTitle().concat(&quot; &quot;+&#xa;                   participants.get(i).getFirstname()).concat(&quot; &quot;+participants.get(i).getLastname());&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }">
-                  <StringArray count="2">
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="this.sortParticipants();&#xa;for(int i = 0; i &lt; participants.size(); i++){&#xa;           String fullName = participants.get(i).getNameTitle().concat(&quot; &quot;+&#xa;                   participants.get(i).getFirstname()).concat(&quot; &quot;+participants.get(i).getLastname());&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }">
+                  <StringArray count="1">
                     <StringItem index="0" value="Choose A Participant"/>
-                    <StringItem index="1" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
