@@ -30,6 +30,7 @@ public class Welcome extends javax.swing.JFrame {
     final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
+    private EditProjectPanel editProjectPanel = new EditProjectPanel(this);
     EditGeneralProjectInformation editGeneralProjectInformation;
     final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
@@ -321,7 +322,7 @@ public class Welcome extends javax.swing.JFrame {
                 } else if (lastComponent.equals("Search")) {
                     getContentPanel().remove(searchPanel);
                 } else if (lastComponent.equals("Multimedia")) {
-                    getContentPanel().remove(editProjectMultimedia);
+                    getContentPanel().remove(editProjectMultimedia);                  
                 } else if (lastComponent.equals("Edit Projects Participants")) {
                     getContentPanel().remove(editProjectParticipants);
                 } else if (lastComponent.equals("Edit Projects General Info")) {
@@ -334,7 +335,10 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(viewParticipantDetails);
                 } else if (lastComponent.equals("View Projects")) {
                     getContentPanel().remove(getViewProjectPanel());                                        
+                } else if (lastComponent.equals("Edit Projects")) {
+                    getContentPanel().remove(editProjectPanel);                    
                 }                                
+                
             }
             // Add the new component on the frame
             // Depending on the Selected Tree Node
@@ -385,6 +389,10 @@ public class Welcome extends javax.swing.JFrame {
                 viewProjectPanel = new ViewProjectPanel(this);                
                 getContentPanel().add(viewProjectPanel);
                 lastComponent = "View Projects";                
+            } else if (path.toString().contains("Edit Projects")) {   
+                editProjectPanel = new EditProjectPanel(this);                
+                getContentPanel().add(editProjectPanel);
+                lastComponent = "Edit Projects";                                
             }            
             
             getContentPanel().revalidate();
