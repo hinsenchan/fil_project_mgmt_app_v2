@@ -7,9 +7,11 @@
 package com.src.frugalinnovationlab.Controller;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.ProjectView;
 import com.src.frugalinnovationlab.view.AdvancedSearchPanel;
 import com.src.frugalinnovationlab.Model.AdvancedSearchModel;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -37,5 +39,10 @@ public class AdvancedSearchController {
     public List<ProjectStatus> getProjectStatusFromDatabase() {
         List<ProjectStatus> projectStatusList = advancedsearchmodel.getProjectStatusFromDatabase();
         return projectStatusList;
+    }
+    
+    public List<ProjectView> fetchAdvancedResults(Map<String, String> advSearchInputs, Map<String, String> advSearchCatInputs) {
+        List<ProjectView> result = advancedsearchmodel.fetchAdvancedResults(advSearchInputs, advSearchCatInputs);        
+        return result;
     }
 }

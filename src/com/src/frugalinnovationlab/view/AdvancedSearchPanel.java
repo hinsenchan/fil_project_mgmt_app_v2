@@ -3,44 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.view;
+
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
 import com.src.frugalinnovationlab.Controller.AdvancedSearchController;
-import com.src.frugalinnovationlab.Entity.ProjectCategory;
-import com.src.frugalinnovationlab.Wrappers.ComboItem;
+import com.src.frugalinnovationlab.Entity.ProjectView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import javax.swing.JOptionPane;
-
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author diptik
  */
 public class AdvancedSearchPanel extends javax.swing.JPanel {
-    
+
     AdvancedSearchController advancedsearchcontroller;
     List<Project> projectList;
     List<ProjectStatus> projectStatusList;
-        List<String> categorySelected = new ArrayList<String>() ;
-        
-
-
+    List<String> categorySelected = new ArrayList<String>();
+    DefaultTableModel model = new DefaultTableModel();
 
     /**
      * Creates new form AddNewProjectPanel
      */
     public AdvancedSearchPanel() {
-        
-      
         advancedsearchcontroller = new AdvancedSearchController(this);
-      projectStatusList = advancedsearchcontroller.getProjectStatusFromDatabase();
+        projectStatusList = advancedsearchcontroller.getProjectStatusFromDatabase();
         projectList = advancedsearchcontroller.getProjectsFromDatabase();
-        
         initComponents();
-        
     }
 
     /**
@@ -54,32 +48,31 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
 
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jScrollPane3 = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
-        participantNameLabel1 = new javax.swing.JLabel();
         shortDescriptionTextField = new javax.swing.JTextField();
         civilEngineeringCheckBox = new javax.swing.JCheckBox();
         projectStatusComboBox = new javax.swing.JComboBox();
         electricalEngineeringCheckBox = new javax.swing.JCheckBox();
         bioengineeringCheckBox = new javax.swing.JCheckBox();
         computerEngineeringCheckBox = new javax.swing.JCheckBox();
-        roleComboBox2 = new javax.swing.JComboBox();
         categoryLabel = new javax.swing.JLabel();
-        projectNameLabel = new javax.swing.JLabel();
         shortDescriptionLabel = new javax.swing.JLabel();
         mechanicalEngineeringCheckBox = new javax.swing.JCheckBox();
         advancedSearchTextArea = new javax.swing.JLabel();
         statusProjectLabel = new javax.swing.JLabel();
         searchProjectButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
         scopeLabel = new javax.swing.JLabel();
         startDateLabel = new javax.swing.JLabel();
         endDateLabel = new javax.swing.JLabel();
-        multimediaLabel = new javax.swing.JLabel();
         scopeTextField = new javax.swing.JTextField();
-        multimediaComboBox = new javax.swing.JComboBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         logoLabel2 = new javax.swing.JLabel();
+        shortDescriptionLabel1 = new javax.swing.JLabel();
+        searchTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jMenu1.setText("jMenu1");
 
@@ -87,15 +80,15 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 170, 153), 4));
+        setPreferredSize(new java.awt.Dimension(600, 600));
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(681, 841));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainPanel.setInheritsPopupMenu(true);
-        mainPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+        mainPanel.setPreferredSize(new java.awt.Dimension(681, 841));
         mainPanel.setRequestFocusEnabled(false);
-
-        participantNameLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        participantNameLabel1.setText("Participant Role");
 
         shortDescriptionTextField.setColumns(20);
         shortDescriptionTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -145,24 +138,11 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
             }
         });
 
-        roleComboBox2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        roleComboBox2.setForeground(new java.awt.Color(0, 95, 45));
-        roleComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Role", "Advisor", "Partner", "Student" }));
-        roleComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleComboBox2ActionPerformed(evt);
-            }
-        });
-
         categoryLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         categoryLabel.setText("Category");
 
-        projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        projectNameLabel.setText("Project Name");
-        projectNameLabel.setToolTipText("");
-
         shortDescriptionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        shortDescriptionLabel.setText("Outcome");
+        shortDescriptionLabel.setText("Short Description");
         shortDescriptionLabel.setToolTipText("");
 
         mechanicalEngineeringCheckBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -188,19 +168,6 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 95, 45));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Project" }));
-        for (int i = 0; i < projectList.size(); i++) {
-            //Project project = projectList.get(i);
-            jComboBox1.addItem(new ComboItem(projectList.get(i).getName(),String.valueOf(projectList.get(i).getId())));
-        }
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
         scopeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         scopeLabel.setText("Scope");
 
@@ -210,18 +177,6 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
         endDateLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         endDateLabel.setText("End Date");
 
-        multimediaLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        multimediaLabel.setText("Multimedia");
-
-        multimediaComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        multimediaComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        multimediaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Type", "Adobe File", "CAD Document", "Code", "Hyperlink", "Location/Client Map", "PDF", "Photo", "Plain Text", "Spreadsheet", "Video", "Word Document", " " }));
-        multimediaComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multimediaComboBoxActionPerformed(evt);
-            }
-        });
-
         jDateChooser1.setBackground(new java.awt.Color(150, 170, 153));
 
         jDateChooser2.setBackground(new java.awt.Color(150, 170, 153));
@@ -229,66 +184,79 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
         logoLabel2.setBackground(new java.awt.Color(255, 255, 255));
         logoLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
 
+        shortDescriptionLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        shortDescriptionLabel1.setText("Search Text");
+        shortDescriptionLabel1.setToolTipText("");
+
+        searchTextField.setColumns(20);
+        searchTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Project Name", "Description", "Status", "Scope", "Start Date", "End Date"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(advancedSearchTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(projectNameLabel)
-                            .addComponent(shortDescriptionLabel)
-                            .addComponent(statusProjectLabel)
-                            .addComponent(categoryLabel)
-                            .addComponent(participantNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scopeLabel)
-                            .addComponent(startDateLabel)
-                            .addComponent(endDateLabel)
-                            .addComponent(multimediaLabel))
-                        .addGap(37, 37, 37)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(shortDescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bioengineeringCheckBox)
-                                    .addComponent(civilEngineeringCheckBox))
-                                .addGap(49, 49, 49)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mechanicalEngineeringCheckBox)
-                                    .addComponent(electricalEngineeringCheckBox)))
-                            .addComponent(scopeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projectStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roleComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(multimediaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(computerEngineeringCheckBox)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchProjectButton)
-                .addGap(58, 58, 58))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchProjectButton)
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(advancedSearchTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(shortDescriptionLabel)
+                                .addComponent(statusProjectLabel)
+                                .addComponent(categoryLabel)
+                                .addComponent(scopeLabel)
+                                .addComponent(startDateLabel)
+                                .addComponent(endDateLabel)
+                                .addComponent(shortDescriptionLabel1))
+                            .addGap(43, 43, 43)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(mainPanelLayout.createSequentialGroup()
+                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(bioengineeringCheckBox)
+                                        .addComponent(civilEngineeringCheckBox))
+                                    .addGap(49, 49, 49)
+                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(mechanicalEngineeringCheckBox)
+                                        .addComponent(electricalEngineeringCheckBox)))
+                                .addComponent(projectStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(computerEngineeringCheckBox)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(shortDescriptionTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(scopeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(212, 212, 212)
                     .addComponent(logoLabel2)
-                    .addContainerGap(212, Short.MAX_VALUE)))
+                    .addContainerGap(293, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(advancedSearchTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(projectNameLabel)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(22, 22, 22)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shortDescriptionLabel1)
+                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shortDescriptionLabel)
                     .addComponent(shortDescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -307,64 +275,52 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
                     .addComponent(civilEngineeringCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(computerEngineeringCheckBox)
-                .addGap(12, 12, 12)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(participantNameLabel1)
-                            .addComponent(roleComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(scopeLabel)
-                            .addComponent(scopeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addComponent(startDateLabel))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(22, 22, 22)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scopeLabel)
+                    .addComponent(scopeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(startDateLabel)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDateLabel)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(multimediaLabel)
-                    .addComponent(multimediaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addComponent(searchProjectButton)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(118, 118, 118)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(119, Short.MAX_VALUE)))
+                    .addContainerGap(360, Short.MAX_VALUE)))
         );
+
+        jScrollPane3.setViewportView(mainPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void mechanicalEngineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mechanicalEngineeringCheckBoxActionPerformed
         // TODO add your handling code here:
-        
-       
-        
         categorySelected.add("Mechanical Engineering");
     }//GEN-LAST:event_mechanicalEngineeringCheckBoxActionPerformed
 
-    private void roleComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleComboBox2ActionPerformed
-
     private void computerEngineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computerEngineeringCheckBoxActionPerformed
         // TODO add your handling code here:
-        
+
         categorySelected.add("Computer Engineering");
     }//GEN-LAST:event_computerEngineeringCheckBoxActionPerformed
 
@@ -372,165 +328,113 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_projectStatusComboBoxActionPerformed
 
-    private void multimediaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multimediaComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_multimediaComboBoxActionPerformed
-
     private void searchProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProjectButtonActionPerformed
-        // TODO add your handling code here:
-        
-         if (jComboBox1.getSelectedItem().toString() == null || jComboBox1.getSelectedItem().toString().trim().equals("")
-                || jComboBox1.getSelectedItem().toString().trim().equals("Choose a Project")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please select a Project ");
-        
-         }
-        
-        
-        String data[] = new String[14];
-        data[0] = jComboBox1.getSelectedItem().toString();
-        data[1] = shortDescriptionTextField.getText();
-        data[2] = projectStatusComboBox.getSelectedItem().toString();
-        
-        if(bioengineeringCheckBox.isSelected())
-        {
-            data[3] = bioengineeringCheckBox.getText();
+        // TODO add your handling code here:               
+        //String data[] = new String[14];
+        Map<String, String> advSearchInputs = new HashMap<String, String>();
+        Map<String, String> advSearchCatInputs = new HashMap<String, String>();
+        //data[0] = searchTextField.getText();
+        advSearchInputs.put("search_text", searchTextField.getText());
+        //data[1] = shortDescriptionTextField.getText();
+        advSearchInputs.put("short_desc", shortDescriptionTextField.getText());
+        //data[2] = projectStatusComboBox.getSelectedItem().toString();
+        advSearchInputs.put("project_status", projectStatusComboBox.getSelectedItem().toString());
+
+        if (bioengineeringCheckBox.isSelected()) {
+            //data[3] = bioengineeringCheckBox.getText();
+            advSearchCatInputs.put("bioengineering", "yes");
+        } else {
+            //data[3] = "";
+            advSearchCatInputs.put("bioengineering", "no");
         }
-        
-             else
-            {
-                    
-                    data[3] = "";
-                    
-                    }
-        
-         if(electricalEngineeringCheckBox.isSelected())
-        {
-            data[4] = electricalEngineeringCheckBox.getText();
+
+        if (electricalEngineeringCheckBox.isSelected()) {
+            //data[4] = electricalEngineeringCheckBox.getText();
+            advSearchCatInputs.put("electricalengineering", "yes");
+        } else {
+            //data[4] = "";
+            advSearchCatInputs.put("electricalengineering", "no");
         }
-        
-             else
-            {
-                    
-                    data[4] = "";
-                    
-                    }
-         
-           if(civilEngineeringCheckBox.isSelected())
-        {
-            data[5] = civilEngineeringCheckBox.getText();
+
+        if (civilEngineeringCheckBox.isSelected()) {
+            //data[5] = civilEngineeringCheckBox.getText();
+            advSearchCatInputs.put("civilengineering", "yes");
+        } else {
+            //data[5] = "";
+            advSearchCatInputs.put("civilengineering", "no");
         }
-        
-             else
-            {
-                    
-                    data[5] = "";
-                    
-                    }
-           
-             if(mechanicalEngineeringCheckBox.isSelected())
-        {
-            data[6] = mechanicalEngineeringCheckBox.getText();
+
+        if (mechanicalEngineeringCheckBox.isSelected()) {
+            //data[6] = mechanicalEngineeringCheckBox.getText();
+            advSearchCatInputs.put("mechanicalengineering", "yes");
+        } else {
+            //data[6] = "";
+            advSearchCatInputs.put("mechanicalengineering", "no");
         }
-        
-             else
-            {
-                    
-                    data[6] = "";
-                    
-                    }
-             
-               if(computerEngineeringCheckBox.isSelected())
-        {
-            data[7] = computerEngineeringCheckBox.getText();
+
+        if (computerEngineeringCheckBox.isSelected()) {
+            //data[7] = computerEngineeringCheckBox.getText();
+            advSearchCatInputs.put("computerengineering", "yes");
+        } else {
+            //data[7] = "";
+            advSearchCatInputs.put("computerengineering", "no");
         }
-        
-             else
-            {
-                    
-                    data[7] = "";
-                    
-                    }
-               
-               
-           data[8] =     roleComboBox2.getSelectedItem().toString();
-           
-           data[9] = scopeTextField.getText();
-           
-           if (jDateChooser1.getDate() == null)
-               
-           {
-               data[10] = "";
-               
-           }
-            
-           
-           else
-               
-           {
-               data[10] = jDateChooser1.getDate().toString();
-               
-           }
-                   
-                   
-            if (jDateChooser1.getDate() == null)
-               
-           {
-               data[11] = "";
-               
-           }
-            
-           
-           else
-               
-           {
-               data[11] = jDateChooser1.getDate().toString();
-               
-           }
-           
-           
-           data[12] = multimediaComboBox.getSelectedItem().toString();
-           
-           Object projectItem = jComboBox1.getSelectedItem();
-            String projectId = ((ComboItem) projectItem).getValue();
-               
-            data[13] = projectId;
-            
-            System.out.println(data[13]);
-        
-        
-        AdvancedSearchResult a = new AdvancedSearchResult(data, categorySelected );
-            
-        a.setVisible(true);
-        
-        
-        
-        
+
+        //data[8] = roleComboBox2.getSelectedItem().toString();
+
+        //data[9] = scopeTextField.getText();
+        advSearchInputs.put("scope", scopeTextField.getText());
+
+        if (jDateChooser1.getDate() == null) {
+            //data[10] = "";
+            advSearchInputs.put("startdate", "");
+        } else {
+            //data[10] = jDateChooser1.getDate().toString();
+            advSearchInputs.put("startdate", jDateChooser1.getDate().toString());
+        }
+
+        if (jDateChooser2.getDate() == null) {
+            //data[11] = "";
+            advSearchInputs.put("enddate", "");
+        } else {
+            //data[11] = jDateChooser2.getDate().toString();
+            advSearchInputs.put("enddate", jDateChooser2.getDate().toString());
+        }
+
+        List<ProjectView> projectList = advancedsearchcontroller.fetchAdvancedResults(advSearchInputs, advSearchCatInputs);
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {            
+            model.removeRow(i);
+        }
+        System.out.println("num of rows : " +model.getRowCount());
+        for (int i = 0; i < projectList.size(); i++) {
+            ProjectView projectView = projectList.get(i);
+            //System.out.println("name of project : " + projectView.getProjectName());
+            Object[] row = {projectView.getProjectName(), projectView.getShortdesc(), projectView.getStatus(),
+                projectView.getScope(), projectView.getStartDate(), projectView.getEndDate()};
+            model = (DefaultTableModel) jTable1.getModel();
+            model.addRow(row);
+        }
+
     }//GEN-LAST:event_searchProjectButtonActionPerformed
 
     private void bioengineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bioengineeringCheckBoxActionPerformed
         // TODO add your handling code here:
         categorySelected.add("Bio Engineering");
-        
+
     }//GEN-LAST:event_bioengineeringCheckBoxActionPerformed
 
     private void electricalEngineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_electricalEngineeringCheckBoxActionPerformed
         // TODO add your handling code here:
-                categorySelected.add("Electrical Engineering");
+        categorySelected.add("Electrical Engineering");
 
     }//GEN-LAST:event_electricalEngineeringCheckBoxActionPerformed
 
     private void civilEngineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_civilEngineeringCheckBoxActionPerformed
         // TODO add your handling code here:
-        
+
         categorySelected.add("Civil Engineering");
     }//GEN-LAST:event_civilEngineeringCheckBoxActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel advancedSearchTextArea;
     private javax.swing.JCheckBox bioengineeringCheckBox;
@@ -539,24 +443,23 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox computerEngineeringCheckBox;
     private javax.swing.JCheckBox electricalEngineeringCheckBox;
     private javax.swing.JLabel endDateLabel;
-    private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLabel2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JCheckBox mechanicalEngineeringCheckBox;
-    private javax.swing.JComboBox multimediaComboBox;
-    private javax.swing.JLabel multimediaLabel;
-    private javax.swing.JLabel participantNameLabel1;
-    private javax.swing.JLabel projectNameLabel;
     private javax.swing.JComboBox projectStatusComboBox;
-    private javax.swing.JComboBox roleComboBox2;
     private javax.swing.JLabel scopeLabel;
     private javax.swing.JTextField scopeTextField;
     private javax.swing.JButton searchProjectButton;
+    private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel shortDescriptionLabel;
+    private javax.swing.JLabel shortDescriptionLabel1;
     private javax.swing.JTextField shortDescriptionTextField;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel statusProjectLabel;
