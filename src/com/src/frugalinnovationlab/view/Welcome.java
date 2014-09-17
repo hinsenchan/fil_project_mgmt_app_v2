@@ -26,7 +26,8 @@ public class Welcome extends javax.swing.JFrame {
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
     final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
     final SearchPanel searchPanel = new SearchPanel();
-    final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
+    //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
+    final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
     final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
@@ -312,7 +313,8 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(viewAllProjectsPanel);
                 */
                 } else if (lastComponent.equals("Edit Participant")) {
-                    getContentPanel().remove(addNewParticipantPanel);
+                    //getContentPanel().remove(addNewParticipantPanel);
+                    getContentPanel().remove(editParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
                     getContentPanel().remove(addNewUserPanel);
                 } else if (lastComponent.equals("View All Users")) {
@@ -351,7 +353,8 @@ public class Welcome extends javax.swing.JFrame {
                 lastComponent = "View All Projects";
             */
             } else if (path.toString().contains("Edit Participant")) {
-                getContentPanel().add(new AddNewParticipantPanel());
+                //getContentPanel().add(new AddNewParticipantPanel());
+                getContentPanel().add(new EditParticipantPanel());
                 lastComponent = "Edit Participant";
             } else if (path.toString().contains("Add New User")) {
                 getContentPanel().add(new AddNewUserPanel());

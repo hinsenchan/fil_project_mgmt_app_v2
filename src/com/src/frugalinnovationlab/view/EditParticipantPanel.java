@@ -5,7 +5,7 @@
  */
 package com.src.frugalinnovationlab.view;
 
-import com.src.frugalinnovationlab.Controller.AddNewParticipantController;
+import com.src.frugalinnovationlab.Controller.EditParticipantController;
 import com.src.frugalinnovationlab.Entity.Participants;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,18 +19,18 @@ import java.util.Comparator;
  *
  * @author diptik
  */
-public class AddNewParticipantPanel extends javax.swing.JPanel {
+public class EditParticipantPanel extends javax.swing.JPanel {
 
-    AddNewParticipantController addNewParticipantController;
+    EditParticipantController editParticipantController;
     List<Participants> participants;
 
     /**
      * Creates new form AddNewUserPanel
      */
-    public AddNewParticipantPanel() {
+    public EditParticipantPanel() {
         //System.out.println("AddNewParticipantPanel");
-        addNewParticipantController = new AddNewParticipantController(this);
-        participants = addNewParticipantController.getParticipantsFromDatabase();
+        editParticipantController = new EditParticipantController(this);
+        participants = editParticipantController.getParticipantsFromDatabase();
         this.sortParticipants();
         initComponents();
     }
@@ -323,9 +323,9 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
         else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
             JOptionPane.showMessageDialog(this, "Please enter a valid phone number");
         } else {
-            boolean success = addNewParticipantController.addParticipant(array);
+            boolean success = editParticipantController.addParticipant(array);
             if (success) {
-                participants = addNewParticipantController.getParticipantsFromDatabase();
+                participants = editParticipantController.getParticipantsFromDatabase();
                 this.sortParticipants();
                 chooseParticipantComboBox.removeAll();
                 chooseParticipantComboBox.addItem(new ComboItem("Select Participant", ""));
@@ -365,7 +365,7 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
         String participantValue = ((ComboItem) participantItem).getValue();
         //System.out.println("value : " + participantValue);
         if (!participantValue.equals("")) {
-            List participantsList = addNewParticipantController.fetchParticipantsById(participantValue);
+            List participantsList = editParticipantController.fetchParticipantsById(participantValue);
             //System.out.println("size : " + participantsList.size());
             for (int i = 0; i < participantsList.size(); i++) {
                 Object[] values = (Object[]) participantsList.get(i);

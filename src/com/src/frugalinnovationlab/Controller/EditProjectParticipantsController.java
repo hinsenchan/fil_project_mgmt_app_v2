@@ -11,6 +11,7 @@ import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Model.EditProjectParticipantsModel;
 import com.src.frugalinnovationlab.view.EditProjectParticipants;
 import java.util.List;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *

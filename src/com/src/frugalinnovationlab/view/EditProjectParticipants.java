@@ -12,6 +12,8 @@ import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import java.util.List;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
+import com.src.frugalinnovationlab.helper.EmailFormatValidator;
+import com.src.frugalinnovationlab.helper.PhoneNumberValidator;
 import com.src.frugalinnovationlab.helper.Printer;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
@@ -26,7 +28,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -80,11 +81,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         chooseParticipantComboBox = new javax.swing.JComboBox();
         addParticipantButton = new javax.swing.JButton();
         listProjectParticipantsLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         deleteParticipantButton = new javax.swing.JButton();
         updateProjectButton = new javax.swing.JButton();
-        logoLabel2 = new javax.swing.JLabel();
         addNewParticipantButton = new javax.swing.JButton();
         addParticipantPanel = new javax.swing.JPanel();
         addTitleComboBox = new javax.swing.JComboBox();
@@ -105,6 +103,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         phoneTextField = new javax.swing.JTextField();
         addTitleLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(64, 0), new java.awt.Dimension(64, 0), new java.awt.Dimension(64, 32767));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 170, 153), 4));
@@ -179,17 +181,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     listProjectParticipantsLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
     listProjectParticipantsLabel.setText("List of Project Participants");
 
-    jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-
-        },
-        new String [] {
-            "Participant Id", "Name", "Role Id", "Role"
-        }
-    ));
-    jScrollPane3.setViewportView(jTable1);
-
     deleteParticipantButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     deleteParticipantButton.setForeground(new java.awt.Color(225, 28, 29));
     deleteParticipantButton.setText("Delete Participant");
@@ -207,9 +198,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
             updateProjectButtonActionPerformed(evt);
         }
     });
-
-    logoLabel2.setBackground(new java.awt.Color(255, 255, 255));
-    logoLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
 
     addNewParticipantButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     addNewParticipantButton.setForeground(new java.awt.Color(0, 95, 45));
@@ -253,7 +241,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     designationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     designationTextField.setToolTipText("Enter Designation");
 
-    addNewParticipantPanelButton.setText("Done");
+    addNewParticipantPanelButton.setText("Add");
     addNewParticipantPanelButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             addNewParticipantPanelButtonActionPerformed(evt);
@@ -315,44 +303,37 @@ public class EditProjectParticipants extends javax.swing.JPanel {
             .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(addParticipantPanelLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(phoneLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addNewParticipantPanelButton))
                 .addGroup(addParticipantPanelLayout.createSequentialGroup()
                     .addGap(22, 22, 22)
+                    .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(organizationLabel)
+                        .addComponent(addTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(addParticipantPanelLayout.createSequentialGroup()
-                            .addComponent(addTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(63, 63, 63)
                             .addComponent(addTitleComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(92, 92, 92))
+                            .addGap(69, 69, 69)
+                            .addComponent(firstNameLabel))
                         .addGroup(addParticipantPanelLayout.createSequentialGroup()
                             .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(addParticipantPanelLayout.createSequentialGroup()
-                                    .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(organizationLabel)
-                                        .addComponent(addTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addNewParticipantRoleComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(organizationTextField, javax.swing.GroupLayout.Alignment.TRAILING))))
-                            .addGap(101, 101, 101)))
-                    .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(addNewParticipantPanelButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addParticipantPanelLayout.createSequentialGroup()
-                            .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(emailLabel)
-                                .addComponent(firstNameLabel))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addNewParticipantRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(designationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(organizationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addParticipantPanelLayout.createSequentialGroup()
-                            .addComponent(lastNameLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGap(22, 22, 22))
+                                .addComponent(lastNameLabel)
+                                .addComponent(emailLabel)
+                                .addComponent(phoneLabel))))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(lastNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(phoneTextField))))
+            .addGap(28, 28, 28))
         .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addParticipantPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
@@ -385,9 +366,9 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(addNewParticipantRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(addTitleLabel1))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(addNewParticipantPanelButton)
-            .addContainerGap())
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addParticipantPanelLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
@@ -402,6 +383,27 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         }
     });
 
+    jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+            "Participant Id", "Name", "Role", "Role Id"
+        }
+    ));
+    jScrollPane2.setViewportView(jTable2);
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+    );
+    jPanel2Layout.setVerticalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+    );
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -409,23 +411,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(64, 64, 64)
-                    .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
                     .addComponent(addNewProjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(64, 64, 64)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(64, 64, 64)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,51 +429,62 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(addNewParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(addParticipantButton))))))
+                                .addComponent(addParticipantButton)))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addGap(64, 64, 64))
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(logoLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(24, 24, 24)
             .addComponent(addNewProjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(23, 23, 23)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(projectNameLabel)
-                .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(participantNameLabel)
-                .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(participantRoleLabel)
-                .addComponent(chooseParticipantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(addParticipantButton))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(addNewParticipantButton)
-            .addGap(18, 18, 18)
-            .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(listProjectParticipantsLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(deleteParticipantButton)
-                .addComponent(jButton1)
-                .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(11, 11, 11))
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(projectNameLabel)
+                        .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(participantNameLabel)
+                        .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(participantRoleLabel)
+                        .addComponent(chooseParticipantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addParticipantButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(addNewParticipantButton)
+                    .addGap(18, 18, 18)
+                    .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(listProjectParticipantsLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(deleteParticipantButton)
+                        .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(407, 407, 407)
+                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap())
     );
 
     jScrollPane1.setViewportView(jPanel1);
@@ -495,7 +493,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     this.setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jScrollPane1)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,36 +513,45 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         // TODO add your handling code here:
         Object projectItem = chooseProjectComboBox.getSelectedItem();
         //  System.out.println("object item : " +projectItem);
-        String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-        //  System.out.println("project id : " + projectId);
+        if (!projectItem.toString().equals("Choose a Project")) {            
+            String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+            //  System.out.println("project id : " + projectId);
 
-        if (model.getRowCount() > 0) {
-            for (int i = model.getRowCount() - 1; i > -1; i--) {
-                model.removeRow(i);
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
+            List result = editProjectParticipantsController.fetchParticipantsByProject(projectId);
+            participantsList.clear();
+            //System.out.println("result size : " + result.size());
+            for (int i = 0; i < result.size(); i++) {
+                Object[] values = (Object[]) result.get(i);
+                //System.out.println(i + " -- " + values[0] + "; " + values[1] + "; " + values[2] + "; " + values[3]);
+                //System.out.println("part 1 : " +projectParticipants.getParticipants().getId());
+                //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
+                String participantValue = String.valueOf(values[3]);
+                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                        .concat(" ").concat(values[2].toString());
+                String roleValue = values[4].toString();
+                String roleItem = values[5].toString();
+                ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                        Integer.parseInt(roleValue));
+                participantsList.add(a);
+                Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                model = (DefaultTableModel) jTable2.getModel();
+                model.addRow(row);
+                //  System.out.println("here");
             }
         }
-        List result = editProjectParticipantsController.fetchParticipantsByProject(projectId);
-        participantsList.clear();
-        System.out.println("result size : " + result.size());
-        for (int i = 0; i < result.size(); i++) {
-            Object[] values = (Object[]) result.get(i);
-            System.out.println(i + " -- " + values[0] + "; " + values[1]);
-            //System.out.println("part 1 : " +projectParticipants.getParticipants().getId());
-            //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
-            String participantValue = String.valueOf(values[3]);
-            String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                    .concat(" ").concat(values[2].toString());
-            String roleValue = values[4].toString();
-            String roleItem = values[5].toString();
-            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                    Integer.parseInt(roleValue));
-            participantsList.add(a);
-            Object[] row = {participantValue, participantItem, roleValue, roleItem};
-            model = (DefaultTableModel) jTable1.getModel();
-            model.addRow(row);
-            //  System.out.println("here");
+        else {
+            model = (DefaultTableModel) jTable2.getModel();
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
         }
-
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void addParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButtonActionPerformed
@@ -561,10 +568,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
                 Integer.parseInt(participantValue), Integer.parseInt(roleValue));
         participantsList.add(a);
-        System.out.println("participantsList size : " + participantsList.size());
+        //System.out.println("participantsList size : " + participantsList.size());
 
         Object[] row = {participantValue, participantItem, roleValue, roleItem};
-        model = (DefaultTableModel) jTable1.getModel();
+        model = (DefaultTableModel) jTable2.getModel();
         model.addRow(row);
     }//GEN-LAST:event_addParticipantButtonActionPerformed
 
@@ -574,7 +581,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         Object projectItem = chooseProjectComboBox.getSelectedItem();
         String projectId = ((ComboItem) projectItem).getValue();
 
-        int row = jTable1.getSelectedRow();
+        int row = jTable2.getSelectedRow();
 
         String participantId = model.getValueAt(row, 0).toString();
         String roleId = model.getValueAt(row, 2).toString();
@@ -633,7 +640,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
     private void addNewParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantButtonActionPerformed
         // TODO add your handling code here:
-        addParticipantPanel.setVisible(true);
+        if (!addParticipantPanel.isShowing()) { addParticipantPanel.setVisible(true); }
+        else { addParticipantPanel.setVisible(false); }        
     }//GEN-LAST:event_addNewParticipantButtonActionPerformed
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
@@ -652,11 +660,27 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         array[6] = phoneTextField.getText();
         array[7] = organizationTextField.getText();
 
-        if (array[1] == null || array[1].equals("") || addNewParticipantRoleComboBox.getSelectedItem() == null
-                || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role") || array[3] == null || array[3].equals("")
-                || array[0] == null || array[0].equals("Choose a Title")) {
-            JOptionPane.showMessageDialog(jPanel1, "Please enter Participant Details");
-        } else {
+        if (chooseProjectComboBox.getSelectedItem().equals("Choose a Project")) {
+            JOptionPane.showMessageDialog(jPanel1, "Please select a project first");
+        }        
+        else if (addNewParticipantRoleComboBox.getSelectedItem() == null || 
+                addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
+            JOptionPane.showMessageDialog(jPanel1, "Please choose a role");
+        }           
+        else if (array[0] == null || array[0].equals("Choose a Title")) {
+            JOptionPane.showMessageDialog(jPanel1, "Please select a title");            
+        }
+        else if (array[1] == null || array[1].equals("") 
+                || array[3] == null || array[3].equals("")) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter first and last name");
+        } 
+        else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter a valid email address");
+        }
+        else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter a valid phone number");
+        }
+        else {
             //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = editProjectParticipantsController.addParticipant(array);
             if (success) {
@@ -684,7 +708,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
                 participantsList.add(a);
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
-                model = (DefaultTableModel) jTable1.getModel();
+                model = (DefaultTableModel) jTable2.getModel();
                 model.addRow(row);
                 JOptionPane.showMessageDialog(jPanel1, "Participant added succesfully");
             } else {
@@ -743,17 +767,18 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private javax.swing.JTextField designationTextField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JLabel listProjectParticipantsLabel;
-    private javax.swing.JLabel logoLabel2;
     private javax.swing.JLabel organizationLabel;
     private javax.swing.JTextField organizationTextField;
     private javax.swing.JLabel participantNameLabel;

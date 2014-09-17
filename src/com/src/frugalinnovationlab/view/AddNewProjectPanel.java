@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
+import com.src.frugalinnovationlab.helper.EmailFormatValidator;
+import com.src.frugalinnovationlab.helper.PhoneNumberValidator;
 import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
@@ -490,7 +492,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(projectNameLabel)
                             .addComponent(jLabel1))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
@@ -578,17 +580,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(newTagsLabelField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(moveToParticipants)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(277, Short.MAX_VALUE)))
+                    .addContainerGap(228, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(277, Short.MAX_VALUE)))
+                    .addContainerGap(228, Short.MAX_VALUE)))
         );
 
         bioengineeringCheckBox.getAccessibleContext().setAccessibleName("Bio Engineering");
@@ -730,7 +732,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         designationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         designationTextField.setToolTipText("Enter Designation");
 
-        addNewParticipantPanelButton.setText("Done");
+        addNewParticipantPanelButton.setText("Add");
         addNewParticipantPanelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNewParticipantPanelButtonActionPerformed(evt);
@@ -790,7 +792,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(addTitleComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(organizationTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewParticipantRoleComboBox, 0, 180, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addParticipantPanelLayout.createSequentialGroup()
                         .addComponent(phoneLabel)
@@ -816,7 +818,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(addParticipantPanelLayout.createSequentialGroup()
                     .addGap(23, 23, 23)
                     .addComponent(designationLabel)
-                    .addContainerGap(557, Short.MAX_VALUE)))
+                    .addContainerGap(523, Short.MAX_VALUE)))
         );
         addParticipantPanelLayout.setVerticalGroup(
             addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -846,9 +848,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                         .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addNewParticipantRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addTitleLabel1)))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addNewParticipantPanelButton)
-                .addGap(67, 67, 67))
+                .addGap(79, 79, 79))
             .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(addParticipantPanelLayout.createSequentialGroup()
                     .addGap(45, 45, 45)
@@ -861,18 +863,21 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         mainPanel3Layout.setHorizontalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addParticipantButton1)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainPanel3Layout.createSequentialGroup()
-                            .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addNewProjectTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(generalProjectInfoLabel3)
+                .addGap(29, 29, 29)
+                .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addNewProjectTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generalProjectInfoLabel3)
+                    .addGroup(mainPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(mainPanel3Layout.createSequentialGroup()
+                                .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(addParticipantButton1))
+                            .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(mainPanel3Layout.createSequentialGroup()
-                                    .addGap(55, 55, 55)
                                     .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(mainPanel3Layout.createSequentialGroup()
                                             .addComponent(participantRoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -882,14 +887,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(chooseParticipantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(addNewParticipantButton)
-                                .addComponent(addParticipantButton)))
-                        .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                        .addComponent(chooseParticipantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(addNewParticipantButton)
+                                        .addComponent(addParticipantButton)))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         mainPanel3Layout.setVerticalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -915,16 +919,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addNewParticipantButton)
                 .addGap(18, 18, 18)
-                .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listProjectParticipantsLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deleteParticipantButton)
-                .addGap(52, 52, 52)
-                .addComponent(addParticipantButton1)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteParticipantButton)
+                    .addComponent(addParticipantButton1))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
@@ -1282,12 +1286,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                             .addComponent(addPlainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(clearPlainButton))))))))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(264, 264, 264)
                     .addComponent(logoLabel4)
-                    .addContainerGap(276, Short.MAX_VALUE)))
+                    .addContainerGap(412, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1432,7 +1436,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(generalProjectInfoLabel5)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(417, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1461,12 +1465,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2005,11 +2009,23 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         array[6] = phoneTextField.getText();
         array[7] = organizationTextField.getText();
 
-        if (array[1] == null || array[1].equals("") || addNewParticipantRoleComboBox.getSelectedItem() == null
-                || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role") || array[3] == null || array[3].equals("")
-                || array[0] == null || array[0].equals("Choose a Title")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Participant Details");
-        } else {
+        if (addNewParticipantRoleComboBox.getSelectedItem() == null
+                || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please choose a role");
+        }
+        else if (array[0] == null || array[0].equals("Choose a Title")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please choose a title");
+        }
+        else if (array[1] == null || array[1].equals("") || array[3] == null || array[3].equals("")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter first and last name");
+        } 
+        else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter a valid email address");
+        }
+        else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter a valid phone number");
+        }        
+        else {
             //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
