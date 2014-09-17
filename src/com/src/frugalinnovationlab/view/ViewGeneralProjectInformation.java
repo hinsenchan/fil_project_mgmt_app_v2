@@ -135,7 +135,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     projectNameTextField.setColumns(20);
     projectNameTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     projectNameTextField.setToolTipText("Enter Project Name");
-    projectNameTextField.setFocusable(false);
     projectNameTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             projectNameTextFieldActionPerformed(evt);
@@ -149,7 +148,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     shortDescTextField.setColumns(20);
     shortDescTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     shortDescTextField.setToolTipText("Enter Project Name");
-    shortDescTextField.setFocusable(false);
     shortDescTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             shortDescTextFieldActionPerformed(evt);
@@ -162,7 +160,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     genDescTextArea.setColumns(20);
     genDescTextArea.setRows(5);
-    genDescTextArea.setFocusable(false);
     genDescScrollPane.setViewportView(genDescTextArea);
 
     statusLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -172,7 +169,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     statusTextField.setColumns(20);
     statusTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     statusTextField.setToolTipText("Enter Project Name");
-    statusTextField.setFocusable(false);
     statusTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             statusTextFieldActionPerformed(evt);
@@ -190,7 +186,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     locationTextField.setColumns(20);
     locationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     locationTextField.setToolTipText("Enter Project Name");
-    locationTextField.setFocusable(false);
     locationTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             locationTextFieldActionPerformed(evt);
@@ -204,7 +199,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     startDateTextField.setColumns(20);
     startDateTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     startDateTextField.setToolTipText("Enter Project Name");
-    startDateTextField.setFocusable(false);
     startDateTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             startDateTextFieldActionPerformed(evt);
@@ -218,7 +212,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     scopeTextField.setColumns(20);
     scopeTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     scopeTextField.setToolTipText("Enter Project Name");
-    scopeTextField.setFocusable(false);
     scopeTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             scopeTextFieldActionPerformed(evt);
@@ -231,7 +224,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     outcomeTextArea.setColumns(20);
     outcomeTextArea.setRows(5);
-    outcomeTextArea.setFocusable(false);
     outcomeScrollPane.setViewportView(outcomeTextArea);
 
     endDateLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -241,7 +233,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     endDateTextField.setColumns(20);
     endDateTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     endDateTextField.setToolTipText("Enter Project Name");
-    endDateTextField.setFocusable(false);
     endDateTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             endDateTextFieldActionPerformed(evt);

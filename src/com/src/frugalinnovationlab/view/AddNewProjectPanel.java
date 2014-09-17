@@ -97,7 +97,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        createProjectPane = new javax.swing.JTabbedPane();
         generalinfoScrollPane = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
         addNewProjectTextArea = new javax.swing.JLabel();
@@ -185,7 +185,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         addCodeTextField1 = new javax.swing.JTextField();
         addWordDocumentButton = new javax.swing.JButton();
         wordDocumentLabel1 = new javax.swing.JLabel();
-        addProjectButton = new javax.swing.JButton();
+        addProjectButton3 = new javax.swing.JButton();
         clearPlainButton = new javax.swing.JButton();
         addSpreadsheetButton = new javax.swing.JButton();
         adobeFilesLabel1 = new javax.swing.JLabel();
@@ -217,14 +217,20 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         clearCodeButton3 = new javax.swing.JButton();
         addCodeTextField2 = new javax.swing.JTextField();
         logoLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        addProjectButton = new javax.swing.JButton();
+        addNewProjectTextArea4 = new javax.swing.JLabel();
+        logoLabel5 = new javax.swing.JLabel();
+        generalProjectInfoLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 170, 153), 4));
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setForeground(new java.awt.Color(0, 95, 45));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(800, 800));
-        jTabbedPane1.setVerifyInputWhenFocusTarget(false);
+        createProjectPane.setBackground(new java.awt.Color(255, 255, 255));
+        createProjectPane.setForeground(new java.awt.Color(0, 95, 45));
+        createProjectPane.setPreferredSize(new java.awt.Dimension(800, 800));
+        createProjectPane.setVerifyInputWhenFocusTarget(false);
 
         generalinfoScrollPane.setBorder(null);
 
@@ -267,7 +273,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea1);
 
         generalProjectInfoLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        generalProjectInfoLabel.setText("General Project Information");
+        generalProjectInfoLabel.setText("Step 1 - General Project Information");
 
         statusProjectLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         statusProjectLabel.setText("Status of Project");
@@ -381,7 +387,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         moveToParticipants.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         moveToParticipants.setForeground(new java.awt.Color(0, 95, 45));
-        moveToParticipants.setText("Add Participant");
+        moveToParticipants.setText("Next");
         moveToParticipants.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moveToParticipantsActionPerformed(evt);
@@ -587,7 +593,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         generalinfoScrollPane.setViewportView(mainPanel);
 
-        jTabbedPane1.addTab("General Details", generalinfoScrollPane);
+        createProjectPane.addTab("General Details", generalinfoScrollPane);
 
         participantsScrollPane.setBorder(null);
         participantsScrollPane.setPreferredSize(new java.awt.Dimension(600, 600));
@@ -603,7 +609,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         participantRoleLabel.setText("Participant Name");
 
         generalProjectInfoLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        generalProjectInfoLabel3.setText("Project Participants");
+        generalProjectInfoLabel3.setText("Step 2 - Project Participants");
 
         roleComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         roleComboBox.setForeground(new java.awt.Color(0, 95, 45));
@@ -672,7 +678,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         addParticipantButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addParticipantButton1.setForeground(new java.awt.Color(0, 95, 45));
-        addParticipantButton1.setText("Add Multimedia");
+        addParticipantButton1.setText("Next");
         addParticipantButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addParticipantButton1ActionPerformed(evt);
@@ -781,7 +787,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(addTitleComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(organizationTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewParticipantRoleComboBox, 0, 180, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addParticipantPanelLayout.createSequentialGroup()
                         .addComponent(phoneLabel)
@@ -854,6 +860,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             .addGroup(mainPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addParticipantButton1)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mainPanel3Layout.createSequentialGroup()
@@ -877,12 +885,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(addNewParticipantButton)
                                 .addComponent(addParticipantButton)))
                         .addComponent(addParticipantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanel3Layout.createSequentialGroup()
-                            .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(addParticipantButton1))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(listProjectParticipantsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         mainPanel3Layout.setVerticalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -913,16 +917,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addComponent(listProjectParticipantsLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteParticipantButton)
-                    .addComponent(addParticipantButton1))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteParticipantButton)
+                .addGap(52, 52, 52)
+                .addComponent(addParticipantButton1)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
 
-        jTabbedPane1.addTab("Participants", participantsScrollPane);
+        createProjectPane.addTab("Participants", participantsScrollPane);
 
         multimediaScrollPane.setBorder(null);
 
@@ -1014,11 +1018,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         wordDocumentLabel1.setText("Word Documents");
         wordDocumentLabel1.setToolTipText("");
 
-        addProjectButton.setForeground(new java.awt.Color(0, 95, 45));
-        addProjectButton.setText("Create Project");
-        addProjectButton.addActionListener(new java.awt.event.ActionListener() {
+        addProjectButton3.setForeground(new java.awt.Color(0, 95, 45));
+        addProjectButton3.setText("Next");
+        addProjectButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProjectButtonActionPerformed(evt);
+                addProjectButton3ActionPerformed(evt);
             }
         });
 
@@ -1150,7 +1154,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         photosLabel1.setText("Photos");
 
         generalProjectInfoLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        generalProjectInfoLabel4.setText("Project Multimedia");
+        generalProjectInfoLabel4.setText("Step 3 - Project Multimedia");
 
         clearAdobeFilesButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         clearAdobeFilesButton.setForeground(new java.awt.Color(95, 10, 36));
@@ -1253,10 +1257,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(clearPhotosButton)
                                             .addComponent(clearPdfButton)))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addPlainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearPlainButton))
                                     .addComponent(addSpreadsheetButton)
                                     .addComponent(addButton)
                                     .addComponent(addPlainTextFileButton)
@@ -1273,10 +1273,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                         .addComponent(addWordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(clearWordButton))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(206, 206, 206)
-                                        .addComponent(addProjectButton)))))))
-                .addContainerGap(220, Short.MAX_VALUE))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(addProjectButton3)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(addPlainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(clearPlainButton))))))))
+                .addContainerGap(253, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(264, 264, 264)
@@ -1372,9 +1375,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addWordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearWordButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addProjectButton)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(addProjectButton3)
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(205, 205, 205)
@@ -1384,7 +1387,70 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         multimediaScrollPane.setViewportView(jPanel3);
 
-        jTabbedPane1.addTab("Multimedia", multimediaScrollPane);
+        createProjectPane.addTab("Multimedia", multimediaScrollPane);
+
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(716, 822));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        addProjectButton.setForeground(new java.awt.Color(0, 95, 45));
+        addProjectButton.setText("Create Project");
+        addProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProjectButtonActionPerformed(evt);
+            }
+        });
+
+        addNewProjectTextArea4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        addNewProjectTextArea4.setText("Add New Project");
+
+        logoLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        logoLabel5.setForeground(new java.awt.Color(0, 95, 45));
+        logoLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
+
+        generalProjectInfoLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        generalProjectInfoLabel5.setText("Step 4 - Create New Project");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(addNewProjectTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(logoLabel5)
+                        .addGap(54, 54, 54)
+                        .addComponent(addProjectButton))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(generalProjectInfoLabel5)))
+                .addContainerGap(309, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addNewProjectTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(addProjectButton))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(generalProjectInfoLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(logoLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(530, Short.MAX_VALUE))
+        );
+
+        jScrollPane4.setViewportView(jPanel4);
+
+        createProjectPane.addTab("Create Project", jScrollPane4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1392,20 +1458,20 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void moveToParticipantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveToParticipantsActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        createProjectPane.setSelectedIndex(1);
     }//GEN-LAST:event_moveToParticipantsActionPerformed
     private void projectIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        jTabbedPane1.setSelectedIndex(1);
+        createProjectPane.setSelectedIndex(1);
     }
     private void projectStatusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectStatusComboBoxActionPerformed
         // TODO add your handling code here:
@@ -1556,11 +1622,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             cadFileList.add(m);
         }
         /*
-        for (int i = 0; i < cadFileList.size(); i++) {
-            System.out.println("name : " + cadFileList.get(i).getTitle());
-            System.out.println("name : " + cadFileList.get(i).getMediaCadPK().getFilePath());
-        }
-        */
+         for (int i = 0; i < cadFileList.size(); i++) {
+         System.out.println("name : " + cadFileList.get(i).getTitle());
+         System.out.println("name : " + cadFileList.get(i).getMediaCadPK().getFilePath());
+         }
+         */
     }//GEN-LAST:event_addCADDocumentButtonActionPerformed
 
     private void chooseParticipantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseParticipantComboBoxActionPerformed
@@ -1591,94 +1657,20 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_scopeTextFieldActionPerformed
 
-    private void addProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButtonActionPerformed
+    private void addProjectButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButton3ActionPerformed
         // TODO add your handling code here:
-        final String array[] = new String[12];
-        if (projectIdTextField.getText() == null || projectIdTextField.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Distinct ID for Project");
-        } else if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Project Name");
-        } else if (shortDescriptionTextField.getText() == null || shortDescriptionTextField.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Short Description for Project");
-        } else if (jTextArea1.getText() == null || jTextArea1.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter General Description for Project");
-        } else if (projectStatusComboBox.getSelectedItem().toString() == null || projectStatusComboBox.getSelectedItem().toString().trim().equals("")
-                || projectStatusComboBox.getSelectedItem().toString().trim().equals("Choose a Status")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please select Project Status");
-        } else if (categorySelected.size() < 1) {
-            JOptionPane.showMessageDialog(mainPanel, "Please select Category for Project");
-        } else if (null == startDate.getDate()) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Project Start Date");
-        } else if (null == endDate.getDate()) {
-            JOptionPane.showMessageDialog(mainPanel, "Please enter Project End Date");
-        } else {
-
-            array[0] = projectNameTextField.getText();
-            array[1] = shortDescriptionTextField.getText();
-            array[2] = jTextArea1.getText();
-            array[3] = projectStatusComboBox.getSelectedItem().toString();
-            //System.out.println("status : " + array[3]);
-            array[4] = projectLocationTextField.getText();
-            array[5] = startDate.getDate().toString();
-            array[6] = endDate.getDate().toString();
-            array[7] = scopeTextField.getText();
-            array[8] = outcomeTextField.getText();
-            array[9] = projectIdTextField.getText();
-            selectedTagsList = projectTagsOptions.getSelectedValuesList();
-
-            String newTags = newTagsTextField.getText();
-            if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
-                String[] newTagsArr = newTags.split(";");
-                addNewProjectController.addNewTags(tagsList, newTagsArr);
-                for (int i = 0; i < newTagsArr.length; i++) {
-                    selectedTagsList.add(newTagsArr[i]);
-                }
-            }
-            
-            if (civilEngineeringCheckBox.isSelected()) {
-                categoriesList.add("Civil Engineering");
-            }
-            if (bioengineeringCheckBox.isSelected()) {
-                categoriesList.add("Bio Engineering");
-            }
-            if (mechanicalEngineeringCheckBox.isSelected()) {
-                categoriesList.add("Mechanical Engineering");
-            }
-            if (electricalEngineeringCheckBox.isSelected()) {
-                categoriesList.add("Electrical Engineering");
-            }
-            if (computerEngineeringCheckBox.isSelected()) {
-                categoriesList.add("Computer Engineering");
-            }
-
-            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
-                    videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
-                    pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
-            if (success) {
-                /*for (Component C : this.getComponents()) {
-                 System.out.println("ok here now :"+C.getClass());
-                 if (C instanceof JTabbedPane || C instanceof JTextField || C instanceof JTextArea || C instanceof JTable) {
-                 System.out.println("not here at all");
-                 ((JTextComponent) C).setText(""); //abstract superclass
-                 }
-                 }*/
-
-                JOptionPane.showMessageDialog(mainPanel, "New Project has been added succesfully");
-            } else {
-                JOptionPane.showMessageDialog(mainPanel, "New Project could not be added");
-            }
-        }
-    }//GEN-LAST:event_addProjectButtonActionPerformed
+        createProjectPane.setSelectedIndex(3);
+    }//GEN-LAST:event_addProjectButton3ActionPerformed
 
     private void addParticipantButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButton1ActionPerformed
         // TODO add your handling code here:
         /*
-        for (int i = 0; i < participantsList.size(); i++) {
-            System.out.println("Final part id : " + participantsList.get(i).getParticipantId());
-            System.out.println("Final role id : " + participantsList.get(i).getRoleId());
-        }
-        */
-        jTabbedPane1.setSelectedIndex(2);
+         for (int i = 0; i < participantsList.size(); i++) {
+         System.out.println("Final part id : " + participantsList.get(i).getParticipantId());
+         System.out.println("Final role id : " + participantsList.get(i).getRoleId());
+         }
+         */
+        createProjectPane.setSelectedIndex(2);
     }//GEN-LAST:event_addParticipantButton1ActionPerformed
 
     private void addParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButtonActionPerformed
@@ -1698,9 +1690,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             model = (DefaultTableModel) jTable1.getModel();
             model.addRow(row);
             /*
-            System.out.println("role : " + participantsList.get(0).getRoleId());
-            System.out.println("participant : " + participantsList.get(0).getParticipantId());
-            */
+             System.out.println("role : " + participantsList.get(0).getRoleId());
+             System.out.println("participant : " + participantsList.get(0).getParticipantId());
+             */
         }
 
 
@@ -1763,12 +1755,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             adobeFileList.add(m);
         }
         /*
-        for (int i = 0; i < adobeFileList.size(); i++) {
-            System.out.println("name : " + adobeFileList.get(i).getTitle());
-            System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
+         for (int i = 0; i < adobeFileList.size(); i++) {
+         System.out.println("name : " + adobeFileList.get(i).getTitle());
+         System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
 
-        }
-        */
+         }
+         */
     }//GEN-LAST:event_addadobefileButtonActionPerformed
 
     private void clearAdobeFilesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAdobeFilesButtonActionPerformed
@@ -1828,11 +1820,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             codeFileList.add(m);
         }
         /*
-        for (int i = 0; i < codeFileList.size(); i++) {
-            System.out.println("name : " + codeFileList.get(i).getTitle());
-            System.out.println("name : " + codeFileList.get(i).getMediaCodePK().getFilePath());
-        }
-        */
+         for (int i = 0; i < codeFileList.size(); i++) {
+         System.out.println("name : " + codeFileList.get(i).getTitle());
+         System.out.println("name : " + codeFileList.get(i).getMediaCodePK().getFilePath());
+         }
+         */
     }//GEN-LAST:event_addCodeButtonActionPerformed
 
     private void addLinkTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLinkTextFieldActionPerformed
@@ -2058,6 +2050,85 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             newTagsTextField.setVisible(false);
         }
     }//GEN-LAST:event_addNewTagsActionPerformed
+
+    private void addProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButtonActionPerformed
+        // TODO add your handling code here:
+        final String array[] = new String[12];
+        if (projectIdTextField.getText() == null || projectIdTextField.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter Distinct ID for Project");
+        } else if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter Project Name");
+        } else if (shortDescriptionTextField.getText() == null || shortDescriptionTextField.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter Short Description for Project");
+        } else if (jTextArea1.getText() == null || jTextArea1.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter General Description for Project");
+        } else if (projectStatusComboBox.getSelectedItem().toString() == null || projectStatusComboBox.getSelectedItem().toString().trim().equals("")
+                || projectStatusComboBox.getSelectedItem().toString().trim().equals("Choose a Status")) {
+            JOptionPane.showMessageDialog(mainPanel, "Please select Project Status");
+        } else if (categorySelected.size() < 1) {
+            JOptionPane.showMessageDialog(mainPanel, "Please select Category for Project");
+        } else if (null == startDate.getDate()) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter Project Start Date");
+        } else if (null == endDate.getDate()) {
+            JOptionPane.showMessageDialog(mainPanel, "Please enter Project End Date");
+        } else {
+
+            array[0] = projectNameTextField.getText();
+            array[1] = shortDescriptionTextField.getText();
+            array[2] = jTextArea1.getText();
+            array[3] = projectStatusComboBox.getSelectedItem().toString();
+            //System.out.println("status : " + array[3]);
+            array[4] = projectLocationTextField.getText();
+            array[5] = startDate.getDate().toString();
+            array[6] = endDate.getDate().toString();
+            array[7] = scopeTextField.getText();
+            array[8] = outcomeTextField.getText();
+            array[9] = projectIdTextField.getText();
+            selectedTagsList = projectTagsOptions.getSelectedValuesList();
+
+            String newTags = newTagsTextField.getText();
+            if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
+                String[] newTagsArr = newTags.split(";");
+                addNewProjectController.addNewTags(tagsList, newTagsArr);
+                for (int i = 0; i < newTagsArr.length; i++) {
+                    selectedTagsList.add(newTagsArr[i]);
+                }
+            }
+
+            if (civilEngineeringCheckBox.isSelected()) {
+                categoriesList.add("Civil Engineering");
+            }
+            if (bioengineeringCheckBox.isSelected()) {
+                categoriesList.add("Bio Engineering");
+            }
+            if (mechanicalEngineeringCheckBox.isSelected()) {
+                categoriesList.add("Mechanical Engineering");
+            }
+            if (electricalEngineeringCheckBox.isSelected()) {
+                categoriesList.add("Electrical Engineering");
+            }
+            if (computerEngineeringCheckBox.isSelected()) {
+                categoriesList.add("Computer Engineering");
+            }
+
+            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
+                    videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
+                    pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
+            if (success) {
+                /*for (Component C : this.getComponents()) {
+                 System.out.println("ok here now :"+C.getClass());
+                 if (C instanceof JTabbedPane || C instanceof JTextField || C instanceof JTextArea || C instanceof JTable) {
+                 System.out.println("not here at all");
+                 ((JTextComponent) C).setText(""); //abstract superclass
+                 }
+                 }*/
+
+                JOptionPane.showMessageDialog(mainPanel, "New Project has been added succesfully");
+            } else {
+                JOptionPane.showMessageDialog(mainPanel, "New Project could not be added");
+            }
+        }
+    }//GEN-LAST:event_addProjectButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addAdobeTextField;
     private javax.swing.JButton addButton;
@@ -2072,6 +2143,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addNewProjectTextArea;
     private javax.swing.JLabel addNewProjectTextArea2;
     private javax.swing.JLabel addNewProjectTextArea3;
+    private javax.swing.JLabel addNewProjectTextArea4;
     private javax.swing.JRadioButton addNewTags;
     private javax.swing.JButton addPDFButton;
     private javax.swing.JButton addParticipantButton;
@@ -2083,6 +2155,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JTextField addPlainTextField1;
     private javax.swing.JButton addPlainTextFileButton;
     private javax.swing.JButton addProjectButton;
+    private javax.swing.JButton addProjectButton3;
     private javax.swing.JTextField addSpreadSheetTextField1;
     private javax.swing.JButton addSpreadsheetButton;
     private javax.swing.JComboBox addTitleComboBox;
@@ -2112,6 +2185,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel codeLabel1;
     private javax.swing.JLabel codeLabel2;
     private javax.swing.JCheckBox computerEngineeringCheckBox;
+    private javax.swing.JTabbedPane createProjectPane;
     private javax.swing.JButton deleteParticipantButton;
     private javax.swing.JLabel designationLabel;
     private javax.swing.JTextField designationTextField;
@@ -2124,14 +2198,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel generalProjectInfoLabel;
     private javax.swing.JLabel generalProjectInfoLabel3;
     private javax.swing.JLabel generalProjectInfoLabel4;
+    private javax.swing.JLabel generalProjectInfoLabel5;
     private javax.swing.JScrollPane generalinfoScrollPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
@@ -2141,6 +2217,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel logoLabel2;
     private javax.swing.JLabel logoLabel4;
+    private javax.swing.JLabel logoLabel5;
     private javax.swing.JLabel logoLabel6;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainPanel3;

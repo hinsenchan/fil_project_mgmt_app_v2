@@ -6,9 +6,12 @@ package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Entity.Users;
 import com.src.frugalinnovationlab.helper.Constants;
-import java.net.URL;
+import java.awt.event.KeyEvent;
 import java.util.prefs.Preferences;
-import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.tree.TreePath;
 
 /**
@@ -47,6 +50,7 @@ public class Welcome extends javax.swing.JFrame {
 // iconURL is null when not found
         //ImageIcon icon = new ImageIcon(iconURL);
         //this.setIconImage(icon.getImage());
+        this.setJMenuBar(createMenuBar());
         initComponents();
         welcome.setText("Welcome ".concat(prefs.get(Constants.FULL_NAME, "Guest")));
         userType = Constants.USER_TYPE;
@@ -366,17 +370,17 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(editGeneralProjectInformation);
                 lastComponent = "Edit Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("General Info")) {
-                //viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
+                viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
                 viewGeneralProjectInformation.refreshSelectedProject();
                 getContentPanel().add(viewGeneralProjectInformation);
                 lastComponent = "View Project General Info";
             } else if (path.toString().contains("View Project") && path.toString().contains("Participants")) {
-                //if (viewProjectParticipants == null) { viewProjectParticipants = new ViewProjectParticipants(this); }
+                viewProjectParticipants = new ViewProjectParticipants(this);
                 viewProjectParticipants.refreshSelectedProject();
                 getContentPanel().add(viewProjectParticipants);
                 lastComponent = "View Project Participants";
-            } else if (path.toString().contains("View Project")) {
-                //if (viewProjectPanel == null) { viewProjectPanel = new ViewProjectPanel(this); } 
+            } else if (path.toString().contains("View Project")) {   
+                viewProjectPanel = new ViewProjectPanel(this);                
                 getContentPanel().add(viewProjectPanel);
                 lastComponent = "View Project";                
             }            
@@ -521,5 +525,36 @@ public class Welcome extends javax.swing.JFrame {
      */
     public void setSelectedProject(String selectedProject) {
         this.selectedProject = selectedProject;
+    }
+    
+    public JMenuBar createMenuBar () {
+        JMenuItem menuItem = null;
+        JMenuBar menuBar = new JMenuBar();
+        JMenu mainMenu = new JMenu("Edit");
+        mainMenu.setMnemonic(KeyEvent.VK_E);
+
+        menuItem = new JMenuItem(DefaultEditorKit.selectAllAction);
+        menuItem.setText("Select All CTRL-A");
+        menuItem.setMnemonic(KeyEvent.VK_A);
+        mainMenu.add(menuItem);        
+        
+        menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
+        menuItem.setText("Cut CTRL-X");
+        menuItem.setMnemonic(KeyEvent.VK_CUT);
+        //menuItem.setMnemonic(KeyEvent.VK_T);
+        mainMenu.add(menuItem);            
+
+        menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
+        menuItem.setText("Copy CTRL-C");
+        menuItem.setMnemonic(KeyEvent.VK_C);
+        mainMenu.add(menuItem);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
+        menuItem.setText("Paste CTRL-V");
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        mainMenu.add(menuItem);
+
+        menuBar.add(mainMenu);
+        return menuBar;
     }
 }

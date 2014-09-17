@@ -251,12 +251,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 }
             }
             List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-            participantsList.clear();
-            
-            Object[] testval = (Object[]) result.get(0);            
-            for (int i=0; i<testval.length; i++) {
-                System.out.println(testval[i]);
-            }
+            participantsList.clear();            
             
             for (int i = 0; i < result.size(); i++) {
                 Object[] values = (Object[]) result.get(i);
