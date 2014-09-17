@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,15 +27,18 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
     List<ProjectStatus> projectStatusList;
     List<String> categorySelected = new ArrayList<String>();
     DefaultTableModel model = new DefaultTableModel();
+    Welcome mainApplication;
 
     /**
      * Creates new form AddNewProjectPanel
      */
-    public AdvancedSearchPanel() {
+    public AdvancedSearchPanel(Welcome mainApplication) {
+        this.mainApplication = mainApplication;
         advancedsearchcontroller = new AdvancedSearchController(this);
         projectStatusList = advancedsearchcontroller.getProjectStatusFromDatabase();
         projectList = advancedsearchcontroller.getProjectsFromDatabase();
         initComponents();
+        jTable1.getSelectionModel().addListSelectionListener(advancedsearchcontroller);          
     }
 
     /**
@@ -191,6 +195,7 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
         searchTextField.setColumns(20);
         searchTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -464,4 +469,11 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel statusProjectLabel;
     // End of variables declaration//GEN-END:variables
+    public Welcome getMainApplication() {
+        return mainApplication;
+    }
+    
+    public JTable getJTable() {
+        return jTable1;
+    }    
 }

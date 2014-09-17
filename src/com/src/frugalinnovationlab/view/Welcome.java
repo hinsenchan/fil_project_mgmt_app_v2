@@ -25,10 +25,10 @@ public class Welcome extends javax.swing.JFrame {
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
     final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
-    final SearchPanel searchPanel = new SearchPanel();
+    private SearchPanel searchPanel = new SearchPanel(this);
     //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
-    final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
+    private AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel(this);
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
     private EditProjectPanel editProjectPanel = new EditProjectPanel(this);
@@ -322,7 +322,7 @@ public class Welcome extends javax.swing.JFrame {
                 } else if (lastComponent.equals("Advanced Search")) {
                     getContentPanel().remove(advancedSearchPanel);
                 } else if (lastComponent.equals("Search")) {
-                    getContentPanel().remove(searchPanel);
+                    getContentPanel().remove(getSearchPanel());
                 } else if (lastComponent.equals("Multimedia")) {
                     getContentPanel().remove(editProjectMultimedia);                  
                 } else if (lastComponent.equals("Edit Projects Participants")) {
@@ -363,10 +363,12 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(new ViewAllUsersPanel());
                 lastComponent = "View All Users";
             } else if (path.toString().contains("Advanced Search")) {
-                getContentPanel().add(new AdvancedSearchPanel());
+                advancedSearchPanel = new AdvancedSearchPanel(this);
+                getContentPanel().add(advancedSearchPanel);
                 lastComponent = "Advanced Search";
             } else if (path.toString().contains("Search")) {
-                getContentPanel().add(new SearchPanel());
+                setSearchPanel(new SearchPanel(this));
+                getContentPanel().add(getSearchPanel());
                 lastComponent = "Search";
             } else if (path.toString().contains("Multimedia")) {
                 getContentPanel().add(new EditProjectMultimedia());
@@ -569,5 +571,33 @@ public class Welcome extends javax.swing.JFrame {
 
         menuBar.add(mainMenu);
         return menuBar;
+    }
+
+    /**
+     * @return the advancedSearchPanel
+     */
+    public AdvancedSearchPanel getAdvancedSearchPanel() {
+        return advancedSearchPanel;
+    }
+
+    /**
+     * @param advancedSearchPanel the advancedSearchPanel to set
+     */
+    public void setAdvancedSearchPanel(AdvancedSearchPanel advancedSearchPanel) {
+        this.advancedSearchPanel = advancedSearchPanel;
+    }
+
+    /**
+     * @return the searchPanel
+     */
+    public SearchPanel getSearchPanel() {
+        return searchPanel;
+    }
+
+    /**
+     * @param searchPanel the searchPanel to set
+     */
+    public void setSearchPanel(SearchPanel searchPanel) {
+        this.searchPanel = searchPanel;
     }
 }

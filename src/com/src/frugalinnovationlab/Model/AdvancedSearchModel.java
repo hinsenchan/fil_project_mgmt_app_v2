@@ -16,12 +16,13 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Sony
  */
-public class AdvancedSearchModel {
+public class AdvancedSearchModel{
 
     private static EntityManagerFactory factory;  // JPA  
     private EntityManager manager;

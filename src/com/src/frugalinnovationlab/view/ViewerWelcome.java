@@ -20,9 +20,9 @@ public class ViewerWelcome extends javax.swing.JFrame {
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
     final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
-    final SearchPanel searchPanel = new SearchPanel();
+    //final SearchPanel searchPanel = new SearchPanel();
     final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
-    final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
+    //final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
     final EditGeneralProjectInformation editGeneralProjectInformation = new EditGeneralProjectInformation();
@@ -261,9 +261,9 @@ public class ViewerWelcome extends javax.swing.JFrame {
                 if (lastComponent.equals("View All Projects")) {
                     contentPanel.remove(viewAllProjectsPanel);
                 } else if (lastComponent.equals("Advanced Search")) {
-                    contentPanel.remove(advancedSearchPanel);
+                    //contentPanel.remove(advancedSearchPanel);
                 } else if (lastComponent.equals("Search")) {
-                    contentPanel.remove(searchPanel);
+                    //contentPanel.remove(searchPanel);
 
                 }
 
@@ -274,10 +274,10 @@ public class ViewerWelcome extends javax.swing.JFrame {
                 contentPanel.add(new ViewAllProjectsPanel());
                 lastComponent = "View All Projects";
             } else if (path.toString().contains("Advanced Search")) {
-                contentPanel.add(new AdvancedSearchPanel());
+                //contentPanel.add(new AdvancedSearchPanel());
                 lastComponent = "Advanced Search";
             } else if (path.toString().contains("Search")) {
-                contentPanel.add(new SearchPanel());
+                //contentPanel.add(new SearchPanel());
                 lastComponent = "Search";
 
             }

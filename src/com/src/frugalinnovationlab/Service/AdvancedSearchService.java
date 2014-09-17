@@ -134,6 +134,9 @@ public class AdvancedSearchService {
             queryStr = queryStr.concat(" )");
         }
         System.out.println("Query is : " +queryStr);
+        if (queryStr.length() == 247) {
+            queryStr = queryStr.substring(0, queryStr.length() - 6);
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
         TypedQuery<ProjectView> query = manager.createQuery(queryStr, ProjectView.class);
         if (!advSearchInputs.get("search_text").equals("") && advSearchInputs.get("search_text") != null) {

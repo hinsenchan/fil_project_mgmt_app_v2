@@ -20,86 +20,39 @@ import java.awt.event.ActionListener;
  */
 public class SearchPanel extends javax.swing.JPanel   {
     
-  private JTable jtable1;
-      private SearchProjectController searchcontroller;
-      
+    private JTable jtable1;
+    private SearchProjectController searchcontroller; 
+    private Welcome mainApplication;
     
-
     /**
      * Creates new form SearchPanel
      */
-    public SearchPanel() {
-        
-        initComponents();
-        
-        searchcontroller = new SearchProjectController(this);
-       
-        
+    public SearchPanel(Welcome mainApplication) {        
+        initComponents();        
+        this.mainApplication = mainApplication;
+        searchcontroller = new SearchProjectController(this);         
     }
     
-    public void addJTable()
-            
-    {                               
-                                     String searchtext = searchTextField.getText();
+    public void addJTable() {                               
+        String searchtext = searchTextField.getText();
+        jtable1 = new JTable(searchcontroller.getTableModel(searchtext));
+        jtable1.getSelectionModel().addListSelectionListener(searchcontroller); 
+        jtable1.setAutoCreateRowSorter(true);
         
-                                    jtable1 = new JTable(searchcontroller.getTableModel(searchtext));
-                                    
-		
-		final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                                    tablePanel.setLayout(new BorderLayout());
-		tablePanel.add(scrollpane, BorderLayout.CENTER);
-                
-                                    final int rows = 14;
-                  
-                                    Dimension d = jtable1.getPreferredSize();
-                                    scrollpane.setPreferredSize(new Dimension(d.width,jtable1.getRowHeight()*rows));
-                
-                                    JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                            
-                    
-                                 JButton next = new JButton(">");
-                            next.addActionListener( new ActionListener(){
-                            public void actionPerformed(ActionEvent ae) {
-                        int height = jtable1.getRowHeight()*(rows-2);
-                                
-                        JScrollBar bar = scrollpane.getVerticalScrollBar();
-                        bar.setValue( bar.getValue()+height );
-                    }
-                } );
-                JButton previous = new JButton("<");
-                previous.addActionListener( new ActionListener(){
-                    public void actionPerformed(ActionEvent ae) {
-                        int height = jtable1.getRowHeight()*(rows-2);
-                         
-                        JScrollBar bar = scrollpane.getVerticalScrollBar();
-                        bar.setValue( bar.getValue()-height );
-                    }
-                } );
-
-                navigation.add(previous);
-                navigation.add(next);
-               
-                
-                tablePanel.add(navigation, BorderLayout.SOUTH);
-                
-                System.out.println("table creating");
-                
+        final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        tablePanel.setLayout(new BorderLayout());
+        tablePanel.add(scrollpane, BorderLayout.CENTER);
         
+        final int rows = 25;
+        Dimension d = jtable1.getPreferredSize();
+        scrollpane.setPreferredSize(new Dimension(d.width,jtable1.getRowHeight()*rows));       
     }
     
     
-    public void updateTable()
-    
-    {
-    	
-                    String searchtext = searchTextField.getText();
-         
-          jtable1.setModel(searchcontroller.getTableModel(searchtext));
-        
-
-    }
-    
-    
+    public void updateTable() {    	
+        String searchtext = searchTextField.getText();         
+        jtable1.setModel(searchcontroller.getTableModel(searchtext));        
+    }        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,23 +179,12 @@ public class SearchPanel extends javax.swing.JPanel   {
 
     
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       
-             if(tablePanel.isAncestorOf(jtable1))
-                                       
-                                   {
-
-                                      tablePanel.removeAll();
-                                      
-                                   }
-
-         
-             addJTable();
-             
-             repaint();
-            revalidate();
-            
-        
-        
+        if(tablePanel.isAncestorOf(jtable1)) {
+            tablePanel.removeAll();                                      
+        }         
+        addJTable();             
+        repaint();
+        revalidate();                            
     }//GEN-LAST:event_searchButtonActionPerformed
 
 
@@ -254,4 +196,12 @@ public class SearchPanel extends javax.swing.JPanel   {
     private javax.swing.JTextField searchTextField;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
+
+    public Welcome getMainApplication() {
+        return mainApplication;
+    }
+    
+    public JTable getJTable() {
+        return jtable1;
+    }   
 }
