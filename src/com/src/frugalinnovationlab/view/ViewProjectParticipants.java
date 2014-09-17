@@ -164,14 +164,14 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
         },
         new String [] {
-            "Name", "Role"
+            "Name", "Role", "Email", "Phone", "Organization"
         }
     ) {
         Class[] types = new Class [] {
-            java.lang.String.class, java.lang.String.class
+            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
         };
         boolean[] canEdit = new boolean [] {
-            false, false
+            false, false, false, false, false
         };
 
         public Class getColumnClass(int columnIndex) {
@@ -190,8 +190,8 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
         bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(bottomPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(tableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGap(261, 261, 261))
+            .addComponent(tableScrollPane)
+            .addContainerGap())
     );
     bottomPanelLayout.setVerticalGroup(
         bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +252,12 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
             }
             List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
             participantsList.clear();
+            
+            Object[] testval = (Object[]) result.get(0);            
+            for (int i=0; i<testval.length; i++) {
+                System.out.println(testval[i]);
+            }
+            
             for (int i = 0; i < result.size(); i++) {
                 Object[] values = (Object[]) result.get(i);
                 participantValue = String.valueOf(values[3]);
@@ -259,11 +265,14 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 .concat(" ").concat(values[2].toString());
                 String roleValue = values[4].toString();
                 String roleItem = values[5].toString();
+                String email = values[6].toString();
+                String phone = values[7].toString();
+                String organization = values[8].toString();
                 ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
                     Integer.parseInt(roleValue));
                 participantsList.add(a);
                 //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                Object[] row = {participantItem, roleItem};
+                Object[] row = {participantItem, roleItem, email, phone, organization};
                 model = (DefaultTableModel) table.getModel();
                 model.addRow(row);
             }

@@ -70,8 +70,15 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
     
     public void showViewParticipantDetails(int index) {
         String name = gui.getTable().getModel().getValueAt(index, 0).toString();
+        String email = gui.getTable().getModel().getValueAt(index, 2).toString();
+        String phone = gui.getTable().getModel().getValueAt(index, 3).toString();
+        String organization = gui.getTable().getModel().getValueAt(index, 4).toString();
 
         mainApplication.getViewParticipantDetails().getNameTextField().setText(name);
+        mainApplication.getViewParticipantDetails().getEmailTextField().setText(email);
+        mainApplication.getViewParticipantDetails().getPhoneTextField().setText(phone);
+        mainApplication.getViewParticipantDetails().getOrganizationTextField().setText(organization);
+        
         List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
         DefaultTableModel model = (DefaultTableModel) mainApplication.getViewParticipantDetails().getTable().getModel();        
         
@@ -82,9 +89,7 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
 
             Object[] row = {projectName, projectShortDescription};            
             model.addRow(row);
-        }        
-        
-        //mainApplication.getViewParticipantDetails().getEmailTextField().setText(name);
+        }                
                
         mainApplication.getContentPanel().remove(mainApplication.getViewProjectParticipants());
         mainApplication.getContentPanel().add(mainApplication.getViewParticipantDetails());

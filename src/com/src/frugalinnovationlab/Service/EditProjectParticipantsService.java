@@ -56,6 +56,22 @@ public class EditProjectParticipantsService {
     public List<ProjectParticipants> fetchParticipantsByProject(String projectId) {
         int pid = Integer.parseInt(projectId);
 
+        String naiveQuery = "SELECT p.nameTitle, p.firstname, p.lastname, p.id, "
+                + " pd.id, pd.name, p.email, p.phone, p.organization FROM ProjectParticipants pp LEFT OUTER JOIN pp.participants p"
+                + " LEFT OUTER JOIN pp.participantDesignation pd"
+                + " where pp.projectParticipantsPK.projectId = :pid";
+
+        Query query = manager.createQuery(naiveQuery);
+        query.setParameter("pid", pid);
+
+        List<ProjectParticipants> result = query.getResultList();
+
+        return result;
+    }
+    /*
+    public List<ProjectParticipants> fetchParticipantsByProject(String projectId) {
+        int pid = Integer.parseInt(projectId);
+
         String naiveQuery = "SELECT p.nameTitle, p.firstname, p.lastname, p.id,"
                 + " pd.id, pd.name FROM ProjectParticipants pp LEFT OUTER JOIN pp.participants p"
                 + " LEFT OUTER JOIN pp.participantDesignation pd"
@@ -67,8 +83,8 @@ public class EditProjectParticipantsService {
         List<ProjectParticipants> result = query.getResultList();
 
         return result;
-    }
-    
+    }    
+    */
     public List<Project> fetchProjectsByParticipant(String participanttId) {
         int pid = Integer.parseInt(participanttId);
 
