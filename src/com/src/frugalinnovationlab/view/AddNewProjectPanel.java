@@ -6,29 +6,23 @@
 package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.AddNewProjectController;
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.MediaAdobe;
 import com.src.frugalinnovationlab.Entity.MediaAdobePK;
 import com.src.frugalinnovationlab.Entity.MediaCad;
-import com.src.frugalinnovationlab.Entity.MediaCadPK;
 import com.src.frugalinnovationlab.Entity.MediaCode;
-import com.src.frugalinnovationlab.Entity.MediaCodePK;
 import com.src.frugalinnovationlab.Entity.MediaHyperlink;
 import com.src.frugalinnovationlab.Entity.MediaPdf;
-import com.src.frugalinnovationlab.Entity.MediaPdfPK;
 import com.src.frugalinnovationlab.Entity.MediaPhotos;
-import com.src.frugalinnovationlab.Entity.MediaPhotosPK;
 import com.src.frugalinnovationlab.Entity.MediaPlaintext;
-import com.src.frugalinnovationlab.Entity.MediaPlaintextPK;
 import com.src.frugalinnovationlab.Entity.MediaSpreadsheet;
-import com.src.frugalinnovationlab.Entity.MediaSpreadsheetPK;
 import com.src.frugalinnovationlab.Entity.MediaVideo;
-import com.src.frugalinnovationlab.Entity.MediaVideoPK;
 import com.src.frugalinnovationlab.Entity.MediaWord;
-import com.src.frugalinnovationlab.Entity.MediaWordPK;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.sql.Array;
@@ -45,7 +39,6 @@ import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -60,6 +53,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<ParticipantDesignation> participantDesignationsList;
     List<Participants> participants;
     List<Tags> tagsList;
+    DefaultTableModel model1 = new DefaultTableModel();
     List<String> categoriesList;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<AssignParticipantsToProject> participantsList = new ArrayList<AssignParticipantsToProject>();
@@ -74,6 +68,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<MediaVideo> videoList = new ArrayList<MediaVideo>();
     List<MediaWord> wordList = new ArrayList<MediaWord>();
     List<String> selectedTagsList;
+    List<Filetypes> fileTypeList;
+    List<Projectfiles> filesList = new ArrayList<Projectfiles>();
+
 
     /**
      * Creates new form AddNewProjectPanel
@@ -86,6 +83,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         participantDesignationsList = addNewProjectController.getParticipantsDesignationFromDatabase();
         participants = addNewProjectController.getParticipantsFromDatabase();
         tagsList = addNewProjectController.getTagsFromDatabase();
+        fileTypeList = addNewProjectController.fetchFileTypes();
         initComponents();
         newTagsLabelField.setVisible(false);
         newTagsTextField.setVisible(false);
@@ -177,50 +175,20 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         addTitleLabel1 = new javax.swing.JLabel();
         multimediaScrollPane = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
-        clearPhotosButton = new javax.swing.JButton();
-        addPlainTextFileButton = new javax.swing.JButton();
-        videoLabel1 = new javax.swing.JLabel();
-        clearPdfButton = new javax.swing.JButton();
-        clearWordButton = new javax.swing.JButton();
-        spreadsheetLabel1 = new javax.swing.JLabel();
-        clearCadDocsButton = new javax.swing.JButton();
-        addCodeButton = new javax.swing.JButton();
         addAdobeTextField = new javax.swing.JTextField();
-        addCodeTextField1 = new javax.swing.JTextField();
-        addWordDocumentButton = new javax.swing.JButton();
-        wordDocumentLabel1 = new javax.swing.JLabel();
         addProjectButton3 = new javax.swing.JButton();
-        clearPlainButton = new javax.swing.JButton();
-        addSpreadsheetButton = new javax.swing.JButton();
         adobeFilesLabel1 = new javax.swing.JLabel();
-        clearSpreadSheetButton = new javax.swing.JButton();
-        addPhotoButton = new javax.swing.JButton();
-        addPhotosTextField1 = new javax.swing.JTextField();
-        addWordTextField1 = new javax.swing.JTextField();
-        plainTextFileLabel1 = new javax.swing.JLabel();
-        addPdfTextField1 = new javax.swing.JTextField();
-        addButton = new javax.swing.JButton();
         addNewProjectTextArea2 = new javax.swing.JLabel();
         addadobefileButton = new javax.swing.JButton();
-        codeLabel1 = new javax.swing.JLabel();
-        addCadDocsTextField = new javax.swing.JTextField();
-        clearCodeButton1 = new javax.swing.JButton();
-        addVideoTextField1 = new javax.swing.JTextField();
-        addSpreadSheetTextField1 = new javax.swing.JTextField();
-        addPlainTextField1 = new javax.swing.JTextField();
+        fileNameTextField = new javax.swing.JTextField();
         cadDocumentLabel1 = new javax.swing.JLabel();
-        addCADDocumentButton = new javax.swing.JButton();
-        clearVideoButton = new javax.swing.JButton();
-        addPDFButton = new javax.swing.JButton();
-        pdfLabel1 = new javax.swing.JLabel();
-        photosLabel1 = new javax.swing.JLabel();
         generalProjectInfoLabel4 = new javax.swing.JLabel();
-        clearAdobeFilesButton = new javax.swing.JButton();
-        codeLabel2 = new javax.swing.JLabel();
-        clearCodeButton2 = new javax.swing.JButton();
-        clearCodeButton3 = new javax.swing.JButton();
-        addCodeTextField2 = new javax.swing.JTextField();
         logoLabel4 = new javax.swing.JLabel();
+        fileNameLabel = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         addProjectButton = new javax.swing.JButton();
@@ -492,7 +460,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(projectNameLabel)
                             .addComponent(jLabel1))))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
@@ -580,7 +548,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(newTagsLabelField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(moveToParticipants)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
@@ -792,7 +760,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(addTitleComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(organizationTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewParticipantRoleComboBox, 0, 180, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(addParticipantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addParticipantPanelLayout.createSequentialGroup()
                         .addComponent(phoneLabel)
@@ -893,7 +861,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                         .addComponent(addNewParticipantButton)
                                         .addComponent(addParticipantButton)))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         mainPanel3Layout.setVerticalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,7 +896,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteParticipantButton)
                     .addComponent(addParticipantButton1))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
@@ -939,91 +907,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        clearPhotosButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearPhotosButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearPhotosButton.setText("Clear");
-        clearPhotosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearPhotosButtonActionPerformed(evt);
-            }
-        });
-
-        addPlainTextFileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addPlainTextFileButton.setForeground(new java.awt.Color(0, 95, 45));
-        addPlainTextFileButton.setText("Add Plain Text File");
-        addPlainTextFileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPlainTextFileButtonActionPerformed(evt);
-            }
-        });
-
-        videoLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        videoLabel1.setText("Video");
-
-        clearPdfButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearPdfButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearPdfButton.setText("Clear");
-        clearPdfButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearPdfButtonActionPerformed(evt);
-            }
-        });
-
-        clearWordButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearWordButton.setText("Clear");
-        clearWordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearWordButtonActionPerformed(evt);
-            }
-        });
-
-        spreadsheetLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        spreadsheetLabel1.setText("Spreadsheets");
-
-        clearCadDocsButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearCadDocsButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearCadDocsButton.setText("Clear");
-        clearCadDocsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearCadDocsButtonActionPerformed(evt);
-            }
-        });
-
-        addCodeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addCodeButton.setForeground(new java.awt.Color(0, 95, 45));
-        addCodeButton.setText("Add Code");
-        addCodeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCodeButtonActionPerformed(evt);
-            }
-        });
-
         addAdobeTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addAdobeTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAdobeTextFieldActionPerformed(evt);
-            }
-        });
-
-        addCodeTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addCodeTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCodeTextField1ActionPerformed(evt);
-            }
-        });
-
-        addWordDocumentButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addWordDocumentButton.setForeground(new java.awt.Color(0, 95, 45));
-        addWordDocumentButton.setText("Add Word Document");
-        addWordDocumentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addWordDocumentButtonActionPerformed(evt);
-            }
-        });
-
-        wordDocumentLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        wordDocumentLabel1.setText("Word Documents");
-        wordDocumentLabel1.setToolTipText("");
 
         addProjectButton3.setForeground(new java.awt.Color(0, 95, 45));
         addProjectButton3.setText("Next");
@@ -1033,176 +917,62 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
         });
 
-        clearPlainButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearPlainButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearPlainButton.setText("Clear");
-        clearPlainButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearPlainButtonActionPerformed(evt);
-            }
-        });
-
-        addSpreadsheetButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addSpreadsheetButton.setForeground(new java.awt.Color(0, 95, 45));
-        addSpreadsheetButton.setText("Add SpreadSheet");
-        addSpreadsheetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSpreadsheetButtonActionPerformed(evt);
-            }
-        });
-
         adobeFilesLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        adobeFilesLabel1.setText("Adobe Files");
-
-        clearSpreadSheetButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearSpreadSheetButton.setText("Clear");
-        clearSpreadSheetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearSpreadSheetButtonActionPerformed(evt);
-            }
-        });
-
-        addPhotoButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addPhotoButton.setForeground(new java.awt.Color(0, 95, 45));
-        addPhotoButton.setText("Add Photo");
-        addPhotoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPhotoButtonActionPerformed(evt);
-            }
-        });
-
-        addWordTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-
-        plainTextFileLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        plainTextFileLabel1.setText("Plain Text Files");
-        plainTextFileLabel1.setToolTipText("");
-
-        addPdfTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-
-        addButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addButton.setForeground(new java.awt.Color(0, 95, 45));
-        addButton.setText("Add Video");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
+        adobeFilesLabel1.setText("Select File");
 
         addNewProjectTextArea2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         addNewProjectTextArea2.setText("Add New Project");
 
         addadobefileButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addadobefileButton.setForeground(new java.awt.Color(0, 95, 45));
-        addadobefileButton.setText("Add Adobe File");
+        addadobefileButton.setText("Choose a file");
         addadobefileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addadobefileButtonActionPerformed(evt);
             }
         });
 
-        codeLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        codeLabel1.setText("Code");
-
-        addCadDocsTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addCadDocsTextField.addActionListener(new java.awt.event.ActionListener() {
+        fileNameTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCadDocsTextFieldActionPerformed(evt);
+                fileNameTextFieldActionPerformed(evt);
             }
         });
-
-        clearCodeButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearCodeButton1.setForeground(new java.awt.Color(95, 10, 36));
-        clearCodeButton1.setText("Clear");
-        clearCodeButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearCodeButton1ActionPerformed(evt);
-            }
-        });
-
-        addVideoTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-
-        addSpreadSheetTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-
-        addPlainTextField1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
 
         cadDocumentLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        cadDocumentLabel1.setText("CAD Documents");
-
-        addCADDocumentButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addCADDocumentButton.setForeground(new java.awt.Color(0, 95, 45));
-        addCADDocumentButton.setText("Add CAD Docs");
-        addCADDocumentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCADDocumentButtonActionPerformed(evt);
-            }
-        });
-
-        clearVideoButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearVideoButton.setText("Clear");
-        clearVideoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearVideoButtonActionPerformed(evt);
-            }
-        });
-
-        addPDFButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addPDFButton.setForeground(new java.awt.Color(0, 95, 45));
-        addPDFButton.setText("Add PDF");
-        addPDFButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPDFButtonActionPerformed(evt);
-            }
-        });
-
-        pdfLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        pdfLabel1.setText("PDF");
-
-        photosLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        photosLabel1.setText("Photos");
+        cadDocumentLabel1.setText("File Type");
 
         generalProjectInfoLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         generalProjectInfoLabel4.setText("Step 3 - Project Multimedia");
 
-        clearAdobeFilesButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearAdobeFilesButton.setForeground(new java.awt.Color(95, 10, 36));
-        clearAdobeFilesButton.setText("Clear");
-        clearAdobeFilesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearAdobeFilesButtonActionPerformed(evt);
-            }
-        });
-
-        codeLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        codeLabel2.setText("Hyperlink");
-
-        clearCodeButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearCodeButton2.setForeground(new java.awt.Color(0, 95, 45));
-        clearCodeButton2.setText("Add Hyperlink");
-        clearCodeButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearCodeButton2ActionPerformed(evt);
-            }
-        });
-
-        clearCodeButton3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        clearCodeButton3.setForeground(new java.awt.Color(95, 10, 36));
-        clearCodeButton3.setText("Clear");
-        clearCodeButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearCodeButton3ActionPerformed(evt);
-            }
-        });
-
-        addCodeTextField2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addCodeTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCodeTextField2ActionPerformed(evt);
-            }
-        });
-
         logoLabel4.setBackground(new java.awt.Color(255, 255, 255));
         logoLabel4.setForeground(new java.awt.Color(0, 95, 45));
         logoLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
+
+        fileNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        fileNameLabel.setText("File Name");
+
+        jComboBox1.addItem("Select File Type");
+        for (int i = 0; i < fileTypeList.size(); i++) {
+            jComboBox1.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));
+        }
+
+        jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "File Name", "Location", "Type"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1220,176 +990,61 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(adobeFilesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cadDocumentLabel1)
-                                    .addComponent(codeLabel1)
-                                    .addComponent(codeLabel2))
+                                    .addComponent(fileNameLabel))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addCADDocumentButton)
-                                    .addComponent(addadobefileButton)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(addCadDocsTextField)
-                                            .addComponent(addAdobeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(clearAdobeFilesButton)
-                                            .addComponent(clearCadDocsButton)))
-                                    .addComponent(addCodeButton)
-                                    .addComponent(clearCodeButton2)
+                                            .addComponent(addAdobeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(addadobefileButton))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addCodeTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(fileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearCodeButton1))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addCodeTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(logoLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearCodeButton3))))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pdfLabel1)
-                                    .addComponent(photosLabel1)
-                                    .addComponent(plainTextFileLabel1)
-                                    .addComponent(spreadsheetLabel1)
-                                    .addComponent(videoLabel1)
-                                    .addComponent(wordDocumentLabel1))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addPDFButton)
-                                    .addComponent(addPhotoButton)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(addPhotosTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                            .addComponent(addPdfTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(9, 9, 9)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(clearPhotosButton)
-                                            .addComponent(clearPdfButton)))
-                                    .addComponent(addSpreadsheetButton)
-                                    .addComponent(addButton)
-                                    .addComponent(addPlainTextFileButton)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addSpreadSheetTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearSpreadSheetButton))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addVideoTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearVideoButton))
-                                    .addComponent(addWordDocumentButton)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(addWordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearWordButton))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(addProjectButton3)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(addPlainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(clearPlainButton))))))))
-                .addContainerGap(380, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(264, 264, 264)
-                    .addComponent(logoLabel4)
-                    .addContainerGap(412, Short.MAX_VALUE)))
+                                        .addGap(36, 36, 36))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(300, 300, 300)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addNewProjectTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(generalProjectInfoLabel4)
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adobeFilesLabel1)
-                    .addComponent(addadobefileButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAdobeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearAdobeFilesButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadDocumentLabel1)
-                    .addComponent(addCADDocumentButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(clearCadDocsButton)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(addCadDocsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeLabel1)
-                    .addComponent(addCodeButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCodeTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearCodeButton1))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeLabel2)
-                    .addComponent(clearCodeButton2))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clearCodeButton3)
-                    .addComponent(addCodeTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pdfLabel1)
-                    .addComponent(addPDFButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPdfTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearPdfButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(photosLabel1)
-                    .addComponent(addPhotoButton))
-                .addGap(0, 0, 0)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addPhotosTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearPhotosButton))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPlainTextFileButton)
-                    .addComponent(plainTextFileLabel1))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPlainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearPlainButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spreadsheetLabel1)
-                    .addComponent(addSpreadsheetButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addSpreadSheetTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearSpreadSheetButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(videoLabel1)
-                    .addComponent(addButton))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addVideoTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearVideoButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wordDocumentLabel1)
-                    .addComponent(addWordDocumentButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addWordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearWordButton))
-                .addGap(40, 40, 40)
-                .addComponent(addProjectButton3)
-                .addContainerGap(113, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(205, 205, 205)
-                    .addComponent(logoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(254, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(generalProjectInfoLabel4)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addAdobeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addadobefileButton)
+                            .addComponent(adobeFilesLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cadDocumentLabel1)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fileNameLabel)
+                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addProjectButton3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(logoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         multimediaScrollPane.setViewportView(jPanel3);
@@ -1497,145 +1152,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_projectNameTextFieldActionPerformed
 
-    private void addWordDocumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addWordDocumentButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Word Files", "doc", "docx");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addWordTextField1.getText() != null && addWordTextField1.getText() != "") {
-            allfilenames = addWordTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addWordTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addWordTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaWord m = new MediaWord();
-            MediaWordPK mpk = new MediaWordPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaWordPK(mpk);
-            wordList.add(m);
-        }
-    }//GEN-LAST:event_addWordDocumentButtonActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Video Files", "flv", "mp4");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addVideoTextField1.getText() != null && addVideoTextField1.getText() != "") {
-            allfilenames = addVideoTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addVideoTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addVideoTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaVideo m = new MediaVideo();
-            MediaVideoPK mpk = new MediaVideoPK();
-            m.setTitle(selectedFileName);
-            m.setFileType("video");
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaVideoPK(mpk);
-            videoList.add(m);
-        }
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void addPhotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhotoButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "png", "ai", "jpeg",
-                "jpg", "tiff");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addPhotosTextField1.getText() != null && addPhotosTextField1.getText() != "") {
-            allfilenames = addPhotosTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addPhotosTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addPhotosTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaPhotos m = new MediaPhotos();
-            MediaPhotosPK mpk = new MediaPhotosPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaPhotosPK(mpk);
-            photosList.add(m);
-        }
-
-    }//GEN-LAST:event_addPhotoButtonActionPerformed
-
-    private void addCADDocumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCADDocumentButtonActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser("File Dialog");
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addCadDocsTextField.getText() != null && addCadDocsTextField.getText() != "") {
-            allfilenames = addCadDocsTextField.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addCadDocsTextField.setText(allfilenames);
-        String[] selectedFilePaths = addCadDocsTextField.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaCad m = new MediaCad();
-            MediaCadPK mpk = new MediaCadPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaCadPK(mpk);
-            cadFileList.add(m);
-        }
-        /*
-         for (int i = 0; i < cadFileList.size(); i++) {
-         System.out.println("name : " + cadFileList.get(i).getTitle());
-         System.out.println("name : " + cadFileList.get(i).getMediaCadPK().getFilePath());
-         }
-         */
-    }//GEN-LAST:event_addCADDocumentButtonActionPerformed
-
     private void chooseParticipantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseParticipantComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chooseParticipantComboBoxActionPerformed
@@ -1663,11 +1179,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void scopeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scopeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_scopeTextFieldActionPerformed
-
-    private void addProjectButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButton3ActionPerformed
-        // TODO add your handling code here:
-        createProjectPane.setSelectedIndex(3);
-    }//GEN-LAST:event_addProjectButton3ActionPerformed
 
     private void addParticipantButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButton1ActionPerformed
         // TODO add your handling code here:
@@ -1730,60 +1241,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         model.removeRow(row);
     }//GEN-LAST:event_deleteParticipantButtonActionPerformed
 
-    private void addadobefileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addadobefileButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Adobe Files", "pdf", "dmg");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addAdobeTextField.getText() != null && addAdobeTextField.getText() != "") {
-            allfilenames = addAdobeTextField.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addAdobeTextField.setText(allfilenames);
-        String[] selectedFilePaths = addAdobeTextField.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaAdobe m = new MediaAdobe();
-            MediaAdobePK mpk = new MediaAdobePK();
-            m.setTitle(selectedFileName);
-            m.setFileType("PDF");
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaAdobePK(mpk);
-            adobeFileList.add(m);
-        }
-        /*
-         for (int i = 0; i < adobeFileList.size(); i++) {
-         System.out.println("name : " + adobeFileList.get(i).getTitle());
-         System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
-
-         }
-         */
-    }//GEN-LAST:event_addadobefileButtonActionPerformed
-
-    private void clearAdobeFilesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAdobeFilesButtonActionPerformed
-        // TODO add your handling code here:
-        addAdobeTextField.setText("");
-    }//GEN-LAST:event_clearAdobeFilesButtonActionPerformed
-
-    private void addCadDocsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCadDocsTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addCadDocsTextFieldActionPerformed
-
-    private void clearCadDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCadDocsButtonActionPerformed
-        // TODO add your handling code here:
-        addCadDocsTextField.setText("");
-    }//GEN-LAST:event_clearCadDocsButtonActionPerformed
-
     private void addCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCodeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addCodeTextFieldActionPerformed
@@ -1794,199 +1251,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void addAdobeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    private void addCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCodeButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Code Files", "java", "js",
-                "py", "txt", "c", "rtf", "csv", "html", "xml");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addCodeTextField1.getText() != null && addCodeTextField1.getText() != "") {
-            allfilenames = addCodeTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addCodeTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addCodeTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaCode m = new MediaCode();
-            MediaCodePK mpk = new MediaCodePK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaCodePK(mpk);
-            codeFileList.add(m);
-        }
-        /*
-         for (int i = 0; i < codeFileList.size(); i++) {
-         System.out.println("name : " + codeFileList.get(i).getTitle());
-         System.out.println("name : " + codeFileList.get(i).getMediaCodePK().getFilePath());
-         }
-         */
-    }//GEN-LAST:event_addCodeButtonActionPerformed
-
     private void addLinkTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLinkTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addLinkTextFieldActionPerformed
 
-    private void clearPhotosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearPhotosButtonActionPerformed
-        // TODO add your handling code here:
-        addPhotosTextField1.setText("");
-    }//GEN-LAST:event_clearPhotosButtonActionPerformed
-
-    private void clearPlainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearPlainButtonActionPerformed
-        // TODO add your handling code here:
-        addPlainTextField1.setText("");
-    }//GEN-LAST:event_clearPlainButtonActionPerformed
-
-    private void clearPdfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearPdfButtonActionPerformed
-        // TODO add your handling code here:
-        addPdfTextField1.setText("");
-    }//GEN-LAST:event_clearPdfButtonActionPerformed
-
-    private void clearVideoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearVideoButtonActionPerformed
-        // TODO add your handling code here:
-        addVideoTextField1.setText("");
-    }//GEN-LAST:event_clearVideoButtonActionPerformed
-
-    private void clearWordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearWordButtonActionPerformed
-        // TODO add your handling code here:
-        addWordTextField1.setText("");
-    }//GEN-LAST:event_clearWordButtonActionPerformed
-
-    private void clearSpreadSheetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSpreadSheetButtonActionPerformed
-        // TODO add your handling code here:
-        addSpreadSheetTextField1.setText("");
-    }//GEN-LAST:event_clearSpreadSheetButtonActionPerformed
-
-    private void addPDFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPDFButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Files", "pdf");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addPdfTextField1.getText() != null && addPdfTextField1.getText() != "") {
-            allfilenames = addPdfTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addPdfTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addPdfTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaPdf m = new MediaPdf();
-            MediaPdfPK mpk = new MediaPdfPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaPdfPK(mpk);
-            pdfList.add(m);
-        }
-
-    }//GEN-LAST:event_addPDFButtonActionPerformed
-
-    private void addPlainTextFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlainTextFileButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Plain Text Files", "txt", "rtf");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addPlainTextField1.getText() != null && addPlainTextField1.getText() != "") {
-            allfilenames = addPlainTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addPlainTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addPlainTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaPlaintext m = new MediaPlaintext();
-            MediaPlaintextPK mpk = new MediaPlaintextPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaPlaintextPK(mpk);
-            plainTextList.add(m);
-        }
-    }//GEN-LAST:event_addPlainTextFileButtonActionPerformed
-
-    private void addSpreadsheetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSpreadsheetButtonActionPerformed
-        // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Spreadsheet Files", "xls", "xlsx");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setFileFilter(filter);
-
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addSpreadSheetTextField1.getText() != null && addSpreadSheetTextField1.getText() != "") {
-            allfilenames = addSpreadSheetTextField1.getText();
-        }
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addSpreadSheetTextField1.setText(allfilenames);
-        String[] selectedFilePaths = addSpreadSheetTextField1.getText().split(",");
-
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-            int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-            String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-            MediaSpreadsheet m = new MediaSpreadsheet();
-            MediaSpreadsheetPK mpk = new MediaSpreadsheetPK();
-            m.setTitle(selectedFileName);
-            mpk.setFilePath(selectedFilePaths[i]);
-            m.setMediaSpreadsheetPK(mpk);
-            spreadSheetList.add(m);
-        }
-    }//GEN-LAST:event_addSpreadsheetButtonActionPerformed
-
     private void addLinkTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLinkTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addLinkTextField1ActionPerformed
-
-    private void clearCodeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCodeButton1ActionPerformed
-        // TODO add your handling code here:
-        addCodeTextField1.setText("");
-    }//GEN-LAST:event_clearCodeButton1ActionPerformed
-
-    private void clearCodeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCodeButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clearCodeButton2ActionPerformed
-
-    private void clearCodeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCodeButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clearCodeButton3ActionPerformed
-
-    private void addCodeTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCodeTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addCodeTextField2ActionPerformed
 
     private void addNewParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantButtonActionPerformed
         // TODO add your handling code here:
@@ -2151,14 +1422,89 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_addProjectButtonActionPerformed
+
+    private void addProjectButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButton3ActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < filesList.size(); i++) {
+            System.out.println("file added : " +filesList.get(i).getFilename());
+            Filetypes f = filesList.get(i).getFiletypeid();
+            System.out.println("file type : " +f.getId());
+        }
+        createProjectPane.setSelectedIndex(3);
+    }//GEN-LAST:event_addProjectButton3ActionPerformed
+
+    private void addadobefileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addadobefileButtonActionPerformed
+        // TODO add your handling code here:
+        //FileNameExtensionFilter filter = new FileNameExtensionFilter("Adobe Files", "pdf", "dmg");
+        addAdobeTextField.setText("");
+        JFileChooser chooser = new JFileChooser("File Dialog");
+        //chooser.setFileFilter(filter);
+        //File f = chooser.getSelectedFile();
+        chooser.setMultiSelectionEnabled(true);
+        chooser.showOpenDialog(this);
+        File[] f = chooser.getSelectedFiles();
+        String allfilenames = "";
+        if (addAdobeTextField.getText() != null && addAdobeTextField.getText() != "") {
+            allfilenames = addAdobeTextField.getText();
+        }
+        for (int i = 0; i < f.length; i++) {
+            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
+        }
+        addAdobeTextField.setText(allfilenames);
+        String[] selectedFilePaths = addAdobeTextField.getText().split(",");
+
+        for (int i = 0; i < selectedFilePaths.length; i++) {
+            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
+                int dotIndex = selectedFilePaths[i].lastIndexOf(".");
+                String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
+                MediaAdobe m = new MediaAdobe();
+                MediaAdobePK mpk = new MediaAdobePK();
+                m.setTitle(selectedFileName);
+                m.setFileType("PDF");
+                mpk.setFilePath(selectedFilePaths[i]);
+                m.setMediaAdobePK(mpk);
+                adobeFileList.add(m);
+            }
+            /*
+            for (int i = 0; i < adobeFileList.size(); i++) {
+                System.out.println("name : " + adobeFileList.get(i).getTitle());
+                System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
+
+            }
+            */
+    }//GEN-LAST:event_addadobefileButtonActionPerformed
+
+    private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileNameTextFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String location = addAdobeTextField.getText();
+        Object typeItem = jComboBox1.getSelectedItem();
+        String typeValue = ((ComboItem) typeItem).getValue();
+        String name = fileNameTextField.getText();
+        //System.out.println("type : " +typeItem+ " - " +typeValue);
+        //System.out.println("location : " +location+ " - " +name);
+        Object[] row = {name, location, typeItem};
+        model1 = (DefaultTableModel) jTable2.getModel();
+        model1.addRow(row);
+        Projectfiles projectfiles = new Projectfiles();
+        projectfiles.setFilename(name);
+        projectfiles.setFilepath(location);
+
+        Filetypes filetypes = new Filetypes(Integer.parseInt(typeValue));
+        filetypes.setType(typeItem.toString());
+        projectfiles.setFiletypeid(filetypes);
+        filesList.add(projectfiles);
+
+        addAdobeTextField.setText("");
+        fileNameTextField.setText("");
+        jComboBox1.setSelectedItem("Select File Type");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addAdobeTextField;
-    private javax.swing.JButton addButton;
-    private javax.swing.JButton addCADDocumentButton;
-    private javax.swing.JTextField addCadDocsTextField;
-    private javax.swing.JButton addCodeButton;
-    private javax.swing.JTextField addCodeTextField1;
-    private javax.swing.JTextField addCodeTextField2;
     private javax.swing.JButton addNewParticipantButton;
     private javax.swing.JButton addNewParticipantPanelButton;
     private javax.swing.JComboBox addNewParticipantRoleComboBox;
@@ -2167,25 +1513,14 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel addNewProjectTextArea3;
     private javax.swing.JLabel addNewProjectTextArea4;
     private javax.swing.JRadioButton addNewTags;
-    private javax.swing.JButton addPDFButton;
     private javax.swing.JButton addParticipantButton;
     private javax.swing.JButton addParticipantButton1;
     private javax.swing.JPanel addParticipantPanel;
-    private javax.swing.JTextField addPdfTextField1;
-    private javax.swing.JButton addPhotoButton;
-    private javax.swing.JTextField addPhotosTextField1;
-    private javax.swing.JTextField addPlainTextField1;
-    private javax.swing.JButton addPlainTextFileButton;
     private javax.swing.JButton addProjectButton;
     private javax.swing.JButton addProjectButton3;
-    private javax.swing.JTextField addSpreadSheetTextField1;
-    private javax.swing.JButton addSpreadsheetButton;
     private javax.swing.JComboBox addTitleComboBox;
     private javax.swing.JLabel addTitleLabel;
     private javax.swing.JLabel addTitleLabel1;
-    private javax.swing.JTextField addVideoTextField1;
-    private javax.swing.JButton addWordDocumentButton;
-    private javax.swing.JTextField addWordTextField1;
     private javax.swing.JButton addadobefileButton;
     private javax.swing.JLabel adobeFilesLabel1;
     private javax.swing.JCheckBox bioengineeringCheckBox;
@@ -2193,19 +1528,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel categoryLabel;
     private javax.swing.JComboBox chooseParticipantComboBox;
     private javax.swing.JCheckBox civilEngineeringCheckBox;
-    private javax.swing.JButton clearAdobeFilesButton;
-    private javax.swing.JButton clearCadDocsButton;
-    private javax.swing.JButton clearCodeButton1;
-    private javax.swing.JButton clearCodeButton2;
-    private javax.swing.JButton clearCodeButton3;
-    private javax.swing.JButton clearPdfButton;
-    private javax.swing.JButton clearPhotosButton;
-    private javax.swing.JButton clearPlainButton;
-    private javax.swing.JButton clearSpreadSheetButton;
-    private javax.swing.JButton clearVideoButton;
-    private javax.swing.JButton clearWordButton;
-    private javax.swing.JLabel codeLabel1;
-    private javax.swing.JLabel codeLabel2;
     private javax.swing.JCheckBox computerEngineeringCheckBox;
     private javax.swing.JTabbedPane createProjectPane;
     private javax.swing.JButton deleteParticipantButton;
@@ -2215,6 +1537,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private com.toedter.calendar.JDateChooser endDate;
+    private javax.swing.JLabel fileNameLabel;
+    private javax.swing.JTextField fileNameTextField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JLabel generalProjectInfoLabel;
@@ -2222,6 +1546,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel generalProjectInfoLabel4;
     private javax.swing.JLabel generalProjectInfoLabel5;
     private javax.swing.JScrollPane generalinfoScrollPane;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
@@ -2230,8 +1556,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
@@ -2255,11 +1583,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel participantNameLabel;
     private javax.swing.JLabel participantRoleLabel;
     private javax.swing.JScrollPane participantsScrollPane;
-    private javax.swing.JLabel pdfLabel1;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
-    private javax.swing.JLabel photosLabel1;
-    private javax.swing.JLabel plainTextFileLabel1;
     private javax.swing.JTextField projectIdTextField;
     private javax.swing.JTextField projectLocationTextField;
     private javax.swing.JLabel projectNameLabel;
@@ -2271,13 +1596,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JTextField scopeTextField;
     private javax.swing.JLabel shortDescriptionLabel;
     private javax.swing.JTextField shortDescriptionTextField;
-    private javax.swing.JLabel spreadsheetLabel1;
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel statusProjectLabel;
     private javax.swing.JLabel tagsOptionsLabel;
-    private javax.swing.JLabel videoLabel1;
-    private javax.swing.JLabel wordDocumentLabel1;
     // End of variables declaration//GEN-END:variables
     
     public void sortParticipants() {
