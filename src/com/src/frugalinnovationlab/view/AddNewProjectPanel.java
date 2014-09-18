@@ -1404,9 +1404,15 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 categoriesList.add("Computer Engineering");
             }
 
+            /*
             boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
                     videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
                     pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
+            */
+            
+            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
+                    filesList, selectedTagsList);
+            
             if (success) {
                 /*for (Component C : this.getComponents()) {
                  System.out.println("ok here now :"+C.getClass());

@@ -25,12 +25,14 @@ import com.src.frugalinnovationlab.Entity.ProjectStatus;
 import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
+import static java.lang.Math.random;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,6 +97,7 @@ public class AddNewProjectService {
             String scope = array[7];
             String outcome = array[8];
             int projectId = Integer.parseInt(array[9]);
+            projectId = this.generateProjectId();
             HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
             HashSet<Tags> projectTagsSet = new HashSet<Tags>();
 
@@ -331,7 +334,11 @@ public class AddNewProjectService {
 
             String scope = array[7];
             String outcome = array[8];
+            
+            //generate new project id
             int projectId = Integer.parseInt(array[9]);
+            projectId = generateProjectId();
+            
             HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
             HashSet<Tags> projectTagsSet = new HashSet<Tags>();
             
@@ -413,5 +420,32 @@ public class AddNewProjectService {
             System.out.println("Error Adding New Project :" + ex.getMessage());
         }
         return success;
+    }
+    
+    public List<Project> fetchProjects() {
+        TypedQuery<Project> query = manager.createQuery("SELECT NEW com.src.frugalinnovationlab.Entity.Project"
+                + "(p.id, p.name) "
+                + "FROM Project p", Project.class);
+        List<Project> result = query.getResultList();
+        return result;
+    }    
+    
+    public int generateProjectId() {
+        Random random = new Random();
+        int randProjId;
+        boolean isUnique;
+        List<Project> existingProjs = this.fetchProjects();
+
+        do {
+            isUnique = true;
+            randProjId = 1000000 + random.nextInt(1000000);
+            for (int i=0; i<existingProjs.size(); i++) {
+                if (existingProjs.get(i).getId() == randProjId) {
+                    isUnique = false;
+                    break;
+                }
+            }
+        } while (!isUnique);    
+        return randProjId;
     }
 }
