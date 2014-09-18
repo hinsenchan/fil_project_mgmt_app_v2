@@ -336,8 +336,8 @@ public class AddNewProjectService {
             String outcome = array[8];
             
             //generate new project id
-            int projectId = Integer.parseInt(array[9]);
-            projectId = generateProjectId();
+            //int projectId = Integer.parseInt(array[9]);
+            int projectId = generateProjectId();
             
             HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
             HashSet<Tags> projectTagsSet = new HashSet<Tags>();

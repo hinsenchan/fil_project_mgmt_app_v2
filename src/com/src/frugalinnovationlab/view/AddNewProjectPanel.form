@@ -1303,25 +1303,25 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="addAdobeTextField" alignment="0" pref="200" max="32767" attributes="0"/>
-                                                      <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="selectFileTextField" alignment="0" pref="200" max="32767" attributes="0"/>
+                                                      <Component id="fileTypeComboBox" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="addadobefileButton" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="chooseAFileButton" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="fileNameTextField" pref="143" max="32767" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="logoLabel4" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="addProjectButton3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="nextButton" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Component id="addMediaButton" min="-2" pref="111" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1344,14 +1344,14 @@
                                   <Component id="generalProjectInfoLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="addAdobeTextField" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="addadobefileButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="selectFileTextField" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="chooseAFileButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="adobeFilesLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cadDocumentLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="fileTypeComboBox" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1359,11 +1359,11 @@
                                       <Component id="fileNameTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addMediaButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" min="-2" pref="209" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="addProjectButton3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nextButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
@@ -1376,14 +1376,14 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="addAdobeTextField">
+                <Component class="javax.swing.JTextField" name="selectFileTextField">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="addProjectButton3">
+                <Component class="javax.swing.JButton" name="nextButton">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
@@ -1391,7 +1391,7 @@
                     <Property name="text" type="java.lang.String" value="Next"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProjectButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="adobeFilesLabel1">
@@ -1410,7 +1410,7 @@
                     <Property name="text" type="java.lang.String" value="Add New Project"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="addadobefileButton">
+                <Component class="javax.swing.JButton" name="chooseAFileButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
@@ -1421,7 +1421,7 @@
                     <Property name="text" type="java.lang.String" value="Choose a file"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addadobefileButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseAFileButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="fileNameTextField">
@@ -1471,19 +1471,19 @@
                     <Property name="text" type="java.lang.String" value="File Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="fileTypeComboBox">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="jComboBox1.addItem(&quot;Select File Type&quot;);&#xa;for (int i = 0; i &lt; fileTypeList.size(); i++) {&#xa;            jComboBox1.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));&#xa;        }">
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="fileTypeComboBox.addItem(&quot;Select File Type&quot;);&#xa;for (int i = 0; i &lt; fileTypeList.size(); i++) {&#xa;            fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));&#xa;        }">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="addMediaButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMediaButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane5">

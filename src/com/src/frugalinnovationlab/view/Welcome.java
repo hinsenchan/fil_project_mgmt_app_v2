@@ -33,7 +33,8 @@ public class Welcome extends javax.swing.JFrame {
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
     private EditProjectPanel editProjectPanel = new EditProjectPanel(this);
     EditGeneralProjectInformation editGeneralProjectInformation;
-    final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
+    //final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
+    private EditMediaPanel editMediaPanel = new EditMediaPanel(this);
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
     private ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
     private ViewProjectParticipants viewProjectParticipants = new ViewProjectParticipants(this);
@@ -323,8 +324,8 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(advancedSearchPanel);
                 } else if (lastComponent.equals("Search")) {
                     getContentPanel().remove(getSearchPanel());
-                } else if (lastComponent.equals("Multimedia")) {
-                    getContentPanel().remove(editProjectMultimedia);                  
+                } else if (lastComponent.equals("Edit Projects Multimedia")) {
+                    getContentPanel().remove(editMediaPanel);                  
                 } else if (lastComponent.equals("Edit Projects Participants")) {
                     getContentPanel().remove(editProjectParticipants);
                 } else if (lastComponent.equals("Edit Projects General Info")) {
@@ -370,9 +371,10 @@ public class Welcome extends javax.swing.JFrame {
                 setSearchPanel(new SearchPanel(this));
                 getContentPanel().add(getSearchPanel());
                 lastComponent = "Search";
-            } else if (path.toString().contains("Multimedia")) {
-                getContentPanel().add(new EditProjectMultimedia());
-                lastComponent = "Multimedia";
+            } else if (path.toString().contains("Edit Projects") && path.toString().contains("Multimedia")) {
+                editMediaPanel = new EditMediaPanel(this);
+                getContentPanel().add(editMediaPanel);
+                lastComponent = "Edit Projects Multimedia";
             } else if (path.toString().contains("Edit Projects") && path.toString().contains("Participants")) {
                 getContentPanel().add(new EditProjectParticipants());
                 lastComponent = "Edit Projects Participants";
