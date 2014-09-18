@@ -4,6 +4,7 @@
  */
 package com.src.frugalinnovationlab.Service;
 
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.MediaAdobe;
 import com.src.frugalinnovationlab.Entity.MediaCad;
 import com.src.frugalinnovationlab.Entity.MediaCode;
@@ -21,6 +22,7 @@ import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Entity.ProjectParticipantsPK;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.text.SimpleDateFormat;
@@ -299,6 +301,116 @@ public class AddNewProjectService {
                 manager.persist(tags);
                 success = true;
             }
+        }
+        return success;
+    }
+
+    public List<Filetypes> fetchFileTypes() {
+        TypedQuery<Filetypes> query = manager.createQuery("SELECT NEW "
+                + "com.src.frugalinnovationlab.Entity.Filetypes(f.id, f.type) "
+                + "FROM Filetypes f", Filetypes.class);
+        List<Filetypes> result = query.getResultList();
+        return result;
+    }
+ 
+    public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
+             List<Projectfiles> projectfiles, List<String> selectedTagsList) {
+        boolean success = true;
+        try {
+
+            SimpleDateFormat formatter = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+
+            String projectName = array[0];
+            String shortDesc = array[1];
+            String longDesc = array[2];
+            String status = array[3];
+            String location = array[4];
+
+            Date startDate = formatter.parse(array[5]);
+            Date endDate = formatter.parse(array[6]);
+
+            String scope = array[7];
+            String outcome = array[8];
+            int projectId = Integer.parseInt(array[9]);
+            HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
+            HashSet<Tags> projectTagsSet = new HashSet<Tags>();
+            
+
+            ProjectStatus projectStatus1 = manager.find(ProjectStatus.class, status);//new ProjectStatus();
+            projectStatus1.setStatus(projectStatus1.getStatus());
+
+            Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope,
+                    outcome, true, longDesc, location);
+
+            HashSet<ProjectStatus> projectStatusSet = new HashSet<ProjectStatus>();
+            projectStatusSet.add(projectStatus1);
+
+
+            project1.setProjectStatusSet(projectStatusSet);
+            project1.setProjectCategories(projectCategorySet);
+            project1.setTagsSet(projectTagsSet);
+            
+            //project1.setProjectParticipantsList(participantsList);
+            Set<Project> projectSet = new HashSet<Project>();
+            projectSet.add(project1);
+            projectStatus1.setProjectSet(projectSet);
+            System.out.println("size is : " + categoriesList.size());
+            for (int i = 0; i < categoriesList.size(); i++) {
+
+                System.out.println("category : " + categoriesList.get(i));
+                ProjectCategory projectCategory = manager.find(ProjectCategory.class, categoriesList.get(i).trim());
+                projectCategory.setName(projectCategory.getName());
+                projectCategorySet.add(projectCategory);
+                projectCategory.setProjects(projectSet);
+            }
+
+            for (int i = 0; i < selectedTagsList.size(); i++) {                
+                Tags tag = manager.find(Tags.class, selectedTagsList.get(i).trim());
+                tag.setTagname(tag.getTagname());
+                projectTagsSet.add(tag);
+                tag.setProjectSet(projectSet);                
+            }            
+            
+            HashSet<Projectfiles> projectfilesSet = new HashSet<Projectfiles>();
+            if(projectfiles.size() > 0 ) {
+                for (int i = 0; i < projectfiles.size(); i++) {
+                    Projectfiles projectfiles1 = projectfiles.get(i);
+                    projectfilesSet.add(projectfiles1);
+                    projectfiles1.setProjectid(project1);
+                }
+            }
+            //project1.setProjectfilesSet(projectfilesSet);
+            
+            
+
+
+            HashSet<ProjectParticipants> projectParticipantsSet = new HashSet<ProjectParticipants>();
+            if (participantsList.size() > 0) {
+                for (int i = 0; i < participantsList.size(); i++) {
+                    AssignParticipantsToProject assigned = participantsList.get(i);
+                    int participantId = Integer.parseInt(assigned.getParticipantId());
+                    int roleId = Integer.parseInt(assigned.getRoleId());
+                    ProjectParticipants projectParticipants = new ProjectParticipants();
+                    ProjectParticipantsPK projectParticipantsPk = new ProjectParticipantsPK(projectId, participantId, roleId);
+                    //projectParticipantsPk.setParticipantId(participantId);
+                    //projectParticipantsPk.setDesignation(roleId);
+                    projectParticipants.setProjectParticipantsPK(projectParticipantsPk);
+
+                    projectParticipantsSet.add(projectParticipants);
+                    projectParticipants.setProject(project1);
+
+                }
+            }
+            project1.setProjectParticipantsSet(projectParticipantsSet);
+
+            manager.persist(project1);
+            success = true;
+            System.out.println("Project Added ");
+        } catch (Exception ex) {
+            System.out.println("Project Not Added ");
+            success = false;
+            Logger.getLogger(AddNewProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error Adding New Project :" + ex.getMessage());
         }
         return success;
     }

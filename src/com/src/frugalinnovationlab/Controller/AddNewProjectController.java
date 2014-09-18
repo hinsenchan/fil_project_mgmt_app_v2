@@ -4,6 +4,7 @@
  */
 package com.src.frugalinnovationlab.Controller;
 
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.MediaAdobe;
 import com.src.frugalinnovationlab.Entity.MediaCad;
 import com.src.frugalinnovationlab.Entity.MediaCode;
@@ -18,6 +19,7 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Model.AddNewProjectModel;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
@@ -85,6 +87,18 @@ public class AddNewProjectController {
     public boolean addNewTags(List<Tags> currentList, String[] array) {
         boolean success = true;
         success = addNewProjectModel.addNewTags(currentList, array);
+        return success;
+    }
+    
+    public List<Filetypes> fetchFileTypes() {
+        List<Filetypes> fileTypeList = addNewProjectModel.fetchFileTypes();
+        return fileTypeList;
+    }
+    
+    public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
+            List<Projectfiles> projectFiles, List<String> selectedTagsList){
+        boolean success = true;
+        success = addNewProjectModel.addProject(array, categoriesList, participantsList, projectFiles, selectedTagsList);
         return success;
     }
 }

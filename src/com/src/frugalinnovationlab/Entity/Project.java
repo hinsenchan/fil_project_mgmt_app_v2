@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.Entity;
 
 import java.io.Serializable;
@@ -24,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,6 +43,11 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Project.findByDisplay", query = "SELECT p FROM Project p WHERE p.display = :display"),
     @NamedQuery(name = "Project.findByOutcome", query = "SELECT p FROM Project p WHERE p.outcome = :outcome")})
 public class Project implements Serializable {
+    @OneToMany(mappedBy = "projectid", cascade = CascadeType.PERSIST)
+    private Set<Projectfiles> projectfilesSet;
+
+    @Column(name = "archive")
+    private String archive;
     @Column(name = "location")
     private String location;
     @JoinTable(name = "project_tag_map", joinColumns = {
@@ -50,12 +55,11 @@ public class Project implements Serializable {
         @JoinColumn(name = "tagname", referencedColumnName = "tagname")})
     @ManyToMany
     private Set<Tags> tagsSet;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<MediaLocationmap> mediaLocationmapSet;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectParticipants> projectParticipantsSet;
-    
     private static final long serialVersionUID = 1L;
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,75 +89,66 @@ public class Project implements Serializable {
     private boolean display;
     @Column(name = "outcome")
     private String outcome;
-    
-    
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "project_status_map", 
-            joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
-            inverseJoinColumns={@JoinColumn(name="status_name", referencedColumnName="status")}
-            )            
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "project_status_map",
+    joinColumns = {
+        @JoinColumn(name = "project_id", referencedColumnName = "id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "status_name", referencedColumnName = "status")})
     private Set<ProjectStatus> projectStatusSet;
-    
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "project_category_map", 
-            joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_name", referencedColumnName = "name")})    
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "project_category_map",
+    joinColumns = {
+        @JoinColumn(name = "project_id", referencedColumnName = "id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "category_name", referencedColumnName = "name")})
     private Set<ProjectCategory> projectCategories;
-
-    @OneToMany(mappedBy = "projects",  cascade = CascadeType.ALL)
-    private Set<MediaVideo> videos ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaPlaintext> plainTexts ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaAdobe> adobes ;
-        
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaCad> cads ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaCode> codes ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaHyperlink> hyperLinks ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaPdf> pdfs ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaPhotos> photos ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaSpreadsheet> spreadSheets ;
-    
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects",  cascade = CascadeType.ALL, orphanRemoval=true)
-    private Set<MediaWord> words ;
-    
-   
+    @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
+    private Set<MediaVideo> videos;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaPlaintext> plainTexts;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaAdobe> adobes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaCad> cads;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaCode> codes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaHyperlink> hyperLinks;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaPdf> pdfs;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaPhotos> photos;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaSpreadsheet> spreadSheets;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaWord> words;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "project_participants", 
-            joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "participant_id", referencedColumnName = "id")})
+    @JoinTable(name = "project_participants",
+    joinColumns = {
+        @JoinColumn(name = "project_id", referencedColumnName = "id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "participant_id", referencedColumnName = "id")})
     private Set<Participants> participantsList;
-   
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "project_participants", 
-            joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "designation", referencedColumnName = "id")})
+    @JoinTable(name = "project_participants",
+    joinColumns = {
+        @JoinColumn(name = "project_id", referencedColumnName = "id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "designation", referencedColumnName = "id")})
     private Set<ParticipantDesignation> designationList;
-    
+
     public Project() {
     }
 
     public Project(Integer id) {
         this.id = id;
     }
-    
+
     public Project(Integer id, String name) {
         this.id = id;
         this.name = name;
-    }    
+    }
 
     public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, String scope, boolean display) {
         this.id = id;
@@ -165,7 +160,7 @@ public class Project implements Serializable {
         this.display = display;
     }
 
-    public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate, 
+    public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate,
             String scope, String outcome, boolean display, String description, String location) {
         this.id = id;
         this.name = name;
@@ -178,7 +173,7 @@ public class Project implements Serializable {
         this.description = description;
         this.location = location;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -274,7 +269,7 @@ public class Project implements Serializable {
     public void setPlainTexts(Set<MediaPlaintext> plainTexts) {
         this.plainTexts = plainTexts;
     }
-    
+
     public Set<MediaVideo> getVideos() {
         return videos;
     }
@@ -323,7 +318,7 @@ public class Project implements Serializable {
     public void setDesignationList(Set<ParticipantDesignation> designationList) {
         this.designationList = designationList;
     }
-    
+
     public Set<MediaAdobe> getAdobes() {
         return adobes;
     }
@@ -388,7 +383,6 @@ public class Project implements Serializable {
         this.words = words;
     }
 
-    
     public Set<ProjectParticipants> getProjectParticipantsSet() {
         return projectParticipantsSet;
     }
@@ -396,48 +390,36 @@ public class Project implements Serializable {
     public void setProjectParticipantsSet(Set<ProjectParticipants> projectParticipantsSet) {
         this.projectParticipantsSet = projectParticipantsSet;
     }
-    
-  public int getViewColumns()
-         
-  {
-     
-      return 8;
-  }
-    
+
+    public int getViewColumns() {
+
+        return 8;
+    }
+
     public String viewColumnName(int i) throws Exception {
-       String colName = null;
-       if (i == 0)
-           colName = "Project Name";
-       else if (i == 1)
-           colName = "Description";
-       
-       
-        else if (i == 2)
-           colName = "Long Description";
-       
-       
-       else if (i == 3)
-           colName = "Start Date";
-       else if (i == 4)
-           colName = "End Date";
-      
-                else if (i == 5)
-           colName = "Status";
-                
-                  else if (i == 6)
-           colName = "Outcome";
-                  
-                    else if (i == 7 )
-           colName = "Scope";
-                    
-                   
-           
-          
-           else
-           throw new Exception("Access to invalid column number in courselist table");
-      
-       return colName;
-   }
+        String colName = null;
+        if (i == 0) {
+            colName = "Project Name";
+        } else if (i == 1) {
+            colName = "Description";
+        } else if (i == 2) {
+            colName = "Long Description";
+        } else if (i == 3) {
+            colName = "Start Date";
+        } else if (i == 4) {
+            colName = "End Date";
+        } else if (i == 5) {
+            colName = "Status";
+        } else if (i == 6) {
+            colName = "Outcome";
+        } else if (i == 7) {
+            colName = "Scope";
+        } else {
+            throw new Exception("Access to invalid column number in courselist table");
+        }
+
+        return colName;
+    }
 
     public String getLocation() {
         return location;
@@ -462,5 +444,21 @@ public class Project implements Serializable {
     public void setMediaLocationmapSet(Set<MediaLocationmap> mediaLocationmapSet) {
         this.mediaLocationmapSet = mediaLocationmapSet;
     }
-    
+
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
+    }
+
+    @XmlTransient
+    public Set<Projectfiles> getProjectfilesSet() {
+        return projectfilesSet;
+    }
+
+    public void setProjectfilesSet(Set<Projectfiles> projectfilesSet) {
+        this.projectfilesSet = projectfilesSet;
+    }
 }

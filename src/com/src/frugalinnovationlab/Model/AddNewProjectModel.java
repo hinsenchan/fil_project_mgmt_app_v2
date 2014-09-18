@@ -4,6 +4,7 @@
  */
 package com.src.frugalinnovationlab.Model;
 
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.MediaAdobe;
 import com.src.frugalinnovationlab.Entity.MediaCad;
 import com.src.frugalinnovationlab.Entity.MediaCode;
@@ -18,6 +19,7 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
+import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Service.AddNewProjectService;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
@@ -103,6 +105,21 @@ public class AddNewProjectModel {
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();
         success = addNewProjectService.addNewTags(currentList, array);
+        usertransaction.commit();
+        return success;
+    }
+    
+    public List<Filetypes> fetchFileTypes() {
+        List<Filetypes> fileTypeList = addNewProjectService.fetchFileTypes();
+        return fileTypeList;
+    }
+    
+    public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
+            List<Projectfiles> projectFiles, List<String> selectedTagsList) {
+        boolean success = true;
+        EntityTransaction usertransaction = manager.getTransaction();
+        usertransaction.begin();
+        success = addNewProjectService.addProject(array, categoriesList, participantsList, projectFiles, selectedTagsList);
         usertransaction.commit();
         return success;
     }
