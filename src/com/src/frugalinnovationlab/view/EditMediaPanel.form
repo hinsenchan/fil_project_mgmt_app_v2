@@ -223,6 +223,9 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="fileTypeComboBox.addItem(&quot;Select File Type&quot;);&#xa;for (int i = 0; i &lt; fileTypeList.size(); i++) {&#xa;    fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));&#xa;}"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="addMediaButton">
               <Properties>

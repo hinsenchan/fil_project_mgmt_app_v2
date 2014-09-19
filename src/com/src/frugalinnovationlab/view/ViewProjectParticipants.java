@@ -302,6 +302,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
             mainApplication.setSelectedProject(chooseProjectComboBox.getSelectedItem().toString());
             mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+            mainApplication.getViewMediaPanel().refreshSelectedProject();
         }
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 

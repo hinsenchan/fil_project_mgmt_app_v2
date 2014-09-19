@@ -6,12 +6,13 @@
 
 package com.src.frugalinnovationlab.Model;
 
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
-import com.src.frugalinnovationlab.Service.EditProjectParticipantsService;
 import com.src.frugalinnovationlab.Service.MediaService;
 import com.src.frugalinnovationlab.helper.Constants;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,6 +35,25 @@ public class MediaModel {
     public List<Project> getProjectsFromDatabase() {
         List<Project> projectList = mediaService.fetchProjects();
         return projectList;
+    }    
+    
+    public Project getProjectByIdFromDatabase(int projectId) {
+        Project project = mediaService.fetchProjectById(projectId);
+        return project;
+    }
+    
+    public List<Filetypes> getFileTypesFromDatabase() {
+        List<Filetypes> fileTypeList = mediaService.fetchFileTypes();
+        return fileTypeList;
+    }
+    
+    public boolean updateProjectWithProjectFilesMap(
+            int selectedProjectId, Set<ProjectFilesMap> projectFilesMapList) {
+        if (mediaService.updateProjectWithProjectFilesMap(
+            selectedProjectId, projectFilesMapList)) {
+            return true;
+        }
+        return false;
     }    
     
     public List<ProjectFilesMap> fetchProjectFilesMapByProject(int projectId) {

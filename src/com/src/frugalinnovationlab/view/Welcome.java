@@ -326,7 +326,7 @@ public class Welcome extends javax.swing.JFrame {
                 } else if (lastComponent.equals("Search")) {
                     getContentPanel().remove(getSearchPanel());
                 } else if (lastComponent.equals("Edit Projects Multimedia")) {
-                    getContentPanel().remove(editMediaPanel);                  
+                    getContentPanel().remove(getEditMediaPanel());                  
                 } else if (lastComponent.equals("Edit Projects Participants")) {
                     getContentPanel().remove(editProjectParticipants);
                 } else if (lastComponent.equals("Edit Projects General Info")) {
@@ -338,7 +338,7 @@ public class Welcome extends javax.swing.JFrame {
                 } else if (lastComponent.equals("View Participant Details")) {
                     getContentPanel().remove(viewParticipantDetails);
                 } else if (lastComponent.equals("View Projects Multimedia")) {
-                    getContentPanel().remove(viewMediaPanel);                    
+                    getContentPanel().remove(getViewMediaPanel());                    
                 } else if (lastComponent.equals("View Projects")) {
                     getContentPanel().remove(getViewProjectPanel());                                        
                 } else if (lastComponent.equals("Edit Projects")) {
@@ -375,8 +375,8 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(getSearchPanel());
                 lastComponent = "Search";
             } else if (path.toString().contains("Edit Projects") && path.toString().contains("Multimedia")) {
-                editMediaPanel = new EditMediaPanel(this);
-                getContentPanel().add(editMediaPanel);
+                setEditMediaPanel(new EditMediaPanel(this));
+                getContentPanel().add(getEditMediaPanel());
                 lastComponent = "Edit Projects Multimedia";
             } else if (path.toString().contains("Edit Projects") && path.toString().contains("Participants")) {
                 getContentPanel().add(new EditProjectParticipants());
@@ -396,10 +396,10 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(viewProjectParticipants);
                 lastComponent = "View Projects Participants";
             } else if (path.toString().contains("View Projects") && path.toString().contains("Multimedia")) {
-                viewMediaPanel = new ViewMediaPanel(this);
+                setViewMediaPanel(new ViewMediaPanel(this));
                 viewGeneralProjectInformation.refreshSelectedProject();
                 viewProjectParticipants.refreshSelectedProject();
-                getContentPanel().add(viewMediaPanel);
+                getContentPanel().add(getViewMediaPanel());
                 lastComponent = "View Projects Multimedia";                
             } else if (path.toString().contains("View Projects")) {   
                 viewProjectPanel = new ViewProjectPanel(this);                
@@ -624,5 +624,33 @@ public class Welcome extends javax.swing.JFrame {
      */
     public void setEditProjectPanel(EditProjectPanel editProjectPanel) {
         this.editProjectPanel = editProjectPanel;
+    }
+
+    /**
+     * @return the editMediaPanel
+     */
+    public EditMediaPanel getEditMediaPanel() {
+        return editMediaPanel;
+    }
+
+    /**
+     * @param editMediaPanel the editMediaPanel to set
+     */
+    public void setEditMediaPanel(EditMediaPanel editMediaPanel) {
+        this.editMediaPanel = editMediaPanel;
+    }
+
+    /**
+     * @return the viewMediaPanel
+     */
+    public ViewMediaPanel getViewMediaPanel() {
+        return viewMediaPanel;
+    }
+
+    /**
+     * @param viewMediaPanel the viewMediaPanel to set
+     */
+    public void setViewMediaPanel(ViewMediaPanel viewMediaPanel) {
+        this.viewMediaPanel = viewMediaPanel;
     }
 }

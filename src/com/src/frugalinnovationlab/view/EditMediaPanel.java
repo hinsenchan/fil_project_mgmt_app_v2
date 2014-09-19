@@ -7,14 +7,19 @@
 package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.MediaController;
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMapPK;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
+import java.awt.Desktop;
 import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,7 +32,10 @@ public class EditMediaPanel extends javax.swing.JPanel {
     private int selectedProjectId;
     private DefaultTableModel model = new DefaultTableModel();
     private List<Project> projectList;
-    private ArrayList<ProjectFilesMap> projectFilesMapList = new ArrayList<ProjectFilesMap>();
+    private List<Filetypes> fileTypeList;
+    private HashMap<Integer, String> fileTypeHashMap = new HashMap<Integer, String>();
+    private HashMap<String, Integer> fileTypeHashMapReverse = new HashMap<String, Integer>();
+    private Set<ProjectFilesMap> projectFilesMapList = new HashSet<ProjectFilesMap>();
     
     /**
      * Creates new form EditMediaPanel
@@ -36,6 +44,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
         this.mainApplication = mainApplication;  
         mediaController = new MediaController(this);
         projectList = mediaController.getProjectsFromDatabase();
+        updateFileList();
         initComponents();
         jTable.getSelectionModel().addListSelectionListener(mediaController);
     }
@@ -104,6 +113,11 @@ public class EditMediaPanel extends javax.swing.JPanel {
 
         fileNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         fileNameLabel.setText("File Name");
+
+        fileTypeComboBox.addItem("Select File Type");
+        for (int i = 0; i < fileTypeList.size(); i++) {
+            fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));
+        }
 
         addMediaButton.setText("Add Media");
         addMediaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -256,15 +270,37 @@ public class EditMediaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProjectButtonActionPerformed
-        
-        /*
-        for (int i = 0; i < filesList.size(); i++) {
-            System.out.println("file added : " +filesList.get(i).getFilename());
-            Filetypes f = filesList.get(i).getFiletypeid();
-            System.out.println("file type : " +f.getId());
+        if (selectedProjectId != -1) {
+            final int TYPE = 0;
+            final int NAME = 1;
+            final int LOCATION = 2;
+            
+            projectFilesMapList.clear();
+            
+            for (int i=0; i<jTable.getRowCount(); i++) {
+                String fileTypeName = jTable.getModel().getValueAt(i, TYPE).toString();
+                int fileTypeId = fileTypeHashMapReverse.get(fileTypeName);
+                
+                String fileName = jTable.getModel().getValueAt(i, NAME).toString();
+                String fileLocation = jTable.getModel().getValueAt(i, LOCATION).toString();
+                ProjectFilesMap projectFilesMap = new ProjectFilesMap(
+                        selectedProjectId, fileTypeId, fileName, fileLocation);
+                projectFilesMapList.add(projectFilesMap);
+                
+                //System.out.println(fileTypeName);
+                //System.out.println(fileTypeId);
+                //System.out.println(fileName);
+                //System.out.println(fileLocation);
+            }
+            System.out.println(projectFilesMapList.size());
+            System.out.println(projectFilesMapList.toString());
+            if (mediaController.updateProjectWithProjectFilesMap(selectedProjectId, projectFilesMapList)) {
+                JOptionPane.showMessageDialog(this, "Project Updated Successfully");
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Project Update Failed");
+            }
         }
-        createProjectPane.setSelectedIndex(3);
-        */
     }//GEN-LAST:event_updateProjectButtonActionPerformed
 
     private void chooseAFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseAFileButtonActionPerformed
@@ -277,29 +313,19 @@ public class EditMediaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_chooseAFileButtonActionPerformed
 
     private void addMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMediaButtonActionPerformed
-        /*
         String location = selectFileTextField.getText();
         Object typeItem = fileTypeComboBox.getSelectedItem();
         String typeValue = ((ComboItem) typeItem).getValue();
         String name = fileNameTextField.getText();
         //System.out.println("type : " +typeItem+ " - " +typeValue);
         //System.out.println("location : " +location+ " - " +name);
-        Object[] row = {name, location, typeItem};
-        model1 = (DefaultTableModel) jTable.getModel();
-        model1.addRow(row);
-        Projectfiles projectfiles = new Projectfiles();
-        projectfiles.setFilename(name);
-        projectfiles.setFilepath(location);
-
-        Filetypes filetypes = new Filetypes(Integer.parseInt(typeValue));
-        filetypes.setType(typeItem.toString());
-        projectfiles.setFiletypeid(filetypes);
-        filesList.add(projectfiles);
+        Object[] row = {typeItem, name, location};
+        model = (DefaultTableModel) jTable.getModel();
+        model.addRow(row);
 
         selectFileTextField.setText("");
         fileNameTextField.setText("");
         fileTypeComboBox.setSelectedItem("Select File Type");
-        */
     }//GEN-LAST:event_addMediaButtonActionPerformed
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
@@ -311,41 +337,68 @@ public class EditMediaPanel extends javax.swing.JPanel {
             //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             String projectName = String.valueOf(((ComboItem) projectItem).getKey());
             //System.out.println("project id : " + projectId);
+            
+            selectedProjectId = projectId;
 
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
                 }
             }
-            
+                        
             List result = mediaController.fetchProjectFilesMapByProject(projectId);
-            projectFilesMapList.clear();
+            //projectFilesMapList.clear();
 
             for (int i = 0; i < result.size(); i++) {
                 ProjectFilesMap projectFile = (ProjectFilesMap)result.get(i);
-                projectFilesMapList.add(projectFile);
+                //projectFilesMapList.add(projectFile);
                 ProjectFilesMapPK projectFileDetails = projectFile.getProjectFilesMapPK();
 
                 int fileTypeId = projectFileDetails.getFiletypeid();
+                String fileType = fileTypeHashMap.get(fileTypeId);
                 String fileName = projectFileDetails.getFilename();
                 String filePath = projectFileDetails.getFilepath();
                 
-                Object[] row = {fileTypeId, fileName, filePath};
+                Object[] row = {fileType, fileName, filePath};
                 
                 model = (DefaultTableModel) jTable.getModel();
                 model.addRow(row);
             }            
         } else {
             selectedProjectId = -1;
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }                        
         }        
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void removeMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMediaButtonActionPerformed
-        // TODO add your handling code here:
+        int[] selectedFiles = jTable.getSelectedRows();
+        model = (DefaultTableModel) jTable.getModel();
+        for (int i=selectedFiles.length-1; i>=0; i--) {
+            model.removeRow(selectedFiles[i]);    
+        }        
     }//GEN-LAST:event_removeMediaButtonActionPerformed
 
     private void viewMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMediaButtonActionPerformed
-        // TODO add your handling code here:
+        final int LOCATION = 2;
+        int selectedFile = jTable.getSelectedRow();
+        String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
+        if (!fileLocation.isEmpty()) {
+            try {
+                File file = new File(fileLocation);
+            
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(file);
+                }
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_viewMediaButtonActionPerformed
 
 
@@ -396,5 +449,17 @@ public class EditMediaPanel extends javax.swing.JPanel {
      */
     public void setjTable(javax.swing.JTable jTable) {
         this.jTable = jTable;
+    }
+    
+    public void updateFileList() {
+        fileTypeList = mediaController.getFileTypesFromDatabase(); 
+        fileTypeHashMap.clear();
+        fileTypeHashMapReverse.clear();
+        for (int i=0; i<fileTypeList.size(); i++) {
+            int id = fileTypeList.get(i).getId();
+            String type = fileTypeList.get(i).getType();
+            fileTypeHashMap.put(id, type);
+            fileTypeHashMapReverse.put(type, id);
+        }        
     }
 }

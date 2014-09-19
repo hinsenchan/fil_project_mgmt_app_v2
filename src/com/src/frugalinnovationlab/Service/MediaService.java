@@ -6,12 +6,12 @@
 
 package com.src.frugalinnovationlab.Service;
 
+import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
-import com.src.frugalinnovationlab.Entity.ProjectParticipants;
-import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -34,6 +34,48 @@ public class MediaService {
         List<Project> result = query.getResultList();
         return result;
     }      
+    
+    public Project fetchProjectById(int projectId) {
+        String naiveQuery = "SELECT p"
+                + " FROM Project p"
+                + " where p.id = :pid";
+
+        Query query = manager.createQuery(naiveQuery);
+        query.setParameter("pid", projectId);
+        Project result = (Project)query.getSingleResult();
+        return result;
+    }       
+    
+    public List<Filetypes> fetchFileTypes() {
+        TypedQuery<Filetypes> query = manager.createQuery("SELECT NEW com.src.frugalinnovationlab.Entity.Filetypes"
+        + "(ft.id, ft.type) "
+        + "FROM Filetypes ft", Filetypes.class);
+        List<Filetypes> result = query.getResultList();
+        return result;
+    }
+    
+    public boolean updateProjectWithProjectFilesMap(
+            int selectedProjectId, Set<ProjectFilesMap> projectFilesMapList) {
+        boolean isSuccessful = false;
+        
+        Project project = fetchProjectById(selectedProjectId);
+        if (project != null) {
+            project.setProjectFilesMapSet(projectFilesMapList);
+            System.out.println(project.getId());
+            System.out.println(project.getProjectFilesMapSet());            
+            manager.persist(project);
+            Iterator<ProjectFilesMap> iterator = projectFilesMapList.iterator();
+            while (iterator.hasNext()) {
+                manager.persist(iterator.next());
+            }
+            isSuccessful = true;
+        }
+        
+        if (isSuccessful) {
+            return true;
+        }
+        return false;
+    }    
     
     public List<ProjectFilesMap> fetchProjectFilesMapByProject(int projectId) {
         String naiveQuery = "SELECT pfm"
