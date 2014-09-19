@@ -8,7 +8,6 @@ package com.src.frugalinnovationlab.view;
 import com.src.frugalinnovationlab.Controller.AddNewProjectController;
 import com.src.frugalinnovationlab.Entity.Filetypes;
 import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaAdobePK;
 import com.src.frugalinnovationlab.Entity.MediaCad;
 import com.src.frugalinnovationlab.Entity.MediaCode;
 import com.src.frugalinnovationlab.Entity.MediaHyperlink;
@@ -21,8 +20,9 @@ import com.src.frugalinnovationlab.Entity.MediaWord;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMapPK;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
-import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.sql.Array;
@@ -68,9 +68,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<MediaVideo> videoList = new ArrayList<MediaVideo>();
     List<MediaWord> wordList = new ArrayList<MediaWord>();
     List<String> selectedTagsList;
+    List<String> deleteTagsList;
     List<Filetypes> fileTypeList;
-    List<Projectfiles> filesList = new ArrayList<Projectfiles>();
-
+    List<ProjectFilesMap> filesList = new ArrayList<ProjectFilesMap>();
 
     /**
      * Creates new form AddNewProjectPanel
@@ -85,6 +85,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         tagsList = addNewProjectController.getTagsFromDatabase();
         fileTypeList = addNewProjectController.fetchFileTypes();
         initComponents();
+        jTable2.getColumnModel().getColumn(3).setMinWidth(0);
+        jTable2.getColumnModel().getColumn(3).setMaxWidth(0);
         newTagsLabelField.setVisible(false);
         newTagsTextField.setVisible(false);
         addParticipantPanel.setVisible(false);
@@ -141,6 +143,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         addNewTags = new javax.swing.JRadioButton();
         newTagsLabelField = new javax.swing.JLabel();
         newTagsTextField = new javax.swing.JTextField();
+        deleteTagButton = new javax.swing.JButton();
         participantsScrollPane = new javax.swing.JScrollPane();
         mainPanel3 = new javax.swing.JPanel();
         addNewProjectTextArea3 = new javax.swing.JLabel();
@@ -191,6 +194,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         addMediaButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        deleteMediaButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         addProjectButton = new javax.swing.JButton();
@@ -402,6 +406,13 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         newTagsTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         newTagsTextField.setToolTipText("Outcome");
 
+        deleteTagButton.setText("Delete Tags");
+        deleteTagButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteTagButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -447,11 +458,14 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                     .addGap(32, 32, 32)
                                     .addComponent(mechanicalEngineeringCheckBox))
                                 .addComponent(moveToParticipants))
+                            .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
+                                    .addComponent(addNewTags)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deleteTagButton))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(outcomeTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(addNewTags)
-                            .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(outcomeTextField, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,17 +476,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(projectNameLabel)
                             .addComponent(jLabel1))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel2)
-                    .addContainerGap(297, Short.MAX_VALUE)))
+                    .addContainerGap(397, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel6)
-                    .addContainerGap(297, Short.MAX_VALUE)))
+                    .addContainerGap(397, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,24 +557,26 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     .addComponent(tagsOptionsLabel)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addNewTags)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addNewTags)
+                    .addComponent(deleteTagButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newTagsLabelField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(moveToParticipants)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
+                    .addContainerGap(259, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
+                    .addContainerGap(259, Short.MAX_VALUE)))
         );
 
         bioengineeringCheckBox.getAccessibleContext().setAccessibleName("Bio Engineering");
@@ -863,7 +879,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                         .addComponent(addNewParticipantButton)
                                         .addComponent(addParticipantButton)))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         mainPanel3Layout.setVerticalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -898,7 +914,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteParticipantButton)
                     .addComponent(addParticipantButton1))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
@@ -959,7 +975,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));
         }
 
-        addMediaButton.setText("Add");
+        addMediaButton.setText("Add Media");
         addMediaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addMediaButtonActionPerformed(evt);
@@ -971,10 +987,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "File Name", "Location", "Type"
+                "File Name", "Location", "Type", "Type Id"
             }
         ));
         jScrollPane5.setViewportView(jTable2);
+
+        deleteMediaButton.setText("Delete Media");
+        deleteMediaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMediaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1001,13 +1024,18 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                             .addComponent(fileTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addComponent(chooseAFileButton))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(fileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(logoLabel4)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(deleteMediaButton))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(fileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(logoLabel4)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(nextButton)
-                                        .addGap(36, 36, 36))))
+                                        .addGap(28, 28, 28))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(300, 300, 300)
                                 .addComponent(addMediaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -1040,13 +1068,15 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addMediaButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nextButton))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(logoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteMediaButton)
+                    .addComponent(nextButton))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         multimediaScrollPane.setViewportView(jPanel3);
@@ -1122,12 +1152,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
+            .addComponent(createProjectPane, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1285,27 +1314,22 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         if (addNewParticipantRoleComboBox.getSelectedItem() == null
                 || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
             JOptionPane.showMessageDialog(mainPanel, "Please choose a role");
-        }
-        else if (array[0] == null || array[0].equals("Choose a Title")) {
+        } else if (array[0] == null || array[0].equals("Choose a Title")) {
             JOptionPane.showMessageDialog(mainPanel, "Please choose a title");
-        }
-        else if (array[1] == null || array[1].equals("") || array[3] == null || array[3].equals("")) {
+        } else if (array[1] == null || array[1].equals("") || array[3] == null || array[3].equals("")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter first and last name");
-        } 
-        else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
+        } else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter a valid email address");
-        }
-        else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
+        } else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter a valid phone number");
-        }        
-        else {
+        } else {
             //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
                 participants = addNewProjectController.getParticipantsFromDatabase();
-                this.sortParticipants();       
+                this.sortParticipants();
                 chooseParticipantComboBox.removeAllItems();
-                chooseParticipantComboBox.addItem("Choose A Participant");                
+                chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
                     String fullName = participants.get(i).getNameTitle().concat(" "
                             + participants.get(i).getFirstname()).concat(" " + participants.get(i).getLastname());
@@ -1322,7 +1346,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 participantsList.add(a);
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
                 model = (DefaultTableModel) jTable1.getModel();
-                model.addRow(row);                
+                model.addRow(row);
                 JOptionPane.showMessageDialog(mainPanel, "Participant added succesfully");
             } else {
                 JOptionPane.showMessageDialog(mainPanel, "Participant could not be added");
@@ -1350,10 +1374,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         final String array[] = new String[12];
         //if (projectIdTextField.getText() == null || projectIdTextField.getText().trim().equals("")) {
-            //JOptionPane.showMessageDialog(mainPanel, "Please enter Distinct ID for Project");
-            //projectIdTextField.setText("-1");
+        //JOptionPane.showMessageDialog(mainPanel, "Please enter Distinct ID for Project");
+        //projectIdTextField.setText("-1");
         //} else if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
-        if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {        
+        if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter Project Name");
         } else if (shortDescriptionTextField.getText() == null || shortDescriptionTextField.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter Short Description for Project");
@@ -1409,14 +1433,14 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
 
             /*
-            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
-                    videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
-                    pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
-            */
-            
+             boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
+             videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
+             pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
+             */
+
             boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
                     filesList, selectedTagsList);
-            
+
             if (success) {
                 /*for (Component C : this.getComponents()) {
                  System.out.println("ok here now :"+C.getClass());
@@ -1436,9 +1460,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         // TODO add your handling code here:
         for (int i = 0; i < filesList.size(); i++) {
-            System.out.println("file added : " +filesList.get(i).getFilename());
-            Filetypes f = filesList.get(i).getFiletypeid();
-            System.out.println("file type : " +f.getId());
+            System.out.println("file added : " + filesList.get(i).getProjectFilesMapPK().getFilename());
+            System.out.println("file type : " + filesList.get(i).getProjectFilesMapPK().getFiletypeid());
         }
         createProjectPane.setSelectedIndex(3);
     }//GEN-LAST:event_nextButtonActionPerformed
@@ -1448,50 +1471,50 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         JFileChooser chooser = new JFileChooser("File Dialog");
         chooser.setMultiSelectionEnabled(false);
         chooser.showOpenDialog(this);
-        File f = chooser.getSelectedFile();        
+        File f = chooser.getSelectedFile();
         selectFileTextField.setText(f.getAbsolutePath());
-        
+
         /*
-        //FileNameExtensionFilter filter = new FileNameExtensionFilter("Adobe Files", "pdf", "dmg");
-        addAdobeTextField.setText("");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        //chooser.setFileFilter(filter);
-        //File f = chooser.getSelectedFile();
-        chooser.setMultiSelectionEnabled(true);
-        chooser.showOpenDialog(this);
-        File[] f = chooser.getSelectedFiles();
-        String allfilenames = "";
-        if (addAdobeTextField.getText() != null && addAdobeTextField.getText() != "") {
-            allfilenames = addAdobeTextField.getText();
-            //addAdobeTextField.setText(chooser.getSelectedFile().getAbsolutePath());
-        }
+         //FileNameExtensionFilter filter = new FileNameExtensionFilter("Adobe Files", "pdf", "dmg");
+         addAdobeTextField.setText("");
+         JFileChooser chooser = new JFileChooser("File Dialog");
+         //chooser.setFileFilter(filter);
+         //File f = chooser.getSelectedFile();
+         chooser.setMultiSelectionEnabled(true);
+         chooser.showOpenDialog(this);
+         File[] f = chooser.getSelectedFiles();
+         String allfilenames = "";
+         if (addAdobeTextField.getText() != null && addAdobeTextField.getText() != "") {
+         allfilenames = addAdobeTextField.getText();
+         //addAdobeTextField.setText(chooser.getSelectedFile().getAbsolutePath());
+         }
 
-        for (int i = 0; i < f.length; i++) {
-            allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-        }
-        addAdobeTextField.setText(allfilenames);
+         for (int i = 0; i < f.length; i++) {
+         allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
+         }
+         addAdobeTextField.setText(allfilenames);
 
-        String[] selectedFilePaths = addAdobeTextField.getText().split(",");
+         String[] selectedFilePaths = addAdobeTextField.getText().split(",");
 
-        for (int i = 0; i < selectedFilePaths.length; i++) {
-            int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-                int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-                String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-                MediaAdobe m = new MediaAdobe();
-                MediaAdobePK mpk = new MediaAdobePK();
-                m.setTitle(selectedFileName);
-                m.setFileType("PDF");
-                mpk.setFilePath(selectedFilePaths[i]);
-                m.setMediaAdobePK(mpk);
-                adobeFileList.add(m);
-            }
+         for (int i = 0; i < selectedFilePaths.length; i++) {
+         int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
+         int dotIndex = selectedFilePaths[i].lastIndexOf(".");
+         String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
+         MediaAdobe m = new MediaAdobe();
+         MediaAdobePK mpk = new MediaAdobePK();
+         m.setTitle(selectedFileName);
+         m.setFileType("PDF");
+         mpk.setFilePath(selectedFilePaths[i]);
+         m.setMediaAdobePK(mpk);
+         adobeFileList.add(m);
+         }
 
-            for (int i = 0; i < adobeFileList.size(); i++) {
-                System.out.println("name : " + adobeFileList.get(i).getTitle());
-                System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
+         for (int i = 0; i < adobeFileList.size(); i++) {
+         System.out.println("name : " + adobeFileList.get(i).getTitle());
+         System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
 
-            }
-            */
+         }
+         */
     }//GEN-LAST:event_chooseAFileButtonActionPerformed
 
     private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
@@ -1506,23 +1529,61 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         String name = fileNameTextField.getText();
         //System.out.println("type : " +typeItem+ " - " +typeValue);
         //System.out.println("location : " +location+ " - " +name);
-        Object[] row = {name, location, typeItem};
+        Object[] row = {name, location, typeItem, typeValue};
         model1 = (DefaultTableModel) jTable2.getModel();
         model1.addRow(row);
-        Projectfiles projectfiles = new Projectfiles();
-        projectfiles.setFilename(name);
-        projectfiles.setFilepath(location);
-
+        ProjectFilesMap projectFilesMap = new ProjectFilesMap();
+        ProjectFilesMapPK projectFilesMapPk = new ProjectFilesMapPK();
         Filetypes filetypes = new Filetypes(Integer.parseInt(typeValue));
         filetypes.setType(typeItem.toString());
-        projectfiles.setFiletypeid(filetypes);
-        filesList.add(projectfiles);
+        projectFilesMapPk.setFilename(name);
+        projectFilesMapPk.setFilepath(location);
+        projectFilesMapPk.setFiletypeid(Integer.parseInt(typeValue));
+        projectFilesMap.setProjectFilesMapPK(projectFilesMapPk);
+
+        filesList.add(projectFilesMap);
 
         selectFileTextField.setText("");
         fileNameTextField.setText("");
         fileTypeComboBox.setSelectedItem("Select File Type");
     }//GEN-LAST:event_addMediaButtonActionPerformed
 
+    private void deleteMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMediaButtonActionPerformed
+        // TODO add your handling code here:
+        int row = jTable2.getSelectedRow();
+        String fileTypeId = model1.getValueAt(row, 3).toString();
+        String fileName = model1.getValueAt(row, 0).toString();
+        String location = model1.getValueAt(row, 1).toString();
+        for (int i = 0; i < filesList.size(); i++) {
+            ProjectFilesMap projectFilesMap = filesList.get(i);
+            String f1 = projectFilesMap.getProjectFilesMapPK().getFilename();
+            int t1 = projectFilesMap.getProjectFilesMapPK().getFiletypeid();
+            String l1 = projectFilesMap.getProjectFilesMapPK().getFilepath();
+            if (t1 == Integer.parseInt(fileTypeId) && fileName.equalsIgnoreCase(f1) && location.equalsIgnoreCase(l1)) {
+                filesList.remove(i);
+                model1.removeRow(row);
+            }
+        }
+    }//GEN-LAST:event_deleteMediaButtonActionPerformed
+
+    private void deleteTagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTagButtonActionPerformed
+        // TODO add your handling code here:
+        deleteTagsList = projectTagsOptions.getSelectedValuesList();
+        boolean success = addNewProjectController.deleteTags(deleteTagsList);
+        if (success) {
+            tagsList = addNewProjectController.getTagsFromDatabase();
+            String[] tagsArray = new String[tagsList.size()];
+            for (int i = 0; i < tagsList.size(); i++) {
+                String tagname = tagsList.get(i).getTagname();
+                tagsArray[i] = tagname;
+            }
+            projectTagsOptions = new JList(tagsArray);
+            jScrollPane2.setViewportView(projectTagsOptions);
+            JOptionPane.showMessageDialog(mainPanel, "Tags Deleted Successfully");
+        } else {
+            JOptionPane.showMessageDialog(mainPanel, "Error deleting Tags");
+        }
+    }//GEN-LAST:event_deleteTagButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMediaButton;
     private javax.swing.JButton addNewParticipantButton;
@@ -1549,7 +1610,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox civilEngineeringCheckBox;
     private javax.swing.JCheckBox computerEngineeringCheckBox;
     private javax.swing.JTabbedPane createProjectPane;
+    private javax.swing.JButton deleteMediaButton;
     private javax.swing.JButton deleteParticipantButton;
+    private javax.swing.JButton deleteTagButton;
     private javax.swing.JLabel designationLabel;
     private javax.swing.JTextField designationTextField;
     private javax.swing.JCheckBox electricalEngineeringCheckBox;
@@ -1621,19 +1684,21 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel statusProjectLabel;
     private javax.swing.JLabel tagsOptionsLabel;
     // End of variables declaration//GEN-END:variables
-    
+
     public void sortParticipants() {
         if (participants != null) {
             Collections.sort(participants, new ParticipantsComparator());
         }
     }
-    
+
     class ParticipantsComparator implements Comparator<Participants> {
+
         public int compare(Participants a, Participants b) {
             int retVal = -1;
             retVal = a.getLastname().compareToIgnoreCase(b.getLastname());
-            if (retVal != 0) { return retVal; }
-            else {
+            if (retVal != 0) {
+                return retVal;
+            } else {
                 return a.getFirstname().compareTo(b.getFirstname());
             }
         }

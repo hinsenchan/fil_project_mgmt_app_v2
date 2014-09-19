@@ -19,13 +19,12 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Entity.ProjectParticipantsPK;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
-import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
-import static java.lang.Math.random;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +36,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -128,11 +128,11 @@ public class AddNewProjectService {
                 projectCategory.setProjects(projectSet);
             }
 
-            for (int i = 0; i < selectedTagsList.size(); i++) {                
+            for (int i = 0; i < selectedTagsList.size(); i++) {
                 Tags tag = manager.find(Tags.class, selectedTagsList.get(i).trim());
                 tag.setTagname(tag.getTagname());
                 projectTagsSet.add(tag);
-                tag.setProjectSet(projectSet);                
+                tag.setProjectSet(projectSet);
             }
 
             HashSet<MediaVideo> videoSet = new HashSet<MediaVideo>();
@@ -286,7 +286,7 @@ public class AddNewProjectService {
         String phone = array[6];
         String organization = array[7];
 
-        Participants participants = new Participants(title, firstName, middleName, 
+        Participants participants = new Participants(title, firstName, middleName,
                 lastName, position, email, phone, organization);
         manager.persist(participants);
         success = true;
@@ -315,9 +315,9 @@ public class AddNewProjectService {
         List<Filetypes> result = query.getResultList();
         return result;
     }
- 
+
     public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
-             List<Projectfiles> projectfiles, List<String> selectedTagsList) {
+            List<ProjectFilesMap> projectfiles, List<String> selectedTagsList) {
         boolean success = true;
         try {
 
@@ -334,14 +334,15 @@ public class AddNewProjectService {
 
             String scope = array[7];
             String outcome = array[8];
-            
+
             //generate new project id
             //int projectId = Integer.parseInt(array[9]);
             int projectId = generateProjectId();
-            
+
             HashSet<ProjectCategory> projectCategorySet = new HashSet<ProjectCategory>();
             HashSet<Tags> projectTagsSet = new HashSet<Tags>();
-            
+            HashSet<ProjectFilesMap> projectfilesSet = new HashSet<ProjectFilesMap>();
+
 
             ProjectStatus projectStatus1 = manager.find(ProjectStatus.class, status);//new ProjectStatus();
             projectStatus1.setStatus(projectStatus1.getStatus());
@@ -356,7 +357,8 @@ public class AddNewProjectService {
             project1.setProjectStatusSet(projectStatusSet);
             project1.setProjectCategories(projectCategorySet);
             project1.setTagsSet(projectTagsSet);
-            
+            project1.setProjectFilesMapSet(projectfilesSet);
+
             //project1.setProjectParticipantsList(participantsList);
             Set<Project> projectSet = new HashSet<Project>();
             projectSet.add(project1);
@@ -371,23 +373,24 @@ public class AddNewProjectService {
                 projectCategory.setProjects(projectSet);
             }
 
-            for (int i = 0; i < selectedTagsList.size(); i++) {                
+            for (int i = 0; i < selectedTagsList.size(); i++) {
                 Tags tag = manager.find(Tags.class, selectedTagsList.get(i).trim());
                 tag.setTagname(tag.getTagname());
                 projectTagsSet.add(tag);
-                tag.setProjectSet(projectSet);                
-            }            
-            
-            HashSet<Projectfiles> projectfilesSet = new HashSet<Projectfiles>();
-            if(projectfiles.size() > 0 ) {
+                tag.setProjectSet(projectSet);
+            }
+
+
+            if (projectfiles.size() > 0) {
                 for (int i = 0; i < projectfiles.size(); i++) {
-                    Projectfiles projectfiles1 = projectfiles.get(i);
+                    ProjectFilesMap projectfiles1 = projectfiles.get(i);
+                    projectfiles1.getProjectFilesMapPK().setProjectid(projectId);
                     projectfilesSet.add(projectfiles1);
-                    projectfiles1.setProjectid(project1);
+                    projectfiles1.setProject(project1);
                 }
             }
-            project1.setProjectfilesSet(projectfilesSet);
-            
+            //project1.setProjectFilesMapSet(projectfilesSet);
+
 
             HashSet<ProjectParticipants> projectParticipantsSet = new HashSet<ProjectParticipants>();
             if (participantsList.size() > 0) {
@@ -419,15 +422,15 @@ public class AddNewProjectService {
         }
         return success;
     }
-    
+
     public List<Project> fetchProjects() {
         TypedQuery<Project> query = manager.createQuery("SELECT NEW com.src.frugalinnovationlab.Entity.Project"
                 + "(p.id, p.name) "
                 + "FROM Project p", Project.class);
         List<Project> result = query.getResultList();
         return result;
-    }    
-    
+    }
+
     public int generateProjectId() {
         Random random = new Random();
         int randProjId;
@@ -437,13 +440,26 @@ public class AddNewProjectService {
         do {
             isUnique = true;
             randProjId = 1000000 + random.nextInt(1000000);
-            for (int i=0; i<existingProjs.size(); i++) {
+            for (int i = 0; i < existingProjs.size(); i++) {
                 if (existingProjs.get(i).getId() == randProjId) {
                     isUnique = false;
                     break;
                 }
             }
-        } while (!isUnique);    
+        } while (!isUnique);
         return randProjId;
+    }
+
+    public boolean deletetags(List<String> deleteTagsList) {
+        boolean success = false;
+        for (int i = 0; i < deleteTagsList.size(); i++) {
+            String tagName = deleteTagsList.get(i);
+            Query query = manager.createQuery("DELETE FROM Tags t where t.tagname = :tagname");
+            query.setParameter("tagname", tagName);
+            int count = query.executeUpdate();
+            System.out.println("delete tag : " + count);
+        }
+        success = true;
+        return success;
     }
 }

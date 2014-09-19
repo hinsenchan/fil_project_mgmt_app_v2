@@ -7,6 +7,7 @@ package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.EditProjectController;
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -154,6 +155,12 @@ public class EditProjectPanel extends javax.swing.JPanel {
         String projectName = jTable1.getModel().getValueAt(row, 0).toString();
         boolean success = editProjectController.activateProject(projectName);
         if(success) {
+            updateTable();
+            mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
+            mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
+            mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
+            mainApplication.getContentPanel().revalidate();
+            mainApplication.getContentPanel().repaint();
             JOptionPane.showMessageDialog(tablePanel, projectName+ " is Activated !!");
         } else {
             JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Activated !!");
@@ -166,9 +173,15 @@ public class EditProjectPanel extends javax.swing.JPanel {
         String projectName = jTable1.getModel().getValueAt(row, 0).toString();
         boolean success = editProjectController.deleteProject(projectName);
         if(success) {
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archived !!");
+            updateTable();
+            mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
+            mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
+            mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
+            mainApplication.getContentPanel().revalidate();
+            mainApplication.getContentPanel().repaint();         
+            JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archieved !!");
         } else {
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archived !!");
+            JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archieved !!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

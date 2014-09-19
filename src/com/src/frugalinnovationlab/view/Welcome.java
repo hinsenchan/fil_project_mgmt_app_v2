@@ -40,6 +40,7 @@ public class Welcome extends javax.swing.JFrame {
     private ViewProjectParticipants viewProjectParticipants = new ViewProjectParticipants(this);
     private ViewParticipantDetails viewParticipantDetails = new ViewParticipantDetails(this);
     private ViewProjectPanel viewProjectPanel = new ViewProjectPanel(this);
+    private ViewMediaPanel viewMediaPanel = new ViewMediaPanel (this);
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
     private String selectedProject = "";
@@ -336,10 +337,12 @@ public class Welcome extends javax.swing.JFrame {
                     getContentPanel().remove(viewProjectParticipants);
                 } else if (lastComponent.equals("View Participant Details")) {
                     getContentPanel().remove(viewParticipantDetails);
+                } else if (lastComponent.equals("View Projects Multimedia")) {
+                    getContentPanel().remove(viewMediaPanel);                    
                 } else if (lastComponent.equals("View Projects")) {
                     getContentPanel().remove(getViewProjectPanel());                                        
                 } else if (lastComponent.equals("Edit Projects")) {
-                    getContentPanel().remove(editProjectPanel);                    
+                    getContentPanel().remove(getEditProjectPanel());                    
                 }                                
                 
             }
@@ -392,13 +395,19 @@ public class Welcome extends javax.swing.JFrame {
                 viewProjectParticipants.refreshSelectedProject();
                 getContentPanel().add(viewProjectParticipants);
                 lastComponent = "View Projects Participants";
+            } else if (path.toString().contains("View Projects") && path.toString().contains("Multimedia")) {
+                viewMediaPanel = new ViewMediaPanel(this);
+                viewGeneralProjectInformation.refreshSelectedProject();
+                viewProjectParticipants.refreshSelectedProject();
+                getContentPanel().add(viewMediaPanel);
+                lastComponent = "View Projects Multimedia";                
             } else if (path.toString().contains("View Projects")) {   
                 viewProjectPanel = new ViewProjectPanel(this);                
                 getContentPanel().add(viewProjectPanel);
                 lastComponent = "View Projects";                
             } else if (path.toString().contains("Edit Projects")) {   
-                editProjectPanel = new EditProjectPanel(this);                
-                getContentPanel().add(editProjectPanel);
+                setEditProjectPanel(new EditProjectPanel(this));                
+                getContentPanel().add(getEditProjectPanel());
                 lastComponent = "Edit Projects";                                
             }            
             
@@ -601,5 +610,19 @@ public class Welcome extends javax.swing.JFrame {
      */
     public void setSearchPanel(SearchPanel searchPanel) {
         this.searchPanel = searchPanel;
+    }
+
+    /**
+     * @return the editProjectPanel
+     */
+    public EditProjectPanel getEditProjectPanel() {
+        return editProjectPanel;
+    }
+
+    /**
+     * @param editProjectPanel the editProjectPanel to set
+     */
+    public void setEditProjectPanel(EditProjectPanel editProjectPanel) {
+        this.editProjectPanel = editProjectPanel;
     }
 }

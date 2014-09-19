@@ -31,7 +31,7 @@ public class EditProjectParticipantsService {
     public List<Project> fetchProjects() {
         TypedQuery<Project> query = manager.createQuery("SELECT NEW com.src.frugalinnovationlab.Entity.Project"
                 + "(p.id, p.name) "
-                + "FROM Project p", Project.class);
+                + "FROM Project p where p.archive = 'no'", Project.class);
         List<Project> result = query.getResultList();
         return result;
     }

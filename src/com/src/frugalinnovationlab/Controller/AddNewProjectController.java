@@ -18,8 +18,8 @@ import com.src.frugalinnovationlab.Entity.MediaWord;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
-import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Entity.Tags;
 import com.src.frugalinnovationlab.Model.AddNewProjectModel;
 import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
@@ -96,9 +96,15 @@ public class AddNewProjectController {
     }
     
     public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
-            List<Projectfiles> projectFiles, List<String> selectedTagsList){
+            List<ProjectFilesMap> projectFiles, List<String> selectedTagsList){
         boolean success = true;
         success = addNewProjectModel.addProject(array, categoriesList, participantsList, projectFiles, selectedTagsList);
+        return success;
+    }
+    
+    public boolean deleteTags(List<String> deleteTagList) {
+        boolean success = false;
+        success = addNewProjectModel.deletetags(deleteTagList);
         return success;
     }
 }

@@ -22,7 +22,8 @@ public class ProjectView {
     private String outcome;
     private String scope;
     private String longdesc;
-    private String cateogory;
+    private String category;
+    private String archive;
 
     public ProjectView(String pname, String pdesc, String ldesc, Date stdate, Date enddate, String pstatus, String outcome, String scope) {
         this.projectname = pname;
@@ -33,8 +34,19 @@ public class ProjectView {
         this.outcome = outcome;
         this.scope = scope;
         this.longdesc = ldesc;
-
-
+    }
+    
+    public ProjectView(String pname, String pdesc, String ldesc, Date stdate, Date enddate, String pstatus, String outcome, String scope, String archive, Date startdate) {
+        this.projectname = pname;
+        this.desc = pdesc;
+        this.startdate = stdate;
+        this.enddate = enddate;
+        this.status = pstatus;
+        this.outcome = outcome;
+        this.scope = scope;
+        this.longdesc = ldesc;
+        this.archive = archive;        
+        this.startdate = stdate;
     }
     
     public ProjectView(String pname, String pdesc, String ldesc, Date stdate, Date enddate, String pstatus, String outcome, String scope, String category) {
@@ -46,7 +58,7 @@ public class ProjectView {
         this.outcome = outcome;
         this.scope = scope;
         this.longdesc = ldesc;
-        this.cateogory = category;
+        this.category = category;
     }
 
     public String getProjectName() {
@@ -85,6 +97,24 @@ public class ProjectView {
 
     }
 
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
+    
+    
     public String viewColumnData(int i) throws Exception {
 
 
@@ -104,6 +134,8 @@ public class ProjectView {
             return getOutcome();
         } else if (i == 7) {
             return getScope();
+        } else if (i == 8) {
+            return getArchive();
         } else {
             throw new Exception("Error: invalid column index in courselist table");
         }
@@ -128,6 +160,8 @@ public class ProjectView {
             outcome = (String) value;
         } else if (i == 7) {
             scope = (String) value;
+        } else if (i == 8) {
+            archive = (String) value;
         } else {
             throw new Exception("Error: invalid column index in courselist table");
         }

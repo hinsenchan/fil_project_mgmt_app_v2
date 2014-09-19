@@ -43,9 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Project.findByDisplay", query = "SELECT p FROM Project p WHERE p.display = :display"),
     @NamedQuery(name = "Project.findByOutcome", query = "SELECT p FROM Project p WHERE p.outcome = :outcome")})
 public class Project implements Serializable {
-    @OneToMany(mappedBy = "projectid", cascade = CascadeType.PERSIST)
-    private Set<Projectfiles> projectfilesSet;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    private Set<ProjectFilesMap> projectFilesMapSet;
     @Column(name = "archive")
     private String archive;
     @Column(name = "location")
@@ -393,7 +392,7 @@ public class Project implements Serializable {
 
     public int getViewColumns() {
 
-        return 8;
+        return 9;
     }
 
     public String viewColumnName(int i) throws Exception {
@@ -414,6 +413,8 @@ public class Project implements Serializable {
             colName = "Outcome";
         } else if (i == 7) {
             colName = "Scope";
+        } else if (i == 8) {
+            colName = "Archieved";
         } else {
             throw new Exception("Access to invalid column number in courselist table");
         }
@@ -454,11 +455,11 @@ public class Project implements Serializable {
     }
 
     @XmlTransient
-    public Set<Projectfiles> getProjectfilesSet() {
-        return projectfilesSet;
+    public Set<ProjectFilesMap> getProjectFilesMapSet() {
+        return projectFilesMapSet;
     }
 
-    public void setProjectfilesSet(Set<Projectfiles> projectfilesSet) {
-        this.projectfilesSet = projectfilesSet;
+    public void setProjectFilesMapSet(Set<ProjectFilesMap> projectFilesMapSet) {
+        this.projectFilesMapSet = projectFilesMapSet;
     }
 }

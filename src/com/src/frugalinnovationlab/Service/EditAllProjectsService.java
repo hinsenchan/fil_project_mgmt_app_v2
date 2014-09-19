@@ -31,7 +31,7 @@ public class EditAllProjectsService {
 
 
 
-        TypedQuery<ProjectView> query = manager.createQuery("SELECT    NEW  com.src.frugalinnovationlab.Entity.ProjectView(p.name, p.shortdesc, p.description,  p.startDate, p.endDate, s.status, p.outcome, p.scope)   from  Project p JOIN p.projectStatusSet s order by p.name", ProjectView.class);
+        TypedQuery<ProjectView> query = manager.createQuery("SELECT    NEW  com.src.frugalinnovationlab.Entity.ProjectView(p.name, p.shortdesc, p.description,  p.startDate, p.endDate, s.status, p.outcome, p.scope, p.archive, p.startDate)   from  Project p JOIN p.projectStatusSet s order by p.name", ProjectView.class);
 
         List<ProjectView> result = query.getResultList();
 

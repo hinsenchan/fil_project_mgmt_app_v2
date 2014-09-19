@@ -26,6 +26,7 @@
     <class>com.src.frugalinnovationlab.Entity.Users</class>
     <class>com.src.frugalinnovationlab.Entity.Projectfiles</class>
     <class>com.src.frugalinnovationlab.Entity.Filetypes</class>    
+    <class>com.src.frugalinnovationlab.Entity.ProjectFilesMap</class>    
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frugalinnovationlab?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>

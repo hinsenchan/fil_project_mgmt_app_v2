@@ -32,8 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Filetypes.findById", query = "SELECT f FROM Filetypes f WHERE f.id = :id"),
     @NamedQuery(name = "Filetypes.findByType", query = "SELECT f FROM Filetypes f WHERE f.type = :type")})
 public class Filetypes implements Serializable {
-    @OneToMany(mappedBy = "filetypeid", cascade = CascadeType.PERSIST)
-    private Set<Projectfiles> projectfilesSet;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +41,8 @@ public class Filetypes implements Serializable {
     @Basic(optional = false)
     @Column(name = "type")
     private String type;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "filetypes")
+    private Set<ProjectFilesMap> projectFilesMapSet;
 
     public Filetypes() {
     }
@@ -72,6 +72,15 @@ public class Filetypes implements Serializable {
         this.type = type;
     }
 
+    @XmlTransient
+    public Set<ProjectFilesMap> getProjectFilesMapSet() {
+        return projectFilesMapSet;
+    }
+
+    public void setProjectFilesMapSet(Set<ProjectFilesMap> projectFilesMapSet) {
+        this.projectFilesMapSet = projectFilesMapSet;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -95,15 +104,6 @@ public class Filetypes implements Serializable {
     @Override
     public String toString() {
         return "com.src.frugalinnovationlab.Entity.Filetypes[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Set<Projectfiles> getProjectfilesSet() {
-        return projectfilesSet;
-    }
-
-    public void setProjectfilesSet(Set<Projectfiles> projectfilesSet) {
-        this.projectfilesSet = projectfilesSet;
     }
     
 }

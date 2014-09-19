@@ -6,15 +6,13 @@
 
 package com.src.frugalinnovationlab.view;
 
-import com.src.frugalinnovationlab.Entity.Filetypes;
-import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaAdobePK;
-import com.src.frugalinnovationlab.Entity.ProjectParticipants;
-import static com.src.frugalinnovationlab.Entity.Project_.participantsList;
-import com.src.frugalinnovationlab.Entity.Projectfiles;
+import com.src.frugalinnovationlab.Controller.MediaController;
+import com.src.frugalinnovationlab.Entity.Project;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
+import com.src.frugalinnovationlab.Entity.ProjectFilesMapPK;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import java.io.File;
-import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -25,12 +23,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditMediaPanel extends javax.swing.JPanel {
     private Welcome mainApplication;
+    private MediaController mediaController;
+    private int selectedProjectId;
+    private DefaultTableModel model = new DefaultTableModel();
+    private List<Project> projectList;
+    private ArrayList<ProjectFilesMap> projectFilesMapList = new ArrayList<ProjectFilesMap>();
+    
     /**
      * Creates new form EditMediaPanel
      */
-    public EditMediaPanel(Welcome mainApplication) {
+    public EditMediaPanel(Welcome mainApplication) {        
+        this.mainApplication = mainApplication;  
+        mediaController = new MediaController(this);
+        projectList = mediaController.getProjectsFromDatabase();
         initComponents();
-        this.mainApplication = mainApplication;        
+        jTable.getSelectionModel().addListSelectionListener(mediaController);
     }
 
     /**
@@ -105,14 +112,23 @@ public class EditMediaPanel extends javax.swing.JPanel {
             }
         });
 
+        jTable.setAutoCreateRowSorter(true);
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "File Name", "Location", "Type"
+                "File Type", "File Name", "File Location"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableScrollPane.setViewportView(jTable);
 
         projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -121,121 +137,126 @@ public class EditMediaPanel extends javax.swing.JPanel {
         chooseProjectComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseProjectComboBox.setForeground(new java.awt.Color(0, 95, 45));
         chooseProjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a project..." }));
-        chooseProjectComboBox.setMaximumSize(new java.awt.Dimension(200, 200));
-        chooseProjectComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chooseProjectComboBoxActionPerformed(evt);
-            }
-        });
+        for (int i = 0; i < projectList.size(); i++) {
+            chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(),
+                String.valueOf(projectList.get(i).getId())));
+    }
+    chooseProjectComboBox.setMaximumSize(new java.awt.Dimension(200, 200));
+    chooseProjectComboBox.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            chooseProjectComboBoxActionPerformed(evt);
+        }
+    });
 
-        removeMediaButton.setText("Remove Media");
-        removeMediaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeMediaButtonActionPerformed(evt);
-            }
-        });
+    removeMediaButton.setText("Remove Media");
+    removeMediaButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            removeMediaButtonActionPerformed(evt);
+        }
+    });
 
-        viewMediaButton.setForeground(new java.awt.Color(0, 95, 45));
-        viewMediaButton.setText("View Media");
-        viewMediaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewMediaButtonActionPerformed(evt);
-            }
-        });
+    viewMediaButton.setForeground(new java.awt.Color(0, 95, 45));
+    viewMediaButton.setText("View Media");
+    viewMediaButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            viewMediaButtonActionPerformed(evt);
+        }
+    });
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(selectFileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(fileNameLabel)
-                                .addComponent(projectNameLabel)
-                                .addComponent(fileTypeLabel))
-                            .addGap(30, 30, 30)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(mainPanelLayout.createSequentialGroup()
-                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(selectFileTextField)
-                                        .addComponent(chooseProjectComboBox, 0, 350, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(chooseAFileButton))
-                                .addGroup(mainPanelLayout.createSequentialGroup()
-                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(mainPanelLayout.createSequentialGroup()
-                                            .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                            .addComponent(addMediaButton)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(removeMediaButton))))
-                        .addComponent(editProjectLabel))
+    javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+    mainPanel.setLayout(mainPanelLayout);
+    mainPanelLayout.setHorizontalGroup(
+        mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGap(41, 41, 41)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(viewMediaButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updateProjectButton)))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(editProjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectNameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chooseAFileButton)
-                    .addComponent(selectFileLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fileTypeLabel)
-                    .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fileNameLabel)
-                    .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMediaButton)
-                    .addComponent(removeMediaButton))
-                .addGap(26, 26, 26)
-                .addComponent(jTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateProjectButton)
-                    .addComponent(viewMediaButton))
-                .addGap(22, 22, 22))
-        );
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectFileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fileNameLabel)
+                            .addComponent(projectNameLabel)
+                            .addComponent(fileTypeLabel))
+                        .addGap(30, 30, 30)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(selectFileTextField)
+                                    .addComponent(chooseProjectComboBox, 0, 350, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chooseAFileButton))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                        .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                        .addComponent(addMediaButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(removeMediaButton))))
+                    .addComponent(editProjectLabel))
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addComponent(viewMediaButton)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateProjectButton)))
+            .addContainerGap(84, Short.MAX_VALUE))
+    );
+    mainPanelLayout.setVerticalGroup(
+        mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGap(15, 15, 15)
+            .addComponent(editProjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(projectNameLabel))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(selectFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chooseAFileButton)
+                .addComponent(selectFileLabel))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(fileTypeLabel)
+                .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(17, 17, 17)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(fileNameLabel)
+                .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMediaButton)
+                .addComponent(removeMediaButton))
+            .addGap(26, 26, 26)
+            .addComponent(jTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(updateProjectButton)
+                .addComponent(viewMediaButton))
+            .addGap(22, 22, 22))
+    );
 
-        mainScrollPane.setViewportView(mainPanel);
+    mainScrollPane.setViewportView(mainPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(mainScrollPane))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(mainScrollPane))
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 725, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainScrollPane))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 600, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainScrollPane))
+    );
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProjectButtonActionPerformed
+        
         /*
         for (int i = 0; i < filesList.size(); i++) {
             System.out.println("file added : " +filesList.get(i).getFilename());
@@ -282,12 +303,12 @@ public class EditMediaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addMediaButtonActionPerformed
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
-        /*
-        Object projectItem = getChooseProjectComboBox().getSelectedItem();
+        Object projectItem = chooseProjectComboBox.getSelectedItem();
         //System.out.println("object item : " +projectItem);
 
         if (!projectItem.toString().equals("Choose a project...")) {
-            String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+            int projectId = Integer.parseInt(((ComboItem) projectItem).getValue());
+            //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             String projectName = String.valueOf(((ComboItem) projectItem).getKey());
             //System.out.println("project id : " + projectId);
 
@@ -296,32 +317,27 @@ public class EditMediaPanel extends javax.swing.JPanel {
                     model.removeRow(i);
                 }
             }
-            projectLabel.setText("Project : ".concat(projectName));
-            header = new MessageFormat("Project : ".concat(projectName));
-            List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-            participantsList.clear();
-            for (int i = 0; i < result.size(); i++) {
-                Object[] values = (Object[]) result.get(i);
-                participantValue = String.valueOf(values[3]);
-                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                .concat(" ").concat(values[2].toString());
-                String roleValue = values[4].toString();
-                String roleItem = values[5].toString();
-                String email = values[6].toString();
-                String phone = values[7].toString();
-                ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
-                    Integer.parseInt(roleValue));
-                participantsList.add(a);
-                //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                Object[] row = {participantItem, roleItem, email, phone};
-                model = (DefaultTableModel) table.getModel();
-                model.addRow(row);
-            }
+            
+            List result = mediaController.fetchProjectFilesMapByProject(projectId);
+            projectFilesMapList.clear();
 
-            mainApplication.setSelectedProject(chooseProjectComboBox.getSelectedItem().toString());
-            mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
-        }
-        */
+            for (int i = 0; i < result.size(); i++) {
+                ProjectFilesMap projectFile = (ProjectFilesMap)result.get(i);
+                projectFilesMapList.add(projectFile);
+                ProjectFilesMapPK projectFileDetails = projectFile.getProjectFilesMapPK();
+
+                int fileTypeId = projectFileDetails.getFiletypeid();
+                String fileName = projectFileDetails.getFilename();
+                String filePath = projectFileDetails.getFilepath();
+                
+                Object[] row = {fileTypeId, fileName, filePath};
+                
+                model = (DefaultTableModel) jTable.getModel();
+                model.addRow(row);
+            }            
+        } else {
+            selectedProjectId = -1;
+        }        
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void removeMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMediaButtonActionPerformed

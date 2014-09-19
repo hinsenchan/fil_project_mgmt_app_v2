@@ -120,8 +120,8 @@ public class EditAllProjectsModel extends AbstractTableModel {
             err.toString();
         }
     }
-    
-    public boolean deleteProject(String projectName){
+
+    public boolean deleteProject(String projectName) {
         boolean success = false;
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();
@@ -129,8 +129,8 @@ public class EditAllProjectsModel extends AbstractTableModel {
         usertransaction.commit();
         return success;
     }
-    
-    public boolean activateProject(String projectName){
+
+    public boolean activateProject(String projectName) {
         boolean success = false;
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();
