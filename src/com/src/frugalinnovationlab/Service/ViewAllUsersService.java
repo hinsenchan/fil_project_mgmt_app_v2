@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.Service;
 
 import com.src.frugalinnovationlab.Entity.*;
@@ -21,84 +20,46 @@ import javax.persistence.TypedQuery;
  * @author Sony
  */
 public class ViewAllUsersService {
-    
-    
-     private EntityManager manager;
-    
-      public ViewAllUsersService(EntityManager manager)
-      
-      {
-		
-          this.manager = manager;
-	
-      }
-    
-      
-          
-      
-       public List<UserandRole> readAll()
-            
-    {
-        
-     //TypedQuery <UserandRole> query = manager.createQuery("SELECT   NEW   com.src.frugalinnovationlab.Entity.UserandRole(u.username, u.firstname, u.lastname, u.emailaddress, u.contactnumber, r.name, u.password)  from Users u LEFT OUTER JOIN  u.userRolesSet  r order by u.username ",    UserandRole.class);
-        
-     
-     TypedQuery <UserandRole> query = manager.createQuery("SELECT   NEW   com.src.frugalinnovationlab.Entity.UserandRole(u.username, u.firstname, u.lastname, u.emailaddress, u.contactnumber, r.name, u.password, u.active)  from Users u LEFT OUTER JOIN  u.userRolesSet  r order by u.username ",    UserandRole.class);
-     
-       List<UserandRole> result = query.getResultList();
-       
-       
-        return result;
-        
-        
+
+    private EntityManager manager;
+
+    public ViewAllUsersService(EntityManager manager) {
+
+        this.manager = manager;
+
     }
-       
-       
-       
-        public boolean  Deleteuser(String Fname, String Lname, String Email, String Uname, String Pword, BigInteger cnumber, String role) {
-    	
-                //Users  users = manager.find(Users.class, username);
-       boolean flag = false;
-         
-         try
-         {
-      
-             UserRoles userrole = manager.find(UserRoles.class, role);
-         
-                        Users user = new Users(Fname,Lname,Email,Uname,Pword,cnumber,false);
-                    
-                         HashSet<Users> userset = new HashSet<Users>();
-                         
-                         userset.add(user);
-                         userrole.setUsersSet(userset);
-                         
-                         Set<UserRoles> Rolesset = new HashSet<UserRoles>();
-                         
-                         Rolesset.add(userrole);
-                         
-                         user.setUserRolesSet(Rolesset);
-                      
-                         manager.merge(userrole);
-                         
-                         flag = true;
-               
-         }
-         catch(Exception ex)
-             
-         {
-             
-             flag = false;
-             System.out.println("Erros in deleting new User");
-     
-         }
-    
-      System.out.println(flag + "In Service");
-         return flag;
-                       
-            }
-  
-    
-      
-       
-       
+
+    public List<UserandRole> readAll() {
+
+        //TypedQuery <UserandRole> query = manager.createQuery("SELECT   NEW   com.src.frugalinnovationlab.Entity.UserandRole(u.username, u.firstname, u.lastname, u.emailaddress, u.contactnumber, r.name, u.password)  from Users u LEFT OUTER JOIN  u.userRolesSet  r order by u.username ",    UserandRole.class);
+
+
+        TypedQuery<UserandRole> query = manager.createQuery("SELECT   NEW   com.src.frugalinnovationlab.Entity.UserandRole(u.username, u.firstname, u.lastname, u.emailaddress, u.contactnumber, r.name, u.password)  from Users u LEFT OUTER JOIN  u.userRolesSet  r order by u.username ", UserandRole.class);
+
+        List<UserandRole> result = query.getResultList();
+
+
+        return result;
+
+
+    }
+
+    public boolean Deleteuser(String username) {
+        boolean flag = false;
+        try {
+            System.out.println("user name : " +username);
+            Query query = manager.createQuery("DELETE FROM Users u where u.username = :uname");
+            query.setParameter("uname", username);
+            int count = query.executeUpdate();
+            System.out.println("delete user : " + count);
+            flag = true;
+        } catch (Exception ex) {
+            flag = false;
+            System.out.println("Erros in deleting new User");
+        }
+
+        System.out.println(flag + "In Service");
+        return flag;
+
+    }
 }

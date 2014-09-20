@@ -21,10 +21,10 @@ import javax.swing.tree.TreePath;
 public class Welcome extends javax.swing.JFrame {
 
     final AddNewUserPanel addNewUserPanel = new AddNewUserPanel();
-    final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel();
+    private ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
+    final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel(this);
     private SearchPanel searchPanel = new SearchPanel(this);
     //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
@@ -364,7 +364,7 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(new AddNewUserPanel());
                 lastComponent = "Add New User";
             } else if (path.toString().contains("View All Users")) {
-                getContentPanel().add(new ViewAllUsersPanel());
+                getContentPanel().add(new ViewAllUsersPanel(this));
                 lastComponent = "View All Users";
             } else if (path.toString().contains("Advanced Search")) {
                 advancedSearchPanel = new AdvancedSearchPanel(this);
@@ -653,4 +653,15 @@ public class Welcome extends javax.swing.JFrame {
     public void setViewMediaPanel(ViewMediaPanel viewMediaPanel) {
         this.viewMediaPanel = viewMediaPanel;
     }
+
+    public ViewAllUsersPanel getViewAllUsersPanel() {
+        return viewAllUsersPanel;
+    }
+
+    public void setViewAllUsersPanel(ViewAllUsersPanel viewAllUsersPanel) {
+        this.viewAllUsersPanel = viewAllUsersPanel;
+    }
+    
+    
+    
 }

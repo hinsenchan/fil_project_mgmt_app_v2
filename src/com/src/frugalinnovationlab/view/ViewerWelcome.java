@@ -16,10 +16,10 @@ import javax.swing.tree.TreePath;
 public class ViewerWelcome extends javax.swing.JFrame {
 
     final AddNewUserPanel addNewUserPanel = new AddNewUserPanel();
-    final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel();
+    //final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
+    //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
     //final SearchPanel searchPanel = new SearchPanel();
     final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     //final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();

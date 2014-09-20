@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.view;
+
 import com.src.frugalinnovationlab.Controller.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-
 
 /**
  *
@@ -22,79 +20,67 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewAllUsersPanel
      */
-    
-    
     private JTable jtable1;
-    final private ViewAllUsersController viewalluserscontroller;
-     
-    
-    public ViewAllUsersPanel() {
+    private Welcome mainApplication;
+    private ViewAllUsersController viewalluserscontroller;
+
+    public ViewAllUsersPanel(Welcome welcome) {
         initComponents();
-        
+        this.mainApplication = welcome;
         viewalluserscontroller = new ViewAllUsersController(this);
         addJTable();
-    
+        //updateTable();
     }
 
-    
     public void addJTable() {
-		// add the data and column names to a JTable  
-                                   
-                                   jtable1 = new JTable(viewalluserscontroller.getTableModel());
-                                  jtable1.getColumnModel().getColumn(6).setMinWidth(0);
-                                  jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
-		
-		final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                                    tablePanel.setLayout(new BorderLayout());
-		tablePanel.add(scrollpane, BorderLayout.CENTER);
-                
-                                    final int rows = 14;
-                  
-                                    Dimension d = jtable1.getPreferredSize();
-                                    scrollpane.setPreferredSize(new Dimension(d.width,jtable1.getRowHeight()*rows));
-                
-                                    JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                            
-                    
-                                 JButton next = new JButton(">");
-                            next.addActionListener( new ActionListener(){
-                            public void actionPerformed(ActionEvent ae) {
-                        int height = jtable1.getRowHeight()*(rows-2);
-                                
-                        JScrollBar bar = scrollpane.getVerticalScrollBar();
-                        bar.setValue( bar.getValue()+height );
-                    }
-                } );
-                JButton previous = new JButton("<");
-                previous.addActionListener( new ActionListener(){
-                    public void actionPerformed(ActionEvent ae) {
-                        int height = jtable1.getRowHeight()*(rows-2);
-                         
-                        JScrollBar bar = scrollpane.getVerticalScrollBar();
-                        bar.setValue( bar.getValue()-height );
-                    }
-                } );
+        // add the data and column names to a JTable  
 
-                navigation.add(previous);
-                navigation.add(next);
-               
-                
-                tablePanel.add(navigation, BorderLayout.SOUTH);
-                                   
-                                   
-                                    
-} 
+        jtable1 = new JTable(viewalluserscontroller.getTableModel());
+        jtable1.getColumnModel().getColumn(6).setMinWidth(0);
+        jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
+
+        final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        tablePanel.setLayout(new BorderLayout());
+        tablePanel.add(scrollpane, BorderLayout.CENTER);
+
+        final int rows = 14;
+
+        Dimension d = jtable1.getPreferredSize();
+        scrollpane.setPreferredSize(new Dimension(d.width, jtable1.getRowHeight() * rows));
+
+        JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+
+        JButton next = new JButton(">");
+        next.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                int height = jtable1.getRowHeight() * (rows - 2);
+
+                JScrollBar bar = scrollpane.getVerticalScrollBar();
+                bar.setValue(bar.getValue() + height);
+            }
+        });
+        JButton previous = new JButton("<");
+        previous.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                int height = jtable1.getRowHeight() * (rows - 2);
+
+                JScrollBar bar = scrollpane.getVerticalScrollBar();
+                bar.setValue(bar.getValue() - height);
+            }
+        });
+
+        navigation.add(previous);
+        navigation.add(next);
+
+
+        tablePanel.add(navigation, BorderLayout.SOUTH);
+    }
 
     public void updateTable() {
-    	
         jtable1.setModel(viewalluserscontroller.getTableModel());
-         
-        
-        
-
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,7 +93,6 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         contentPanel = new javax.swing.JPanel();
         deleteButton = new javax.swing.JButton();
         welcome = new javax.swing.JLabel();
-        editButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -130,15 +115,6 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
 
         welcome.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         welcome.setText("View All Users");
-
-        editButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        editButton.setForeground(new java.awt.Color(0, 95, 45));
-        editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
 
         tablePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -168,8 +144,6 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
                             .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteButton)))
                 .addContainerGap())
         );
@@ -181,9 +155,7 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
                 .addGap(63, 63, 63)
                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editButton)
-                    .addComponent(deleteButton))
+                .addComponent(deleteButton)
                 .addContainerGap(342, Short.MAX_VALUE))
         );
 
@@ -205,136 +177,39 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-        
-        int selrow = jtable1.getSelectedRow();
-        int selcolumn = jtable1.getSelectedColumn();
-        
-        ViewSpecificUserPanel  viewusr = new ViewSpecificUserPanel();
-        
-        contentPanel.setLayout(new java.awt.BorderLayout());
-        contentPanel.removeAll();
-        contentPanel.add(viewusr);
-        contentPanel.revalidate();
-        contentPanel.repaint();
-        
-        
-        viewusr.setUserNameTextField( (String)  jtable1.getModel().getValueAt(selrow, 0));
-        viewusr.setFirstNameTextField( (String)  jtable1.getModel().getValueAt(selrow, 1));
-        viewusr.setLastNameTextField( (String)  jtable1.getModel().getValueAt(selrow, 2));
-        viewusr.setEmailAddressTextField( (String)  jtable1.getModel().getValueAt(selrow, 3));
-        viewusr.setContactnumberTextField( (String)  jtable1.getModel().getValueAt(selrow, 4));
-        
-        if  (jtable1.getModel().getValueAt(selrow, 5).equals("Administrator"))
-         
-        {
-            
-           viewusr.setAdministratorButton();
-           
-           
-            
-        }
-  
-        else if (jtable1.getModel().getValueAt(selrow, 5).equals("Viewer"))
-            
-        {
-            viewusr.setviewerButton();
-            
-        }
-
-//  viewusr.settitleTextField( (String)  jtable1.getModel().getValueAt(selrow, 5));
-       viewusr.setPasswordField( (String)  jtable1.getModel().getValueAt(selrow, 6));
-        
-       
-        viewusr.setVisible(true);
-
-        
-        
-        
-        
-    }//GEN-LAST:event_editButtonActionPerformed
-
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int selrow = jtable1.getSelectedRow();
+        String username = (String) jtable1.getModel().getValueAt(selrow, 0);
+        System.out.println("username is : " + username);
+        int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
+        System.out.println(n + "value for dialog box");
+        if (n == 0) {
+            boolean flag = viewalluserscontroller.DeleteUser(username);
+            if (flag == true) {
+                addJTable();
+                mainApplication.getContentPanel().remove(mainApplication.getViewAllUsersPanel());
+                mainApplication.setViewAllUsersPanel(new ViewAllUsersPanel(mainApplication));
+                mainApplication.getContentPanel().add(mainApplication.getViewAllUsersPanel());
+                mainApplication.getContentPanel().revalidate();
+                mainApplication.getContentPanel().repaint();                
+                JOptionPane.showMessageDialog(contentPanel, " User Details for User" + "  " + username + " " + "has deleted  succesfully");
 
-        
-        // TODO add your handling code here:
-        
-          final  String array[] = new String[8];
-       // System.out.println(centerPanel.getComponentCount());
-       
-       
-        
-         int selrow = jtable1.getSelectedRow();
-         String username = (String) jtable1.getModel().getValueAt(selrow, 0);
-         
-         array[0] = (String) jtable1.getModel().getValueAt(selrow, 1);
-       array[1] = (String) jtable1.getModel().getValueAt(selrow, 2);
-       array[2] = (String) jtable1.getModel().getValueAt(selrow, 3);
-       array[3] = (String) jtable1.getModel().getValueAt(selrow, 0);
-       array[4] = (String) jtable1.getModel().getValueAt(selrow, 6);
-       array[5] = (String) jtable1.getModel().getValueAt(selrow, 4);
-       array[6] = "0";
-       array[7] = (String) jtable1.getModel().getValueAt(selrow, 5);
-       
-         
-          int n = JOptionPane.showConfirmDialog(contentPanel,"Are you sure you want to delete the user" + " " + username + " "  +"",  "Delete User",   JOptionPane.YES_NO_OPTION);
-    
-         System.out.println(n  + "value for dialog box");   
-            
-         
-         if (n == 0)
-        
-         {   
-             
-          boolean flag = viewalluserscontroller.DeleteUser(array);
-          
-           
-              if (flag == true)
-            
-            {
-             
-                
-                
-                
-                JOptionPane.showMessageDialog(contentPanel, " User Details for User"  + "  " + username + " " + "has deleted  succesfully" );
-               
-                        ViewAllUsersPanel  viewallusr = new ViewAllUsersPanel();
 
-                         
-                        
-                contentPanel.setLayout(new java.awt.BorderLayout());
-                 contentPanel.removeAll();
-                contentPanel.add(viewallusr);
-                 contentPanel.revalidate();
-                 contentPanel.repaint();
-        
+            } else {
+                JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
+                JDialog dialog = optionPane.createDialog("Error !");
+                dialog.setAlwaysOnTop(true);
+                dialog.setVisible(true);
             }
-                   
-            else
-                
-            {
-                 JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE) ;  
-                    JDialog dialog = optionPane.createDialog("Error !");
-                        dialog.setAlwaysOnTop(true);
-                    dialog.setVisible(true);   
-                     
-
-                
-            }
-         
-        
-         }
-        
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editButton;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
+    public Welcome getMainApplication() {
+        return mainApplication;
+    }
 }
-

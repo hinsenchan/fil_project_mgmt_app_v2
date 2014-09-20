@@ -20,11 +20,12 @@ public class ViewSpecificUserPanel extends javax.swing.JPanel {
      * Creates new form ViewSpecificUserPanel
      */
     private ViewSpecificUserController viewusercontroller;
+    private Welcome mainApplication;
 
-    public ViewSpecificUserPanel() {
+    public ViewSpecificUserPanel(Welcome welcome) {
         initComponents();
         enterPasswordField.setVisible(false);
-
+        this.mainApplication = welcome;
         buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(administratorButton);
         buttonGroup1.add(viewerButton);
@@ -268,118 +269,99 @@ public class ViewSpecificUserPanel extends javax.swing.JPanel {
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
-
-
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
 
-         final  String array[] = new String[7];
-       // System.out.println(centerPanel.getComponentCount());
-       
-       array[0] = firstNameTextField.getText();
-       array[1] = lastNameTextField.getText();
-       array[2] = emailTextField.getText();
-       array[3] = userNameTextField.getText();
-       array[4] = phoneNumberTextField.getText();
-       //array[5]  = titleTextField.getText();
-       
-        if(administratorButton.isSelected())
-                                                  {
-		                
-                                     
-                                                array[5]  = administratorButton.getText();
- 	 
-		        	
-                                                    }
-		   
-		
-		          
-		        	 if(viewerButton.isSelected())
-                                     
-                                                     {
+        final String array[] = new String[7];
+        // System.out.println(centerPanel.getComponentCount());
 
-		        array[5] =   viewerButton.getText();
-	 
-		        	}
-       
-     array[6] =  enterPasswordField.getText();
-       
-      // System.out.println(array[6] );
-     
-       boolean flag = viewusercontroller.EditUser(array);
-       
-        if (flag == true)
-            
-            {
-                JOptionPane.showMessageDialog(centerPanel, " Information for User"  + "  "  + array[3] + " " + "has Updated  succesfully" );
-               
-                
-                        
-                        enterPasswordField.setVisible(false);
-                        ViewAllUsersPanel  viewallusr = new ViewAllUsersPanel();
-                        centerPanel.setLayout(new java.awt.BorderLayout());
-                        centerPanel.removeAll();
-                        centerPanel.add(viewallusr);
-                        centerPanel.revalidate();
-                        centerPanel.repaint();
+        array[0] = firstNameTextField.getText();
+        array[1] = lastNameTextField.getText();
+        array[2] = emailTextField.getText();
+        array[3] = userNameTextField.getText();
+        array[4] = phoneNumberTextField.getText();
+        //array[5]  = titleTextField.getText();
 
-               
-                                
-                        
-            }
-           
-                   
-            else
-                
-            {
-                 JOptionPane optionPane = new JOptionPane("Error in Updating information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE) ;  
-                    JDialog dialog = optionPane.createDialog("Error !");
-                        dialog.setAlwaysOnTop(true);
-                        dialog.setVisible(true);   
-                            enterPasswordField.setVisible(false);
+        if (administratorButton.isSelected()) {
 
-                       
 
-                
-            }
+            array[5] = administratorButton.getText();
+
+
+        }
+
+
+
+        if (viewerButton.isSelected()) {
+
+            array[5] = viewerButton.getText();
+
+        }
+
+        array[6] = enterPasswordField.getText();
+
+        // System.out.println(array[6] );
+
+        boolean flag = viewusercontroller.EditUser(array);
+
+        if (flag == true) {
+            JOptionPane.showMessageDialog(centerPanel, " Information for User" + "  " + array[3] + " " + "has Updated  succesfully");
+
+
+
+            enterPasswordField.setVisible(false);
+            ViewAllUsersPanel viewallusr = new ViewAllUsersPanel(mainApplication);
+            centerPanel.setLayout(new java.awt.BorderLayout());
+            centerPanel.removeAll();
+            centerPanel.add(viewallusr);
+            centerPanel.revalidate();
+            centerPanel.repaint();
+
+
+
+
+        } else {
+            JOptionPane optionPane = new JOptionPane("Error in Updating information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Error !");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+            enterPasswordField.setVisible(false);
+
+
+
+
+        }
 
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
 
-         String username = userNameTextField.getText();
-             boolean flag = viewusercontroller.DeleteUser(username);
-             
-            
-             
-              if (flag == true)
-            
-            {
-                JOptionPane.showMessageDialog(centerPanel, " User Details for User"  + "  "  + username + " " + "has deleted  succesfully" );
-               
-            
-                initComponents();
-                enterPasswordField.setVisible(false);
+        String username = userNameTextField.getText();
+        boolean flag = viewusercontroller.DeleteUser(username);
 
-                                
-                        
-            }
-           
-                   
-            else
-                
-            {
-                 JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE) ;  
-                    JDialog dialog = optionPane.createDialog("Error !");
-                        dialog.setAlwaysOnTop(true);
-                    dialog.setVisible(true);   
-                      enterPasswordField.setVisible(false);
 
-                
-            }
+
+        if (flag == true) {
+            JOptionPane.showMessageDialog(centerPanel, " User Details for User" + "  " + username + " " + "has deleted  succesfully");
+
+
+            initComponents();
+            enterPasswordField.setVisible(false);
+
+
+
+        } else {
+            JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Error !");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+            enterPasswordField.setVisible(false);
+
+
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     public void setLastNameTextField(String value) {
@@ -417,8 +399,6 @@ public class ViewSpecificUserPanel extends javax.swing.JPanel {
         viewerButton.setSelected(true);
 
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton administratorButton;
     private javax.swing.ButtonGroup buttonGroup1;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.Entity;
 
 import java.io.Serializable;
@@ -21,7 +20,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.CascadeType;
 
-
 /**
  *
  * @author Sony
@@ -38,6 +36,7 @@ import javax.persistence.CascadeType;
     @NamedQuery(name = "Users.findByContactnumber", query = "SELECT u FROM Users u WHERE u.contactnumber = :contactnumber"),
     @NamedQuery(name = "Users.findByActive", query = "SELECT u FROM Users u WHERE u.active = :active")})
 public class Users implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "firstname")
@@ -59,12 +58,10 @@ public class Users implements Serializable {
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
-  
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles_map", joinColumns = {
         @JoinColumn(name = "username", referencedColumnName = "username")}, inverseJoinColumns = {
         @JoinColumn(name = "role_name", referencedColumnName = "name")})
-    
     private Set<UserRoles> userRolesSet;
 
     public Users() {
@@ -74,7 +71,7 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public Users( String firstname, String lastname, String Email, String username, String password,  BigInteger Contact, boolean active) {
+    public Users(String firstname, String lastname, String Email, String username, String password, BigInteger Contact, boolean active) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -83,15 +80,14 @@ public class Users implements Serializable {
         this.contactnumber = Contact;
         this.active = active;
     }
-    
-    
-     public Users( String firstname, String lastname, String Email, String username,  BigInteger Contact) {
+
+    public Users(String firstname, String lastname, String Email, String username, BigInteger Contact) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.emailaddress = Email;
         this.contactnumber = Contact;
-       
+
     }
 
     public String getFirstname() {
@@ -178,85 +174,63 @@ public class Users implements Serializable {
         return true;
     }
 
-    
     public int getNumberOfColumns() {
-       return 6;
-   }  
- 
-  public int getViewColumns()
-         
-  {
-     
-      return 8;
-  }
-   
- 
-   public void setColumnData(int i, Object value) throws Exception {
-     
-                      if (i == 0)
-           firstname = (String) value;
-       else if (i == 1)
-           lastname = (String) value;
-       else if (i == 2)
-           emailaddress = (String) value;
-       else if (i == 3)
-           username = (String) value;
-       else if (i == 4)
-          password = (String) value;
-          
-                   else if (i == 5)
-          contactnumber = new BigInteger((String) value);
-                  
-                     else if (i == 6)
-         
-                            active = true;
-                        
-                            else
-          
-                             throw new Exception("Error: invalid column index in Users table");          
-                                 
-         
-   }
-  
-  
- 
-   
+        return 5;
+    }
+
+    public int getViewColumns() {
+
+        return 7;
+    }
+
+    public void setColumnData(int i, Object value) throws Exception {
+
+        if (i == 0) {
+            firstname = (String) value;
+        } else if (i == 1) {
+            lastname = (String) value;
+        } else if (i == 2) {
+            emailaddress = (String) value;
+        } else if (i == 3) {
+            username = (String) value;
+        } else if (i == 4) {
+            password = (String) value;
+        } else if (i == 5) {
+            contactnumber = new BigInteger((String) value);
+        } else if (i == 6) {
+            active = true;
+        } else {
+            throw new Exception("Error: invalid column index in Users table");
+        }
+
+
+    }
+
     public String viewColumnName(int i) throws Exception {
-       String colName = null;
-       if (i == 0)
-           colName = "User Name";
-       else if (i == 1)
-           colName = "First Name";
-       else if (i == 2)
-           colName = "Last Name";
-       else if (i == 3)
-           colName = "E-mail";
-       else if (i == 4)
-           colName = "Contact Number";
-          
-                else if (i == 5)
-           colName = "User Role";
-           
-              else if (i == 6)
-        colName = "Password";
-              
-              else if (i ==7)
-        colName = "Status";
-      
-                  
-          
-           else
-           throw new Exception("Access to invalid column number in courselist table");
-      
-       return colName;
-   }
-    
+        String colName = null;
+        if (i == 0) {
+            colName = "User Name";
+        } else if (i == 1) {
+            colName = "First Name";
+        } else if (i == 2) {
+            colName = "Last Name";
+        } else if (i == 3) {
+            colName = "E-mail";
+        } else if (i == 4) {
+            colName = "Contact Number";
+        } else if (i == 5) {
+            colName = "User Role";
+        } else if (i == 6) {
+            colName = "Password";
+        } else {
+            throw new Exception("Access to invalid column number in courselist table");
+        }
+
+        return colName;
+    }
+
     @Override
     public String toString() {
         return "com.src.frugalinnovationlab.Entity.Users[ username=" + username + " ]";
     }
-    
- 
-    
-    
 }

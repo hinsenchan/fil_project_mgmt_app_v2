@@ -14,10 +14,9 @@ import com.src.frugalinnovationlab.Entity.ProjectFilesMapPK;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import java.awt.Desktop;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +34,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
     private List<Filetypes> fileTypeList;
     private HashMap<Integer, String> fileTypeHashMap = new HashMap<Integer, String>();
     private HashMap<String, Integer> fileTypeHashMapReverse = new HashMap<String, Integer>();
-    private Set<ProjectFilesMap> projectFilesMapList = new HashSet<ProjectFilesMap>();
+    private List<ProjectFilesMap> projectFilesMapList = new ArrayList<ProjectFilesMap>();
     
     /**
      * Creates new form EditMediaPanel

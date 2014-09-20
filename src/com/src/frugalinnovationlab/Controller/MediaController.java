@@ -14,7 +14,6 @@ import com.src.frugalinnovationlab.view.EditMediaPanel;
 import com.src.frugalinnovationlab.view.ViewMediaPanel;
 import com.src.frugalinnovationlab.view.Welcome;
 import java.util.List;
-import java.util.Set;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -58,7 +57,7 @@ public class MediaController implements ListSelectionListener {
     }    
     
     public boolean updateProjectWithProjectFilesMap(
-            int selectedProjectId, Set<ProjectFilesMap> projectFilesMapList) {
+            int selectedProjectId, List<ProjectFilesMap> projectFilesMapList) {
         if (mediaModel.updateProjectWithProjectFilesMap(
             selectedProjectId, projectFilesMapList)) {
             return true;
