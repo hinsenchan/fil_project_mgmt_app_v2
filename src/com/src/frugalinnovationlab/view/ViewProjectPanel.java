@@ -15,11 +15,11 @@ import javax.swing.table.TableRowSorter;
  * @author Hinsen Chan
  */
 public class ViewProjectPanel extends javax.swing.JPanel {
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private ViewProjectController viewProjectController;
 
     //default constructor
-    public ViewProjectPanel(Welcome welcome) {
+    public ViewProjectPanel(WelcomeAbstract welcome) {
         initComponents();
         //set reference to main app class
         this.mainApplication = welcome;
@@ -132,7 +132,7 @@ public class ViewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel viewAllProjectsLabel;
     // End of variables declaration//GEN-END:variables
     //return reference to main app class
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
     //return table in this panel

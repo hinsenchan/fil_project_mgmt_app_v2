@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hinsenchan
  */
 public class EditMediaPanel extends javax.swing.JPanel {
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private MediaController mediaController;
     private int selectedProjectId;
     private DefaultTableModel model = new DefaultTableModel();
@@ -39,7 +39,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
     /**
      * Creates new form EditMediaPanel
      */
-    public EditMediaPanel(Welcome mainApplication) {        
+    public EditMediaPanel(WelcomeAbstract mainApplication) {        
         this.mainApplication = mainApplication;  
         mediaController = new MediaController(this);
         projectList = mediaController.getProjectsFromDatabase();
@@ -425,7 +425,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
     /**
      * @return the mainApplication
      */
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
 

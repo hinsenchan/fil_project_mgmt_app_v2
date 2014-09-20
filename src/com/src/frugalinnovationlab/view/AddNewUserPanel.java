@@ -13,13 +13,13 @@ import javax.swing.*;
  * @author diptik
  */
 public class AddNewUserPanel extends javax.swing.JPanel {
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private AddNewUserController addnewusercontroller;
 
     /**
      * Creates new form AddNewUserPanel
      */
-    public AddNewUserPanel(Welcome welcome) {
+    public AddNewUserPanel(WelcomeAbstract welcome) {
         initComponents();
         mainApplication = welcome;
         buttonGroup1 = new ButtonGroup();

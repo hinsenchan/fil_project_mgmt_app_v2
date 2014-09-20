@@ -21,10 +21,10 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
      * Creates new form ViewAllUsersPanel
      */
     private JTable jtable1;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private ViewAllUsersController viewalluserscontroller;
 
-    public ViewAllUsersPanel(Welcome welcome) {
+    public ViewAllUsersPanel(WelcomeAbstract welcome) {
         initComponents();
         this.mainApplication = welcome;
         viewalluserscontroller = new ViewAllUsersController(this);
@@ -182,7 +182,7 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
 }

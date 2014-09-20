@@ -38,14 +38,14 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     List<Participants> participants;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
-    Welcome mainApplication;
+    WelcomeAbstract mainApplication;
     private String participantValue;
     MessageFormat header = null;
 
     /**
      * Creates new form ViewProjectParticipants
      */
-    public ViewProjectParticipants(Welcome welcome) {
+    public ViewProjectParticipants(WelcomeAbstract welcome) {
         mainApplication = welcome;
         viewProjectParticipantsController = new ViewProjectParticipantsController(this);
         projectList = viewProjectParticipantsController.getProjectsFromDatabase();
@@ -405,7 +405,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
 

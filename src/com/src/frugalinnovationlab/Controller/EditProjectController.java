@@ -9,6 +9,7 @@ import com.src.frugalinnovationlab.Model.EditAllProjectsModel;
 import com.src.frugalinnovationlab.Model.ViewAllProjectsModel;
 import com.src.frugalinnovationlab.view.EditProjectPanel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,7 +25,7 @@ public class EditProjectController implements ListSelectionListener, TableModelL
 
     private EditProjectPanel gui;
     private EditAllProjectsModel editallprojectsmodel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
 
     public EditProjectController(EditProjectPanel gui) {
         this.gui = gui;

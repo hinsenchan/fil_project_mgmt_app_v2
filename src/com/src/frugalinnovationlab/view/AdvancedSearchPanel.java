@@ -27,12 +27,12 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
     List<ProjectStatus> projectStatusList;
     List<String> categorySelected = new ArrayList<String>();
     DefaultTableModel model = new DefaultTableModel();
-    Welcome mainApplication;
+    WelcomeAbstract mainApplication;
 
     /**
      * Creates new form AddNewProjectPanel
      */
-    public AdvancedSearchPanel(Welcome mainApplication) {
+    public AdvancedSearchPanel(WelcomeAbstract mainApplication) {
         this.mainApplication = mainApplication;
         advancedsearchcontroller = new AdvancedSearchController(this);
         projectStatusList = advancedsearchcontroller.getProjectStatusFromDatabase();
@@ -469,7 +469,7 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel statusProjectLabel;
     // End of variables declaration//GEN-END:variables
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
     

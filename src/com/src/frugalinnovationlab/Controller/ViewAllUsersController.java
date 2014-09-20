@@ -12,6 +12,7 @@ import javax.swing.table.TableModel;
 import javax.swing.event.*;
 import com.src.frugalinnovationlab.view.ViewSpecificUserPanel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 
 /**
  *
@@ -21,7 +22,7 @@ public class ViewAllUsersController implements ListSelectionListener, TableModel
 
     private ViewAllUsersPanel gui;
     private ViewAllUsersModel viewallusermodel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     //private ViewSpecificUserPanel updategui;
 
     public ViewAllUsersController(ViewAllUsersPanel gui) {

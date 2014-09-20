@@ -11,6 +11,7 @@ import com.src.frugalinnovationlab.Entity.ProjectView;
 import com.src.frugalinnovationlab.view.AdvancedSearchPanel;
 import com.src.frugalinnovationlab.Model.AdvancedSearchModel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import java.util.Map;
 import javax.swing.ListSelectionModel;
@@ -28,7 +29,7 @@ public class AdvancedSearchController implements ListSelectionListener{
     
     private AdvancedSearchPanel gui;
     private AdvancedSearchModel advancedsearchmodel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     
     public AdvancedSearchController(AdvancedSearchPanel gui)
     

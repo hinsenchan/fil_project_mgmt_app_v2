@@ -13,6 +13,7 @@ import com.src.frugalinnovationlab.Model.MediaModel;
 import com.src.frugalinnovationlab.view.EditMediaPanel;
 import com.src.frugalinnovationlab.view.ViewMediaPanel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -26,7 +27,7 @@ public class MediaController implements ListSelectionListener {
     private ViewMediaPanel viewMediaPanel;
     private EditMediaPanel editMediaPanel;
     private MediaModel mediaModel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private ListSelectionModel selectModel;    
     
     public MediaController(ViewMediaPanel viewMediaPanel) {

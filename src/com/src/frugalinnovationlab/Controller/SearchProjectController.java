@@ -15,6 +15,7 @@ import javax.swing.table.TableModel;
 import com.src.frugalinnovationlab.view.SearchPanel;
 import com.src.frugalinnovationlab.Model.SearchProjectModel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 
 /**
  *
@@ -23,7 +24,7 @@ import com.src.frugalinnovationlab.view.Welcome;
 public class SearchProjectController implements ListSelectionListener, TableModelListener {    
     private SearchPanel gui;
     private SearchProjectModel searchprojectmodel;       
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     
     public SearchProjectController(SearchPanel gui) {
         this.gui = gui;

@@ -22,12 +22,12 @@ public class SearchPanel extends javax.swing.JPanel   {
     
     private JTable jtable1;
     private SearchProjectController searchcontroller; 
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     
     /**
      * Creates new form SearchPanel
      */
-    public SearchPanel(Welcome mainApplication) {        
+    public SearchPanel(WelcomeAbstract mainApplication) {        
         initComponents();        
         this.mainApplication = mainApplication;
         searchcontroller = new SearchProjectController(this);         
@@ -197,7 +197,7 @@ public class SearchPanel extends javax.swing.JPanel   {
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
 
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
     

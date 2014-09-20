@@ -11,6 +11,7 @@ import com.src.frugalinnovationlab.view.ViewGeneralProjectInformation;
 import com.src.frugalinnovationlab.view.ViewParticipantDetails;
 import com.src.frugalinnovationlab.view.ViewProjectPanel;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -28,7 +29,7 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
 
     private ViewProjectPanel gui;
     private ViewAllProjectsModel viewallprojectsmodel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
 
     public ViewProjectController(ViewProjectPanel gui) {
         this.gui = gui;

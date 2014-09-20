@@ -13,14 +13,14 @@ import com.src.frugalinnovationlab.Controller.ViewParticipantDetailsController;
  * @author hinsen
  */
 public class ViewParticipantDetails extends javax.swing.JPanel {
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private ViewParticipantDetailsController controller;
     
 
     /**
      * Creates new form ViewParticipantInfo
      */
-    public ViewParticipantDetails(Welcome welcome) {
+    public ViewParticipantDetails(WelcomeAbstract welcome) {
         initComponents();
         this.mainApplication = welcome;
         controller = new ViewParticipantDetailsController(this);
@@ -265,7 +265,7 @@ public class ViewParticipantDetails extends javax.swing.JPanel {
     private javax.swing.JLabel viewParticipantDetailsLabel;
     // End of variables declaration//GEN-END:variables
     
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
 

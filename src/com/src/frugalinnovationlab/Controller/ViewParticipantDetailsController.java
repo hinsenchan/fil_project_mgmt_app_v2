@@ -12,6 +12,7 @@ import com.src.frugalinnovationlab.Model.EditProjectParticipantsModel;
 import com.src.frugalinnovationlab.view.ViewGeneralProjectInformation;
 import com.src.frugalinnovationlab.view.ViewParticipantDetails;
 import com.src.frugalinnovationlab.view.Welcome;
+import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
@@ -25,7 +26,7 @@ import javax.swing.event.ListSelectionListener;
 public class ViewParticipantDetailsController implements ListSelectionListener {
     private ViewParticipantDetails gui;
     private EditProjectParticipantsModel editProjectParticipantsModel;
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
 
     public ViewParticipantDetailsController(ViewParticipantDetails gui) {
         this.gui = gui;

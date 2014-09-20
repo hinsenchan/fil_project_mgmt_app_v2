@@ -31,13 +31,13 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     List<Project> projectList;
     List<String> categoriesList;
     List<ProjectStatus> projectStatusList;
-    Welcome mainApplication;
+    WelcomeAbstract mainApplication;
     
 
     /**
      * Creates new form ViewGeneralProjectInformation
      */
-    public ViewGeneralProjectInformation(Welcome welcome) {
+    public ViewGeneralProjectInformation(WelcomeAbstract welcome) {
         categoriesList = new ArrayList<String>();
         viewGeneralProjectInformationController = new ViewGeneralProjectInformationController(this);
         projectStatusList = viewGeneralProjectInformationController.getProjectStatusFromDatabase();
@@ -558,7 +558,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private javax.swing.JTextArea printTextField = new javax.swing.JTextArea();
 
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
 

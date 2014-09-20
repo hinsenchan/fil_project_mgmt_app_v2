@@ -14,11 +14,11 @@ import javax.swing.table.AbstractTableModel;
  * @author Hinsen Chan
  */
 public class EditProjectPanel extends javax.swing.JPanel {
-    private Welcome mainApplication;
+    private WelcomeAbstract mainApplication;
     private EditProjectController editProjectController;
 
     //default constructor
-    public EditProjectPanel(Welcome welcome) {
+    public EditProjectPanel(WelcomeAbstract welcome) {
         initComponents();
         //set reference to main app class
         this.mainApplication = welcome;
@@ -195,7 +195,7 @@ public class EditProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel viewAllProjectsLabel;
     // End of variables declaration//GEN-END:variables
     //return reference to main app class
-    public Welcome getMainApplication() {
+    public WelcomeAbstract getMainApplication() {
         return mainApplication;
     }
     //return table in this panel

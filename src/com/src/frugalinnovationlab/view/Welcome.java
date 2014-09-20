@@ -18,7 +18,7 @@ import javax.swing.tree.TreePath;
  *
  * @author diptik
  */
-public class Welcome extends javax.swing.JFrame {
+public class Welcome extends WelcomeAbstract {
 
     private AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
     private ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
