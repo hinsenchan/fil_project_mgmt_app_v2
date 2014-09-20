@@ -95,27 +95,46 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addNewProjectTextArea" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                              <Component id="generalProjectInfoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="statusProjectLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="categoryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="locationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="scopeLabel" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="outcomeLabel" alignment="0" pref="62" max="32767" attributes="0"/>
-                                          <Component id="tagsOptionsLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="addNewProjectTextArea" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                      <Component id="generalProjectInfoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="351" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="statusProjectLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="categoryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="locationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="scopeLabel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="outcomeLabel" alignment="0" pref="62" max="32767" attributes="0"/>
+                                                  <Component id="tagsOptionsLabel" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="startDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="newTagsLabelField" min="-2" max="-2" attributes="0"/>
-                                          <Component id="startDateLabel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="shortDescriptionLabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="projectLocationTextField" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="shortDescriptionTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="projectLocationTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="scopeTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="outcomeTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="computerEngineeringCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="projectStatusComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -123,63 +142,54 @@
                                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                           <Component id="electricalEngineeringCheckBox" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="scopeTextField" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="startDate" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="endDate" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="shortDescriptionTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="projectNameTextField" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="projectIdTextField" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="civilEngineeringCheckBox" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                              <Component id="mechanicalEngineeringCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="civilEngineeringCheckBox" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="mechanicalEngineeringCheckBox" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="addTagsButton" min="-2" pref="146" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="moveToParticipants" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="deleteTagButton" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="newTagsTextField" pref="0" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="addTagButton" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
-                                          <Component id="moveToParticipants" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="newTagsTextField" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="addNewTags" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="deleteTagButton" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="outcomeTextField" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="projectNameTextField" max="32767" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="shortDescriptionLabel" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane1" min="-2" pref="254" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="273" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                               <Component id="logoLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="397" max="32767" attributes="0"/>
+                              <EmptySpace pref="381" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                               <Component id="logoLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="397" max="32767" attributes="0"/>
+                              <EmptySpace pref="381" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -219,10 +229,10 @@
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="65" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="statusProjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="projectStatusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -267,37 +277,39 @@
                               <Component id="outcomeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="outcomeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tagsOptionsLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="tagsOptionsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="deleteTagButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addTagsButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="addTagButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="newTagsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="addNewTags" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="deleteTagButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="newTagsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="newTagsLabelField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="moveToParticipants" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="103" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                               <Component id="logoLabel2" min="-2" pref="363" max="-2" attributes="0"/>
-                              <EmptySpace pref="259" max="32767" attributes="0"/>
+                              <EmptySpace pref="244" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                               <Component id="logoLabel6" min="-2" pref="363" max="-2" attributes="0"/>
-                              <EmptySpace pref="259" max="32767" attributes="0"/>
+                              <EmptySpace pref="244" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -579,7 +591,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Next"/>
+                    <Property name="text" type="java.lang.String" value="Next Step"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moveToParticipantsActionPerformed"/>
@@ -637,22 +649,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="addNewTags">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Add New Tags"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNewTagsActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="newTagsLabelField">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Helvetica Neue" size="14" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="New Tags"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JTextField" name="newTagsTextField">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
@@ -668,6 +664,25 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteTagButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="addTagsButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Add New Tags..."/>
+                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[146, 29]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTagsButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="addTagButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Add"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTagButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -756,7 +771,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="131" max="32767" attributes="0"/>
+                          <EmptySpace pref="114" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -799,7 +814,7 @@
                               <Component id="deleteParticipantButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="addParticipantButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="131" max="32767" attributes="0"/>
+                          <EmptySpace pref="103" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

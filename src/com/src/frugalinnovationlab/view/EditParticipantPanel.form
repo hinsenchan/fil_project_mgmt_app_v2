@@ -387,7 +387,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseParticipantComboBoxActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="chooseParticipantComboBox.removeAllItems();&#xa;chooseParticipantComboBox.addItem(new ComboItem(&quot;Select Participant&quot;, &quot;&quot;));&#xa;this.sortParticipants();&#xa;for(int i = 0; i &lt; participants.size(); i++){            &#xa;           String fullName = participants.get(i).getNameTitle().concat(&quot; &quot;+&#xa;                   participants.get(i).getFirstname()).concat(&quot; &quot;+participants.get(i).getLastname());&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }"/>
+            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="chooseParticipantComboBox.removeAllItems();&#xa;chooseParticipantComboBox.addItem(new ComboItem(&quot;Select Participant&quot;, &quot;&quot;));&#xa;this.sortParticipants();&#xa;for(int i = 0; i &lt; participants.size(); i++){            &#xa;           String fullName = participants.get(i).getLastname().concat(&quot;, &quot;+participants.get(i).getFirstname()).concat(&quot; &quot; +participants.get(i).getNameTitle());&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }"/>
           </AuxValues>
         </Component>
       </SubComponents>

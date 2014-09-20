@@ -56,7 +56,7 @@ public class EditParticipantService {
         TypedQuery<Participants> query = manager.createQuery("SELECT NEW "
                 + "com.src.frugalinnovationlab.Entity.Participants(p.id , p.nameTitle, p.firstname"
                 + ", p.middlename, p.lastname, p.position, p.email, p.phone, p.organization) "
-                + "FROM Participants p", Participants.class);
+                + "FROM Participants p order by p.lastname", Participants.class);
         List<Participants> result = query.getResultList();
         return result;
     }

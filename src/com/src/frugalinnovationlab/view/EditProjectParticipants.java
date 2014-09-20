@@ -159,8 +159,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
     this.sortParticipants();
     for(int i = 0; i < participants.size(); i++){
-        String fullName = participants.get(i).getNameTitle().concat(" "+
-            participants.get(i).getFirstname()).concat(" "+participants.get(i).getLastname());
+        String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname()).concat(" " +participants.get(i).getNameTitle());
+        chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
         chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
     }
     chooseParticipantComboBox.addActionListener(new java.awt.event.ActionListener() {
