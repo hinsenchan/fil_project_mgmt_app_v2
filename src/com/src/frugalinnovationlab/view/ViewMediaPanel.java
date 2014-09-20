@@ -235,6 +235,37 @@ public class ViewMediaPanel extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE);
             }
         }
+        
+        /*
+                String projectDirectory = "";
+        try {
+            File projectDirectoryFile = new File(ViewMediaPanel.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            projectDirectory = projectDirectoryFile.getParent();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Unable to Locate Application Directory");
+        } 
+        
+        final int LOCATION = 2;
+        int selectedFile = jTable.getSelectedRow();
+        String fileLocation;
+        //String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
+        fileLocation = projectDirectory + (String) jTable.getValueAt(selectedFile, LOCATION);
+        editProjectLabel.setText(fileLocation);
+
+        if (!fileLocation.isEmpty()) {
+            try {
+                File file = new File(fileLocation);
+            
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(file);
+                }
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        */
     }//GEN-LAST:event_viewMediaButtonActionPerformed
 
 

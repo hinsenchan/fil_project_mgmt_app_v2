@@ -1475,46 +1475,45 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         selectFileTextField.setText(f.getAbsolutePath());
 
         /*
-         //FileNameExtensionFilter filter = new FileNameExtensionFilter("Adobe Files", "pdf", "dmg");
-         addAdobeTextField.setText("");
-         JFileChooser chooser = new JFileChooser("File Dialog");
-         //chooser.setFileFilter(filter);
-         //File f = chooser.getSelectedFile();
-         chooser.setMultiSelectionEnabled(true);
-         chooser.showOpenDialog(this);
-         File[] f = chooser.getSelectedFiles();
-         String allfilenames = "";
-         if (addAdobeTextField.getText() != null && addAdobeTextField.getText() != "") {
-         allfilenames = addAdobeTextField.getText();
-         //addAdobeTextField.setText(chooser.getSelectedFile().getAbsolutePath());
-         }
-
-         for (int i = 0; i < f.length; i++) {
-         allfilenames = allfilenames.concat(f[i].getAbsolutePath()).concat(",");
-         }
-         addAdobeTextField.setText(allfilenames);
-
-         String[] selectedFilePaths = addAdobeTextField.getText().split(",");
-
-         for (int i = 0; i < selectedFilePaths.length; i++) {
-         int lastIndex = selectedFilePaths[i].lastIndexOf("\\");
-         int dotIndex = selectedFilePaths[i].lastIndexOf(".");
-         String selectedFileName = selectedFilePaths[i].substring(lastIndex + 1, dotIndex);
-         MediaAdobe m = new MediaAdobe();
-         MediaAdobePK mpk = new MediaAdobePK();
-         m.setTitle(selectedFileName);
-         m.setFileType("PDF");
-         mpk.setFilePath(selectedFilePaths[i]);
-         m.setMediaAdobePK(mpk);
-         adobeFileList.add(m);
-         }
-
-         for (int i = 0; i < adobeFileList.size(); i++) {
-         System.out.println("name : " + adobeFileList.get(i).getTitle());
-         System.out.println("name : " + adobeFileList.get(i).getMediaAdobePK().getFilePath());
-
-         }
-         */
+        selectFileTextField.setText("");
+        JFileChooser chooser = new JFileChooser("File Dialog");
+        chooser.setMultiSelectionEnabled(false);
+        chooser.showOpenDialog(this);
+        File f = chooser.getSelectedFile();
+        //selectFileTextField.setText(f.getAbsolutePath());        
+        
+        String projectDirectory = "";
+        
+        try {
+            File projectDirectoryFile = new File(AddNewProjectPanel.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            projectDirectory = projectDirectoryFile.getParent();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel3, "Unable to Locate Application Directory");
+        }        
+                
+        try {
+            if (projectNameTextField.getText().equals("") || projectNameTextField.getText() == null) {
+                JOptionPane.showMessageDialog(jPanel3, "Please Enter a Project Name in  General Details First.");                
+            }
+            else {
+                if (!Files.exists(new File(projectDirectory + "/" + projectNameTextField.getText()).toPath())) {
+                    Files.createDirectory(new File(projectDirectory + "/" + projectNameTextField.getText()).toPath());
+                }
+                File source = f;
+                File dest = new File(projectDirectory + "/" + projectNameTextField.getText() + "/" + f.getName());
+                
+                Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                //selectFileTextField.setText("/" + projectNameTextField.getText() + "/" + f.getName());
+                selectFileTextField.setText(source.toPath().toString());
+                fileNameTextField.setText(dest.toPath().toString());
+            }
+        } catch(FileAlreadyExistsException e) {
+            JOptionPane.showMessageDialog(jPanel3, "File or Folder already Exists");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(jPanel3, "File IO Error. Contact Admin");
+            e.printStackTrace();
+        }                
+        */
     }//GEN-LAST:event_chooseAFileButtonActionPerformed
 
     private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
