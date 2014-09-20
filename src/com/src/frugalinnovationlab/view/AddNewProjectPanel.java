@@ -159,8 +159,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         listProjectParticipantsLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        deleteParticipantButton = new javax.swing.JButton();
         addParticipantButton1 = new javax.swing.JButton();
+        deleteParticipantButton = new javax.swing.JButton();
         addNewParticipantButton = new javax.swing.JButton();
         addParticipantPanel = new javax.swing.JPanel();
         addTitleComboBox = new javax.swing.JComboBox();
@@ -190,7 +190,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         fileNameTextField = new javax.swing.JTextField();
         cadDocumentLabel1 = new javax.swing.JLabel();
         generalProjectInfoLabel4 = new javax.swing.JLabel();
-        logoLabel4 = new javax.swing.JLabel();
         fileNameLabel = new javax.swing.JLabel();
         fileTypeComboBox = new javax.swing.JComboBox();
         addMediaButton = new javax.swing.JButton();
@@ -213,10 +212,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         createProjectPane.setVerifyInputWhenFocusTarget(false);
 
         generalinfoScrollPane.setBorder(null);
+        generalinfoScrollPane.setPreferredSize(new java.awt.Dimension(716, 793));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.setPreferredSize(new java.awt.Dimension(716, 773));
+        mainPanel.setPreferredSize(new java.awt.Dimension(716, 793));
 
         addNewProjectTextArea.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         addNewProjectTextArea.setText("Add New Project");
@@ -247,6 +247,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jTextArea1.setToolTipText("Enter Long Description");
         jTextArea1.setWrapStyleWord(true);
@@ -489,17 +490,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(addTagButton)))))
                             .addComponent(projectNameTextField))
-                        .addGap(0, 83, Short.MAX_VALUE))))
+                        .addGap(0, 68, Short.MAX_VALUE))))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel2)
-                    .addContainerGap(381, Short.MAX_VALUE)))
+                    .addContainerGap(366, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel6)
-                    .addContainerGap(381, Short.MAX_VALUE)))
+                    .addContainerGap(366, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,17 +581,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(moveToParticipants)
-                .addContainerGap())
+                .addGap(18, 18, 18))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(244, Short.MAX_VALUE)))
+                    .addContainerGap(256, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(244, Short.MAX_VALUE)))
+                    .addContainerGap(256, Short.MAX_VALUE)))
         );
 
         bioengineeringCheckBox.getAccessibleContext().setAccessibleName("Bio Engineering");
@@ -672,21 +673,21 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable1);
 
+        addParticipantButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        addParticipantButton1.setForeground(new java.awt.Color(0, 95, 45));
+        addParticipantButton1.setText("Next Step");
+        addParticipantButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addParticipantButton1ActionPerformed(evt);
+            }
+        });
+
         deleteParticipantButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         deleteParticipantButton.setForeground(new java.awt.Color(95, 10, 36));
         deleteParticipantButton.setText("Delete Participant");
         deleteParticipantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteParticipantButtonActionPerformed(evt);
-            }
-        });
-
-        addParticipantButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        addParticipantButton1.setForeground(new java.awt.Color(0, 95, 45));
-        addParticipantButton1.setText("Next");
-        addParticipantButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addParticipantButton1ActionPerformed(evt);
             }
         });
 
@@ -936,13 +937,15 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         createProjectPane.addTab("Participants", participantsScrollPane);
 
         multimediaScrollPane.setBorder(null);
+        multimediaScrollPane.setPreferredSize(new java.awt.Dimension(600, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(600, 600));
 
         selectFileTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
 
         nextButton.setForeground(new java.awt.Color(0, 95, 45));
-        nextButton.setText("Next");
+        nextButton.setText("Next Step");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
@@ -977,10 +980,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         generalProjectInfoLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         generalProjectInfoLabel4.setText("Step 3 - Project Multimedia");
 
-        logoLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        logoLabel4.setForeground(new java.awt.Color(0, 95, 45));
-        logoLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
-
         fileNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         fileNameLabel.setText("File Name");
 
@@ -1006,7 +1005,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(jTable2);
 
-        deleteMediaButton.setText("Delete Media");
+        deleteMediaButton.setText("Remove Media");
         deleteMediaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteMediaButtonActionPerformed(evt);
@@ -1019,78 +1018,66 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(generalProjectInfoLabel4)
                     .addComponent(addNewProjectTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(156, 156, 156)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(adobeFilesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cadDocumentLabel1)
-                                    .addComponent(fileNameLabel))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(selectFileTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                            .addComponent(fileTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(chooseAFileButton))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(deleteMediaButton))
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(fileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(logoLabel4)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nextButton)
-                                        .addGap(28, 28, 28))))
+                                .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(selectFileTextField)
+                                .addGap(18, 18, 18)
+                                .addComponent(chooseAFileButton)
+                                .addGap(198, 198, 198))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(300, 300, 300)
-                                .addComponent(addMediaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(fileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addGap(480, 480, 480))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nextButton)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fileNameLabel)
+                                    .addComponent(cadDocumentLabel1)
+                                    .addComponent(adobeFilesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                                .addComponent(addMediaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteMediaButton))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(207, 207, 207))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addNewProjectTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(generalProjectInfoLabel4)
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(selectFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chooseAFileButton)
-                            .addComponent(adobeFilesLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cadDocumentLabel1)
-                            .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fileNameLabel)
-                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addMediaButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(logoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
+                .addComponent(generalProjectInfoLabel4)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteMediaButton)
-                    .addComponent(nextButton))
-                .addContainerGap(299, Short.MAX_VALUE))
+                    .addComponent(selectFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chooseAFileButton)
+                    .addComponent(adobeFilesLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadDocumentLabel1)
+                    .addComponent(fileTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileNameLabel)
+                    .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMediaButton)
+                    .addComponent(deleteMediaButton))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nextButton)
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         multimediaScrollPane.setViewportView(jPanel3);
@@ -1695,7 +1682,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel listProjectParticipantsLabel;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel logoLabel2;
-    private javax.swing.JLabel logoLabel4;
     private javax.swing.JLabel logoLabel5;
     private javax.swing.JLabel logoLabel6;
     private javax.swing.JPanel mainPanel;
