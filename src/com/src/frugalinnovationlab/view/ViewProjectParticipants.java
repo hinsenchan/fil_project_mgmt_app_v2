@@ -285,8 +285,10 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
             for (int i = 0; i < result.size(); i++) {
                 Object[] values = (Object[]) result.get(i);
                 participantValue = String.valueOf(values[3]);
-                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                        .concat(" ").concat(values[2].toString());
+                String participantItem = values[2].toString().concat(", ").concat(values[1].toString());
+                if(!values[0].toString().equalsIgnoreCase("")){
+                    participantItem = participantItem.concat(" ("+values[0].toString()+")");
+                }
                 String roleValue = values[4].toString();
                 String roleItem = values[5].toString();
                 String email = values[6].toString();

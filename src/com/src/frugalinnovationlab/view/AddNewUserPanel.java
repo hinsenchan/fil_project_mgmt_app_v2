@@ -318,19 +318,6 @@ public class AddNewUserPanel extends javax.swing.JPanel {
             if (flag) {
                 JOptionPane.showMessageDialog(centerPanel, "New UserID" + "  " + array[3] + " " + "has been added succesfully");
 
-                //centerPanel.removeAll();
-                //centerPanel.repaint();
-                //centerPanel.revalidate();
-                /*
-                AddNewUserPanel addnewusr = new AddNewUserPanel();
-
-                centerPanel.setLayout(new java.awt.BorderLayout());
-                centerPanel.removeAll();
-                centerPanel.add(addnewusr);
-                centerPanel.revalidate();
-                centerPanel.repaint();
-                */
-                
                 mainApplication.getContentPanel().remove(mainApplication.getAddNewUserPanel());
                 mainApplication.setAddNewUserPanel(new AddNewUserPanel(mainApplication));
                 mainApplication.getContentPanel().add(mainApplication.getAddNewUserPanel());
@@ -344,8 +331,6 @@ public class AddNewUserPanel extends javax.swing.JPanel {
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
                 //initComponents();
-
-
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed

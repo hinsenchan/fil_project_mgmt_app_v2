@@ -129,7 +129,12 @@ public class EditParticipantPanel extends javax.swing.JPanel {
 
         jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 95, 45));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "Mr.", "Mrs.", "Miss.", "Dr." }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "PHD", "MD" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         logoLabel2.setBackground(new java.awt.Color(255, 255, 255));
         logoLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/scu-mission.png"))); // NOI18N
@@ -266,7 +271,10 @@ public class EditParticipantPanel extends javax.swing.JPanel {
         chooseParticipantComboBox.addItem(new ComboItem("Select Participant", ""));
         this.sortParticipants();
         for(int i = 0; i < participants.size(); i++){
-            String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname()).concat(" " +participants.get(i).getNameTitle());
+            String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname());
+            if(!participants.get(i).getNameTitle().equalsIgnoreCase("")){
+                fullName = fullName.concat(" (" +participants.get(i).getNameTitle()+")");
+            }
             chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
         }
 
@@ -296,6 +304,9 @@ public class EditParticipantPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String[] array = new String[9];
         array[0] = jComboBox1.getSelectedItem().toString();
+        if(array[0].equalsIgnoreCase("Choose a Title")){
+            array[0] = "";
+        }
         array[1] = firstNameTextField.getText();
         array[2] = middlenameTextField.getText();
         array[3] = lastNameTextField.getText();
@@ -313,9 +324,6 @@ public class EditParticipantPanel extends javax.swing.JPanel {
                 || array[3] == null || array[3].equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter first and last name");
         } 
-        else if (array[0] == null || array[0].equals("Choose a Title")) {
-            JOptionPane.showMessageDialog(this, "Please choose a title");
-        }
         else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
             JOptionPane.showMessageDialog(this, "Please enter a valid email address");
         }
@@ -376,12 +384,22 @@ public class EditParticipantPanel extends javax.swing.JPanel {
                 emailTextField.setText(values[5].toString());
                 phoneTextField.setText(values[6].toString());
                 organizationTextField.setText(values[7].toString());
-                jComboBox1.setSelectedItem(values[0].toString());
+                if(values[0].toString().equals("")){
+                    jComboBox1.setSelectedItem("Choose a Title");
+                } else {
+                    jComboBox1.setSelectedItem(values[0].toString());
+                }
+                
             }
         }
 
 
     }//GEN-LAST:event_chooseParticipantComboBoxActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JLabel addNewUserTextArea;

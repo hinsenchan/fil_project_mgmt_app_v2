@@ -14,18 +14,12 @@ import java.util.List;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import com.src.frugalinnovationlab.helper.EmailFormatValidator;
 import com.src.frugalinnovationlab.helper.PhoneNumberValidator;
-import com.src.frugalinnovationlab.helper.Printer;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
-import java.awt.print.PageFormat;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -102,7 +96,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         phoneLabel = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
         addTitleLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -159,9 +152,12 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
     this.sortParticipants();
     for(int i = 0; i < participants.size(); i++){
-        String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname()).concat(" " +participants.get(i).getNameTitle());
+        String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname());
+        if(!participants.get(i).getNameTitle().equals("")){
+            fullName = fullName.concat(" (" +participants.get(i).getNameTitle()+")");
+        }
         chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
-        chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
+
     }
     chooseParticipantComboBox.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,13 +372,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
 
-    jButton1.setText("Print");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-        }
-    });
-
     jTable2.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
@@ -444,7 +433,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                                 .addComponent(deleteParticipantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addGap(64, 64, 64))
     );
@@ -478,7 +466,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
                         .addComponent(deleteParticipantButton)
                         .addComponent(updateProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -531,8 +518,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 //System.out.println("part 1 : " +projectParticipants.getParticipants().getId());
                 //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
                 String participantValue = String.valueOf(values[3]);
-                String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                        .concat(" ").concat(values[2].toString());
+                String participantItem = values[2].toString().concat(", ").concat(values[1].toString());
+                if(!values[0].toString().equalsIgnoreCase("")){
+                    participantItem = participantItem.concat(" ("+values[0].toString()+")");
+                }
                 String roleValue = values[4].toString();
                 String roleItem = values[5].toString();
                 ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
@@ -721,27 +710,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addNewParticipantRoleComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        PrinterJob pjob = PrinterJob.getPrinterJob();
-        PageFormat preformat = pjob.defaultPage();
-        preformat.setOrientation(PageFormat.LANDSCAPE);
-        PageFormat postformat = pjob.pageDialog(preformat);
-//If user does not hit cancel then print.
-        if (preformat != postformat) {
-            //Set print component
-            pjob.setPrintable(new Printer(jPanel1), postformat);
-            if (pjob.printDialog()) {
-                try {
-                    pjob.print();
-                } catch (PrinterException ex) {
-                    Logger.getLogger(EditProjectParticipants.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
@@ -770,7 +738,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -177,7 +177,7 @@
                                       </Group>
                                       <Component id="projectNameTextField" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="129" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -185,14 +185,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                               <Component id="logoLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="366" max="32767" attributes="0"/>
+                              <EmptySpace pref="397" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                               <Component id="logoLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="366" max="32767" attributes="0"/>
+                              <EmptySpace pref="397" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -297,7 +297,7 @@
                                   <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                           <Component id="moveToParticipants" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -305,14 +305,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                               <Component id="logoLabel2" min="-2" pref="363" max="-2" attributes="0"/>
-                              <EmptySpace pref="256" max="32767" attributes="0"/>
+                              <EmptySpace pref="259" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                               <Component id="logoLabel6" min="-2" pref="363" max="-2" attributes="0"/>
-                              <EmptySpace pref="256" max="32767" attributes="0"/>
+                              <EmptySpace pref="259" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -673,9 +673,6 @@
                 <Component class="javax.swing.JButton" name="addTagsButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add New Tags..."/>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[146, 29]"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTagsButtonActionPerformed"/>
@@ -775,7 +772,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="114" max="32767" attributes="0"/>
+                          <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -818,7 +815,7 @@
                               <Component id="deleteParticipantButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="addParticipantButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="103" max="32767" attributes="0"/>
+                          <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -886,7 +883,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
                     </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="this.sortParticipants();&#xa;for(int i = 0; i &lt; participants.size(); i++){&#xa;           String fullName = participants.get(i).getNameTitle().concat(&quot; &quot;+&#xa;                   participants.get(i).getFirstname()).concat(&quot; &quot;+participants.get(i).getLastname());&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }">
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="this.sortParticipants();&#xa;for(int i = 0; i &lt; participants.size(); i++){&#xa;           String fullName = participants.get(i).getLastname().concat(&quot;, &quot;+participants.get(i).getFirstname());&#xa;&#x9;&#x9;   if(!participants.get(i).getNameTitle().equalsIgnoreCase(&quot;&quot;)) {&#xa;                        fullName = fullName.concat(&quot; (&quot;+participants.get(i).getNameTitle()+&quot;)&quot;);&#xa;&#x9;&#x9;   }&#xa;           chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));&#xa;       }">
                       <StringArray count="1">
                         <StringItem index="0" value="Choose A Participant"/>
                       </StringArray>
@@ -1126,12 +1123,10 @@
                           <Color blue="2d" green="5f" red="0" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="5">
+                          <StringArray count="3">
                             <StringItem index="0" value="Choose a Title"/>
-                            <StringItem index="1" value="Mr."/>
-                            <StringItem index="2" value="Mrs."/>
-                            <StringItem index="3" value="Miss."/>
-                            <StringItem index="4" value="Dr."/>
+                            <StringItem index="1" value="PHD"/>
+                            <StringItem index="2" value="MD"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1358,7 +1353,7 @@
                                               <Component id="cadDocumentLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="adobeFilesLabel1" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="272" max="32767" attributes="0"/>
+                                          <EmptySpace pref="294" max="32767" attributes="0"/>
                                           <Component id="addMediaButton" min="-2" pref="111" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="deleteMediaButton" min="-2" max="-2" attributes="0"/>
@@ -1400,7 +1395,7 @@
                           <Component id="jScrollPane5" min="-2" pref="255" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="nextButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="266" max="32767" attributes="0"/>
+                          <EmptySpace pref="289" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

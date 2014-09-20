@@ -407,7 +407,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         });
 
         addTagsButton.setText("Add New Tags...");
-        addTagsButton.setSize(new java.awt.Dimension(146, 29));
         addTagsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addTagsButtonActionPerformed(evt);
@@ -490,17 +489,17 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(addTagButton)))))
                             .addComponent(projectNameTextField))
-                        .addGap(0, 68, Short.MAX_VALUE))))
+                        .addGap(0, 129, Short.MAX_VALUE))))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel2)
-                    .addContainerGap(366, Short.MAX_VALUE)))
+                    .addContainerGap(397, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(243, 243, 243)
                     .addComponent(logoLabel6)
-                    .addContainerGap(366, Short.MAX_VALUE)))
+                    .addContainerGap(397, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -579,19 +578,19 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(addTagButton)
                                 .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(moveToParticipants)
                 .addGap(18, 18, 18))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
+                    .addContainerGap(259, Short.MAX_VALUE)))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(182, 182, 182)
                     .addComponent(logoLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
+                    .addContainerGap(259, Short.MAX_VALUE)))
         );
 
         bioengineeringCheckBox.getAccessibleContext().setAccessibleName("Bio Engineering");
@@ -640,8 +639,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
         this.sortParticipants();
         for(int i = 0; i < participants.size(); i++){
-            String fullName = participants.get(i).getNameTitle().concat(" "+
-                participants.get(i).getFirstname()).concat(" "+participants.get(i).getLastname());
+            String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname());
+            if(!participants.get(i).getNameTitle().equalsIgnoreCase("")) {
+                fullName = fullName.concat(" ("+participants.get(i).getNameTitle()+")");
+            }
             chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
         }
         chooseParticipantComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -702,7 +703,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         addTitleComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addTitleComboBox.setForeground(new java.awt.Color(0, 95, 45));
-        addTitleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "Mr.", "Mrs.", "Miss.", "Dr." }));
+        addTitleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "PHD", "MD" }));
 
         addTitleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addTitleLabel.setText("Title");
@@ -894,7 +895,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                         .addComponent(addNewParticipantButton)
                                         .addComponent(addParticipantButton)))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         mainPanel3Layout.setVerticalGroup(
             mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -929,7 +930,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addGroup(mainPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteParticipantButton)
                     .addComponent(addParticipantButton1))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         participantsScrollPane.setViewportView(mainPanel3);
@@ -1044,7 +1045,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                     .addComponent(fileNameLabel)
                                     .addComponent(cadDocumentLabel1)
                                     .addComponent(adobeFilesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                                 .addComponent(addMediaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(deleteMediaButton))
@@ -1077,7 +1078,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nextButton)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         multimediaScrollPane.setViewportView(jPanel3);
@@ -1310,6 +1311,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String[] array = new String[8];
         array[0] = addTitleComboBox.getSelectedItem().toString();
+        if(array[0].equalsIgnoreCase("Choose a Title")) {
+            array[0] = "";
+        }
         array[1] = firstNameTextField.getText();
         array[2] = "";
         array[3] = lastNameTextField.getText();
@@ -1321,8 +1325,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         if (addNewParticipantRoleComboBox.getSelectedItem() == null
                 || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
             JOptionPane.showMessageDialog(mainPanel, "Please choose a role");
-        } else if (array[0] == null || array[0].equals("Choose a Title")) {
-            JOptionPane.showMessageDialog(mainPanel, "Please choose a title");
         } else if (array[1] == null || array[1].equals("") || array[3] == null || array[3].equals("")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter first and last name");
         } else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
@@ -1338,8 +1340,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 chooseParticipantComboBox.removeAllItems();
                 chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
-                    String fullName = participants.get(i).getNameTitle().concat(" "
-                            + participants.get(i).getFirstname()).concat(" " + participants.get(i).getLastname());
+                    String fullName = participants.get(i).getFirstname().concat(" " + participants.get(i).getLastname());
+                    if(!participants.get(i).getNameTitle().equalsIgnoreCase("")){
+                        fullName = fullName.concat(" ("+participants.get(i).getNameTitle()+")");
+                    }
                     chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
                 }
                 //initComponents();
