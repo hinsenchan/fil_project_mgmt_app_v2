@@ -13,10 +13,10 @@ import javax.swing.tree.TreePath;
  *
  * @author diptik
  */
-public class ViewerWelcome extends javax.swing.JFrame {
+public class ViewerWelcome extends Welcome {
 
-    final AddNewUserPanel addNewUserPanel = new AddNewUserPanel();
-    //final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
+    final AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
+    final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
     final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
     //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();

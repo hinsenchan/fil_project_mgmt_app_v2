@@ -20,11 +20,11 @@ import javax.swing.tree.TreePath;
  */
 public class Welcome extends javax.swing.JFrame {
 
-    final AddNewUserPanel addNewUserPanel = new AddNewUserPanel();
+    private AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
     private ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
-    final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel(this);
+    //final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
+    //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel(this);
     private SearchPanel searchPanel = new SearchPanel(this);
     //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
@@ -318,7 +318,7 @@ public class Welcome extends javax.swing.JFrame {
                     //getContentPanel().remove(addNewParticipantPanel);
                     getContentPanel().remove(editParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
-                    getContentPanel().remove(addNewUserPanel);
+                    getContentPanel().remove(getAddNewUserPanel());
                 } else if (lastComponent.equals("View All Users")) {
                     getContentPanel().remove(viewAllUsersPanel);
                 } else if (lastComponent.equals("Advanced Search")) {
@@ -361,10 +361,12 @@ public class Welcome extends javax.swing.JFrame {
                 getContentPanel().add(new EditParticipantPanel());
                 lastComponent = "Edit Participant";
             } else if (path.toString().contains("Add New User")) {
-                getContentPanel().add(new AddNewUserPanel());
+                addNewUserPanel = new AddNewUserPanel(this);
+                getContentPanel().add(addNewUserPanel);
                 lastComponent = "Add New User";
             } else if (path.toString().contains("View All Users")) {
-                getContentPanel().add(new ViewAllUsersPanel(this));
+                viewAllUsersPanel = new ViewAllUsersPanel(this);
+                getContentPanel().add(viewAllUsersPanel);
                 lastComponent = "View All Users";
             } else if (path.toString().contains("Advanced Search")) {
                 advancedSearchPanel = new AdvancedSearchPanel(this);
@@ -660,6 +662,20 @@ public class Welcome extends javax.swing.JFrame {
 
     public void setViewAllUsersPanel(ViewAllUsersPanel viewAllUsersPanel) {
         this.viewAllUsersPanel = viewAllUsersPanel;
+    }
+
+    /**
+     * @return the addNewUserPanel
+     */
+    public AddNewUserPanel getAddNewUserPanel() {
+        return addNewUserPanel;
+    }
+
+    /**
+     * @param addNewUserPanel the addNewUserPanel to set
+     */
+    public void setAddNewUserPanel(AddNewUserPanel addNewUserPanel) {
+        this.addNewUserPanel = addNewUserPanel;
     }
     
     

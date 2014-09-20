@@ -39,42 +39,15 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         jtable1.getColumnModel().getColumn(6).setMinWidth(0);
         jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
 
-        final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        final JScrollPane scrollpane = new JScrollPane(jtable1, 
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(scrollpane, BorderLayout.CENTER);
 
-        final int rows = 14;
+        final int rows = 25;
 
         Dimension d = jtable1.getPreferredSize();
         scrollpane.setPreferredSize(new Dimension(d.width, jtable1.getRowHeight() * rows));
-
-        JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-
-        JButton next = new JButton(">");
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                int height = jtable1.getRowHeight() * (rows - 2);
-
-                JScrollBar bar = scrollpane.getVerticalScrollBar();
-                bar.setValue(bar.getValue() + height);
-            }
-        });
-        JButton previous = new JButton("<");
-        previous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                int height = jtable1.getRowHeight() * (rows - 2);
-
-                JScrollBar bar = scrollpane.getVerticalScrollBar();
-                bar.setValue(bar.getValue() - height);
-            }
-        });
-
-        navigation.add(previous);
-        navigation.add(next);
-
-
-        tablePanel.add(navigation, BorderLayout.SOUTH);
     }
 
     public void updateTable() {
@@ -180,9 +153,9 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int selrow = jtable1.getSelectedRow();
         String username = (String) jtable1.getModel().getValueAt(selrow, 0);
-        System.out.println("username is : " + username);
+        //System.out.println("username is : " + username);
         int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
-        System.out.println(n + "value for dialog box");
+        //System.out.println(n + "value for dialog box");
         if (n == 0) {
             boolean flag = viewalluserscontroller.DeleteUser(username);
             if (flag == true) {

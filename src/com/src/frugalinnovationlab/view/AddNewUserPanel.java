@@ -13,15 +13,15 @@ import javax.swing.*;
  * @author diptik
  */
 public class AddNewUserPanel extends javax.swing.JPanel {
-
+    private Welcome mainApplication;
     private AddNewUserController addnewusercontroller;
 
     /**
      * Creates new form AddNewUserPanel
      */
-    public AddNewUserPanel() {
+    public AddNewUserPanel(Welcome welcome) {
         initComponents();
-
+        mainApplication = welcome;
         buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(adminRadioButton);
         buttonGroup1.add(viewerRadioButton);
@@ -321,6 +321,7 @@ public class AddNewUserPanel extends javax.swing.JPanel {
                 //centerPanel.removeAll();
                 //centerPanel.repaint();
                 //centerPanel.revalidate();
+                /*
                 AddNewUserPanel addnewusr = new AddNewUserPanel();
 
                 centerPanel.setLayout(new java.awt.BorderLayout());
@@ -328,6 +329,13 @@ public class AddNewUserPanel extends javax.swing.JPanel {
                 centerPanel.add(addnewusr);
                 centerPanel.revalidate();
                 centerPanel.repaint();
+                */
+                
+                mainApplication.getContentPanel().remove(mainApplication.getAddNewUserPanel());
+                mainApplication.setAddNewUserPanel(new AddNewUserPanel(mainApplication));
+                mainApplication.getContentPanel().add(mainApplication.getAddNewUserPanel());
+                mainApplication.getContentPanel().revalidate();
+                mainApplication.getContentPanel().repaint();                  
 
 
             } else {
