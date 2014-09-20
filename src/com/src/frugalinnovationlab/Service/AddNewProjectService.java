@@ -348,7 +348,7 @@ public class AddNewProjectService {
             projectStatus1.setStatus(projectStatus1.getStatus());
 
             Project project1 = new Project(projectId, projectName, shortDesc, startDate, endDate, scope,
-                    outcome, true, longDesc, location);
+                    outcome, true, longDesc, location, "no");
 
             HashSet<ProjectStatus> projectStatusSet = new HashSet<ProjectStatus>();
             projectStatusSet.add(projectStatus1);

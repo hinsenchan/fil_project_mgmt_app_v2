@@ -172,6 +172,21 @@ public class Project implements Serializable {
         this.description = description;
         this.location = location;
     }
+    
+    public Project(Integer id, String name, String shortdesc, Date startDate, Date endDate,
+            String scope, String outcome, boolean display, String description, String location, String archive) {
+        this.id = id;
+        this.name = name;
+        this.shortdesc = shortdesc;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.scope = scope;
+        this.display = display;
+        this.outcome = outcome;
+        this.description = description;
+        this.location = location;
+        this.archive = archive;
+    }
 
     public Integer getId() {
         return id;
