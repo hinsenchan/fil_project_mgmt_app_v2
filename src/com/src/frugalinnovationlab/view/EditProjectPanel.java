@@ -199,9 +199,9 @@ public class EditProjectPanel extends javax.swing.JPanel {
                 mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
                 mainApplication.getContentPanel().revalidate();
                 mainApplication.getContentPanel().repaint();
-                JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archieved !!");
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archived !!");
             } else {
-                JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archieved !!");
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archived !!");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a project first");

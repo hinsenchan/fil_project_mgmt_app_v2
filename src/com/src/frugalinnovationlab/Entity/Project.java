@@ -429,7 +429,7 @@ public class Project implements Serializable {
         } else if (i == 7) {
             colName = "Scope";
         } else if (i == 8) {
-            colName = "Archieved";
+            colName = "Archived";
         } else {
             throw new Exception("Access to invalid column number in courselist table");
         }
