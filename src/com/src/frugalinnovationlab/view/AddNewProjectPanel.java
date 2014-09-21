@@ -1252,7 +1252,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         if (roleComboBox.getSelectedItem().equals("Choose a Role")
-                || chooseParticipantComboBox.getSelectedItem().equals("Choose a Participant")) {
+                || chooseParticipantComboBox.getSelectedItem().equals("Choose A Participant")) {
             JOptionPane.showMessageDialog(mainPanel, "Please select a Participant and its Role");
         } else {
             Object roleItem = roleComboBox.getSelectedItem();
@@ -1277,25 +1277,29 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void deleteParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteParticipantButtonActionPerformed
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
+        
+        if (row > -1) {            
+            // model.getv
+            String participantId = model.getValueAt(row, 0).toString();
+            String roleId = model.getValueAt(row, 2).toString();
 
-        // model.getv
-        String participantId = model.getValueAt(row, 0).toString();
-        String roleId = model.getValueAt(row, 2).toString();
-
-        //System.out.println("delete participant : " + participantId);
-        //System.out.println("delete role : " + roleId);
-        AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleId);
-        //System.out.println("contains : " + participantsList.contains(a));
-        Iterator<AssignParticipantsToProject> itr = participantsList.iterator();
-        while (itr.hasNext()) {
-            AssignParticipantsToProject x = itr.next();
-            //System.out.println("x value : " + x.getParticipantId());
-            if (a.getParticipantId() == x.getParticipantId() && a.getRoleId() == x.getRoleId()) {
-                //System.out.println("Reomoved : ");
-                itr.remove();
+            //System.out.println("delete participant : " + participantId);
+            //System.out.println("delete role : " + roleId);
+            AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleId);
+            //System.out.println("contains : " + participantsList.contains(a));
+            Iterator<AssignParticipantsToProject> itr = participantsList.iterator();
+            while (itr.hasNext()) {
+                AssignParticipantsToProject x = itr.next();
+                //System.out.println("x value : " + x.getParticipantId());
+                if (a.getParticipantId() == x.getParticipantId() && a.getRoleId() == x.getRoleId()) {
+                    //System.out.println("Reomoved : ");
+                    itr.remove();
+                }
             }
-        }
-        model.removeRow(row);
+            model.removeRow(row);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a participant to delete");
+        }        
     }//GEN-LAST:event_deleteParticipantButtonActionPerformed
 
     private void addCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCodeTextFieldActionPerformed
@@ -1573,44 +1577,55 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String location = selectFileTextField.getText();
         Object typeItem = fileTypeComboBox.getSelectedItem();
-        String typeValue = ((ComboItem) typeItem).getValue();
+        String typeValue = "";
+        if (!typeItem.toString().equals("Select File Type")) {
+            typeValue = ((ComboItem) typeItem).getValue();
+        }
         String name = fileNameTextField.getText();
         //System.out.println("type : " +typeItem+ " - " +typeValue);
         //System.out.println("location : " +location+ " - " +name);
-        Object[] row = {name, location, typeItem, typeValue};
-        model1 = (DefaultTableModel) jTable2.getModel();
-        model1.addRow(row);
-        ProjectFilesMap projectFilesMap = new ProjectFilesMap();
-        ProjectFilesMapPK projectFilesMapPk = new ProjectFilesMapPK();
-        Filetypes filetypes = new Filetypes(Integer.parseInt(typeValue));
-        filetypes.setType(typeItem.toString());
-        projectFilesMapPk.setFilename(name);
-        projectFilesMapPk.setFilepath(location);
-        projectFilesMapPk.setFiletypeid(Integer.parseInt(typeValue));
-        projectFilesMap.setProjectFilesMapPK(projectFilesMapPk);
+        if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("Select File Type")) {
+            Object[] row = {name, location, typeItem, typeValue};
+            model1 = (DefaultTableModel) jTable2.getModel();
+            model1.addRow(row);
+            ProjectFilesMap projectFilesMap = new ProjectFilesMap();
+            ProjectFilesMapPK projectFilesMapPk = new ProjectFilesMapPK();
+            Filetypes filetypes = new Filetypes(Integer.parseInt(typeValue));
+            filetypes.setType(typeItem.toString());
+            projectFilesMapPk.setFilename(name);
+            projectFilesMapPk.setFilepath(location);
+            projectFilesMapPk.setFiletypeid(Integer.parseInt(typeValue));
+            projectFilesMap.setProjectFilesMapPK(projectFilesMapPk);
 
-        filesList.add(projectFilesMap);
+            filesList.add(projectFilesMap);
 
-        selectFileTextField.setText("");
-        fileNameTextField.setText("");
-        fileTypeComboBox.setSelectedItem("Select File Type");
+            selectFileTextField.setText("");
+            fileNameTextField.setText("");
+            fileTypeComboBox.setSelectedItem("Select File Type");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select File name. File type and enter File name");
+        }
     }//GEN-LAST:event_addMediaButtonActionPerformed
 
     private void deleteMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMediaButtonActionPerformed
         // TODO add your handling code here:
         int row = jTable2.getSelectedRow();
-        String fileTypeId = model1.getValueAt(row, 3).toString();
-        String fileName = model1.getValueAt(row, 0).toString();
-        String location = model1.getValueAt(row, 1).toString();
-        for (int i = 0; i < filesList.size(); i++) {
-            ProjectFilesMap projectFilesMap = filesList.get(i);
-            String f1 = projectFilesMap.getProjectFilesMapPK().getFilename();
-            int t1 = projectFilesMap.getProjectFilesMapPK().getFiletypeid();
-            String l1 = projectFilesMap.getProjectFilesMapPK().getFilepath();
-            if (t1 == Integer.parseInt(fileTypeId) && fileName.equalsIgnoreCase(f1) && location.equalsIgnoreCase(l1)) {
-                filesList.remove(i);
-                model1.removeRow(row);
+        if (row > -1) {
+            String fileTypeId = model1.getValueAt(row, 3).toString();
+            String fileName = model1.getValueAt(row, 0).toString();
+            String location = model1.getValueAt(row, 1).toString();
+            for (int i = 0; i < filesList.size(); i++) {
+                ProjectFilesMap projectFilesMap = filesList.get(i);
+                String f1 = projectFilesMap.getProjectFilesMapPK().getFilename();
+                int t1 = projectFilesMap.getProjectFilesMapPK().getFiletypeid();
+                String l1 = projectFilesMap.getProjectFilesMapPK().getFilepath();
+                if (t1 == Integer.parseInt(fileTypeId) && fileName.equalsIgnoreCase(f1) && location.equalsIgnoreCase(l1)) {
+                    filesList.remove(i);
+                    model1.removeRow(row);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "No Media File Selected");
         }
     }//GEN-LAST:event_deleteMediaButtonActionPerformed
 

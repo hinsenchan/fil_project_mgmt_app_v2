@@ -329,7 +329,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
         String name = fileNameTextField.getText();
         //System.out.println("type : " +typeItem+ " - " +typeValue);
         //System.out.println("location : " +location+ " - " +name);
-        if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("")) {
+        if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("Select File Type")) {
             String typeValue = ((ComboItem) typeItem).getValue();
             Object[] row = {typeItem, name, location};
             model = (DefaultTableModel) jTable.getModel();
