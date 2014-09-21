@@ -57,4 +57,9 @@ public class EditProjectParticipantsController {
         success = editProjectParticipantsModel.addParticipant(array);
         return success;
     }
+    
+    public List<Participants> getParticipantsSortByID() {
+        List<Participants> participantList = editProjectParticipantsModel.getParticipantsSortByID();
+        return participantList;
+    }
 }

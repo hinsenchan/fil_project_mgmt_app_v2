@@ -38,6 +38,9 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -262,7 +265,7 @@ public class AddNewProjectService {
         TypedQuery<Participants> query = manager.createQuery("SELECT NEW "
                 + "com.src.frugalinnovationlab.Entity.Participants(p.id , p.nameTitle, p.firstname"
                 + ", p.middlename, p.lastname, p.position, p.email, p.phone, p.organization) "
-                + "FROM Participants p", Participants.class);
+                + "FROM Participants p order by p.lastname", Participants.class);
         List<Participants> result = query.getResultList();
         return result;
     }
@@ -461,5 +464,20 @@ public class AddNewProjectService {
         }
         success = true;
         return success;
+    }
+
+    public List<Participants> getParticipantsSortByID() {
+        CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<Participants> criteriaQuery = criteriaBuilder.createQuery(Participants.class);
+        Root participantsRoot = criteriaQuery.from(Participants.class);
+        criteriaQuery.select(criteriaBuilder.construct(Participants.class, participantsRoot.get("id")));
+        criteriaQuery.orderBy(criteriaBuilder.asc(participantsRoot.get("id")));
+        TypedQuery<Participants> query = manager.createQuery(criteriaQuery);
+        List<Participants> result = query.getResultList();
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println("sort id : " + result.get(i).getId());
+        }
+        return result;
     }
 }

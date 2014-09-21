@@ -77,4 +77,9 @@ public class EditProjectParticipantsModel {
         usertransaction.commit();
         return success;
     }
+    
+    public List<Participants> getParticipantsSortByID() {
+        List<Participants> participantsList = editProjectParticipantsService.getParticipantsSortByID();
+        return participantsList;
+    }
 }

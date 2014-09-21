@@ -132,4 +132,9 @@ public class AddNewProjectModel {
         usertransaction.commit();
         return success;
     }
+    
+    public List<Participants> getParticipantsSortByID() {
+        List<Participants> participantsList = addNewProjectService.getParticipantsSortByID();
+        return participantsList;
+    }
 }

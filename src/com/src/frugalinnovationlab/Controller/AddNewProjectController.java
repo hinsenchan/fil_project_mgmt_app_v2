@@ -107,4 +107,9 @@ public class AddNewProjectController {
         success = addNewProjectModel.deletetags(deleteTagList);
         return success;
     }
+    
+    public List<Participants> getParticipantsSortByID() {
+        List<Participants> participantList = addNewProjectModel.getParticipantsSortByID();
+        return participantList;
+    }
 }

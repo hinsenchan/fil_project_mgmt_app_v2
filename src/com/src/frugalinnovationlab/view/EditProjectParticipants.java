@@ -17,8 +17,6 @@ import com.src.frugalinnovationlab.helper.PhoneNumberValidator;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -39,8 +37,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     List<Project> projectList;
     List<ParticipantDesignation> participantDesignationsList;
     List<Participants> participants;
+    List<Participants> participantsIDList;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
+    public static int count = 1;
 
     /**
      * Creates new form EditGeneralProjectInformation
@@ -50,7 +50,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         projectList = editProjectParticipantsController.getProjectsFromDatabase();
         participantDesignationsList = editProjectParticipantsController.getParticipantsDesignationFromDatabase();
         participants = editProjectParticipantsController.getParticipantsFromDatabase();
-
+        
         initComponents();
         addParticipantPanel.setVisible(false);
     }
@@ -150,7 +150,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     chooseParticipantComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     chooseParticipantComboBox.setForeground(new java.awt.Color(0, 95, 45));
     chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
-    this.sortParticipants();
+    //this.sortParticipants();
     for(int i = 0; i < participants.size(); i++){
         String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname());
         if(!participants.get(i).getNameTitle().equals("")){
@@ -206,7 +206,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
     addTitleComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     addTitleComboBox.setForeground(new java.awt.Color(0, 95, 45));
-    addTitleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "Mr.", "Mrs.", "Miss.", "Dr." }));
+    addTitleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose a Title", "PHD", "MD" }));
 
     addTitleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     addTitleLabel.setText("Title");
@@ -500,7 +500,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         // TODO add your handling code here:
         Object projectItem = chooseProjectComboBox.getSelectedItem();
         //  System.out.println("object item : " +projectItem);
-        if (!projectItem.toString().equals("Choose a Project")) {            
+        if (!projectItem.toString().equals("Choose a Project")) {
             String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             //  System.out.println("project id : " + projectId);
 
@@ -519,8 +519,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
                 String participantValue = String.valueOf(values[3]);
                 String participantItem = values[2].toString().concat(", ").concat(values[1].toString());
-                if(!values[0].toString().equalsIgnoreCase("")){
-                    participantItem = participantItem.concat(" ("+values[0].toString()+")");
+                if (!values[0].toString().equalsIgnoreCase("")) {
+                    participantItem = participantItem.concat(" (" + values[0].toString() + ")");
                 }
                 String roleValue = values[4].toString();
                 String roleItem = values[5].toString();
@@ -532,8 +532,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 model.addRow(row);
                 //  System.out.println("here");
             }
-        }
-        else {
+        } else {
             model = (DefaultTableModel) jTable2.getModel();
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -546,22 +545,27 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private void addParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButtonActionPerformed
         // TODO add your handling code here:
         Object projectItem = chooseProjectComboBox.getSelectedItem();
-        String projectId = ((ComboItem) projectItem).getValue();
-
         Object roleItem = roleComboBox.getSelectedItem();
-        String roleValue = ((ComboItem) roleItem).getValue();
-
         Object participantItem = chooseParticipantComboBox.getSelectedItem();
-        String participantValue = ((ComboItem) participantItem).getValue();
+        System.out.println("projectitem : " + projectItem);
+        System.out.println("roleItem : " + roleItem);
+        if (!projectItem.toString().equalsIgnoreCase("Choose a Project") && !roleItem.toString().equalsIgnoreCase("Choose a Role")
+                && !participantItem.toString().equalsIgnoreCase("Choose a Participant")) {
+            String projectId = ((ComboItem) projectItem).getValue();
+            String roleValue = ((ComboItem) roleItem).getValue();
+            String participantValue = ((ComboItem) participantItem).getValue();
+            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
+                    Integer.parseInt(participantValue), Integer.parseInt(roleValue));
+            participantsList.add(a);
+            //System.out.println("participantsList size : " + participantsList.size());
 
-        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
-                Integer.parseInt(participantValue), Integer.parseInt(roleValue));
-        participantsList.add(a);
-        //System.out.println("participantsList size : " + participantsList.size());
+            Object[] row = {participantValue, participantItem, roleValue, roleItem};
+            model = (DefaultTableModel) jTable2.getModel();
+            model.addRow(row);
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "Please select Project and Participants, Roles to be added");
+        }
 
-        Object[] row = {participantValue, participantItem, roleValue, roleItem};
-        model = (DefaultTableModel) jTable2.getModel();
-        model.addRow(row);
     }//GEN-LAST:event_addParticipantButtonActionPerformed
 
     private void deleteParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteParticipantButtonActionPerformed
@@ -629,8 +633,11 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
     private void addNewParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantButtonActionPerformed
         // TODO add your handling code here:
-        if (!addParticipantPanel.isShowing()) { addParticipantPanel.setVisible(true); }
-        else { addParticipantPanel.setVisible(false); }        
+        if (!addParticipantPanel.isShowing()) {
+            addParticipantPanel.setVisible(true);
+        } else {
+            addParticipantPanel.setVisible(false);
+        }
     }//GEN-LAST:event_addNewParticipantButtonActionPerformed
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
@@ -639,8 +646,12 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
     private void addNewParticipantPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantPanelButtonActionPerformed
         // TODO add your handling code here:
-        String[] array = new String[8];
+        participantsIDList = editProjectParticipantsController.getParticipantsSortByID();
+        String[] array = new String[9];
         array[0] = addTitleComboBox.getSelectedItem().toString();
+        if (array[0].equalsIgnoreCase("Choose a Title")) {
+            array[0] = "";
+        }
         array[1] = firstNameTextField.getText();
         array[2] = "";
         array[3] = lastNameTextField.getText();
@@ -651,35 +662,37 @@ public class EditProjectParticipants extends javax.swing.JPanel {
 
         if (chooseProjectComboBox.getSelectedItem().equals("Choose a Project")) {
             JOptionPane.showMessageDialog(jPanel1, "Please select a project first");
-        }        
-        else if (addNewParticipantRoleComboBox.getSelectedItem() == null || 
-                addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
+        } else if (addNewParticipantRoleComboBox.getSelectedItem() == null
+                || addNewParticipantRoleComboBox.getSelectedItem().equals("Choose a Role")) {
             JOptionPane.showMessageDialog(jPanel1, "Please choose a role");
-        }           
-        else if (array[0] == null || array[0].equals("Choose a Title")) {
-            JOptionPane.showMessageDialog(jPanel1, "Please select a title");            
-        }
-        else if (array[1] == null || array[1].equals("") 
+        } else if (array[1] == null || array[1].equals("")
                 || array[3] == null || array[3].equals("")) {
             JOptionPane.showMessageDialog(jPanel1, "Please enter first and last name");
-        } 
-        else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
+        } else if (!array[5].isEmpty() && !(new EmailFormatValidator()).validate(array[5])) {
             JOptionPane.showMessageDialog(jPanel1, "Please enter a valid email address");
-        }
-        else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
+        } else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
             JOptionPane.showMessageDialog(jPanel1, "Please enter a valid phone number");
-        }
-        else {
+        } else {
+            int size = participants.size();
+            for (int i = 0; i < size; i++) {
+                System.out.println("id is : " +participants.get(i).getId());
+            }
+            System.out.println("size : " +size+ " last id : " +participants.get(size - 1).getId());
+            String participantId = String.valueOf(participantsIDList.get(size - 1).getId() + count);
+            System.out.println("new participant id : " +participantId);
+            array[8] = participantId;
             //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = editProjectParticipantsController.addParticipant(array);
             if (success) {
                 participants = editProjectParticipantsController.getParticipantsFromDatabase();
-                this.sortParticipants();
+//                this.sortParticipants();
                 chooseParticipantComboBox.removeAllItems();
                 chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
-                    String fullName = participants.get(i).getNameTitle().concat(" "
-                            + participants.get(i).getFirstname()).concat(" " + participants.get(i).getLastname());
+                    String fullName = participants.get(i).getLastname().concat(", " + participants.get(i).getFirstname());
+                    if (!participants.get(i).getNameTitle().equals("")) {
+                        fullName = fullName.concat(" (" + participants.get(i).getNameTitle() + ")");
+                    }
                     chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
                 }
                 Object projectItem = chooseProjectComboBox.getSelectedItem();
@@ -688,9 +701,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 Object roleItem = addNewParticipantRoleComboBox.getSelectedItem();
                 String roleValue = ((ComboItem) roleItem).getValue();
 
-                String participantValue = array[0].concat(" ").concat(array[1]).concat(" ").concat(array[3]);
-                //Object participantItem = (Object)new ComboItem(participantValue, Integer.toString(participants.get(participants.size()-1).getId()));
-                String participantId = Integer.toString(participants.get(participants.size() - 1).getId());
+                String participantValue = array[3].concat(", ").concat(array[1]);
+                if (!array[0].equalsIgnoreCase("")) {
+                    participantValue = participantValue.concat(" (" + array[0] + ")");
+                }
                 //AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleValue);
                 ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantId),
                         Integer.parseInt(roleValue));
@@ -699,6 +713,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
                 model = (DefaultTableModel) jTable2.getModel();
                 model.addRow(row);
+                //count++;
                 JOptionPane.showMessageDialog(jPanel1, "Participant added succesfully");
             } else {
                 JOptionPane.showMessageDialog(jPanel1, "Participant could not be added");
@@ -717,7 +732,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private void phoneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneTextFieldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewParticipantButton;
     private javax.swing.JButton addNewParticipantPanelButton;
@@ -756,21 +770,24 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private javax.swing.JComboBox roleComboBox;
     private javax.swing.JButton updateProjectButton;
     // End of variables declaration//GEN-END:variables
-    
+/*
     public void sortParticipants() {
         if (participants != null) {
             Collections.sort(participants, new ParticipantsComparator());
         }
     }
-    
+
     class ParticipantsComparator implements Comparator<Participants> {
+
         public int compare(Participants a, Participants b) {
             int retVal = -1;
             retVal = a.getLastname().compareToIgnoreCase(b.getLastname());
-            if (retVal != 0) { return retVal; }
-            else {
+            if (retVal != 0) {
+                return retVal;
+            } else {
                 return a.getFirstname().compareTo(b.getFirstname());
             }
         }
     }
+    */
 }

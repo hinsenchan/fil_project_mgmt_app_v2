@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.MediaController;
@@ -26,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hinsenchan
  */
 public class EditMediaPanel extends javax.swing.JPanel {
+
     private WelcomeAbstract mainApplication;
     private MediaController mediaController;
     private int selectedProjectId;
@@ -35,12 +35,12 @@ public class EditMediaPanel extends javax.swing.JPanel {
     private HashMap<Integer, String> fileTypeHashMap = new HashMap<Integer, String>();
     private HashMap<String, Integer> fileTypeHashMapReverse = new HashMap<String, Integer>();
     private List<ProjectFilesMap> projectFilesMapList = new ArrayList<ProjectFilesMap>();
-    
+
     /**
      * Creates new form EditMediaPanel
      */
-    public EditMediaPanel(WelcomeAbstract mainApplication) {        
-        this.mainApplication = mainApplication;  
+    public EditMediaPanel(WelcomeAbstract mainApplication) {
+        this.mainApplication = mainApplication;
         mediaController = new MediaController(this);
         projectList = mediaController.getProjectsFromDatabase();
         updateFileList();
@@ -270,34 +270,38 @@ public class EditMediaPanel extends javax.swing.JPanel {
 
     private void updateProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProjectButtonActionPerformed
         if (selectedProjectId != -1) {
-            final int TYPE = 0;
-            final int NAME = 1;
-            final int LOCATION = 2;
-            
-            projectFilesMapList.clear();
-            
-            for (int i=0; i<jTable.getRowCount(); i++) {
-                String fileTypeName = jTable.getModel().getValueAt(i, TYPE).toString();
-                int fileTypeId = fileTypeHashMapReverse.get(fileTypeName);
-                
-                String fileName = jTable.getModel().getValueAt(i, NAME).toString();
-                String fileLocation = jTable.getModel().getValueAt(i, LOCATION).toString();
-                ProjectFilesMap projectFilesMap = new ProjectFilesMap(
-                        selectedProjectId, fileTypeId, fileName, fileLocation);
-                projectFilesMapList.add(projectFilesMap);
-                
-                //System.out.println(fileTypeName);
-                //System.out.println(fileTypeId);
-                //System.out.println(fileName);
-                //System.out.println(fileLocation);
-            }
-            System.out.println(projectFilesMapList.size());
-            System.out.println(projectFilesMapList.toString());
-            if (mediaController.updateProjectWithProjectFilesMap(selectedProjectId, projectFilesMapList)) {
-                JOptionPane.showMessageDialog(this, "Project Updated Successfully");
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Project Update Failed");
+            Object projectItem = chooseProjectComboBox.getSelectedItem();
+            if (!projectItem.toString().equals("Choose a project...")) {
+                final int TYPE = 0;
+                final int NAME = 1;
+                final int LOCATION = 2;
+
+                projectFilesMapList.clear();
+
+                for (int i = 0; i < jTable.getRowCount(); i++) {
+                    String fileTypeName = jTable.getModel().getValueAt(i, TYPE).toString();
+                    int fileTypeId = fileTypeHashMapReverse.get(fileTypeName);
+
+                    String fileName = jTable.getModel().getValueAt(i, NAME).toString();
+                    String fileLocation = jTable.getModel().getValueAt(i, LOCATION).toString();
+                    ProjectFilesMap projectFilesMap = new ProjectFilesMap(
+                            selectedProjectId, fileTypeId, fileName, fileLocation);
+                    projectFilesMapList.add(projectFilesMap);
+
+                    //System.out.println(fileTypeName);
+                    //System.out.println(fileTypeId);
+                    //System.out.println(fileName);
+                    //System.out.println(fileLocation);
+                }
+                System.out.println(projectFilesMapList.size());
+                System.out.println(projectFilesMapList.toString());
+                if (mediaController.updateProjectWithProjectFilesMap(selectedProjectId, projectFilesMapList)) {
+                    JOptionPane.showMessageDialog(this, "Project Updated Successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Project Update Failed");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a Project");
             }
         }
     }//GEN-LAST:event_updateProjectButtonActionPerformed
@@ -307,24 +311,28 @@ public class EditMediaPanel extends javax.swing.JPanel {
         JFileChooser chooser = new JFileChooser("File Dialog");
         chooser.setMultiSelectionEnabled(false);
         chooser.showOpenDialog(this);
-        File f = chooser.getSelectedFile();        
+        File f = chooser.getSelectedFile();
         selectFileTextField.setText(f.getAbsolutePath());
     }//GEN-LAST:event_chooseAFileButtonActionPerformed
 
     private void addMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMediaButtonActionPerformed
         String location = selectFileTextField.getText();
         Object typeItem = fileTypeComboBox.getSelectedItem();
-        String typeValue = ((ComboItem) typeItem).getValue();
         String name = fileNameTextField.getText();
         //System.out.println("type : " +typeItem+ " - " +typeValue);
         //System.out.println("location : " +location+ " - " +name);
-        Object[] row = {typeItem, name, location};
-        model = (DefaultTableModel) jTable.getModel();
-        model.addRow(row);
+        if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("")) {
+            String typeValue = ((ComboItem) typeItem).getValue();
+            Object[] row = {typeItem, name, location};
+            model = (DefaultTableModel) jTable.getModel();
+            model.addRow(row);
 
-        selectFileTextField.setText("");
-        fileNameTextField.setText("");
-        fileTypeComboBox.setSelectedItem("Select File Type");
+            selectFileTextField.setText("");
+            fileNameTextField.setText("");
+            fileTypeComboBox.setSelectedItem("Select File Type");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select File name. File type and enter File name");
+        }
     }//GEN-LAST:event_addMediaButtonActionPerformed
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
@@ -336,7 +344,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
             //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             String projectName = String.valueOf(((ComboItem) projectItem).getKey());
             //System.out.println("project id : " + projectId);
-            
+
             selectedProjectId = projectId;
 
             if (model.getRowCount() > 0) {
@@ -344,12 +352,12 @@ public class EditMediaPanel extends javax.swing.JPanel {
                     model.removeRow(i);
                 }
             }
-                        
+
             List result = mediaController.fetchProjectFilesMapByProject(projectId);
             //projectFilesMapList.clear();
 
             for (int i = 0; i < result.size(); i++) {
-                ProjectFilesMap projectFile = (ProjectFilesMap)result.get(i);
+                ProjectFilesMap projectFile = (ProjectFilesMap) result.get(i);
                 //projectFilesMapList.add(projectFile);
                 ProjectFilesMapPK projectFileDetails = projectFile.getProjectFilesMapPK();
 
@@ -357,50 +365,58 @@ public class EditMediaPanel extends javax.swing.JPanel {
                 String fileType = fileTypeHashMap.get(fileTypeId);
                 String fileName = projectFileDetails.getFilename();
                 String filePath = projectFileDetails.getFilepath();
-                
+
                 Object[] row = {fileType, fileName, filePath};
-                
+
                 model = (DefaultTableModel) jTable.getModel();
                 model.addRow(row);
-            }            
+            }
         } else {
             selectedProjectId = -1;
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
                 }
-            }                        
-        }        
+            }
+        }
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void removeMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMediaButtonActionPerformed
         int[] selectedFiles = jTable.getSelectedRows();
+        if(selectedFiles.length > 0){
         model = (DefaultTableModel) jTable.getModel();
-        for (int i=selectedFiles.length-1; i>=0; i--) {
-            model.removeRow(selectedFiles[i]);    
-        }        
+        for (int i = selectedFiles.length - 1; i >= 0; i--) {
+            model.removeRow(selectedFiles[i]);
+        }    
+        } else {
+            JOptionPane.showMessageDialog(this, "No Media Files Selected");
+        }
+        
     }//GEN-LAST:event_removeMediaButtonActionPerformed
 
     private void viewMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMediaButtonActionPerformed
         final int LOCATION = 2;
         int selectedFile = jTable.getSelectedRow();
-        String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
-        if (!fileLocation.isEmpty()) {
-            try {
-                File file = new File(fileLocation);
-            
-                if (Desktop.isDesktopSupported()) {
-                    Desktop.getDesktop().open(file);
+        System.out.println("selectedFile : " + selectedFile);
+        if (selectedFile != -1) {
+            String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
+            System.out.println("fileLocation : " + fileLocation);
+            if (!fileLocation.isEmpty()) {
+                try {
+                    File file = new File(fileLocation);
+
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().open(file);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No Media File Selected");
         }
     }//GEN-LAST:event_viewMediaButtonActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMediaButton;
     private javax.swing.JButton chooseAFileButton;
@@ -449,16 +465,16 @@ public class EditMediaPanel extends javax.swing.JPanel {
     public void setjTable(javax.swing.JTable jTable) {
         this.jTable = jTable;
     }
-    
+
     public void updateFileList() {
-        fileTypeList = mediaController.getFileTypesFromDatabase(); 
+        fileTypeList = mediaController.getFileTypesFromDatabase();
         fileTypeHashMap.clear();
         fileTypeHashMapReverse.clear();
-        for (int i=0; i<fileTypeList.size(); i++) {
+        for (int i = 0; i < fileTypeList.size(); i++) {
             int id = fileTypeList.get(i).getId();
             String type = fileTypeList.get(i).getType();
             fileTypeHashMap.put(id, type);
             fileTypeHashMapReverse.put(type, id);
-        }        
+        }
     }
 }

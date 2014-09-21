@@ -73,6 +73,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<Filetypes> fileTypeList;
     List<ProjectFilesMap> filesList = new ArrayList<ProjectFilesMap>();
     boolean isAddNewTags = false;
+    public static int count = 1;
+    List<Participants> participantsIDList;
 
     /**
      * Creates new form AddNewProjectPanel
@@ -637,7 +639,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         chooseParticipantComboBox.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         chooseParticipantComboBox.setForeground(new java.awt.Color(0, 95, 45));
         chooseParticipantComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose A Participant" }));
-        this.sortParticipants();
+        //this.sortParticipants();
         for(int i = 0; i < participants.size(); i++){
             String fullName = participants.get(i).getLastname().concat(", "+participants.get(i).getFirstname());
             if(!participants.get(i).getNameTitle().equalsIgnoreCase("")) {
@@ -1309,7 +1311,8 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
     private void addNewParticipantPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantPanelButtonActionPerformed
         // TODO add your handling code here:
-        String[] array = new String[8];
+        participantsIDList = addNewProjectController.getParticipantsSortByID();
+        String[] array = new String[9];
         array[0] = addTitleComboBox.getSelectedItem().toString();
         if(array[0].equalsIgnoreCase("Choose a Title")) {
             array[0] = "";
@@ -1332,11 +1335,19 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         } else if (!array[6].isEmpty() && !PhoneNumberValidator.validatePhoneNumber(array[6])) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter a valid phone number");
         } else {
+            int size = participants.size();
+            for (int i = 0; i < size; i++) {
+                System.out.println("id is : " +participants.get(i).getId());
+            }
+            System.out.println("size : " +size+ " last id : " +participants.get(size - 1).getId());
+            String participantId = String.valueOf(participantsIDList.get(size - 1).getId() + count);
+            System.out.println("new participant id : " +participantId);
+            array[8] = participantId;
             //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
                 participants = addNewProjectController.getParticipantsFromDatabase();
-                this.sortParticipants();
+                //this.sortParticipants();
                 chooseParticipantComboBox.removeAllItems();
                 chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
@@ -1350,9 +1361,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 Object roleItem = addNewParticipantRoleComboBox.getSelectedItem();
                 String roleValue = ((ComboItem) roleItem).getValue();
 
-                String participantValue = array[0].concat(" ").concat(array[1]).concat(" ").concat(array[3]);
-                //Object participantItem = (Object)new ComboItem(participantValue, Integer.toString(participants.get(participants.size()-1).getId()));
-                String participantId = Integer.toString(participants.get(participants.size() - 1).getId());
+                String participantValue = array[3].concat(", ").concat(array[1]);
+                if (!array[0].equalsIgnoreCase("")) {
+                    participantValue = participantValue.concat(" (" + array[0] + ")");
+                }
+                
                 AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleValue);
                 participantsList.add(a);
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
@@ -1722,7 +1735,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel tagsOptionsLabel;
     // End of variables declaration//GEN-END:variables
 
-    public void sortParticipants() {
+/*    public void sortParticipants() {
         if (participants != null) {
             Collections.sort(participants, new ParticipantsComparator());
         }
@@ -1740,4 +1753,5 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
         }
     }
+    * */
 }

@@ -8,13 +8,15 @@ import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
-import com.src.frugalinnovationlab.Wrappers.AssignParticipantsToProject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -48,7 +50,7 @@ public class EditProjectParticipantsService {
         TypedQuery<Participants> query = manager.createQuery("SELECT NEW "
                 + "com.src.frugalinnovationlab.Entity.Participants(p.id , p.nameTitle, p.firstname"
                 + ", p.middlename, p.lastname, p.position, p.email, p.phone, p.organization) "
-                + "FROM Participants p", Participants.class);
+                + "FROM Participants p order by p.lastname", Participants.class);
         List<Participants> result = query.getResultList();
         return result;
     }
@@ -164,12 +166,28 @@ public class EditProjectParticipantsService {
         String email = array[5];
         String phone = array[6];
         String organization = array[7];
+        int id = Integer.parseInt(array[8]);
         
-        Participants participants = new Participants(title, firstName, middleName, 
+        Participants participants = new Participants(id, title, firstName, middleName, 
                 lastName, position, email, phone, organization);
         manager.persist(participants);
         success = true;
         
         return success;
+    }
+    
+    public List<Participants> getParticipantsSortByID() {
+        CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+        
+        CriteriaQuery<Participants> criteriaQuery = criteriaBuilder.createQuery(Participants.class);
+        Root participantsRoot = criteriaQuery.from(Participants.class);
+        criteriaQuery.select(criteriaBuilder.construct(Participants.class, participantsRoot.get("id")));
+        criteriaQuery.orderBy(criteriaBuilder.asc(participantsRoot.get("id")));
+        TypedQuery<Participants> query = manager.createQuery(criteriaQuery);
+        List<Participants> result = query.getResultList();
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println("sort id : " +result.get(i).getId());
+        }
+        return result;
     }
 }
