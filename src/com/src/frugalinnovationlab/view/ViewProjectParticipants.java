@@ -37,7 +37,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     List<ParticipantDesignation> participantDesignationsList;
     List<Participants> participants;
     DefaultTableModel model = new DefaultTableModel();
-    ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
+    //ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
     WelcomeAbstract mainApplication;
     private String participantValue;
     private boolean isSelectAll = false;
@@ -355,152 +355,172 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
                 mainApplication.getViewMediaPanel().refreshSelectedProject();
             }
+        } else {
+            model = (DefaultTableModel) table.getModel();
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }            
         }
     }//GEN-LAST:event_chooseProjectComboBoxActionPerformed
 
     private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
         Object projectItem = getChooseProjectComboBox().getSelectedItem();
         //  System.out.println("object item : " +projectItem);
-        if (projectItem.toString().equals("Select All")) {
-            //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-            //  System.out.println("project id : " + projectId);
+        if (!projectItem.toString().equals("Choose a project...")) {
+            if (projectItem.toString().equals("Select All")) {
+                //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+                //  System.out.println("project id : " + projectId);
 
-            Object roleItem = roleComboBox.getSelectedItem();
-            //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
+                Object roleItem = roleComboBox.getSelectedItem();
+                //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
 
-            if (model.getRowCount() > 0) {
-                for (int i = model.getRowCount() - 1; i > -1; i--) {
-                    model.removeRow(i);
+                if (model.getRowCount() > 0) {
+                    for (int i = model.getRowCount() - 1; i > -1; i--) {
+                        model.removeRow(i);
+                    }
                 }
-            }
 
-            List<Participants> result = viewProjectParticipantsController.getParticipantsFromDatabase();
-            //participantsList.clear();
+                List<Participants> result = viewProjectParticipantsController.getParticipantsFromDatabase();
+                //participantsList.clear();
 
-            if (roleItem.toString().equals("All Roles")) {
-                for (int i = 0; i < result.size(); i++) {
-                    Participants values = result.get(i);
-                    //participantValue = values.getId().toString();
-                    String id = values.getId().toString();
-                    String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
-                    if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
-                        participantItem = participantItem.concat(" ("+values.getNameTitle().toString()+")");
-                    }                    
-                    String role = values.getPosition();
-                    String email = values.getEmail();
-                    String phone = values.getPhone();
-                    /*
-                    Object[] values = (Object[]) result.get(i);
-                    participantValue = String.valueOf(values[3]);
-                    String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                            .concat(" ").concat(values[2].toString());
-                    String roleValue = values[4].toString();
-                    String role = values[5].toString();
-                    String email = values[6].toString();
-                    String phone = values[7].toString();
-                    */
-                    /*
-                    ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                            Integer.parseInt(roleValue));
-                    participantsList.add(a);
-                    */
-                    //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                    Object[] row = {id, participantItem, role, email, phone};
-                    model = (DefaultTableModel) table.getModel();
-                    model.addRow(row);
-                }
-            } else {
-                for (int i = 0; i < result.size(); i++) {
-                    Participants values = result.get(i);
-                    //participantValue = values.getId().toString();
-                    String id= values.getId().toString();
-                    String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
-                    if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
-                        participantItem = participantItem.concat(" ("+values.getNameTitle().toString()+")");
-                    }                    
-                    String role = values.getPosition();
-                    String email = values.getEmail();
-                    String phone = values.getPhone();
-                    /*
-                    Object[] values = (Object[]) result.get(i);
-                    participantValue = String.valueOf(values[3]);
-                    String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                            .concat(" ").concat(values[2].toString());
-                    String roleValue = values[4].toString();
-                    String role = values[5].toString();
-                    String email = values[6].toString();
-                    String phone = values[7].toString();
-                    */
-                    if (role.equals(roleItem.toString())) {
+                if (roleItem.toString().equals("All Roles")) {
+                    for (int i = 0; i < result.size(); i++) {
+                        Participants values = result.get(i);
+                        //participantValue = values.getId().toString();
+                        String id = values.getId().toString();
+                        String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
+                        if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
+                            participantItem = participantItem.concat(" ("+values.getNameTitle().toString()+")");
+                        }                    
+                        String role = values.getPosition();
+                        String email = values.getEmail();
+                        String phone = values.getPhone();
+                        /*
+                        Object[] values = (Object[]) result.get(i);
+                        participantValue = String.valueOf(values[3]);
+                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                                .concat(" ").concat(values[2].toString());
+                        String roleValue = values[4].toString();
+                        String role = values[5].toString();
+                        String email = values[6].toString();
+                        String phone = values[7].toString();
+                        */
                         /*
                         ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
                                 Integer.parseInt(roleValue));
                         participantsList.add(a);
                         */
                         //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                        Object[] row = {id, participantItem, roleItem, email, phone};
+                        Object[] row = {id, participantItem, role, email, phone};
                         model = (DefaultTableModel) table.getModel();
                         model.addRow(row);
                     }
+                } else {
+                    for (int i = 0; i < result.size(); i++) {
+                        Participants values = result.get(i);
+                        //participantValue = values.getId().toString();
+                        String id= values.getId().toString();
+                        String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
+                        if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
+                            participantItem = participantItem.concat(" ("+values.getNameTitle().toString()+")");
+                        }                    
+                        String role = values.getPosition();
+                        String email = values.getEmail();
+                        String phone = values.getPhone();
+                        /*
+                        Object[] values = (Object[]) result.get(i);
+                        participantValue = String.valueOf(values[3]);
+                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                                .concat(" ").concat(values[2].toString());
+                        String roleValue = values[4].toString();
+                        String role = values[5].toString();
+                        String email = values[6].toString();
+                        String phone = values[7].toString();
+                        */
+                        if (role.equals(roleItem.toString())) {
+                            /*
+                            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                                    Integer.parseInt(roleValue));
+                            participantsList.add(a);
+                            */
+                            //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                            Object[] row = {id, participantItem, roleItem, email, phone};
+                            model = (DefaultTableModel) table.getModel();
+                            model.addRow(row);
+                        }
+                    }
+                }            
+            }
+            else {
+                String projectId = String.valueOf(((ComboItem) projectItem).getValue());
+                //  System.out.println("project id : " + projectId);
+
+                Object roleItem = roleComboBox.getSelectedItem();
+                //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
+
+                if (model.getRowCount() > 0) {
+                    for (int i = model.getRowCount() - 1; i > -1; i--) {
+                        model.removeRow(i);
+                    }
                 }
-            }            
-        }
-        else {
-            String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-            //  System.out.println("project id : " + projectId);
 
-            Object roleItem = roleComboBox.getSelectedItem();
-            //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
+                List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
+                //participantsList.clear();
 
+                if (roleItem.toString().equals("All Roles")) {
+                    for (int i = 0; i < result.size(); i++) {
+                        Object[] values = (Object[]) result.get(i);
+                        String id = String.valueOf(values[3]);
+                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                                .concat(" ").concat(values[2].toString());
+                        String roleValue = values[4].toString();
+                        String role = values[5].toString();
+                        String email = values[6].toString();
+                        String phone = values[7].toString();
+                        /*
+                        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                                Integer.parseInt(roleValue));
+                        */
+                        //participantsList.add(a);
+                        //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                        Object[] row = {id, participantItem, role, email, phone};
+                        model = (DefaultTableModel) table.getModel();
+                        model.addRow(row);
+                    }
+                } else {
+                    for (int i = 0; i < result.size(); i++) {
+                        Object[] values = (Object[]) result.get(i);
+                        String id = String.valueOf(values[3]);
+                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
+                                .concat(" ").concat(values[2].toString());
+                        String roleValue = values[4].toString();
+                        String role = values[5].toString();
+                        String email = values[6].toString();
+                        String phone = values[7].toString();
+
+                        if (role.equals(roleItem.toString())) {
+                            /*
+                            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
+                                    Integer.parseInt(roleValue));
+                            */
+                            //participantsList.add(a);
+                            //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+                            Object[] row = {id, participantItem, roleItem, email, phone};
+                            model = (DefaultTableModel) table.getModel();
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        } else {
+            model = (DefaultTableModel) table.getModel();
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
                 }
-            }
-
-            List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-            participantsList.clear();
-
-            if (roleItem.toString().equals("All Roles")) {
-                for (int i = 0; i < result.size(); i++) {
-                    Object[] values = (Object[]) result.get(i);
-                    String id = String.valueOf(values[3]);
-                    String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                            .concat(" ").concat(values[2].toString());
-                    String roleValue = values[4].toString();
-                    String role = values[5].toString();
-                    String email = values[6].toString();
-                    String phone = values[7].toString();
-                    ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                            Integer.parseInt(roleValue));
-                    participantsList.add(a);
-                    //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                    Object[] row = {id, participantItem, role, email, phone};
-                    model = (DefaultTableModel) table.getModel();
-                    model.addRow(row);
-                }
-            } else {
-                for (int i = 0; i < result.size(); i++) {
-                    Object[] values = (Object[]) result.get(i);
-                    String id = String.valueOf(values[3]);
-                    String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                            .concat(" ").concat(values[2].toString());
-                    String roleValue = values[4].toString();
-                    String role = values[5].toString();
-                    String email = values[6].toString();
-                    String phone = values[7].toString();
-
-                    if (role.equals(roleItem.toString())) {
-                        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                                Integer.parseInt(roleValue));
-                        participantsList.add(a);
-                        //Object[] row = {participantValue, participantItem, roleValue, roleItem};
-                        Object[] row = {id, participantItem, roleItem, email, phone};
-                        model = (DefaultTableModel) table.getModel();
-                        model.addRow(row);
-                    }
-                }
-            }
+            }            
         }
     }//GEN-LAST:event_roleComboBoxActionPerformed
 

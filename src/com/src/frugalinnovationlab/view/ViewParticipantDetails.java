@@ -167,7 +167,10 @@ public class ViewParticipantDetails extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        table.setColumnSelectionAllowed(true);
+        table.getTableHeader().setReorderingAllowed(false);
         tableScrollPane.setViewportView(table);
+        table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         returnToProjectParticipantsButton.setText("Return to Project Participants");
         returnToProjectParticipantsButton.addActionListener(new java.awt.event.ActionListener() {

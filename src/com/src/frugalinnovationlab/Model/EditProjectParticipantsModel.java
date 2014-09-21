@@ -57,6 +57,11 @@ public class EditProjectParticipantsModel {
         return participantsList;
     }    
     
+    public List<Project> fetchActiveProjectsByParticipant(String participantId) {
+        List<Project> participantsList = editProjectParticipantsService.fetchActiveProjectsByParticipant(participantId);
+        return participantsList;
+    }        
+    
     public boolean editProjectParticipants(String projectId, List<ProjectParticipants> participantsList){
         boolean success = true;
         EntityTransaction usertransaction = manager.getTransaction();

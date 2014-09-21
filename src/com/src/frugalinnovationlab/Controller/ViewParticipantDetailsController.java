@@ -63,25 +63,34 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) { 
         ListSelectionModel selectModel = (ListSelectionModel) e.getSource();
         int firstIndex = selectModel.getMinSelectionIndex();
-        setSelectedProject(firstIndex);
+        
         if (firstIndex > -1) {
+            mainApplication.getViewProjectParticipants().setIsSelectAll(false);
+            setSelectedProject(firstIndex);
             showViewGeneralProjectInformation();         
         }
     }
     
     public void setSelectedProject(int index) {
         final int projectNameCol = 0;     
-        mainApplication.setSelectedProject((String)(gui.getTable().getValueAt(index, projectNameCol)));
+        //System.out.println("index:" + index);
+        mainApplication.setSelectedProject(gui.getTable().getValueAt(index, projectNameCol).toString());
     }    
     
     public void showViewGeneralProjectInformation() {
-        mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
-        mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());
-        mainApplication.setLastComponent("View Projects General Info");   
-        mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
-        mainApplication.getViewProjectParticipants().refreshSelectedProject();        
-        mainApplication.getContentPanel().revalidate();
-        mainApplication.getContentPanel().repaint();
+        if (mainApplication.getLastComponent().equals("View Participant Details")) {
+            mainApplication.getContentPanel().removeAll();         
+            
+            //mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
+            mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());          
+            
+            mainApplication.setLastComponent("View Projects General Info");   
+            mainApplication.getViewProjectParticipants().refreshSelectedProject();      
+            mainApplication.getViewMediaPanel().refreshSelectedProject();            
+            mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+            mainApplication.getContentPanel().revalidate();
+            mainApplication.getContentPanel().repaint();
+        }
     }
     
     public void showViewProjectParticipants() {
@@ -90,7 +99,8 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
         mainApplication.setLastComponent("View Projects Participants");   
         
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
-        mainApplication.getViewProjectParticipants().refreshSelectedProject();                    
+        mainApplication.getViewProjectParticipants().refreshSelectedProject();
+        mainApplication.getViewMediaPanel().refreshSelectedProject();
         /*
         if (mainApplication.getViewProjectParticipants().getIsSelectAll()) {
             mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().setSelectedIndex(0);

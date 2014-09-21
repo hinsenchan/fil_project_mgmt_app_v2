@@ -84,7 +84,7 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
         mainApplication.getViewParticipantDetails().getPhoneTextField().setText(phone);
         mainApplication.getViewParticipantDetails().getOrganizationTextField().setText(organization);
         
-        List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(id);
+        List<Project> result = editProjectParticipantsModel.fetchActiveProjectsByParticipant(id);
         //List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
         DefaultTableModel model = (DefaultTableModel) mainApplication.getViewParticipantDetails().getTable().getModel();        
         

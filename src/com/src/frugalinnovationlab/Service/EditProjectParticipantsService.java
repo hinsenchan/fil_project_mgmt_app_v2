@@ -100,6 +100,20 @@ public class EditProjectParticipantsService {
 
         return result;
     }    
+    
+    public List<Project> fetchActiveProjectsByParticipant(String participanttId) {
+        int pid = Integer.parseInt(participanttId);
+
+        TypedQuery<Project> query = manager.createQuery("SELECT DISTINCT NEW com.src.frugalinnovationlab.Entity.Project"
+                + "(p.id, p.name, p.shortdesc,p.startDate,p.endDate,p.scope,p.display) FROM Project p "
+                + "LEFT OUTER JOIN p.participantsList pl WHERE pl.id = :pid AND p.archive = 'no'"
+                , Project.class);
+        query.setParameter("pid", pid);
+        
+        List<Project> result = query.getResultList();
+
+        return result;
+    }    
 
     public boolean removeProjectParticipants(String projectId, List<ProjectParticipants> participantsList) {
         int pid = Integer.parseInt(projectId);

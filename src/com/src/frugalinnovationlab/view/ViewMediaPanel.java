@@ -82,6 +82,7 @@ public class ViewMediaPanel extends javax.swing.JPanel {
                 "File Name", "Location", "Type"
             }
         ));
+        jTable.getTableHeader().setReorderingAllowed(false);
         jTableScrollPane.setViewportView(jTable);
 
         projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
