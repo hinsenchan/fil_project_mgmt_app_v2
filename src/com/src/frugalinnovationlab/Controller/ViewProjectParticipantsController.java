@@ -70,18 +70,27 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
     }
     
     public void showViewParticipantDetails(int index) {
-        String name = gui.getTable().getModel().getValueAt(index, 0).toString();
-        String email = gui.getTable().getModel().getValueAt(index, 2).toString();
-        String phone = gui.getTable().getModel().getValueAt(index, 3).toString();
-        String organization = gui.getTable().getModel().getValueAt(index, 4).toString();
+        String id = gui.getTable().getValueAt(index, 0).toString();
+        String name = gui.getTable().getValueAt(index, 1).toString();
+        String email = gui.getTable().getValueAt(index, 2).toString();
+        String phone = gui.getTable().getValueAt(index, 3).toString();
+        String organization = gui.getTable().getValueAt(index, 4).toString();        
+        //String email = gui.getTable().getModel().getValueAt(index, 2).toString();
+        //String phone = gui.getTable().getModel().getValueAt(index, 3).toString();
+        //String organization = gui.getTable().getModel().getValueAt(index, 4).toString();
 
         mainApplication.getViewParticipantDetails().getNameTextField().setText(name);
         mainApplication.getViewParticipantDetails().getEmailTextField().setText(email);
         mainApplication.getViewParticipantDetails().getPhoneTextField().setText(phone);
         mainApplication.getViewParticipantDetails().getOrganizationTextField().setText(organization);
         
-        List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
+        List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(id);
+        //List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
         DefaultTableModel model = (DefaultTableModel) mainApplication.getViewParticipantDetails().getTable().getModel();        
+        
+        for (int i=model.getRowCount()-1; i>=0; i--) {
+            model.removeRow(i);
+        }
         
         for (int i = 0; i < result.size(); i++) {
             Project values = (Project) result.get(i);

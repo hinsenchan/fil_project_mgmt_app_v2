@@ -61,6 +61,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         topPanel = new javax.swing.JPanel();
         viewGenProjInfoLabel = new javax.swing.JLabel();
         chooseProjectComboBox = new javax.swing.JComboBox();
+        printInfoButton = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
         projectNameLabel = new javax.swing.JLabel();
         projectNameTextField = new javax.swing.JTextField();
@@ -86,7 +87,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         categoryScrollPane = new javax.swing.JScrollPane();
         categoryTextArea = new javax.swing.JTextArea();
         logoLabel2 = new javax.swing.JLabel();
-        printInfoButton = new javax.swing.JButton();
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setMinimumSize(new java.awt.Dimension(600, 900));
@@ -111,15 +111,27 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         }
     });
 
+    printInfoButton.setText("View Printable Information");
+    printInfoButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            printInfoButtonActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
     topPanel.setLayout(topPanelLayout);
     topPanelLayout.setHorizontalGroup(
         topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(topPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(viewGenProjInfoLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-            .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(topPanelLayout.createSequentialGroup()
+                    .addComponent(viewGenProjInfoLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                    .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(printInfoButton)))
             .addContainerGap())
     );
     topPanelLayout.setVerticalGroup(
@@ -129,6 +141,8 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
             .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(viewGenProjInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(chooseProjectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addComponent(printInfoButton)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -236,7 +250,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
     scopeLabel.setToolTipText("");
 
     outcomeTextArea.setColumns(20);
-    outcomeTextArea.setRows(5);
+    outcomeTextArea.setRows(1);
     outcomeTextArea.setFocusable(false);
     outcomeScrollPane.setViewportView(outcomeTextArea);
 
@@ -300,9 +314,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
                                 .addComponent(statusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(categoriesLabel)))
                         .addComponent(categoryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 38, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 44, Short.MAX_VALUE)
                     .addComponent(logoLabel2)
-                    .addContainerGap(38, Short.MAX_VALUE))))
+                    .addContainerGap(44, Short.MAX_VALUE))))
     );
     bottomPanelLayout.setVerticalGroup(
         bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,16 +363,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(outcomeLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(outcomeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+            .addComponent(outcomeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
             .addContainerGap())
     );
-
-    printInfoButton.setText("View Printable Information");
-    printInfoButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            printInfoButtonActionPerformed(evt);
-        }
-    });
 
     javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
     mainPanel.setLayout(mainPanelLayout);
@@ -368,10 +375,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
             .addContainerGap()
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bottomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(printInfoButton)))
+                .addComponent(bottomPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     mainPanelLayout.setVerticalGroup(
@@ -379,10 +383,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
         .addGroup(mainPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(18, 18, 18)
             .addComponent(bottomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(printInfoButton))
+            .addGap(23, 23, 23))
     );
 
     mainScrollPane.setViewportView(mainPanel);

@@ -33,7 +33,7 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
         editProjectParticipantsModel = new EditProjectParticipantsModel();
         mainApplication = gui.getMainApplication();
     }
-    
+    /*
     public List<Project> getProjectsFromDatabase() {
         List<Project> projectList = editProjectParticipantsModel.getProjectsFromDatabase();
         return projectList;
@@ -58,7 +58,7 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
         boolean success = false;
         success = editProjectParticipantsModel.editProjectParticipants(projectId, participantsList);
         return success;
-    }
+    }*/
     
     public void valueChanged(ListSelectionEvent e) { 
         ListSelectionModel selectModel = (ListSelectionModel) e.getSource();
@@ -88,8 +88,20 @@ public class ViewParticipantDetailsController implements ListSelectionListener {
         mainApplication.getContentPanel().remove(mainApplication.getViewParticipantDetails());
         mainApplication.getContentPanel().add(mainApplication.getViewProjectParticipants());
         mainApplication.setLastComponent("View Projects Participants");   
+        
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
-        mainApplication.getViewProjectParticipants().refreshSelectedProject();        
+        mainApplication.getViewProjectParticipants().refreshSelectedProject();                    
+        /*
+        if (mainApplication.getViewProjectParticipants().getIsSelectAll()) {
+            mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().setSelectedIndex(0);
+            mainApplication.getViewProjectParticipants().getChooseProjectComboBox().setSelectedIndex(1);
+            mainApplication.getViewMediaPanel().getChooseProjectComboBox().setSelectedIndex(0);
+        }
+        else {
+            mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
+            mainApplication.getViewProjectParticipants().refreshSelectedProject();                    
+        }
+        */
         mainApplication.getContentPanel().revalidate();
         mainApplication.getContentPanel().repaint();
     }     

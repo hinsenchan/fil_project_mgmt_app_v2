@@ -8,23 +8,17 @@ package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.MediaController;
 import com.src.frugalinnovationlab.Entity.Filetypes;
-import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaAdobePK;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
 import com.src.frugalinnovationlab.Entity.ProjectFilesMapPK;
-import com.src.frugalinnovationlab.Entity.ProjectParticipants;
-import static com.src.frugalinnovationlab.Entity.Project_.participantsList;
-import com.src.frugalinnovationlab.Entity.Projectfiles;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import java.awt.Desktop;
 import java.io.File;
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JFileChooser;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -340,4 +334,8 @@ public class ViewMediaPanel extends javax.swing.JPanel {
         }
         return -1;
     }    
+    
+    public JComboBox getChooseProjectComboBox() {
+        return chooseProjectComboBox;
+    }
 }

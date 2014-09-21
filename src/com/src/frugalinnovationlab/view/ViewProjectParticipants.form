@@ -165,8 +165,9 @@
                       <Color blue="2d" green="5f" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="for (int i = 0; i &lt; projectList.size(); i++) {&#xa;    chooseProjectComboBox.addItem(new ComboItem(projectList.get(i).getName(), &#xa;    String.valueOf(projectList.get(i).getId())));&#xa;}">
-                      <StringArray count="1">
+                      <StringArray count="2">
                         <StringItem index="0" value="Choose a project..."/>
+                        <StringItem index="1" value="Select All"/>
                       </StringArray>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -261,15 +262,31 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
+                            <Column editable="false" title="Id" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.String"/>
                             <Column editable="false" title="Role" type="java.lang.String"/>
-                            <Column editable="true" title="Email Address" type="java.lang.Object"/>
-                            <Column editable="true" title="Contact Number" type="java.lang.Object"/>
+                            <Column editable="false" title="Email Address" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact Number" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                          <TableColumnModel selectionModel="0">
+                          <TableColumnModel selectionModel="1">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -282,8 +299,9 @@
                             </Column>
                           </TableColumnModel>
                         </Property>
+                        <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                     </Component>
