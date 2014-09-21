@@ -36,8 +36,10 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         // add the data and column names to a JTable  
 
         jtable1 = new JTable(viewalluserscontroller.getTableModel());
-        jtable1.getColumnModel().getColumn(6).setMinWidth(0);
-        jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
+        jtable1.setDragEnabled(false);
+        jtable1.setToolTipText("Select a user to delete");
+        //jtable1.getColumnModel().getColumn(6).setMinWidth(0);
+        //jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
 
         final JScrollPane scrollpane = new JScrollPane(jtable1, 
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -152,28 +154,32 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int selrow = jtable1.getSelectedRow();
-        String username = (String) jtable1.getModel().getValueAt(selrow, 0);
-        //System.out.println("username is : " + username);
-        int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
-        //System.out.println(n + "value for dialog box");
-        if (n == 0) {
-            boolean flag = viewalluserscontroller.DeleteUser(username);
-            if (flag == true) {
-                addJTable();
-                mainApplication.getContentPanel().remove(mainApplication.getViewAllUsersPanel());
-                mainApplication.setViewAllUsersPanel(new ViewAllUsersPanel(mainApplication));
-                mainApplication.getContentPanel().add(mainApplication.getViewAllUsersPanel());
-                mainApplication.getContentPanel().revalidate();
-                mainApplication.getContentPanel().repaint();                
-                JOptionPane.showMessageDialog(contentPanel, " User Details for User" + "  " + username + " " + "has deleted  succesfully");
+        if (selrow > -1) {
+            String username = (String) jtable1.getModel().getValueAt(selrow, 0);
+            //System.out.println("username is : " + username);
+            int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
+            //System.out.println(n + "value for dialog box");
+            if (n == 0) {
+                boolean flag = viewalluserscontroller.DeleteUser(username);
+                if (flag == true) {
+                    addJTable();
+                    mainApplication.getContentPanel().remove(mainApplication.getViewAllUsersPanel());
+                    mainApplication.setViewAllUsersPanel(new ViewAllUsersPanel(mainApplication));
+                    mainApplication.getContentPanel().add(mainApplication.getViewAllUsersPanel());
+                    mainApplication.getContentPanel().revalidate();
+                    mainApplication.getContentPanel().repaint();                
+                    JOptionPane.showMessageDialog(contentPanel, " User Details for User" + "  " + username + " " + "has deleted  succesfully");
 
 
-            } else {
-                JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
-                JDialog dialog = optionPane.createDialog("Error !");
-                dialog.setAlwaysOnTop(true);
-                dialog.setVisible(true);
+                } else {
+                    JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error !");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a user to delete");
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

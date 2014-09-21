@@ -82,6 +82,7 @@ public class ViewMediaPanel extends javax.swing.JPanel {
                 "File Name", "Location", "Type"
             }
         ));
+        jTable.setToolTipText("Select a file to view ");
         jTable.getTableHeader().setReorderingAllowed(false);
         jTableScrollPane.setViewportView(jTable);
 
@@ -216,19 +217,23 @@ public class ViewMediaPanel extends javax.swing.JPanel {
     private void viewMediaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMediaButtonActionPerformed
         final int LOCATION = 2;
         int selectedFile = jTable.getSelectedRow();
-        String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
-        if (!fileLocation.isEmpty()) {
-            try {
-                File file = new File(fileLocation);
-            
-                if (Desktop.isDesktopSupported()) {
-                    Desktop.getDesktop().open(file);
+        if (selectedFile > -1) {
+            String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
+            if (!fileLocation.isEmpty()) {
+                try {
+                    File file = new File(fileLocation);
+
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().open(file);
+                    }
+                }
+                catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
                 }
             }
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a file to view");
         }
         
         /*

@@ -26,7 +26,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="mainScrollPane" alignment="0" pref="600" max="32767" attributes="0"/>
+              <Component id="mainScrollPane" alignment="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,51 +57,48 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTableScrollPane" min="-2" pref="600" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="selectFileLabel" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                                      <Component id="fileNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fileTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="selectFileTextField" max="32767" attributes="0"/>
-                                              <Component id="chooseProjectComboBox" pref="350" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="chooseAFileButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="fileTypeComboBox" min="-2" pref="200" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="fileNameTextField" min="-2" pref="200" max="-2" attributes="0"/>
-                                                  <EmptySpace pref="79" max="32767" attributes="0"/>
-                                                  <Component id="addMediaButton" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="removeMediaButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Component id="editProjectLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="viewMediaButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="updateProjectButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="editProjectLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="selectFileLabel" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="fileNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fileTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="fileTypeComboBox" min="-2" pref="200" max="-2" attributes="0"/>
+                                                  <Component id="fileNameTextField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="addMediaButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="removeMediaButton" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="selectFileTextField" max="32767" attributes="0"/>
+                                                  <Component id="chooseProjectComboBox" min="-2" pref="350" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="chooseAFileButton" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jTableScrollPane" alignment="0" min="-2" pref="650" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -111,22 +108,24 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="editProjectLabel" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="chooseProjectComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="projectNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="selectFileTextField" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="chooseAFileButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectFileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="projectNameLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="chooseProjectComboBox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="selectFileTextField" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="chooseAFileButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="selectFileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="fileTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fileTypeComboBox" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="fileNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fileNameTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -151,6 +150,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="14" style="0"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Select a file path"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="updateProjectButton">
@@ -199,6 +199,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="14" style="0"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Enter a filename"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="fileTypeLabel">
@@ -222,7 +223,11 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Choose a file type"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileTypeComboBoxActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="fileTypeComboBox.addItem(&quot;Select File Type&quot;);&#xa;for (int i = 0; i &lt; fileTypeList.size(); i++) {&#xa;    fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));&#xa;}"/>
               </AuxValues>
@@ -272,7 +277,7 @@
                       </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                 </Component>

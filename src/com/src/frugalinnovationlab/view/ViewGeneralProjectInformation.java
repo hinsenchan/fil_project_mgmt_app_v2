@@ -150,11 +150,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     projectNameLabel.setText("Project Name");
-    projectNameLabel.setToolTipText("");
 
     projectNameTextField.setColumns(20);
     projectNameTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    projectNameTextField.setToolTipText("Enter Project Name");
     projectNameTextField.setFocusable(false);
     projectNameTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,11 +162,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     shortDescLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     shortDescLabel.setText("Short Description");
-    shortDescLabel.setToolTipText("");
 
     shortDescTextField.setColumns(20);
     shortDescTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    shortDescTextField.setToolTipText("Enter Project Name");
     shortDescTextField.setFocusable(false);
     shortDescTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +174,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     genDescLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     genDescLabel.setText("General Description");
-    genDescLabel.setToolTipText("");
 
     genDescTextArea.setColumns(20);
     genDescTextArea.setRows(5);
@@ -187,11 +182,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     statusLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     statusLabel.setText("Status");
-    statusLabel.setToolTipText("");
 
     statusTextField.setColumns(20);
     statusTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    statusTextField.setToolTipText("Enter Project Name");
     statusTextField.setFocusable(false);
     statusTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,15 +194,12 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     categoriesLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     categoriesLabel.setText("Categories");
-    categoriesLabel.setToolTipText("");
 
     startDateLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     startDateLabel.setText("Start Date");
-    startDateLabel.setToolTipText("");
 
     locationTextField.setColumns(20);
     locationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    locationTextField.setToolTipText("Enter Project Name");
     locationTextField.setFocusable(false);
     locationTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,11 +209,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     locationLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     locationLabel.setText("Location");
-    locationLabel.setToolTipText("");
 
     startDateTextField.setColumns(20);
     startDateTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    startDateTextField.setToolTipText("Enter Project Name");
     startDateTextField.setFocusable(false);
     startDateTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,11 +221,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     outcomeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     outcomeLabel.setText("Outcome");
-    outcomeLabel.setToolTipText("");
 
     scopeTextField.setColumns(20);
     scopeTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    scopeTextField.setToolTipText("Enter Project Name");
     scopeTextField.setFocusable(false);
     scopeTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +233,6 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     scopeLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     scopeLabel.setText("Scope");
-    scopeLabel.setToolTipText("");
 
     outcomeTextArea.setColumns(20);
     outcomeTextArea.setRows(1);
@@ -256,11 +241,9 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
 
     endDateLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
     endDateLabel.setText("End Date");
-    endDateLabel.setToolTipText("");
 
     endDateTextField.setColumns(20);
     endDateTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-    endDateTextField.setToolTipText("Enter Project Name");
     endDateTextField.setFocusable(false);
     endDateTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,8 +346,7 @@ public class ViewGeneralProjectInformation extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(outcomeLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(outcomeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-            .addContainerGap())
+            .addComponent(outcomeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);

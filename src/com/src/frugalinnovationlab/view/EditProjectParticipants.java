@@ -379,7 +379,16 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         new String [] {
             "Participant Id", "Name", "Role", "Role Id"
         }
-    ));
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
+    jTable2.getTableHeader().setReorderingAllowed(false);
     jScrollPane2.setViewportView(jTable2);
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -572,63 +581,74 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         Object projectItem = chooseProjectComboBox.getSelectedItem();
-        String projectId = ((ComboItem) projectItem).getValue();
+        if (!projectItem.toString().equals("Choose a Project")) {
+            String projectId = ((ComboItem) projectItem).getValue();
 
-        int row = jTable2.getSelectedRow();
-
-        String participantId = model.getValueAt(row, 0).toString();
-        String roleId = model.getValueAt(row, 2).toString();
-        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
-                Integer.parseInt(participantId), Integer.parseInt(roleId));
-        System.out.println("contains : " + participantsList.contains(a));
-        Iterator<ProjectParticipants> itr = participantsList.iterator();
-        while (itr.hasNext()) {
-            ProjectParticipants x = itr.next();
-            //     System.out.println("x value : " + x.getParticipants().getId());
-            if (a.getProjectParticipantsPK().getProjectId() == x.getProjectParticipantsPK().getProjectId()
-                    && a.getProjectParticipantsPK().getDesignation() == x.getProjectParticipantsPK().getDesignation()
-                    && a.getProjectParticipantsPK().getParticipantId() == x.getProjectParticipantsPK().getParticipantId()) {
-                System.out.println("Removed : ");
-                itr.remove();
+            int row = jTable2.getSelectedRow();
+            
+            if (row > -1) {
+                String participantId = model.getValueAt(row, 0).toString();
+                String roleId = model.getValueAt(row, 2).toString();
+                ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
+                        Integer.parseInt(participantId), Integer.parseInt(roleId));
+                System.out.println("contains : " + participantsList.contains(a));
+                Iterator<ProjectParticipants> itr = participantsList.iterator();
+                while (itr.hasNext()) {
+                    ProjectParticipants x = itr.next();
+                    //     System.out.println("x value : " + x.getParticipants().getId());
+                    if (a.getProjectParticipantsPK().getProjectId() == x.getProjectParticipantsPK().getProjectId()
+                            && a.getProjectParticipantsPK().getDesignation() == x.getProjectParticipantsPK().getDesignation()
+                            && a.getProjectParticipantsPK().getParticipantId() == x.getProjectParticipantsPK().getParticipantId()) {
+                        System.out.println("Removed : ");
+                        itr.remove();
+                    }
+                }
+                model.removeRow(row);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a participant to delete");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a project first");
         }
-        model.removeRow(row);
     }//GEN-LAST:event_deleteParticipantButtonActionPerformed
 
     private void updateProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProjectButtonActionPerformed
         // TODO add your handling code here:
         Object projectItem = chooseProjectComboBox.getSelectedItem();
-        String projectId = ((ComboItem) projectItem).getValue();
-        //    System.out.println("project id : " + projectId);
-        System.out.println("participantsList size : " + participantsList.size());
-        for (int i = 0; i < participantsList.size(); i++) {
-            ProjectParticipants projectParticipants = participantsList.get(i);
-            System.out.println("projectParticipants is : " + projectParticipants);
-            System.out.println("project id :" + projectParticipants.getProjectParticipantsPK().getProjectId() + "; "
-                    + "role id : " + projectParticipants.getProjectParticipantsPK().getDesignation() + "; "
-                    + "participant id : " + projectParticipants.getProjectParticipantsPK().getParticipantId());
-        }
-        boolean success = editProjectParticipantsController.editProjectParticipants(projectId, participantsList);
-        if (success) {
-            JOptionPane.showMessageDialog(jPanel1, "Participants has been Updated succesfully");
-            Component[] panels = jPanel1.getComponents();
-            for (Component C : panels) {
-                //System.out.println("ok here now :"+C.getClass());
-                if (C instanceof JTextField || C instanceof JTextArea || C instanceof JTable
-                        || C instanceof JDateChooser || C instanceof JFileChooser) {
-                    //  System.out.println("not here at all");
-                    ((JTextComponent) C).setText(""); //abstract superclass
-                }
-                if (C instanceof JComboBox) {
-                    //        ((JComboBox) C).setSelectedIndex(0); //abstract superclass
-                }
+        if (!projectItem.toString().equals("Choose a Project")) {
+            String projectId = ((ComboItem) projectItem).getValue();
+            //    System.out.println("project id : " + projectId);
+            System.out.println("participantsList size : " + participantsList.size());
+            for (int i = 0; i < participantsList.size(); i++) {
+                ProjectParticipants projectParticipants = participantsList.get(i);
+                System.out.println("projectParticipants is : " + projectParticipants);
+                System.out.println("project id :" + projectParticipants.getProjectParticipantsPK().getProjectId() + "; "
+                        + "role id : " + projectParticipants.getProjectParticipantsPK().getDesignation() + "; "
+                        + "participant id : " + projectParticipants.getProjectParticipantsPK().getParticipantId());
             }
+            boolean success = editProjectParticipantsController.editProjectParticipants(projectId, participantsList);
+            if (success) {
+                JOptionPane.showMessageDialog(jPanel1, "Participants has been Updated succesfully");
+                Component[] panels = jPanel1.getComponents();
+                for (Component C : panels) {
+                    //System.out.println("ok here now :"+C.getClass());
+                    if (C instanceof JTextField || C instanceof JTextArea || C instanceof JTable
+                            || C instanceof JDateChooser || C instanceof JFileChooser) {
+                        //  System.out.println("not here at all");
+                        ((JTextComponent) C).setText(""); //abstract superclass
+                    }
+                    if (C instanceof JComboBox) {
+                        //        ((JComboBox) C).setSelectedIndex(0); //abstract superclass
+                    }
+                }
 
 
+            } else {
+                JOptionPane.showMessageDialog(jPanel1, "Participants could not be Updated");
+            }
         } else {
-            JOptionPane.showMessageDialog(jPanel1, "Participants could not be Updated");
+            JOptionPane.showMessageDialog(this, "Please select a project first");
         }
-
     }//GEN-LAST:event_updateProjectButtonActionPerformed
 
     private void addNewParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewParticipantButtonActionPerformed

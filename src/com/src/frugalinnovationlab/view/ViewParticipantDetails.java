@@ -167,6 +167,7 @@ public class ViewParticipantDetails extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        table.setToolTipText("Select a project to view ");
         table.setColumnSelectionAllowed(true);
         table.getTableHeader().setReorderingAllowed(false);
         tableScrollPane.setViewportView(table);

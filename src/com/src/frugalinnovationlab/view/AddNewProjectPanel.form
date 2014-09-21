@@ -297,7 +297,7 @@
                                   <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="moveToParticipants" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -354,7 +354,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Project Name"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="shortDescriptionLabel">
@@ -363,7 +362,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Short Description"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
@@ -649,6 +647,7 @@
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor" postCode="String[] tagsArray = new String[tagsList.size()];&#xa;        for (int i = 0; i &lt; tagsList.size(); i++) {&#xa;            String tagname = tagsList.get(i).getTagname();&#xa;            tagsArray[i] = tagname;&#xa;        }&#xa;        projectTagsOptions = new JList(tagsArray);">
                           <StringArray count="0"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Select a tag or multiple tags"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -659,7 +658,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Outcome"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Enter new tag"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="deleteTagButton">
@@ -862,6 +861,7 @@
                         <StringItem index="0" value="Choose a Role"/>
                       </StringArray>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Choose a Role"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleComboBoxActionPerformed"/>
@@ -888,6 +888,7 @@
                         <StringItem index="0" value="Choose A Participant"/>
                       </StringArray>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Choose A Participant"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseParticipantComboBoxActionPerformed"/>
@@ -929,10 +930,10 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="true" title="Participant Id" type="java.lang.Object"/>
-                            <Column editable="true" title="Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Role Id" type="java.lang.Object"/>
-                            <Column editable="true" title="Role" type="java.lang.Object"/>
+                            <Column editable="false" title="Participant Id" type="java.lang.Object"/>
+                            <Column editable="false" title="Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Role Id" type="java.lang.Object"/>
+                            <Column editable="false" title="Role" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -960,7 +961,7 @@
                           </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1233,7 +1234,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Helvetica Neue" size="14" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Enter Last Name"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Enter Email"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="phoneLabel">
@@ -1250,7 +1251,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Helvetica Neue" size="14" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Enter Last Name"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Enter Phone"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="organizationLabel">
@@ -1267,7 +1268,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Helvetica Neue" size="14" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Enter Designation"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Enter Organization"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="addTitleLabel1">
@@ -1406,6 +1407,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Enter a file path"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="nextButton">
@@ -1454,6 +1456,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Enter a filename"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileNameTextFieldActionPerformed"/>
@@ -1488,6 +1491,7 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor" postCode="fileTypeComboBox.addItem(&quot;Select File Type&quot;);&#xa;for (int i = 0; i &lt; fileTypeList.size(); i++) {&#xa;            fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));&#xa;        }">
                       <StringArray count="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Choose a file type"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="addMediaButton">
@@ -1509,10 +1513,10 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="true" title="File Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Location" type="java.lang.Object"/>
-                            <Column editable="true" title="Type" type="java.lang.Object"/>
-                            <Column editable="true" title="Type Id" type="java.lang.Object"/>
+                            <Column editable="false" title="File Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Location" type="java.lang.Object"/>
+                            <Column editable="false" title="Type" type="java.lang.Object"/>
+                            <Column editable="false" title="Type Id" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1540,7 +1544,7 @@
                           </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                     </Component>

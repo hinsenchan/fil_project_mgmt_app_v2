@@ -269,6 +269,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Enter Middle Name"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="middlenameTextFieldActionPerformed"/>
@@ -326,7 +327,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Enter Designation"/>
+            <Property name="toolTipText" type="java.lang.String" value="Enter Email"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="designationLabel2">
@@ -343,7 +344,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Enter Designation"/>
+            <Property name="toolTipText" type="java.lang.String" value="Enter Phone"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="organizationTextField">
@@ -352,7 +353,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Enter Designation"/>
+            <Property name="toolTipText" type="java.lang.String" value="Enter Organization"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="designationLabel3">

@@ -260,8 +260,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="outcomeLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="outcomeScrollPane" pref="26" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="outcomeScrollPane" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -273,7 +272,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Project Name"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="projectNameTextField">
@@ -282,7 +280,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -295,7 +292,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Short Description"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="shortDescTextField">
@@ -304,7 +300,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -317,7 +312,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="General Description"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="genDescScrollPane">
@@ -342,7 +336,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Status"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="statusTextField">
@@ -351,7 +344,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -364,7 +356,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Categories"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="startDateLabel">
@@ -373,7 +364,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Start Date"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="locationTextField">
@@ -382,7 +372,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -395,7 +384,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Location"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="startDateTextField">
@@ -404,7 +392,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -417,7 +404,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Outcome"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="scopeTextField">
@@ -426,7 +412,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
@@ -439,7 +424,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Scope"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="outcomeScrollPane">
@@ -464,7 +448,6 @@
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="End Date"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="endDateTextField">
@@ -473,7 +456,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Helvetica Neue" size="14" style="0"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Enter Project Name"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>

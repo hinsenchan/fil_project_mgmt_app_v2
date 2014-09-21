@@ -114,11 +114,9 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
 
         projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         projectNameLabel.setText("Project Name");
-        projectNameLabel.setToolTipText("");
 
         shortDescriptionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         shortDescriptionLabel.setText("Short Description");
-        shortDescriptionLabel.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("General Description");

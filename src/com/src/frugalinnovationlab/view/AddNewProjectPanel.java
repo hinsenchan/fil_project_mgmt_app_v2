@@ -238,11 +238,9 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         projectNameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         projectNameLabel.setText("Project Name");
-        projectNameLabel.setToolTipText("");
 
         shortDescriptionLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         shortDescriptionLabel.setText("Short Description");
-        shortDescriptionLabel.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("General Description");
@@ -395,11 +393,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             tagsArray[i] = tagname;
         }
         projectTagsOptions = new JList(tagsArray);
+        projectTagsOptions.setToolTipText("Select a tag or multiple tags");
         jScrollPane2.setViewportView(projectTagsOptions);
 
         newTagsTextField.setColumns(20);
         newTagsTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        newTagsTextField.setToolTipText("Outcome");
+        newTagsTextField.setToolTipText("Enter new tag");
 
         deleteTagButton.setText("Delete Tags");
         deleteTagButton.addActionListener(new java.awt.event.ActionListener() {
@@ -580,7 +579,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                                 .addComponent(addTagButton)
                                 .addComponent(newTagsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(moveToParticipants)
                 .addGap(18, 18, 18))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,6 +626,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             //System.out.println(participantDesignationsList.get(i).getName());
             roleComboBox.addItem(new ComboItem(participantDesignationsList.get(i).getName(), Integer.toString(participantDesignationsList.get(i).getId())));
         }
+        roleComboBox.setToolTipText("Choose a Role");
         roleComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleComboBoxActionPerformed(evt);
@@ -647,6 +647,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
             chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
         }
+        chooseParticipantComboBox.setToolTipText("Choose A Participant");
         chooseParticipantComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chooseParticipantComboBoxActionPerformed(evt);
@@ -673,7 +674,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             new String [] {
                 "Participant Id", "Name", "Role Id", "Role"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTable1);
 
         addParticipantButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -761,21 +771,21 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
         emailTextField.setColumns(11);
         emailTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        emailTextField.setToolTipText("Enter Last Name");
+        emailTextField.setToolTipText("Enter Email");
 
         phoneLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         phoneLabel.setText("Phone");
 
         phoneTextField.setColumns(11);
         phoneTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        phoneTextField.setToolTipText("Enter Last Name");
+        phoneTextField.setToolTipText("Enter Phone");
 
         organizationLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         organizationLabel.setText("Organization");
 
         organizationTextField.setColumns(11);
         organizationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        organizationTextField.setToolTipText("Enter Designation");
+        organizationTextField.setToolTipText("Enter Organization");
 
         addTitleLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         addTitleLabel1.setText("Role");
@@ -946,6 +956,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(600, 600));
 
         selectFileTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        selectFileTextField.setToolTipText("Enter a file path");
 
         nextButton.setForeground(new java.awt.Color(0, 95, 45));
         nextButton.setText("Next Step");
@@ -971,6 +982,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         });
 
         fileNameTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        fileNameTextField.setToolTipText("Enter a filename");
         fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileNameTextFieldActionPerformed(evt);
@@ -990,6 +1002,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         for (int i = 0; i < fileTypeList.size(); i++) {
             fileTypeComboBox.addItem(new ComboItem(fileTypeList.get(i).getType(), Integer.toString(fileTypeList.get(i).getId())));
         }
+        fileTypeComboBox.setToolTipText("Choose a file type");
 
         addMediaButton.setText("Add Media");
         addMediaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1005,7 +1018,16 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             new String [] {
                 "File Name", "Location", "Type", "Type Id"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable2);
 
         deleteMediaButton.setText("Remove Media");
@@ -1419,6 +1441,12 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             //array[9] = projectIdTextField.getText();
             selectedTagsList = projectTagsOptions.getSelectedValuesList();
 
+            boolean dateError = false;
+            if (endDate.getDate().compareTo(startDate.getDate()) < 0) {
+                JOptionPane.showMessageDialog(mainPanel, "End Date is earlier than the Start Date!");
+                dateError = true;
+            }
+            
             /*
             String newTags = newTagsTextField.getText();
             if (isAddNewTags && newTags != null && !newTags.equals("")) {
@@ -1452,9 +1480,15 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
              videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
              pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
              */
-
-            boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
-                    filesList, selectedTagsList);
+            boolean success = false;
+            try {
+                if (!dateError) {
+                    success = addNewProjectController.addProject(array, categoriesList, participantsList,
+                            filesList, selectedTagsList);
+                }
+            } catch(javax.persistence.RollbackException e) {
+                JOptionPane.showMessageDialog(mainPanel, "This project name already exists. Please enter a different name.");
+            }
 
             if (success) {
                 /*for (Component C : this.getComponents()) {
@@ -1619,14 +1653,19 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         //if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
             //String[] newTagsArr = newTags.split(";");
             String[] newTagsArr = {newTags};
-            addNewProjectController.addNewTags(tagsList, newTagsArr);
-            ListModel model = projectTagsOptions.getModel();
-            Object[] newListModel = new Object[model.getSize()+1];
-            newListModel[0] = newTags;
-            for (int i=1; i<=model.getSize(); i++) {
-                newListModel[i] = model.getElementAt(i-1);
+            try {
+                addNewProjectController.addNewTags(tagsList, newTagsArr);
+                ListModel model = projectTagsOptions.getModel();
+                Object[] newListModel = new Object[model.getSize()+1];
+                newListModel[0] = newTags;
+                for (int i=1; i<=model.getSize(); i++) {
+                    newListModel[i] = model.getElementAt(i-1);
+                }
+                projectTagsOptions.setListData(newListModel);
             }
-            projectTagsOptions.setListData(newListModel);
+            catch(Exception e) {
+                JOptionPane.showMessageDialog(mainPanel, "This Tag Already Exist!");
+            }            
             /*
             for (int i = 0; i < newTagsArr.length; i++) {
                 selectedTagsList.add(newTagsArr[i]);

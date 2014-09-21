@@ -118,6 +118,7 @@ public class EditParticipantPanel extends javax.swing.JPanel {
         jLabel1.setText("Middle Name");
 
         middlenameTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        middlenameTextField.setToolTipText("Enter Middle Name");
         middlenameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 middlenameTextFieldActionPerformed(evt);
@@ -144,18 +145,18 @@ public class EditParticipantPanel extends javax.swing.JPanel {
 
         emailTextField.setColumns(11);
         emailTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        emailTextField.setToolTipText("Enter Designation");
+        emailTextField.setToolTipText("Enter Email");
 
         designationLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         designationLabel2.setText("Phone");
 
         phoneTextField.setColumns(11);
         phoneTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        phoneTextField.setToolTipText("Enter Designation");
+        phoneTextField.setToolTipText("Enter Phone");
 
         organizationTextField.setColumns(11);
         organizationTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        organizationTextField.setToolTipText("Enter Designation");
+        organizationTextField.setToolTipText("Enter Organization");
 
         designationLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         designationLabel3.setText("Organization");

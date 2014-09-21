@@ -207,6 +207,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
             return canEdit [columnIndex];
         }
     });
+    table.setToolTipText("Select a participant to view his/her details");
     table.setColumnSelectionAllowed(true);
     table.getTableHeader().setReorderingAllowed(false);
     tableScrollPane.setViewportView(table);
@@ -473,8 +474,14 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     for (int i = 0; i < result.size(); i++) {
                         Object[] values = (Object[]) result.get(i);
                         String id = String.valueOf(values[3]);
+                        /*
                         String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
                                 .concat(" ").concat(values[2].toString());
+                        */
+                        String participantItem = values[2].toString() + ", " + values[1].toString();
+                        if (!values[0].toString().equals("")) {
+                            participantItem = participantItem.concat(" (" + values[0] + ")");
+                        }
                         String roleValue = values[4].toString();
                         String role = values[5].toString();
                         String email = values[6].toString();
@@ -493,8 +500,14 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     for (int i = 0; i < result.size(); i++) {
                         Object[] values = (Object[]) result.get(i);
                         String id = String.valueOf(values[3]);
+                        /*
                         String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
                                 .concat(" ").concat(values[2].toString());
+                        */
+                        String participantItem = values[2].toString() + ", " + values[1].toString();
+                        if (!values[0].toString().equals("")) {
+                            participantItem = participantItem.concat(" (" + values[0] + ")");
+                        }                        
                         String roleValue = values[4].toString();
                         String role = values[5].toString();
                         String email = values[6].toString();

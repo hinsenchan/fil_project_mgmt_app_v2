@@ -38,6 +38,7 @@ public class SearchPanel extends javax.swing.JPanel   {
         jtable1 = new JTable(searchcontroller.getTableModel(searchtext));
         jtable1.getSelectionModel().addListSelectionListener(searchcontroller); 
         jtable1.setAutoCreateRowSorter(true);
+        jtable1.setToolTipText("Select a project to view details");
         
         final JScrollPane scrollpane = new JScrollPane(jtable1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         tablePanel.setLayout(new BorderLayout());
@@ -84,7 +85,7 @@ public class SearchPanel extends javax.swing.JPanel   {
 
         searchTextField.setColumns(11);
         searchTextField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        searchTextField.setToolTipText("");
+        searchTextField.setToolTipText("Search keywords in title and short description");
         searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTextFieldActionPerformed(evt);

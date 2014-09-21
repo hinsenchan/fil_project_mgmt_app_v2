@@ -44,12 +44,12 @@ public class EditProjectPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewAllProjectsLabel = new javax.swing.JLabel();
+        editProjectsLabel = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        archiveProjectButton = new javax.swing.JButton();
+        activateProjectButton = new javax.swing.JButton();
         logoLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -57,8 +57,8 @@ public class EditProjectPanel extends javax.swing.JPanel {
         setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         setPreferredSize(new java.awt.Dimension(600, 600));
 
-        viewAllProjectsLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        viewAllProjectsLabel.setText("Edit Projects");
+        editProjectsLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        editProjectsLabel.setText("Edit Projects");
 
         tablePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -73,20 +73,34 @@ public class EditProjectPanel extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setToolTipText("Select a project");
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Archive Project");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        archiveProjectButton.setForeground(new java.awt.Color(153, 0, 0));
+        archiveProjectButton.setText("Archive Project");
+        archiveProjectButton.setToolTipText("Archive Project and Hide for Editing and Viewing");
+        archiveProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                archiveProjectButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Activate Project");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        activateProjectButton.setForeground(new java.awt.Color(0, 153, 102));
+        activateProjectButton.setText("Activate Project");
+        activateProjectButton.setToolTipText("Activate Project for Editing and Viewing");
+        activateProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                activateProjectButtonActionPerformed(evt);
             }
         });
 
@@ -100,9 +114,9 @@ public class EditProjectPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(activateProjectButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(archiveProjectButton)))
                 .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
@@ -112,8 +126,8 @@ public class EditProjectPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(archiveProjectButton)
+                    .addComponent(activateProjectButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -128,7 +142,7 @@ public class EditProjectPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -141,7 +155,7 @@ public class EditProjectPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewAllProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editProjectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,50 +163,59 @@ public class EditProjectPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void activateProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateProjectButtonActionPerformed
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        String projectName = jTable1.getModel().getValueAt(row, 0).toString();
-        boolean success = editProjectController.activateProject(projectName);
-        if(success) {
-            updateTable();
-            mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
-            mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
-            mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
-            mainApplication.getContentPanel().revalidate();
-            mainApplication.getContentPanel().repaint();
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is Activated !!");
-        } else {
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Activated !!");
+        if (row > -1) {
+            String projectName = jTable1.getModel().getValueAt(row, 0).toString();
+            boolean success = editProjectController.activateProject(projectName);
+            if(success) {
+                updateTable();
+                mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
+                mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
+                mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
+                mainApplication.getContentPanel().revalidate();
+                mainApplication.getContentPanel().repaint();
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is Activated !!");
+            } else {
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Activated !!");
+            }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+        else {
+            JOptionPane.showMessageDialog(this, "Please select a project first");
+        }
+    }//GEN-LAST:event_activateProjectButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void archiveProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveProjectButtonActionPerformed
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        String projectName = jTable1.getModel().getValueAt(row, 0).toString();
-        boolean success = editProjectController.deleteProject(projectName);
-        if(success) {
-            updateTable();
-            mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
-            mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
-            mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
-            mainApplication.getContentPanel().revalidate();
-            mainApplication.getContentPanel().repaint();
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archieved !!");
+        if (row > -1) {
+            String projectName = jTable1.getModel().getValueAt(row, 0).toString();
+            boolean success = editProjectController.deleteProject(projectName);
+            if(success) {
+                updateTable();
+                mainApplication.getContentPanel().remove(mainApplication.getEditProjectPanel());
+                mainApplication.setEditProjectPanel(new EditProjectPanel(mainApplication));
+                mainApplication.getContentPanel().add(mainApplication.getEditProjectPanel()); 
+                mainApplication.getContentPanel().revalidate();
+                mainApplication.getContentPanel().repaint();
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is Archieved !!");
+            } else {
+                JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archieved !!");
+            }
         } else {
-            JOptionPane.showMessageDialog(tablePanel, projectName+ " is not Archieved !!");
+            JOptionPane.showMessageDialog(this, "Please select a project first");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_archiveProjectButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton activateProjectButton;
+    private javax.swing.JButton archiveProjectButton;
+    private javax.swing.JLabel editProjectsLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logoLabel2;
     private javax.swing.JPanel tablePanel;
-    private javax.swing.JLabel viewAllProjectsLabel;
     // End of variables declaration//GEN-END:variables
     //return reference to main app class
     public WelcomeAbstract getMainApplication() {
