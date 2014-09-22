@@ -8,7 +8,6 @@ package com.src.frugalinnovationlab.Model;
 import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectView;
 import com.src.frugalinnovationlab.Service.EditAllProjectsService;
-import com.src.frugalinnovationlab.Service.ViewAllProjectsService;
 import com.src.frugalinnovationlab.helper.Constants;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,7 +31,6 @@ public class EditAllProjectsModel extends AbstractTableModel {
     int numrows, numcols;
 
     public EditAllProjectsModel() {
-
         editallprojectservice = new EditAllProjectsService(manager);
         factory = Persistence.createEntityManagerFactory(Constants.PERSISTENCE_UNIT_NAME);
         manager = factory.createEntityManager();
@@ -41,8 +39,6 @@ public class EditAllProjectsModel extends AbstractTableModel {
         projects = new Project();
         numrows = ProjectResulList.size();
         numcols = projects.getViewColumns();
-
-
     }
 
     public EditAllProjectsModel(List<ProjectView> list, EntityManager em) {
@@ -50,59 +46,40 @@ public class EditAllProjectsModel extends AbstractTableModel {
         projects = new Project();
         manager = em;
         editallprojectservice = new EditAllProjectsService(manager);
-
     }
 
     @Override
     public Object getValueAt(int row, int col) {
-
         try {
-
-
             return ProjectResulList.get(row).viewColumnData(col);
-
-
-
-
         } catch (Exception e) {
             e.getMessage();
             return null;
         }
-
     }
 
     @Override
     public int getRowCount() {
-
         return numrows;
-
-
     }
 
     // returns a count of the number of columns
     @Override
     public int getColumnCount() {
-
-
         return numcols;
-
     }
 
     public EntityManager getEntityManager() {
         return manager;
-
     }
 
     public List<ProjectView> getList() {
-
         return ProjectResulList;
-
     }
 
     @Override
     public String getColumnName(int col) {
         try {
-
             return projects.viewColumnName(col);
         } catch (Exception err) {
             return err.toString();

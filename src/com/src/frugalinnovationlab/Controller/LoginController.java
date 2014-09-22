@@ -20,7 +20,6 @@ public class LoginController {
     public LoginController(Login gui) {
         this.gui = gui;
         loginmodel = new LoginModel();
-
     }
 
     public String submitLogin(String[] array) {

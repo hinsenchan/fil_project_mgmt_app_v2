@@ -508,10 +508,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
         Object projectItem = chooseProjectComboBox.getSelectedItem();
-        //  System.out.println("object item : " +projectItem);
         if (!projectItem.toString().equals("Choose a Project")) {
             String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-            //  System.out.println("project id : " + projectId);
 
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -520,12 +518,8 @@ public class EditProjectParticipants extends javax.swing.JPanel {
             }
             List result = editProjectParticipantsController.fetchParticipantsByProject(projectId);
             participantsList.clear();
-            //System.out.println("result size : " + result.size());
             for (int i = 0; i < result.size(); i++) {
                 Object[] values = (Object[]) result.get(i);
-                //System.out.println(i + " -- " + values[0] + "; " + values[1] + "; " + values[2] + "; " + values[3]);
-                //System.out.println("part 1 : " +projectParticipants.getParticipants().getId());
-                //   System.out.println("part 2 : " +projectParticipants.getParticipants().getId());
                 String participantValue = String.valueOf(values[3]);
                 String participantItem = values[2].toString().concat(", ").concat(values[1].toString());
                 if (!values[0].toString().equalsIgnoreCase("")) {
@@ -539,7 +533,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 Object[] row = {participantValue, participantItem, roleValue, roleItem};
                 model = (DefaultTableModel) jTable2.getModel();
                 model.addRow(row);
-                //  System.out.println("here");
             }
         } else {
             model = (DefaultTableModel) jTable2.getModel();
@@ -566,7 +559,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
             ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
                     Integer.parseInt(participantValue), Integer.parseInt(roleValue));
             participantsList.add(a);
-            //System.out.println("participantsList size : " + participantsList.size());
 
             Object[] row = {participantValue, participantItem, roleValue, roleItem};
             model = (DefaultTableModel) jTable2.getModel();
@@ -578,8 +570,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
     }//GEN-LAST:event_addParticipantButtonActionPerformed
 
     private void deleteParticipantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteParticipantButtonActionPerformed
-        // TODO add your handling code here:
-
         Object projectItem = chooseProjectComboBox.getSelectedItem();
         if (!projectItem.toString().equals("Choose a Project")) {
             String projectId = ((ComboItem) projectItem).getValue();
@@ -591,11 +581,10 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 String roleId = model.getValueAt(row, 2).toString();
                 ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId),
                         Integer.parseInt(participantId), Integer.parseInt(roleId));
-                System.out.println("contains : " + participantsList.contains(a));
+
                 Iterator<ProjectParticipants> itr = participantsList.iterator();
                 while (itr.hasNext()) {
                     ProjectParticipants x = itr.next();
-                    //     System.out.println("x value : " + x.getParticipants().getId());
                     if (a.getProjectParticipantsPK().getProjectId() == x.getProjectParticipantsPK().getProjectId()
                             && a.getProjectParticipantsPK().getDesignation() == x.getProjectParticipantsPK().getDesignation()
                             && a.getProjectParticipantsPK().getParticipantId() == x.getProjectParticipantsPK().getParticipantId()) {
@@ -617,8 +606,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
         Object projectItem = chooseProjectComboBox.getSelectedItem();
         if (!projectItem.toString().equals("Choose a Project")) {
             String projectId = ((ComboItem) projectItem).getValue();
-            //    System.out.println("project id : " + projectId);
-            System.out.println("participantsList size : " + participantsList.size());
+
             for (int i = 0; i < participantsList.size(); i++) {
                 ProjectParticipants projectParticipants = participantsList.get(i);
                 System.out.println("projectParticipants is : " + projectParticipants);
@@ -631,14 +619,12 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(jPanel1, "Participants has been Updated succesfully");
                 Component[] panels = jPanel1.getComponents();
                 for (Component C : panels) {
-                    //System.out.println("ok here now :"+C.getClass());
                     if (C instanceof JTextField || C instanceof JTextArea || C instanceof JTable
                             || C instanceof JDateChooser || C instanceof JFileChooser) {
-                        //  System.out.println("not here at all");
                         ((JTextComponent) C).setText(""); //abstract superclass
                     }
                     if (C instanceof JComboBox) {
-                        //        ((JComboBox) C).setSelectedIndex(0); //abstract superclass
+
                     }
                 }
 
@@ -705,7 +691,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
             boolean success = editProjectParticipantsController.addParticipant(array);
             if (success) {
                 participants = editProjectParticipantsController.getParticipantsFromDatabase();
-//                this.sortParticipants();
                 chooseParticipantComboBox.removeAllItems();
                 chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
@@ -717,7 +702,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 }
                 Object projectItem = chooseProjectComboBox.getSelectedItem();
                 String projectId = ((ComboItem) projectItem).getValue();
-                //initComponents();
                 Object roleItem = addNewParticipantRoleComboBox.getSelectedItem();
                 String roleValue = ((ComboItem) roleItem).getValue();
 
@@ -725,7 +709,7 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 if (!array[0].equalsIgnoreCase("")) {
                     participantValue = participantValue.concat(" (" + array[0] + ")");
                 }
-                //AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleValue);
+
                 ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantId),
                         Integer.parseInt(roleValue));
 
@@ -733,7 +717,6 @@ public class EditProjectParticipants extends javax.swing.JPanel {
                 Object[] row = {participantId, participantValue, roleValue, roleItem};
                 model = (DefaultTableModel) jTable2.getModel();
                 model.addRow(row);
-                //count++;
                 JOptionPane.showMessageDialog(jPanel1, "Participant added succesfully");
             } else {
                 JOptionPane.showMessageDialog(jPanel1, "Participant could not be added");

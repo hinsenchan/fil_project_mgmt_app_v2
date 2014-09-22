@@ -45,12 +45,10 @@ public class ManageAccountInfoPanel extends javax.swing.JPanel {
         System.out.println("logged in username : " + loggedinUserValue);
         user = manageAccountInfoController.getLogInUserDetails(loggedinUserValue);
         System.out.println("user first name : " +user.getFirstname());
-        firstNameTextField.setText(user.getFirstname());
-       
+        firstNameTextField.setText(user.getFirstname());       
         lastNameTextField.setText(user.getLastname());
         emailTextField.setText(user.getEmailaddress());
         phoneNumberTextField.setText(String.valueOf(user.getContactnumber()));
-    //    enterPasswordField.setText(user.getPassword()); 
         userNameTextField.setText(user.getUsername());
     }
 
@@ -281,7 +279,6 @@ public class ManageAccountInfoPanel extends javax.swing.JPanel {
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
-       // firstNameTextField.setText(user.getFirstname());
     }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
     private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
@@ -317,7 +314,7 @@ public class ManageAccountInfoPanel extends javax.swing.JPanel {
 
     private void enterPasswordFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterPasswordFieldKeyTyped
         // TODO add your handling code here:
-                enterPasswordField.getDocument().addDocumentListener(new DocumentListener() {
+        enterPasswordField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 updateLabel(e);
@@ -334,9 +331,8 @@ public class ManageAccountInfoPanel extends javax.swing.JPanel {
             }
 
             private void updateLabel(DocumentEvent e) {
-                String text = String.valueOf(enterPasswordField.getPassword());//just example getText() is Depreciated !!!
-                //label.setText(text);
-                //labelLength.setText(" Psw Lenght -> " + text.length());
+                String text = String.valueOf(enterPasswordField.getPassword());
+
                 if (text.length() < 7) {
                     progressBar.setValue(0);
                 } else if (text.matches("[a-z]+")) {
@@ -370,7 +366,6 @@ public class ManageAccountInfoPanel extends javax.swing.JPanel {
                 }
             }
         });
-
     }//GEN-LAST:event_enterPasswordFieldKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,9 +6,7 @@
 package com.src.frugalinnovationlab.Controller;
 
 import com.src.frugalinnovationlab.Model.EditAllProjectsModel;
-import com.src.frugalinnovationlab.Model.ViewAllProjectsModel;
 import com.src.frugalinnovationlab.view.EditProjectPanel;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;

@@ -171,9 +171,7 @@ public class ViewMediaPanel extends javax.swing.JPanel {
 
         if (!projectItem.toString().equals("Choose a project...")) {
             int projectId = Integer.parseInt(((ComboItem) projectItem).getValue());
-            //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             String projectName = String.valueOf(((ComboItem) projectItem).getKey());
-            //System.out.println("project id : " + projectId);
             
             selectedProjectId = projectId;
 
@@ -184,11 +182,9 @@ public class ViewMediaPanel extends javax.swing.JPanel {
             }
                         
             List result = mediaController.fetchProjectFilesMapByProject(projectId);
-            //projectFilesMapList.clear();
 
             for (int i = 0; i < result.size(); i++) {
                 ProjectFilesMap projectFile = (ProjectFilesMap)result.get(i);
-                //projectFilesMapList.add(projectFile);
                 ProjectFilesMapPK projectFileDetails = projectFile.getProjectFilesMapPK();
 
                 int fileTypeId = projectFileDetails.getFiletypeid();
@@ -234,38 +230,7 @@ public class ViewMediaPanel extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a file to view");
-        }
-        
-        /*
-                String projectDirectory = "";
-        try {
-            File projectDirectoryFile = new File(ViewMediaPanel.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-            projectDirectory = projectDirectoryFile.getParent();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Unable to Locate Application Directory");
-        } 
-        
-        final int LOCATION = 2;
-        int selectedFile = jTable.getSelectedRow();
-        String fileLocation;
-        //String fileLocation = (String) jTable.getValueAt(selectedFile, LOCATION);
-        fileLocation = projectDirectory + (String) jTable.getValueAt(selectedFile, LOCATION);
-        editProjectLabel.setText(fileLocation);
-
-        if (!fileLocation.isEmpty()) {
-            try {
-                File file = new File(fileLocation);
-            
-                if (Desktop.isDesktopSupported()) {
-                    Desktop.getDesktop().open(file);
-                }
-            }
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Unable to open file or directory.", "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        */
+        }        
     }//GEN-LAST:event_viewMediaButtonActionPerformed
 
 

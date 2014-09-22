@@ -7,10 +7,7 @@ package com.src.frugalinnovationlab.Service;
 
 import com.src.frugalinnovationlab.Entity.Users;
 import com.src.frugalinnovationlab.Entity.UserRoles;
-
-
 import javax.persistence.EntityManager;
-
 import javax.persistence.*;
 import java.util.*;
 import java.math.*;

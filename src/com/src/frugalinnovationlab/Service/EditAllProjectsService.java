@@ -21,29 +21,17 @@ public class EditAllProjectsService {
     private EntityManager manager;
 
     public EditAllProjectsService(EntityManager manager) {
-
         this.manager = manager;
-
-
     }
 
     public List<ProjectView> readAll() {
-
-
-
         TypedQuery<ProjectView> query = manager.createQuery("SELECT    NEW  com.src.frugalinnovationlab.Entity.ProjectView(p.name, p.shortdesc, p.description,  p.startDate, p.endDate, s.status, p.outcome, p.scope, p.archive, p.startDate)   from  Project p JOIN p.projectStatusSet s order by p.name", ProjectView.class);
-
         List<ProjectView> result = query.getResultList();
-
         return result;
-
-
-
     }
     
     public boolean deleteProject(String projectName){
         boolean success = false;
-        //Query query = manager.createQuery("DELETE FROM Project p where p.name = :pname");
         Query query = manager.createQuery("UPDATE Project p SET p.archive = 'yes' where p.name = :pname");
         query.setParameter("pname", projectName);
         int count = query.executeUpdate();
@@ -54,7 +42,6 @@ public class EditAllProjectsService {
     
     public boolean activateProject(String projectName){
         boolean success = false;
-        //Query query = manager.createQuery("DELETE FROM Project p where p.name = :pname");
         Query query = manager.createQuery("UPDATE Project p SET p.archive = 'no' where p.name = :pname");
         query.setParameter("pname", projectName);
         int count = query.executeUpdate();

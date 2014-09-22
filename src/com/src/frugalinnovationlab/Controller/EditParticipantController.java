@@ -5,7 +5,6 @@
 package com.src.frugalinnovationlab.Controller;
 
 import com.src.frugalinnovationlab.Entity.Participants;
-import com.src.frugalinnovationlab.Model.AddNewParticipantModel;
 import com.src.frugalinnovationlab.Model.EditParticipantModel;
 import com.src.frugalinnovationlab.view.EditParticipantPanel;
 import java.util.List;

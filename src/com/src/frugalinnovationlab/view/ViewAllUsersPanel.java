@@ -29,17 +29,13 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         this.mainApplication = welcome;
         viewalluserscontroller = new ViewAllUsersController(this);
         addJTable();
-        //updateTable();
     }
 
     public void addJTable() {
         // add the data and column names to a JTable  
-
         jtable1 = new JTable(viewalluserscontroller.getTableModel());
         jtable1.setDragEnabled(false);
         jtable1.setToolTipText("Select a user to delete");
-        //jtable1.getColumnModel().getColumn(6).setMinWidth(0);
-        //jtable1.getColumnModel().getColumn(6).setMaxWidth(0);
 
         final JScrollPane scrollpane = new JScrollPane(jtable1, 
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -156,9 +152,9 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
         int selrow = jtable1.getSelectedRow();
         if (selrow > -1) {
             String username = (String) jtable1.getModel().getValueAt(selrow, 0);
-            //System.out.println("username is : " + username);
-            int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
-            //System.out.println(n + "value for dialog box");
+            int n = JOptionPane.showConfirmDialog(contentPanel, "Are you sure you want to delete the user" + 
+                    " " + username + " " + "", "Delete User", JOptionPane.YES_NO_OPTION);
+            
             if (n == 0) {
                 boolean flag = viewalluserscontroller.DeleteUser(username);
                 if (flag == true) {
@@ -168,11 +164,11 @@ public class ViewAllUsersPanel extends javax.swing.JPanel {
                     mainApplication.getContentPanel().add(mainApplication.getViewAllUsersPanel());
                     mainApplication.getContentPanel().revalidate();
                     mainApplication.getContentPanel().repaint();                
-                    JOptionPane.showMessageDialog(contentPanel, " User Details for User" + "  " + username + " " + "has deleted  succesfully");
-
-
+                    JOptionPane.showMessageDialog(contentPanel, " User Details for User" + "  " + 
+                            username + " " + "has deleted  succesfully");
                 } else {
-                    JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. Please verify the information again", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane optionPane = new JOptionPane("Error in Deleting information for User. "
+                            + "Please verify the information again", JOptionPane.ERROR_MESSAGE);
                     JDialog dialog = optionPane.createDialog("Error !");
                     dialog.setAlwaysOnTop(true);
                     dialog.setVisible(true);

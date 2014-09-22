@@ -22,8 +22,6 @@ public class AddNewParticipantService {
         this.manager = manager;
     }
     
-    
-    
     public boolean addParticipant(String[] array) {
         boolean success = false;
         String title = array[0];
@@ -45,7 +43,7 @@ public class AddNewParticipantService {
         participants.setEmail(email);
         participants.setPhone(phone);
         participants.setOrganization(organization);
-        
+       
         manager.persist(participants);
         success = true;
         

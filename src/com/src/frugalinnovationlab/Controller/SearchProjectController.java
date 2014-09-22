@@ -14,7 +14,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import com.src.frugalinnovationlab.view.SearchPanel;
 import com.src.frugalinnovationlab.Model.SearchProjectModel;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
 
 /**
@@ -43,8 +42,7 @@ public class SearchProjectController implements ListSelectionListener, TableMode
             gui.updateTable();                                       			
 	}          
         catch(Exception exp) {
-            exp.getMessage();
-            exp.printStackTrace();
+            exp.getMessage();          
 	}                 
      }     
      

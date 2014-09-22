@@ -10,16 +10,12 @@ import com.src.frugalinnovationlab.Entity.ProjectStatus;
 import com.src.frugalinnovationlab.Entity.ProjectView;
 import com.src.frugalinnovationlab.view.AdvancedSearchPanel;
 import com.src.frugalinnovationlab.Model.AdvancedSearchModel;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import java.util.Map;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 
 /**
  *

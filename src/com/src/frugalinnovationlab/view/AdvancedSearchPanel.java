@@ -345,74 +345,53 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
 
     private void searchProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProjectButtonActionPerformed
         // TODO add your handling code here:               
-        //String data[] = new String[14];
         Map<String, String> advSearchInputs = new HashMap<String, String>();
         Map<String, String> advSearchCatInputs = new HashMap<String, String>();
-        //data[0] = searchTextField.getText();
         advSearchInputs.put("search_text", searchTextField.getText());
-        //data[1] = shortDescriptionTextField.getText();
         advSearchInputs.put("short_desc", shortDescriptionTextField.getText());
-        //data[2] = projectStatusComboBox.getSelectedItem().toString();
         advSearchInputs.put("project_status", projectStatusComboBox.getSelectedItem().toString());
 
         if (bioengineeringCheckBox.isSelected()) {
-            //data[3] = bioengineeringCheckBox.getText();
             advSearchCatInputs.put("bioengineering", "yes");
         } else {
-            //data[3] = "";
             advSearchCatInputs.put("bioengineering", "no");
         }
 
         if (electricalEngineeringCheckBox.isSelected()) {
-            //data[4] = electricalEngineeringCheckBox.getText();
             advSearchCatInputs.put("electricalengineering", "yes");
         } else {
-            //data[4] = "";
             advSearchCatInputs.put("electricalengineering", "no");
         }
 
         if (civilEngineeringCheckBox.isSelected()) {
-            //data[5] = civilEngineeringCheckBox.getText();
             advSearchCatInputs.put("civilengineering", "yes");
         } else {
-            //data[5] = "";
             advSearchCatInputs.put("civilengineering", "no");
         }
 
         if (mechanicalEngineeringCheckBox.isSelected()) {
-            //data[6] = mechanicalEngineeringCheckBox.getText();
             advSearchCatInputs.put("mechanicalengineering", "yes");
         } else {
-            //data[6] = "";
             advSearchCatInputs.put("mechanicalengineering", "no");
         }
 
         if (computerEngineeringCheckBox.isSelected()) {
-            //data[7] = computerEngineeringCheckBox.getText();
             advSearchCatInputs.put("computerengineering", "yes");
         } else {
-            //data[7] = "";
             advSearchCatInputs.put("computerengineering", "no");
         }
 
-        //data[8] = roleComboBox2.getSelectedItem().toString();
-
-        //data[9] = scopeTextField.getText();
         advSearchInputs.put("scope", scopeTextField.getText());
 
         if (jDateChooser1.getDate() == null) {
-            //data[10] = "";
             advSearchInputs.put("startdate", "");
         } else {
-            //data[10] = jDateChooser1.getDate().toString();
             advSearchInputs.put("startdate", jDateChooser1.getDate().toString());
         }
 
         if (jDateChooser2.getDate() == null) {
-            //data[11] = "";
             advSearchInputs.put("enddate", "");
         } else {
-            //data[11] = jDateChooser2.getDate().toString();
             advSearchInputs.put("enddate", jDateChooser2.getDate().toString());
         }
 
@@ -424,7 +403,6 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
         System.out.println("num of rows : " +model.getRowCount());
         for (int i = 0; i < projectList.size(); i++) {
             ProjectView projectView = projectList.get(i);
-            //System.out.println("name of project : " + projectView.getProjectName());
             Object[] row = {projectView.getProjectName(), projectView.getShortdesc(), projectView.getStatus(),
                 projectView.getScope(), projectView.getStartDate(), projectView.getEndDate()};
             model = (DefaultTableModel) jTable1.getModel();
@@ -447,7 +425,6 @@ public class AdvancedSearchPanel extends javax.swing.JPanel {
 
     private void civilEngineeringCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_civilEngineeringCheckBoxActionPerformed
         // TODO add your handling code here:
-
         categorySelected.add("Civil Engineering");
     }//GEN-LAST:event_civilEngineeringCheckBoxActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

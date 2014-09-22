@@ -12,11 +12,9 @@ import com.src.frugalinnovationlab.Service.AdvancedSearchService;
 import com.src.frugalinnovationlab.helper.Constants;
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -29,11 +27,9 @@ public class AdvancedSearchModel{
     private AdvancedSearchService advancedsearchservice;
 
     public AdvancedSearchModel() {
-
         factory = Persistence.createEntityManagerFactory(Constants.PERSISTENCE_UNIT_NAME);
         manager = factory.createEntityManager();
         advancedsearchservice = new AdvancedSearchService(manager);
-
     }
 
     public List<Project> getProjectsFromDatabase() {

@@ -23,17 +23,13 @@ public class Welcome extends WelcomeAbstract {
     private AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
     private ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
-    //final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel(this);
     private SearchPanel searchPanel = new SearchPanel(this);
-    //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
     private AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel(this);
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
     private EditProjectPanel editProjectPanel = new EditProjectPanel(this);
     EditGeneralProjectInformation editGeneralProjectInformation;
-    //final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     private EditMediaPanel editMediaPanel = new EditMediaPanel(this);
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
     private ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
@@ -50,10 +46,6 @@ public class Welcome extends WelcomeAbstract {
     static String lastComponent = "";
 
     public Welcome() {
-        //URL iconURL = getClass().getResource("http://icons.iconarchieve.com/icons/artua/mac/512/Setting-icon.png");
-// iconURL is null when not found
-        //ImageIcon icon = new ImageIcon(iconURL);
-        //this.setIconImage(icon.getImage());
         this.setJMenuBar(createMenuBar());
         initComponents();
         welcome.setText("Welcome ".concat(prefs.get(Constants.FULL_NAME, "Guest")));
@@ -302,20 +294,13 @@ public class Welcome extends WelcomeAbstract {
         // TODO add your handling code here:
         getContentPanel().setLayout(new java.awt.BorderLayout());
         TreePath path = optionsMenuTree.getPathForLocation(evt.getX(), evt.getY());
-        //System.out.println("path : " + path);
         if (path != null) {
-            //System.out.println("lastcomponent : " + lastComponent);
             getContentPanel().removeAll();
             // Check the last added component and remove it
             if (!lastComponent.equals("")) {
                 if (lastComponent.equals("New Project")) {
                     getContentPanel().remove(addNewProjectPanel);
-                /*
-                } else if (lastComponent.equals("View All Projects")) {
-                    getContentPanel().remove(viewAllProjectsPanel);
-                */
                 } else if (lastComponent.equals("Edit Participant")) {
-                    //getContentPanel().remove(addNewParticipantPanel);
                     getContentPanel().remove(editParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
                     getContentPanel().remove(getAddNewUserPanel());
@@ -351,13 +336,7 @@ public class Welcome extends WelcomeAbstract {
             if (path.toString().contains("New Project")) {
                 getContentPanel().add(new AddNewProjectPanel());
                 lastComponent = "New Project";
-            /*
-            } else if (path.toString().contains("View All Projects")) {
-                getContentPanel().add(new ViewAllProjectsPanel());
-                lastComponent = "View All Projects";
-            */
             } else if (path.toString().contains("Edit Participant")) {
-                //getContentPanel().add(new AddNewParticipantPanel());
                 getContentPanel().add(new EditParticipantPanel());
                 lastComponent = "Edit Participant";
             } else if (path.toString().contains("Add New User")) {
@@ -438,40 +417,6 @@ public class Welcome extends WelcomeAbstract {
         getContentPanel().repaint();
     }//GEN-LAST:event_manageAccountButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        /* Create and display the form */
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Welcome().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel headerPanel;

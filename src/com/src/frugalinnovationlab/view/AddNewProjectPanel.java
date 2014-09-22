@@ -7,16 +7,6 @@ package com.src.frugalinnovationlab.view;
 
 import com.src.frugalinnovationlab.Controller.AddNewProjectController;
 import com.src.frugalinnovationlab.Entity.Filetypes;
-import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaCad;
-import com.src.frugalinnovationlab.Entity.MediaCode;
-import com.src.frugalinnovationlab.Entity.MediaHyperlink;
-import com.src.frugalinnovationlab.Entity.MediaPdf;
-import com.src.frugalinnovationlab.Entity.MediaPhotos;
-import com.src.frugalinnovationlab.Entity.MediaPlaintext;
-import com.src.frugalinnovationlab.Entity.MediaSpreadsheet;
-import com.src.frugalinnovationlab.Entity.MediaVideo;
-import com.src.frugalinnovationlab.Entity.MediaWord;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
@@ -58,16 +48,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     List<String> categoriesList;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList<AssignParticipantsToProject> participantsList = new ArrayList<AssignParticipantsToProject>();
-    List<MediaAdobe> adobeFileList = new ArrayList<MediaAdobe>();
-    List<MediaCad> cadFileList = new ArrayList<MediaCad>();
-    List<MediaCode> codeFileList = new ArrayList<MediaCode>();
-    List<MediaHyperlink> hyperLinkList = new ArrayList<MediaHyperlink>();
-    List<MediaPdf> pdfList = new ArrayList<MediaPdf>();
-    List<MediaPhotos> photosList = new ArrayList<MediaPhotos>();
-    List<MediaPlaintext> plainTextList = new ArrayList<MediaPlaintext>();
-    List<MediaSpreadsheet> spreadSheetList = new ArrayList<MediaSpreadsheet>();
-    List<MediaVideo> videoList = new ArrayList<MediaVideo>();
-    List<MediaWord> wordList = new ArrayList<MediaWord>();
     List<String> selectedTagsList;
     List<String> deleteTagsList;
     List<Filetypes> fileTypeList;
@@ -1239,12 +1219,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
 
     private void addParticipantButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addParticipantButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-         for (int i = 0; i < participantsList.size(); i++) {
-         System.out.println("Final part id : " + participantsList.get(i).getParticipantId());
-         System.out.println("Final role id : " + participantsList.get(i).getRoleId());
-         }
-         */
         createProjectPane.setSelectedIndex(2);
     }//GEN-LAST:event_addParticipantButton1ActionPerformed
 
@@ -1264,10 +1238,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             Object[] row = {participantValue, participantItem, roleValue, roleItem};
             model = (DefaultTableModel) jTable1.getModel();
             model.addRow(row);
-            /*
-             System.out.println("role : " + participantsList.get(0).getRoleId());
-             System.out.println("participant : " + participantsList.get(0).getParticipantId());
-             */
         }
 
 
@@ -1279,20 +1249,15 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         int row = jTable1.getSelectedRow();
         
         if (row > -1) {            
-            // model.getv
             String participantId = model.getValueAt(row, 0).toString();
             String roleId = model.getValueAt(row, 2).toString();
-
-            //System.out.println("delete participant : " + participantId);
-            //System.out.println("delete role : " + roleId);
             AssignParticipantsToProject a = new AssignParticipantsToProject(participantId, roleId);
-            //System.out.println("contains : " + participantsList.contains(a));
             Iterator<AssignParticipantsToProject> itr = participantsList.iterator();
+            
             while (itr.hasNext()) {
                 AssignParticipantsToProject x = itr.next();
-                //System.out.println("x value : " + x.getParticipantId());
+                
                 if (a.getParticipantId() == x.getParticipantId() && a.getRoleId() == x.getRoleId()) {
-                    //System.out.println("Reomoved : ");
                     itr.remove();
                 }
             }
@@ -1369,11 +1334,10 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             String participantId = String.valueOf(participantsIDList.get(size - 1).getId() + count);
             System.out.println("new participant id : " +participantId);
             array[8] = participantId;
-            //System.out.println("addNewParticipantRoleComboBox.getSelectedItem() = " + addNewParticipantRoleComboBox.getSelectedItem());
+            
             boolean success = addNewProjectController.addParticipant(array);
             if (success) {
                 participants = addNewProjectController.getParticipantsFromDatabase();
-                //this.sortParticipants();
                 chooseParticipantComboBox.removeAllItems();
                 chooseParticipantComboBox.addItem("Choose A Participant");
                 for (int i = 0; i < participants.size(); i++) {
@@ -1383,7 +1347,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                     }
                     chooseParticipantComboBox.addItem(new ComboItem(fullName, Integer.toString(participants.get(i).getId())));
                 }
-                //initComponents();
+
                 Object roleItem = addNewParticipantRoleComboBox.getSelectedItem();
                 String roleValue = ((ComboItem) roleItem).getValue();
 
@@ -1411,10 +1375,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void addProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectButtonActionPerformed
         // TODO add your handling code here:
         final String array[] = new String[12];
-        //if (projectIdTextField.getText() == null || projectIdTextField.getText().trim().equals("")) {
-        //JOptionPane.showMessageDialog(mainPanel, "Please enter Distinct ID for Project");
-        //projectIdTextField.setText("-1");
-        //} else if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
+
         if (projectNameTextField.getText() == null || projectNameTextField.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter Project Name");
         } else if (shortDescriptionTextField.getText() == null || shortDescriptionTextField.getText().trim().equals("")) {
@@ -1436,13 +1397,11 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             array[1] = shortDescriptionTextField.getText();
             array[2] = jTextArea1.getText();
             array[3] = projectStatusComboBox.getSelectedItem().toString();
-            //System.out.println("status : " + array[3]);
             array[4] = projectLocationTextField.getText();
             array[5] = startDate.getDate().toString();
             array[6] = endDate.getDate().toString();
             array[7] = scopeTextField.getText();
             array[8] = outcomeTextField.getText();
-            //array[9] = projectIdTextField.getText();
             selectedTagsList = projectTagsOptions.getSelectedValuesList();
 
             boolean dateError = false;
@@ -1450,18 +1409,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(mainPanel, "End Date is earlier than the Start Date!");
                 dateError = true;
             }
-            
-            /*
-            String newTags = newTagsTextField.getText();
-            if (isAddNewTags && newTags != null && !newTags.equals("")) {
-            //if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
-                String[] newTagsArr = newTags.split(";");
-                addNewProjectController.addNewTags(tagsList, newTagsArr);
-                for (int i = 0; i < newTagsArr.length; i++) {
-                    selectedTagsList.add(newTagsArr[i]);
-                }
-            }
-            */
 
             if (civilEngineeringCheckBox.isSelected()) {
                 categoriesList.add("Civil Engineering");
@@ -1479,11 +1426,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
                 categoriesList.add("Computer Engineering");
             }
 
-            /*
-             boolean success = addNewProjectController.addProject(array, categoriesList, participantsList,
-             videoList, plainTextList, adobeFileList, cadFileList, codeFileList, hyperLinkList,
-             pdfList, photosList, spreadSheetList, wordList, selectedTagsList);
-             */
             boolean success = false;
             try {
                 if (!dateError) {
@@ -1495,14 +1437,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             }
 
             if (success) {
-                /*for (Component C : this.getComponents()) {
-                 System.out.println("ok here now :"+C.getClass());
-                 if (C instanceof JTabbedPane || C instanceof JTextField || C instanceof JTextArea || C instanceof JTable) {
-                 System.out.println("not here at all");
-                 ((JTextComponent) C).setText(""); //abstract superclass
-                 }
-                 }*/
-
                 JOptionPane.showMessageDialog(mainPanel, "New Project has been added succesfully");
             } else {
                 JOptionPane.showMessageDialog(mainPanel, "New Project could not be added");
@@ -1526,47 +1460,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
         chooser.showOpenDialog(this);
         File f = chooser.getSelectedFile();
         selectFileTextField.setText(f.getAbsolutePath());
-
-        /*
-        selectFileTextField.setText("");
-        JFileChooser chooser = new JFileChooser("File Dialog");
-        chooser.setMultiSelectionEnabled(false);
-        chooser.showOpenDialog(this);
-        File f = chooser.getSelectedFile();
-        //selectFileTextField.setText(f.getAbsolutePath());        
-        
-        String projectDirectory = "";
-        
-        try {
-            File projectDirectoryFile = new File(AddNewProjectPanel.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-            projectDirectory = projectDirectoryFile.getParent();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(jPanel3, "Unable to Locate Application Directory");
-        }        
-                
-        try {
-            if (projectNameTextField.getText().equals("") || projectNameTextField.getText() == null) {
-                JOptionPane.showMessageDialog(jPanel3, "Please Enter a Project Name in  General Details First.");                
-            }
-            else {
-                if (!Files.exists(new File(projectDirectory + "/" + projectNameTextField.getText()).toPath())) {
-                    Files.createDirectory(new File(projectDirectory + "/" + projectNameTextField.getText()).toPath());
-                }
-                File source = f;
-                File dest = new File(projectDirectory + "/" + projectNameTextField.getText() + "/" + f.getName());
-                
-                Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                //selectFileTextField.setText("/" + projectNameTextField.getText() + "/" + f.getName());
-                selectFileTextField.setText(source.toPath().toString());
-                fileNameTextField.setText(dest.toPath().toString());
-            }
-        } catch(FileAlreadyExistsException e) {
-            JOptionPane.showMessageDialog(jPanel3, "File or Folder already Exists");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(jPanel3, "File IO Error. Contact Admin");
-            e.printStackTrace();
-        }                
-        */
     }//GEN-LAST:event_chooseAFileButtonActionPerformed
 
     private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
@@ -1582,8 +1475,7 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             typeValue = ((ComboItem) typeItem).getValue();
         }
         String name = fileNameTextField.getText();
-        //System.out.println("type : " +typeItem+ " - " +typeValue);
-        //System.out.println("location : " +location+ " - " +name);
+
         if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("Select File Type")) {
             Object[] row = {name, location, typeItem, typeValue};
             model1 = (DefaultTableModel) jTable2.getModel();
@@ -1665,8 +1557,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
     private void addTagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTagButtonActionPerformed
         String newTags = newTagsTextField.getText();
         if (isAddNewTags && newTags != null && !newTags.equals("")) {
-        //if (addNewTags.isSelected() && newTags != null && !newTags.equals("")) {
-            //String[] newTagsArr = newTags.split(";");
             String[] newTagsArr = {newTags};
             try {
                 addNewProjectController.addNewTags(tagsList, newTagsArr);
@@ -1681,11 +1571,6 @@ public class AddNewProjectPanel extends javax.swing.JPanel {
             catch(Exception e) {
                 JOptionPane.showMessageDialog(mainPanel, "This Tag Already Exist!");
             }            
-            /*
-            for (int i = 0; i < newTagsArr.length; i++) {
-                selectedTagsList.add(newTagsArr[i]);
-            }
-            */
         }
     }//GEN-LAST:event_addTagButtonActionPerformed
 

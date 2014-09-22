@@ -28,7 +28,6 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
      * Creates new form AddNewUserPanel
      */
     public AddNewParticipantPanel() {
-        //System.out.println("AddNewParticipantPanel");
         addNewParticipantController = new AddNewParticipantController(this);
         participants = addNewParticipantController.getParticipantsFromDatabase();
         this.sortParticipants();
@@ -363,13 +362,12 @@ public class AddNewParticipantPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Object participantItem = chooseParticipantComboBox.getSelectedItem();
         String participantValue = ((ComboItem) participantItem).getValue();
-        //System.out.println("value : " + participantValue);
+
         if (!participantValue.equals("")) {
             List participantsList = addNewParticipantController.fetchParticipantsById(participantValue);
-            //System.out.println("size : " + participantsList.size());
+
             for (int i = 0; i < participantsList.size(); i++) {
                 Object[] values = (Object[]) participantsList.get(i);
-                //System.out.println(i + " -- " + values[0] + "; " + values[1]);
                 firstNameTextField.setText(values[1].toString());
                 middlenameTextField.setText(values[4].toString());
                 lastNameTextField.setText(values[2].toString());

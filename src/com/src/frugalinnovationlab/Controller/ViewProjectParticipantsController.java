@@ -10,8 +10,6 @@ import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Model.EditProjectParticipantsModel;
 import com.src.frugalinnovationlab.view.ViewProjectParticipants;
-import com.src.frugalinnovationlab.view.ViewParticipantDetails;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import javax.swing.ListSelectionModel;
@@ -75,17 +73,12 @@ public class ViewProjectParticipantsController implements ListSelectionListener 
         String email = gui.getTable().getValueAt(index, 2).toString();
         String phone = gui.getTable().getValueAt(index, 3).toString();
         String organization = gui.getTable().getValueAt(index, 4).toString();        
-        //String email = gui.getTable().getModel().getValueAt(index, 2).toString();
-        //String phone = gui.getTable().getModel().getValueAt(index, 3).toString();
-        //String organization = gui.getTable().getModel().getValueAt(index, 4).toString();
-
         mainApplication.getViewParticipantDetails().getNameTextField().setText(name);
         mainApplication.getViewParticipantDetails().getEmailTextField().setText(email);
         mainApplication.getViewParticipantDetails().getPhoneTextField().setText(phone);
         mainApplication.getViewParticipantDetails().getOrganizationTextField().setText(organization);
         
         List<Project> result = editProjectParticipantsModel.fetchActiveProjectsByParticipant(id);
-        //List<Project> result = editProjectParticipantsModel.fetchProjectsByParticipant(gui.getParticipantValue());
         DefaultTableModel model = (DefaultTableModel) mainApplication.getViewParticipantDetails().getTable().getModel();        
         
         for (int i=model.getRowCount()-1; i>=0; i--) {

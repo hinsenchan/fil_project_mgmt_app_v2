@@ -5,16 +5,6 @@
 package com.src.frugalinnovationlab.Controller;
 
 import com.src.frugalinnovationlab.Entity.Filetypes;
-import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaCad;
-import com.src.frugalinnovationlab.Entity.MediaCode;
-import com.src.frugalinnovationlab.Entity.MediaHyperlink;
-import com.src.frugalinnovationlab.Entity.MediaPdf;
-import com.src.frugalinnovationlab.Entity.MediaPhotos;
-import com.src.frugalinnovationlab.Entity.MediaPlaintext;
-import com.src.frugalinnovationlab.Entity.MediaSpreadsheet;
-import com.src.frugalinnovationlab.Entity.MediaVideo;
-import com.src.frugalinnovationlab.Entity.MediaWord;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
@@ -64,18 +54,6 @@ public class AddNewProjectController {
     public List<Tags> getTagsFromDatabase() {
         List<Tags> tagsList = addNewProjectModel.getTagsFromDatabase();
         return tagsList;
-    }
-    
-    public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
-            List<MediaVideo> videoList, List<MediaPlaintext> plainTextList, List<MediaAdobe> adobeFileList, 
-            List<MediaCad> cadFileList, List<MediaCode> codeFileList, List<MediaHyperlink> hyperLinkList,
-            List<MediaPdf> pdfList, List<MediaPhotos> photosList, List<MediaSpreadsheet> spreadSheetList,
-            List<MediaWord> wordList, List<String> selectedTagsList){
-        boolean success = true;
-        success = addNewProjectModel.addProject(array, categoriesList, participantsList, videoList, plainTextList
-                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, 
-                spreadSheetList, wordList, selectedTagsList);
-        return success;
     }
     
     public boolean addParticipant(String[] array){

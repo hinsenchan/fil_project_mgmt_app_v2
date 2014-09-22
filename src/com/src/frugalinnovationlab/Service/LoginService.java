@@ -31,17 +31,14 @@ public class LoginService {
             if (result.size() < 1) {
                 return "false";
             }
-            for (Object[] data : result) // System.out.println("username =" +data[0] + " password =  " + data[1] + "role =" + data[2]);
+            for (Object[] data : result) 
             {
-                //System.out.println("now here ");
                 if (data[2].toString().equals("Administrator")) {
                     if (username.equalsIgnoreCase(data[0].toString()) && password.equals(data[1].toString())) {
                         flag = "Atrue";
-                        //System.out.println("Its Admin");
                     }
                 } else if (data[2].toString().equals("Viewer")) {
                     if (username.equalsIgnoreCase(data[0].toString()) && password.equals(data[1].toString())) {
-                        //System.out.println("Its Viewer");
                         flag = "Vtrue";
                     }
                 }
@@ -52,7 +49,7 @@ public class LoginService {
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            //JOptionPane.showMessageDialog(null, "Invalid User ID and Password Combination");
+            
         }
         return flag;
     }

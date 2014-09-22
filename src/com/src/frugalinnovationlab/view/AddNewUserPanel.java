@@ -25,9 +25,6 @@ public class AddNewUserPanel extends javax.swing.JPanel {
         buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(adminRadioButton);
         buttonGroup1.add(viewerRadioButton);
-
-
-
         addnewusercontroller = new AddNewUserController(this);
     }
 
@@ -282,10 +279,7 @@ public class AddNewUserPanel extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
 
-
         final String array[] = new String[8];
-        // System.out.println(centerPanel.getComponentCount());
-
         array[0] = firstNameTextField.getText();
         array[1] = lastNameTextField.getText();
         array[2] = emailTextField.getText();
@@ -322,14 +316,11 @@ public class AddNewUserPanel extends javax.swing.JPanel {
                 mainApplication.getContentPanel().add(mainApplication.getAddNewUserPanel());
                 mainApplication.getContentPanel().revalidate();
                 mainApplication.getContentPanel().repaint();                  
-
-
             } else {
                 JOptionPane optionPane = new JOptionPane("User can not add to databse, verify that user might already exists", JOptionPane.ERROR_MESSAGE);
                 JDialog dialog = optionPane.createDialog("Error !");
                 dialog.setAlwaysOnTop(true);
                 dialog.setVisible(true);
-                //initComponents();
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed

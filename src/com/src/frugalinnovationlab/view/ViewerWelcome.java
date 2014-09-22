@@ -22,17 +22,13 @@ public class ViewerWelcome extends WelcomeAbstract {
     private AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
     private ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
     final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
-    //final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel(this);
     private SearchPanel searchPanel = new SearchPanel(this);
-    //final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
     final EditParticipantPanel editParticipantPanel = new EditParticipantPanel();
     private AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel(this);
     Users user;
     ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
     private EditProjectPanel editProjectPanel = new EditProjectPanel(this);
     EditGeneralProjectInformation editGeneralProjectInformation;
-    //final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
     private EditMediaPanel editMediaPanel = new EditMediaPanel(this);
     final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
     private ViewGeneralProjectInformation viewGeneralProjectInformation = new ViewGeneralProjectInformation(this);
@@ -43,23 +39,7 @@ public class ViewerWelcome extends WelcomeAbstract {
     Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
     String userType = "";
     private String selectedProject = "";
-    /*
-    final AddNewUserPanel addNewUserPanel = new AddNewUserPanel(this);
-    final ViewAllUsersPanel viewAllUsersPanel = new ViewAllUsersPanel(this);
-    final AddNewProjectPanel addNewProjectPanel = new AddNewProjectPanel();
-    final ViewAllProjectsPanel viewAllProjectsPanel = new ViewAllProjectsPanel();
-    //final ViewSpecificUserPanel ViewSpecificUserPanel = new ViewSpecificUserPanel();
-    //final SearchPanel searchPanel = new SearchPanel();
-    final AddNewParticipantPanel addNewParticipantPanel = new AddNewParticipantPanel();
-    //final AdvancedSearchPanel advancedSearchPanel = new AdvancedSearchPanel();
-    Users user;
-    ManageAccountInfoPanel manageAccountInfoPanel = new ManageAccountInfoPanel();
-    final EditGeneralProjectInformation editGeneralProjectInformation = new EditGeneralProjectInformation();
-    final EditProjectMultimedia editProjectMultimedia = new EditProjectMultimedia();
-    final EditProjectParticipants editProjectParticipants = new EditProjectParticipants();
-    Preferences prefs = Preferences.userNodeForPackage(com.src.frugalinnovationlab.Service.LoginService.class);
-    String userType = "";
-    */
+
     /**
      * Creates new form Welcome
      */
@@ -288,58 +268,15 @@ public class ViewerWelcome extends WelcomeAbstract {
 
     private void optionsMenuTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionsMenuTreeMouseClicked
         // TODO add your handling code here:
-        /*
-        contentPanel.setLayout(new java.awt.BorderLayout());
-        TreePath path = optionsMenuTree.getPathForLocation(evt.getX(), evt.getY());
-        System.out.println("path : " + path);
-        if (path != null) {
-            System.out.println("lastcomponent : " + lastComponent);
-            contentPanel.removeAll();
-            // Check the last added component and remove it
-            if (!lastComponent.equals("")) {
-                if (lastComponent.equals("View All Projects")) {
-                    contentPanel.remove(viewAllProjectsPanel);
-                } else if (lastComponent.equals("Advanced Search")) {
-                    //contentPanel.remove(advancedSearchPanel);
-                } else if (lastComponent.equals("Search")) {
-                    //contentPanel.remove(searchPanel);
-
-                }
-
-            }
-            // Add the new component on the frame
-            // Depending on the Selected Tree Node
-            if (path.toString().contains("View All Projects")) {
-                contentPanel.add(new ViewAllProjectsPanel());
-                lastComponent = "View All Projects";
-            } else if (path.toString().contains("Advanced Search")) {
-                //contentPanel.add(new AdvancedSearchPanel());
-                lastComponent = "Advanced Search";
-            } else if (path.toString().contains("Search")) {
-                //contentPanel.add(new SearchPanel());
-                lastComponent = "Search";
-
-            }
-            contentPanel.revalidate();
-            contentPanel.repaint();
-        }
-        */
         getContentPanel().setLayout(new java.awt.BorderLayout());
         TreePath path = optionsMenuTree.getPathForLocation(evt.getX(), evt.getY());
-        //System.out.println("path : " + path);
         if (path != null) {
-            //System.out.println("lastcomponent : " + lastComponent);
             getContentPanel().removeAll();
             // Check the last added component and remove it
             if (!lastComponent.equals("")) {
                 if (lastComponent.equals("New Project")) {
                     getContentPanel().remove(addNewProjectPanel);
-                /*
-                } else if (lastComponent.equals("View All Projects")) {
-                    getContentPanel().remove(viewAllProjectsPanel);
-                */
                 } else if (lastComponent.equals("Edit Participant")) {
-                    //getContentPanel().remove(addNewParticipantPanel);
                     getContentPanel().remove(editParticipantPanel);
                 } else if (lastComponent.equals("Add New User")) {
                     getContentPanel().remove(getAddNewUserPanel());
@@ -375,13 +312,7 @@ public class ViewerWelcome extends WelcomeAbstract {
             if (path.toString().contains("New Project")) {
                 getContentPanel().add(new AddNewProjectPanel());
                 lastComponent = "New Project";
-            /*
-            } else if (path.toString().contains("View All Projects")) {
-                getContentPanel().add(new ViewAllProjectsPanel());
-                lastComponent = "View All Projects";
-            */
             } else if (path.toString().contains("Edit Participant")) {
-                //getContentPanel().add(new AddNewParticipantPanel());
                 getContentPanel().add(new EditParticipantPanel());
                 lastComponent = "Edit Participant";
             } else if (path.toString().contains("Add New User")) {
@@ -461,40 +392,6 @@ public class ViewerWelcome extends WelcomeAbstract {
         contentPanel.repaint();
     }//GEN-LAST:event_manageAccountButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewerWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewerWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewerWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewerWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        /* Create and display the form */
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewerWelcome().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel headerPanel;

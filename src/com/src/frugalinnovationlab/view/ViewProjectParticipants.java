@@ -9,14 +9,12 @@ import com.src.frugalinnovationlab.Controller.ViewProjectParticipantsController;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.Project;
-import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Wrappers.ComboItem;
 import com.src.frugalinnovationlab.helper.Printer;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +35,6 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     List<ParticipantDesignation> participantDesignationsList;
     List<Participants> participants;
     DefaultTableModel model = new DefaultTableModel();
-    //ArrayList<ProjectParticipants> participantsList = new ArrayList<ProjectParticipants>();
     WelcomeAbstract mainApplication;
     private String participantValue;
     private boolean isSelectAll = false;
@@ -271,30 +268,22 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
         Object projectItem = getChooseProjectComboBox().getSelectedItem();
-        //System.out.println("object item : " +projectItem);
 
         if (!projectItem.toString().equals("Choose a project...")) {
             if (projectItem.toString().equals("Select All")) {
                 setIsSelectAll(true);
                 mainApplication.setSelectedProject("Choose a project...");
-                //mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().setSelectedIndex(0);
-                //mainApplication.getViewMediaPanel().getChooseProjectComboBox().setSelectedIndex(0);                
-                //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-                //String projectName = String.valueOf(((ComboItem) projectItem).getKey());
-                //System.out.println("project id : " + projectId);
 
                 if (model.getRowCount() > 0) {
                     for (int i = model.getRowCount() - 1; i > -1; i--) {
                         model.removeRow(i);
                     }
                 }
-                //projectLabel.setText("Project : ".concat(projectName));
-                //header = new MessageFormat("Project : ".concat(projectName));
+
                 List<Participants> result = viewProjectParticipantsController.getParticipantsFromDatabase();
-                //participantsList.clear();
+
                 for (int i = 0; i < result.size(); i++) {
                     Participants values = result.get(i);
-                    //participantValue = values.getId().toString();
                     String id = values.getId().toString();
                     String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
                     if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
@@ -303,12 +292,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     String roleItem = values.getPosition();
                     String email = values.getEmail();
                     String phone = values.getPhone();
-                    /*
-                    ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
-                            Integer.parseInt(roleValue));
-                    participantsList.add(a);
-                    */
-                    //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+
                     Object[] row = {id, participantItem, roleItem, email, phone};
                     model = (DefaultTableModel) table.getModel();
                     model.addRow(row);
@@ -317,22 +301,18 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
             else {
                 setIsSelectAll(false);
                 String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-                //String projectName = String.valueOf(((ComboItem) projectItem).getKey());
-                //System.out.println("project id : " + projectId);
 
                 if (model.getRowCount() > 0) {
                     for (int i = model.getRowCount() - 1; i > -1; i--) {
                         model.removeRow(i);
                     }
                 }
-                //projectLabel.setText("Project : ".concat(projectName));
-                //header = new MessageFormat("Project : ".concat(projectName));
+
                 List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-                //participantsList.clear();
+
                 for (int i = 0; i < result.size(); i++) {
                     Object[] values = (Object[]) result.get(i);
                     String id = String.valueOf(values[3]);
-                    //participantValue = String.valueOf(values[3]);
                     String participantItem = values[2].toString().concat(", ").concat(values[1].toString());
                     if(!values[0].toString().equalsIgnoreCase("")){
                         participantItem = participantItem.concat(" ("+values[0].toString()+")");
@@ -341,12 +321,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     String roleItem = values[5].toString();
                     String email = values[6].toString();
                     String phone = values[7].toString();
-                    /*
-                    ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(getParticipantValue()),
-                            Integer.parseInt(roleValue));
-                    */
-                    //participantsList.add(a);
-                    //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+
                     Object[] row = {id, participantItem, roleItem, email, phone};
                     model = (DefaultTableModel) table.getModel();
                     model.addRow(row);
@@ -368,14 +343,10 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
 
     private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
         Object projectItem = getChooseProjectComboBox().getSelectedItem();
-        //  System.out.println("object item : " +projectItem);
+
         if (!projectItem.toString().equals("Choose a project...")) {
             if (projectItem.toString().equals("Select All")) {
-                //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-                //  System.out.println("project id : " + projectId);
-
                 Object roleItem = roleComboBox.getSelectedItem();
-                //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
 
                 if (model.getRowCount() > 0) {
                     for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -384,12 +355,10 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 }
 
                 List<Participants> result = viewProjectParticipantsController.getParticipantsFromDatabase();
-                //participantsList.clear();
 
                 if (roleItem.toString().equals("All Roles")) {
                     for (int i = 0; i < result.size(); i++) {
                         Participants values = result.get(i);
-                        //participantValue = values.getId().toString();
                         String id = values.getId().toString();
                         String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
                         if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
@@ -398,22 +367,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                         String role = values.getPosition();
                         String email = values.getEmail();
                         String phone = values.getPhone();
-                        /*
-                        Object[] values = (Object[]) result.get(i);
-                        participantValue = String.valueOf(values[3]);
-                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                                .concat(" ").concat(values[2].toString());
-                        String roleValue = values[4].toString();
-                        String role = values[5].toString();
-                        String email = values[6].toString();
-                        String phone = values[7].toString();
-                        */
-                        /*
-                        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                                Integer.parseInt(roleValue));
-                        participantsList.add(a);
-                        */
-                        //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+
                         Object[] row = {id, participantItem, role, email, phone};
                         model = (DefaultTableModel) table.getModel();
                         model.addRow(row);
@@ -421,7 +375,6 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 } else {
                     for (int i = 0; i < result.size(); i++) {
                         Participants values = result.get(i);
-                        //participantValue = values.getId().toString();
                         String id= values.getId().toString();
                         String participantItem = values.getLastname().concat(", ").concat(values.getFirstname());
                         if (!values.getNameTitle().toString().equalsIgnoreCase("")) {
@@ -430,23 +383,8 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                         String role = values.getPosition();
                         String email = values.getEmail();
                         String phone = values.getPhone();
-                        /*
-                        Object[] values = (Object[]) result.get(i);
-                        participantValue = String.valueOf(values[3]);
-                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                                .concat(" ").concat(values[2].toString());
-                        String roleValue = values[4].toString();
-                        String role = values[5].toString();
-                        String email = values[6].toString();
-                        String phone = values[7].toString();
-                        */
+
                         if (role.equals(roleItem.toString())) {
-                            /*
-                            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                                    Integer.parseInt(roleValue));
-                            participantsList.add(a);
-                            */
-                            //Object[] row = {participantValue, participantItem, roleValue, roleItem};
                             Object[] row = {id, participantItem, roleItem, email, phone};
                             model = (DefaultTableModel) table.getModel();
                             model.addRow(row);
@@ -456,10 +394,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
             }
             else {
                 String projectId = String.valueOf(((ComboItem) projectItem).getValue());
-                //  System.out.println("project id : " + projectId);
-
                 Object roleItem = roleComboBox.getSelectedItem();
-                //String roleID = String.valueOf(((ComboItem) roleItem).getValue());
 
                 if (model.getRowCount() > 0) {
                     for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -468,16 +403,11 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                 }
 
                 List result = viewProjectParticipantsController.fetchParticipantsByProject(projectId);
-                //participantsList.clear();
 
                 if (roleItem.toString().equals("All Roles")) {
                     for (int i = 0; i < result.size(); i++) {
                         Object[] values = (Object[]) result.get(i);
                         String id = String.valueOf(values[3]);
-                        /*
-                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                                .concat(" ").concat(values[2].toString());
-                        */
                         String participantItem = values[2].toString() + ", " + values[1].toString();
                         if (!values[0].toString().equals("")) {
                             participantItem = participantItem.concat(" (" + values[0] + ")");
@@ -486,12 +416,7 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                         String role = values[5].toString();
                         String email = values[6].toString();
                         String phone = values[7].toString();
-                        /*
-                        ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                                Integer.parseInt(roleValue));
-                        */
-                        //participantsList.add(a);
-                        //Object[] row = {participantValue, participantItem, roleValue, roleItem};
+
                         Object[] row = {id, participantItem, role, email, phone};
                         model = (DefaultTableModel) table.getModel();
                         model.addRow(row);
@@ -500,10 +425,6 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                     for (int i = 0; i < result.size(); i++) {
                         Object[] values = (Object[]) result.get(i);
                         String id = String.valueOf(values[3]);
-                        /*
-                        String participantItem = values[0].toString().concat(" ").concat(values[1].toString())
-                                .concat(" ").concat(values[2].toString());
-                        */
                         String participantItem = values[2].toString() + ", " + values[1].toString();
                         if (!values[0].toString().equals("")) {
                             participantItem = participantItem.concat(" (" + values[0] + ")");
@@ -514,12 +435,6 @@ public class ViewProjectParticipants extends javax.swing.JPanel {
                         String phone = values[7].toString();
 
                         if (role.equals(roleItem.toString())) {
-                            /*
-                            ProjectParticipants a = new ProjectParticipants(Integer.parseInt(projectId), Integer.parseInt(participantValue),
-                                    Integer.parseInt(roleValue));
-                            */
-                            //participantsList.add(a);
-                            //Object[] row = {participantValue, participantItem, roleValue, roleItem};
                             Object[] row = {id, participantItem, roleItem, email, phone};
                             model = (DefaultTableModel) table.getModel();
                             model.addRow(row);

@@ -295,11 +295,6 @@ public class EditMediaPanel extends javax.swing.JPanel {
                     ProjectFilesMap projectFilesMap = new ProjectFilesMap(
                             selectedProjectId, fileTypeId, fileName, fileLocation);
                     projectFilesMapList.add(projectFilesMap);
-
-                    //System.out.println(fileTypeName);
-                    //System.out.println(fileTypeId);
-                    //System.out.println(fileName);
-                    //System.out.println(fileLocation);
                 }
                 System.out.println(projectFilesMapList.size());
                 System.out.println(projectFilesMapList.toString());
@@ -327,8 +322,7 @@ public class EditMediaPanel extends javax.swing.JPanel {
         String location = selectFileTextField.getText();
         Object typeItem = fileTypeComboBox.getSelectedItem();
         String name = fileNameTextField.getText();
-        //System.out.println("type : " +typeItem+ " - " +typeValue);
-        //System.out.println("location : " +location+ " - " +name);
+
         if (!location.equals("") && !name.equals("") && !typeItem.toString().equals("Select File Type")) {
             String typeValue = ((ComboItem) typeItem).getValue();
             Object[] row = {typeItem, name, location};
@@ -345,13 +339,10 @@ public class EditMediaPanel extends javax.swing.JPanel {
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         Object projectItem = chooseProjectComboBox.getSelectedItem();
-        //System.out.println("object item : " +projectItem);
 
         if (!projectItem.toString().equals("Choose a project...")) {
             int projectId = Integer.parseInt(((ComboItem) projectItem).getValue());
-            //String projectId = String.valueOf(((ComboItem) projectItem).getValue());
             String projectName = String.valueOf(((ComboItem) projectItem).getKey());
-            //System.out.println("project id : " + projectId);
 
             selectedProjectId = projectId;
 
@@ -362,11 +353,9 @@ public class EditMediaPanel extends javax.swing.JPanel {
             }
 
             List result = mediaController.fetchProjectFilesMapByProject(projectId);
-            //projectFilesMapList.clear();
 
             for (int i = 0; i < result.size(); i++) {
                 ProjectFilesMap projectFile = (ProjectFilesMap) result.get(i);
-                //projectFilesMapList.add(projectFile);
                 ProjectFilesMapPK projectFileDetails = projectFile.getProjectFilesMapPK();
 
                 int fileTypeId = projectFileDetails.getFiletypeid();

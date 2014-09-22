@@ -6,7 +6,6 @@
 package com.src.frugalinnovationlab.Model;
 
 import com.src.frugalinnovationlab.Entity.Project;
-import com.src.frugalinnovationlab.Entity.ProjectParticipants;
 import com.src.frugalinnovationlab.Entity.ProjectView;
 import com.src.frugalinnovationlab.Service.ViewAllProjectsService;
 import com.src.frugalinnovationlab.helper.Constants;
@@ -23,7 +22,6 @@ import javax.persistence.EntityTransaction;
  */
 public class ViewAllProjectsModel extends AbstractTableModel {
 
-    //private static final String PERSISTENCE_UNIT_NAME = "FrugalInnovationLabPU";  // Used in persistence.xml
     List<ProjectView> ProjectResulList;
     private static EntityManagerFactory factory;  // JPA  
     private EntityManager manager;
@@ -32,7 +30,6 @@ public class ViewAllProjectsModel extends AbstractTableModel {
     int numrows, numcols;
 
     public ViewAllProjectsModel() {
-
         viewallprojectservice = new ViewAllProjectsService(manager);
         factory = Persistence.createEntityManagerFactory(Constants.PERSISTENCE_UNIT_NAME);
         manager = factory.createEntityManager();
@@ -41,8 +38,6 @@ public class ViewAllProjectsModel extends AbstractTableModel {
         projects = new Project();
         numrows = ProjectResulList.size();
         numcols = projects.getViewColumns();
-
-
     }
 
     public ViewAllProjectsModel(List<ProjectView> list, EntityManager em) {
@@ -50,59 +45,40 @@ public class ViewAllProjectsModel extends AbstractTableModel {
         projects = new Project();
         manager = em;
         viewallprojectservice = new ViewAllProjectsService(manager);
-
     }
 
     @Override
     public Object getValueAt(int row, int col) {
-
         try {
-
-
             return ProjectResulList.get(row).viewColumnData(col);
-
-
-
-
         } catch (Exception e) {
             e.getMessage();
             return null;
         }
-
     }
 
     @Override
     public int getRowCount() {
-
         return numrows;
-
-
     }
 
     // returns a count of the number of columns
     @Override
     public int getColumnCount() {
-
-
         return numcols;
-
     }
 
     public EntityManager getEntityManager() {
         return manager;
-
     }
 
     public List<ProjectView> getList() {
-
         return ProjectResulList;
-
     }
 
     @Override
     public String getColumnName(int col) {
         try {
-
             return projects.viewColumnName(col);
         } catch (Exception err) {
             return err.toString();
@@ -120,8 +96,8 @@ public class ViewAllProjectsModel extends AbstractTableModel {
             err.toString();
         }
     }
-    
-    public boolean deleteProject(String projectName){
+
+    public boolean deleteProject(String projectName) {
         boolean success = false;
         EntityTransaction usertransaction = manager.getTransaction();
         usertransaction.begin();

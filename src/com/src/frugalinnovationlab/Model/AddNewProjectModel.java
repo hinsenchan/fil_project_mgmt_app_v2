@@ -5,16 +5,6 @@
 package com.src.frugalinnovationlab.Model;
 
 import com.src.frugalinnovationlab.Entity.Filetypes;
-import com.src.frugalinnovationlab.Entity.MediaAdobe;
-import com.src.frugalinnovationlab.Entity.MediaCad;
-import com.src.frugalinnovationlab.Entity.MediaCode;
-import com.src.frugalinnovationlab.Entity.MediaHyperlink;
-import com.src.frugalinnovationlab.Entity.MediaPdf;
-import com.src.frugalinnovationlab.Entity.MediaPhotos;
-import com.src.frugalinnovationlab.Entity.MediaPlaintext;
-import com.src.frugalinnovationlab.Entity.MediaSpreadsheet;
-import com.src.frugalinnovationlab.Entity.MediaVideo;
-import com.src.frugalinnovationlab.Entity.MediaWord;
 import com.src.frugalinnovationlab.Entity.ParticipantDesignation;
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectCategory;
@@ -30,7 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,12 +33,10 @@ public class AddNewProjectModel {
     private AddNewProjectService addNewProjectService;
 
     public AddNewProjectModel() {
-
         factory = Persistence.createEntityManagerFactory(Constants.PERSISTENCE_UNIT_NAME);
         manager = factory.createEntityManager();
         projectStatus = new ProjectStatus();
         addNewProjectService = new AddNewProjectService(manager);
-
     }
 
     public List<ProjectStatus> getProjectStatusFromDatabase() {
@@ -75,21 +62,6 @@ public class AddNewProjectModel {
     public List<Tags> getTagsFromDatabase() {
         List<Tags> tagsList = addNewProjectService.fetchTags();
         return tagsList;
-    }
-
-    public boolean addProject(String[] array, List<String> categoriesList, ArrayList<AssignParticipantsToProject> participantsList,
-            List<MediaVideo> videoList, List<MediaPlaintext> plainTextList, List<MediaAdobe> adobeFileList, 
-            List<MediaCad> cadFileList, List<MediaCode> codeFileList, List<MediaHyperlink> hyperLinkList,
-            List<MediaPdf> pdfList, List<MediaPhotos> photosList, List<MediaSpreadsheet> spreadSheetList,
-            List<MediaWord> wordList, List<String> selectedTagsList) {
-        boolean success = true;
-        EntityTransaction usertransaction = manager.getTransaction();
-        usertransaction.begin();
-        success = addNewProjectService.addProject(array, categoriesList, participantsList, videoList, plainTextList
-                , adobeFileList, cadFileList, codeFileList, hyperLinkList, pdfList, photosList, 
-                spreadSheetList, wordList, selectedTagsList);
-        usertransaction.commit();
-        return success;
     }
     
     public boolean addParticipant(String[] array) {

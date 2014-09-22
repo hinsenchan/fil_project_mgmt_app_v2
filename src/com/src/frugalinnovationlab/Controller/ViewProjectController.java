@@ -5,20 +5,14 @@
  */
 package com.src.frugalinnovationlab.Controller;
 
-import com.src.frugalinnovationlab.Entity.Project;
 import com.src.frugalinnovationlab.Model.ViewAllProjectsModel;
-import com.src.frugalinnovationlab.view.ViewGeneralProjectInformation;
-import com.src.frugalinnovationlab.view.ViewParticipantDetails;
 import com.src.frugalinnovationlab.view.ViewProjectPanel;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
-import java.util.List;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -50,7 +44,6 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
             mainApplication.getViewGeneralProjectInformation().getChooseProjectComboBox().setSelectedIndex(firstIndex);
         } catch (Exception exp) {
             exp.getMessage();
-            exp.printStackTrace();
         }
     }
 
@@ -60,32 +53,32 @@ public class ViewProjectController implements ListSelectionListener, TableModelL
         int firstIndex = selectModel.getMinSelectionIndex();
         setSelectedProject(firstIndex);
         if (firstIndex > -1) {
-            showViewGeneralProjectInformation(firstIndex+1);
+            showViewGeneralProjectInformation(firstIndex + 1);
         }
     }
-    
+
     public void setSelectedProject(int index) {
-        final int projectNameCol = 0;        
-        mainApplication.setSelectedProject((String)(gui.getJTable().getValueAt(index, projectNameCol)));
+        final int projectNameCol = 0;
+        mainApplication.setSelectedProject((String) (gui.getJTable().getValueAt(index, projectNameCol)));
     }
 
     public TableModel getTableModel() {
         return viewallprojectsmodel;
     }
-    
-    public boolean deleteProject(String projectName){
+
+    public boolean deleteProject(String projectName) {
         boolean success = false;
         success = viewallprojectsmodel.deleteProject(projectName);
         return success;
     }
-    
+
     public void showViewGeneralProjectInformation(int index) {
-        mainApplication.getContentPanel().remove(mainApplication.getViewProjectPanel());   
-        mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());                       
-        mainApplication.setLastComponent("View Projects General Info");        
+        mainApplication.getContentPanel().remove(mainApplication.getViewProjectPanel());
+        mainApplication.getContentPanel().add(mainApplication.getViewGeneralProjectInformation());
+        mainApplication.setLastComponent("View Projects General Info");
         mainApplication.getViewGeneralProjectInformation().refreshSelectedProject();
         mainApplication.getViewProjectParticipants().refreshSelectedProject();
         mainApplication.getContentPanel().revalidate();
         mainApplication.getContentPanel().repaint();
-    }    
+    }
 }

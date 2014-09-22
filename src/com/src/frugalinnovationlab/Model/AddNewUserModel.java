@@ -12,7 +12,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.EntityTransaction;
 import java.util.*;
-import javax.swing.table.*;
 import java.math.*;
 
 /**
@@ -43,11 +42,9 @@ public class AddNewUserModel {
     }
 
     public boolean addUser(String[] array) {
-
         boolean flag = false;
         EntityTransaction usertransaction = manager.getTransaction();
         try {
-            
             usertransaction.begin();
             BigInteger phonenumber = new BigInteger((String) array[5]);
             addnewuserservice.addUser((String) array[0], (String) array[1], (String) array[2], (String) array[3], (String) array[4], (BigInteger) phonenumber, (String) array[7]);
@@ -56,7 +53,7 @@ public class AddNewUserModel {
         } catch (Exception ex) {
             flag = false;
             usertransaction.commit();
-            System.out.println("exception occured :  "+ex.getMessage());
+            System.out.println("exception occured :  " + ex.getMessage());
         }
         return flag;
     }

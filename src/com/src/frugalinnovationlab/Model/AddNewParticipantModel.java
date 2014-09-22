@@ -31,9 +31,7 @@ public class AddNewParticipantModel {
         projectStatus = new ProjectStatus();
         addNewParticipantService = new AddNewParticipantService(manager);
     }
-    
-    
-    
+
     public boolean addParticipant(String[] array) {
         boolean success = false;
         EntityTransaction usertransaction = manager.getTransaction();
@@ -42,12 +40,12 @@ public class AddNewParticipantModel {
         usertransaction.commit();
         return success;
     }
-    
+
     public List<Participants> getParticipantsFromDatabase() {
         List<Participants> participantsList = addNewParticipantService.fetchParticipants();
         return participantsList;
     }
-    
+
     public List<Participants> fetchParticipantsById(String participantId) {
         List<Participants> participantsList = addNewParticipantService.fetchParticipantsById(participantId);
         return participantsList;

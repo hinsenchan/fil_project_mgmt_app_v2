@@ -37,13 +37,6 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         projectStatusList = editGeneralProjectInformationController.getProjectStatusFromDatabase();
         projectList = editGeneralProjectInformationController.getProjectsFromDatabase();
         initComponents();
-        /*
-        for (int i = 0; i < projectList.size(); i++) {
-            //Project project = projectList.get(i);
-            System.out.println("id : " + projectList.get(i).getId());
-            System.out.println("name : " + projectList.get(i).getName());
-        }
-        */
     }
 
     /**
@@ -435,7 +428,6 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
 
     private void chooseProjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseProjectComboBoxActionPerformed
         // TODO add your handling code here:
-        //String selectedProjectId = chooseProjectComboBox.getSelectedItem().toString();
         Object projectIdItem = chooseProjectComboBox.getSelectedItem();
         String projectIdValue = ((ComboItem) projectIdItem).getValue();
         List<Project> projList = editGeneralProjectInformationController.fetchProjectGeneralInformation(projectIdValue);
@@ -454,7 +446,6 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         }
         Set<ProjectCategory> categorySet = projList.get(0).getProjectCategories();
         for (ProjectCategory projectCategory : categorySet) {
-            //System.out.println("category is : " + projectCategory.getName());
             String name = projectCategory.getName();
             if (name.equals("Bio Engineering")) {
                 categorySelected.add(name);
@@ -499,7 +490,6 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
         } else if (null == endDate.getDate()) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter Project End Date");
         } else {
-
             array[0] = projectNameTextField.getText();
             array[1] = shortDescriptionTextField.getText();
             array[2] = jTextArea1.getText();
@@ -509,14 +499,12 @@ public class EditGeneralProjectInformation extends javax.swing.JPanel {
             array[5] = startDate.getDate().toString();
             array[6] = endDate.getDate().toString();
             array[7] = scopeTextField.getText();
-            array[8] = outcomeTextField.getText();
-            
+            array[8] = outcomeTextField.getText();            
 
             Object projectIdItem = chooseProjectComboBox.getSelectedItem();
             String projectIdValue = ((ComboItem) projectIdItem).getValue();
             array[9] = projectIdValue;
             
-            System.out.println("date : " + startDate.getDate());
             if (civilEngineeringCheckBox.isSelected()) {
                 categoriesList.add("Civil Engineering");
             }

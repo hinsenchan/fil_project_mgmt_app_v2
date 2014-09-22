@@ -56,8 +56,6 @@ public class Project implements Serializable {
     private Set<Tags> tagsSet;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
-    private Set<MediaLocationmap> mediaLocationmapSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectParticipants> projectParticipantsSet;
     private static final long serialVersionUID = 1L;
     @Id
@@ -103,25 +101,6 @@ public class Project implements Serializable {
         @JoinColumn(name = "category_name", referencedColumnName = "name")})
     private Set<ProjectCategory> projectCategories;
     @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
-    private Set<MediaVideo> videos;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaPlaintext> plainTexts;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaAdobe> adobes;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaCad> cads;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaCode> codes;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaHyperlink> hyperLinks;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaPdf> pdfs;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaPhotos> photos;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaSpreadsheet> spreadSheets;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "projects", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MediaWord> words;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "project_participants",
     joinColumns = {
@@ -276,21 +255,6 @@ public class Project implements Serializable {
         this.projectCategories = projectCategories;
     }
 
-    public Set<MediaPlaintext> getPlainTexts() {
-        return plainTexts;
-    }
-
-    public void setPlainTexts(Set<MediaPlaintext> plainTexts) {
-        this.plainTexts = plainTexts;
-    }
-
-    public Set<MediaVideo> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(Set<MediaVideo> videos) {
-        this.videos = videos;
-    }
 
     @Override
     public int hashCode() {
@@ -331,70 +295,6 @@ public class Project implements Serializable {
 
     public void setDesignationList(Set<ParticipantDesignation> designationList) {
         this.designationList = designationList;
-    }
-
-    public Set<MediaAdobe> getAdobes() {
-        return adobes;
-    }
-
-    public void setAdobes(Set<MediaAdobe> adobes) {
-        this.adobes = adobes;
-    }
-
-    public Set<MediaCad> getCads() {
-        return cads;
-    }
-
-    public void setCads(Set<MediaCad> cads) {
-        this.cads = cads;
-    }
-
-    public Set<MediaCode> getCodes() {
-        return codes;
-    }
-
-    public void setCodes(Set<MediaCode> codes) {
-        this.codes = codes;
-    }
-
-    public Set<MediaHyperlink> getHyperLinks() {
-        return hyperLinks;
-    }
-
-    public void setHyperLinks(Set<MediaHyperlink> hyperLinks) {
-        this.hyperLinks = hyperLinks;
-    }
-
-    public Set<MediaPdf> getPdfs() {
-        return pdfs;
-    }
-
-    public void setPdfs(Set<MediaPdf> pdfs) {
-        this.pdfs = pdfs;
-    }
-
-    public Set<MediaPhotos> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<MediaPhotos> photos) {
-        this.photos = photos;
-    }
-
-    public Set<MediaSpreadsheet> getSpreadSheets() {
-        return spreadSheets;
-    }
-
-    public void setSpreadSheets(Set<MediaSpreadsheet> spreadSheets) {
-        this.spreadSheets = spreadSheets;
-    }
-
-    public Set<MediaWord> getWords() {
-        return words;
-    }
-
-    public void setWords(Set<MediaWord> words) {
-        this.words = words;
     }
 
     public Set<ProjectParticipants> getProjectParticipantsSet() {
@@ -451,14 +351,6 @@ public class Project implements Serializable {
 
     public void setTagsSet(Set<Tags> tagsSet) {
         this.tagsSet = tagsSet;
-    }
-
-    public Set<MediaLocationmap> getMediaLocationmapSet() {
-        return mediaLocationmapSet;
-    }
-
-    public void setMediaLocationmapSet(Set<MediaLocationmap> mediaLocationmapSet) {
-        this.mediaLocationmapSet = mediaLocationmapSet;
     }
 
     public String getArchive() {

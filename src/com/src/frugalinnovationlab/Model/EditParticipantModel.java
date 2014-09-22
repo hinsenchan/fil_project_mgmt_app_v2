@@ -6,7 +6,6 @@ package com.src.frugalinnovationlab.Model;
 
 import com.src.frugalinnovationlab.Entity.Participants;
 import com.src.frugalinnovationlab.Entity.ProjectStatus;
-import com.src.frugalinnovationlab.Service.AddNewParticipantService;
 import com.src.frugalinnovationlab.Service.EditParticipantService;
 import com.src.frugalinnovationlab.helper.Constants;
 import java.util.List;
@@ -31,9 +30,7 @@ public class EditParticipantModel {
         manager = factory.createEntityManager();
         projectStatus = new ProjectStatus();
         editParticipantService = new EditParticipantService(manager);
-    }
-    
-    
+    }    
     
     public boolean addParticipant(String[] array) {
         boolean success = false;

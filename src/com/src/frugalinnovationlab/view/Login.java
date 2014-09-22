@@ -195,9 +195,6 @@ public class Login extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_submitButtonActionPerformed
-
-        // TODO add your handling code here:
-
         if (username.getText().equals("")) {
             JOptionPane.showMessageDialog(LoginMainPanel, "Please enter your Username to Login");
             username.requestFocus();
@@ -241,8 +238,6 @@ public class Login extends javax.swing.JFrame {
 
     private void forgotMyPasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_forgotMyPasswordButtonActionPerformed
-        // TODO add your handling code here:
-        
         new ForgotPassword().setVisible(true);
         dispose();
     }//GEN-LAST:event_forgotMyPasswordButtonActionPerformed

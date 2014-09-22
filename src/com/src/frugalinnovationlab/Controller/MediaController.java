@@ -12,7 +12,6 @@ import com.src.frugalinnovationlab.Entity.ProjectFilesMap;
 import com.src.frugalinnovationlab.Model.MediaModel;
 import com.src.frugalinnovationlab.view.EditMediaPanel;
 import com.src.frugalinnovationlab.view.ViewMediaPanel;
-import com.src.frugalinnovationlab.view.Welcome;
 import com.src.frugalinnovationlab.view.WelcomeAbstract;
 import java.util.List;
 import javax.swing.ListSelectionModel;
