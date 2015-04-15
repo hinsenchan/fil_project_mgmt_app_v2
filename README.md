@@ -1,8 +1,6 @@
 # What is FIL Project Management App v2?
 
-FIL Project Management App v2 was the final product for the Spring 2014 COEN275/COEN160 in-class design competition held by the Frugal Innovation Lab at Santa Clara University. The application was custom built to assist the Frugal Innovation Lab in scaling the data management for its electic mix of projects/participants data. The application allows coordinators and volunteers from the lab to search, store, and retrieve FIL project information to/from a SQL database in an easy to use and accessible GUI platform. FIL Project Management App v2 is a desktop application written in Java using the Swing API which utilizes the following libraries: JDK 1.8 is used as the default Java library. EclipseLink JPA2.1 is used to import the JPA library used for managing the calls to the SQL database. MySQL-Connector 5.1.31 is utilized to access the SQL database within the Java application. JCalendar 1.4 present an easy-to-use GUI interface for the user to select start and end dates for a project.
-
-[Competition/Project Highlight on Santa Clara University's website](http://scu.edu/engineering/frugal/gallery/2012/Student-Projects.cfm)
+FIL Project Management App v2 was the final product for the [Spring 2014 COEN275/COEN160 in-class design competition](http://scu.edu/engineering/frugal/gallery/2012/Student-Projects.cfm) held by the Frugal Innovation Lab at Santa Clara University. The application was custom built to assist the Frugal Innovation Lab in scaling the data management for its electic mix of projects/participants data. The application allows coordinators and volunteers from the lab to search, store, and retrieve FIL project information to/from a SQL database in an easy to use and accessible GUI platform. FIL Project Management App v2 is a desktop application written in Java using the Swing API which utilizes the following libraries: JDK 1.8 is used as the default Java library. EclipseLink JPA2.1 is used to import the JPA library used for managing the calls to the SQL database. MySQL-Connector 5.1.31 is utilized to access the SQL database within the Java application. JCalendar 1.4 present an easy-to-use GUI interface for the user to select start and end dates for a project.
 
 ![Intro1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img1_appIntro.png)
 ![Intro2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img2_appIntro.png)
@@ -381,3 +379,6 @@ machine.
 # Credits
 
 This software was developed by Hinsen Chan and Sarvesh Sharma at Santa Clara University in Summer 2014.
+
+* [Competition/Project Highlight on Santa Clara University's website](http://scu.edu/engineering/frugal/gallery/2012/Student-Projects.cfm)
+* [Frugal Innovation Lab](http://www.scu.edu/engineering/frugal/)
