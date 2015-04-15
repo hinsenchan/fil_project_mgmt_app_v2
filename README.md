@@ -43,7 +43,7 @@ The **Edit Participant** tab gives the user an opportunity to modify the persona
 The **Edit Projects** tab contains a list of projects that are currently stored in the FIL database. The table used to display the projects can be sorted by name, description, long description, start date, end date, status, outcome, scope, and archived. Projects can be set to an active or archived state on this page. Project which are archived will not be visible in the **View Project** pages. It will still be available in the **Edit Projects** tab and **Explore** tab.
 
 ### Project -> Edit Projects -> General Info
-The **General Info** tab in Edit Projects allow information for an existing project to be modified. These fields include project name, short description, general description, status, category, location, start/end date, scope, and outcome.
+The **General Info** tab in **Edit Projects** allow information for an existing project to be modified. These fields include project name, short description, general description, status, category, location, start/end date, scope, and outcome.
 
 ### Project -> Edit Projects -> Participants
 The **Participant** tab in **Edit Projects** gives users an opportunity to add new or remove existing participants from a project. New participants who do not exist in the database may also be created here. The table on the page displays a list of project participants that exist in the selected project.
@@ -247,7 +247,7 @@ The **project_category** TABLE contains 1 column: **name**. **name** is the prim
 ￼￼The **project_category_map** TABLE contains 2 columns: **project_id** and **category_name**. **project_id** contains a project id from the **project** TABLE, and **category_name** contains a category from the **project_category** TABLE. This table is used to map a project with the categories that it has been classified with.
 
 ## 7. project_files_map
-The **project_files_map** TABLE contains 4 columns: **projectid**, **filetypeid**, **filename**, and **file path**. **projectid** contains a project id from the project TABLE, and **filetypeid** contains a file type from the **filetypes** TABLE. This table is used to map a project with the media files that it contains.
+The **project_files_map** TABLE contains 4 columns: **projectid**, **filetypeid**, **filename**, and **file path**. **projectid** contains a project id from the **project** TABLE, and **filetypeid** contains a file type from the **filetypes** TABLE. This table is used to map a project with the media files that it contains.
 
 ## 8. project_participants
 The **project_participants** TABLE contains 3 columns: **project_id**, **participant_id**, and **designation**. **project_id** contains a project id from the **project** TABLE, and **participant_id** contains a participant id from the **participants** TABLE. **designation** contains a role id from the **participant_designation** TABLE. This table is used to map a project with the participants that it contains and the roles those participants belong to.
@@ -259,7 +259,7 @@ The **project_status** TABLE contains 2 columns: **status** and **status_descrip
 The **project_status_map** TABLE contains 2 columns: **project_id** and **status_name**. **project_id** contains a project id from the **project** TABLE, and **status_name** contains a status from the **project_status** TABLE. This table is used to map a project with the status that it has been classified with.
 
 ## 11. project_tag_map
-The **project_tag_map** TABLE contains 2 columns: **projectid** and **tagname**. **projectid** contains a project id from the **project** TABLE, and **tagname** contains a tag from the tags TABLE. This table is used to map a project with the tag that it has been classified with.
+The **project_tag_map** TABLE contains 2 columns: **projectid** and **tagname**. **projectid** contains a project id from the **project** TABLE, and **tagname** contains a tag from the **tags** TABLE. This table is used to map a project with the tag that it has been classified with.
 
 ## 12. tags
 ￼The **tags** TABLE contains 1 column: **tagname**. **tagname** is the primary key and it contains the tags that a project may be classified as. It is used in the **Project** tab of project pages. The default tags in the database are Algorithms, Computer, Electrical, Humanity, Mechanical, and Rocket.
