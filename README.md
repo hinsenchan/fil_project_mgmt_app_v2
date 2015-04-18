@@ -2,9 +2,9 @@
 
 FIL Project Management App v2 was the final product for the [Spring 2014 COEN275/COEN160 in-class design competition](http://scu.edu/engineering/frugal/gallery/2012/Student-Projects.cfm) held by the Frugal Innovation Lab at Santa Clara University. The application was custom built to assist the Frugal Innovation Lab in scaling the data management for its electic mix of projects/participants data. The application allows coordinators and volunteers from the lab to search, store, and retrieve FIL project information to/from a **SQL database** in an easy to use and accessible GUI platform. FIL Project Management App v2 is a desktop application written in **Java** using the **Swing API** which utilizes the following libraries: **JDK 1.8** is used as the default Java library. **EclipseLink JPA2.1** is used to import the JPA library used for managing the calls to the SQL database. **MySQL-Connector 5.1.31** is utilized to access the SQL database within the Java application. **JCalendar 1.4** present an easy-to-use GUI interface for the user to select start and end dates for a project.
 
-![Intro1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img1_appIntro.png)
-![Intro2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img2_appIntro.png)
-![Intro3](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img3_appIntro.png)
+![Intro1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img1_appIntro.png)
+![Intro2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img2_appIntro.png)
+![Intro3](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img3_appIntro.png)
 
 ## Purpose
 
@@ -93,138 +93,138 @@ The **Edit** menu item in the menu bar of the application allows users to select
 ### Login
 Start by filling out your username and password. Click the “Submit” button when you’re ready to login.
 
-![Login](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img6_account.png)
+![Login](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img6_account.png)
 
 ### Forget Password
 If you forget your password, click the “Forget My Password” button to access the **Password Reset** page. Reset the password by providing the email address which is associated with the username you provide. Supply a new password and click the “Submit” button to reset the password. Click the “Sign In” button to return back to the login page.
 
-![ForgetPass1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img7_forgetPass.png)
-![ForgetPass2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img8_forgetPass.png)
+![ForgetPass1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img7_forgetPass.png)
+![ForgetPass2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img8_forgetPass.png)
 
 ### Manage Account
 Select the “Manage Account” button to change information for the current user. Click the “Update” button to update the account. The password strength indicator has not been fully implemented yet. 
 
-![ManageAccount](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img9_manageAccount.png)
+![ManageAccount](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img9_manageAccount.png)
 
 ### Sign Out
 Click the “Sign Out” button to logout.
 
-![SignOut](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img10_signOut.png)
+![SignOut](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img10_signOut.png)
 
 ## Project
 The **Project** tab itself shows a blank page in the current version of the application.
 
-![Project](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img11_proj.png)
+![Project](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img11_proj.png)
 
 ### Project -> New Project
 Click the **New Project** tab to begin the process of creating a new project in the database. You may click “Next Step” after filling out each page or click on the **General Details**, **Participants**, **Multimedia**, and **Create Project** tabs directly.
 
 Click the **General Details** tab on the page to fill out the information for the new project. The **Project Name**, **Short Description**, **General Description**, **Status of Project**, **Category**, and **Start/End Date** is required for a new project to be created successfully. Use the drop-down list to select a status for the project. The **Start/End Dates** can be selected by clicking on a date in the pop-up calendar. Multiple tags can be selected by holding CTRL(Windows) or COMMAND(MAC) and selecting a tag. New tags can be created by clicking on the “Add New Tags...” button and typing the name of the new tag. Click “Add” to confirm the new tag. If a new tag was mistakenly added, the “Delete Tags” button can be used to remove it. 
 
-![NewProjectDetails1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img12_newProj.png)
-![NewProjectDetails2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img13_newProj.png)
-![NewProjectDetails3](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img14_newProj.png)
+![NewProjectDetails1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img12_newProj.png)
+![NewProjectDetails2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img13_newProj.png)
+![NewProjectDetails3](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img14_newProj.png)
 
 Click the **Participants** tab on the page to add participants to the new project. Add the new participant by selecting a role and then choosing a name from the drop down list. Click “Add Participant” to confirm the participant for the new project. If a participant doesn’t exist in the drop down list, click “New Participant...” to create a new participant for the database. This participant can be selected in the drop-down list for future projects. Only the first and last names and role are required for a participant. If the participant has a title, select PHD or MD from the drop-down list. Phone number may be in the following format: 555-5555, 555-555-5555, 555-555-5555 x5555. Participants that are added to the project will appear in the table. Click “Hide” after creating the new participant. If you made a mistake, a participant can be deleted by selecting a name from the table and clicking on “Delete Participant”.
 
-![NewProjectParticipant1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img15_newProj.png)
-![NewProjectParticipant2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img16_newProj.png)
-![NewProjectParticipant3](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img17_newProj.png)
+![NewProjectParticipant1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img15_newProj.png)
+![NewProjectParticipant2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img16_newProj.png)
+![NewProjectParticipant3](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img17_newProj.png)
 
 Click the **Multimedia** tab on the page to add new media to the new project. Type in the path of the file or click “Choose a file” to select the file that you would like to add. Select a file type from the drop down list. Provide a file name. Click “Add Media” to add the file to the list for the new project. Click “Remove Media” to remove the file from the list. Files that are added here are shortcuts with absolute paths to the file. In the current version of the application, files are not copied to the application folder. It also will not be accessible on a separate system from where the file is stored.
 
-![NewProjectMult1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img18_newProj.png)
-![NewProjectMult2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img19_newProj.png)
-![NewProjectMult3](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img20_newProj.png)
+![NewProjectMult1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img18_newProj.png)
+![NewProjectMult2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img19_newProj.png)
+![NewProjectMult3](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img20_newProj.png)
 
 Click the **Create Project** tab on the page to confirm the creation of the new project. Click the “Create Project” button to finalize the process. **Participants** and **Multimedia** are not required for a new project. If there is any information missing from the **General Details** page, a pop-up message will inform you which field is missing.
 
-![CreateProject](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img21_newProj.png)
+![CreateProject](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img21_newProj.png)
 
 ### Project -> Edit Participant
 Click on the **Edit Participant** tab to modify the personal details of an existing project participant. Select a participant from the drop-down list to edit. **First** and **Last** name are the only fields which are required. Click “Submit Modified Details” to confirm the update.
 
-![EditParticipant](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img22_editParticipant.png)
+![EditParticipant](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img22_editParticipant.png)
 
 ### Project -> Edit Projects
 Click on the **Edit Projects** tab to active or archive existing projects from the FIL database. Projects may never be deleted from the database. If you no longer what a project available for viewing, select a project from the list and click “Archive Project”. If you want the project to be available for viewing again in the future, click “Activate Project”.
 
-![EditProjects](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img23_editProjects.png)
+![EditProjects](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img23_editProjects.png)
 
 ### Project -> Edit Projects -> General Info
 Click on the **General Info** tab to edit the information for an existing project. Select a project from the drop-down list. The **Project Name**, **Short Description**, **General Description**, **Status of Project**, and **Start/End Date** are required fields. Select a status from the drop-down list. Select a date from the pop- up calendar. Click “Edit Project Information” to confirm the update.
 
-![EditProjGenInfo](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img24_editProjGenInfo.png)
+![EditProjGenInfo](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img24_editProjGenInfo.png)
 
 ### Project -> Edit Projects -> Participants
 Click on the **Participant** tab in **Edit Projects** to modify the list of participants for an existing project. Select a project from the list to view the list of participants. Select a role and a participant from the drop-down lists and click “Add Participant” to add a new participant to the project. An existing participant may also be removed by selecting a person from the list and clicking “Delete Participant”. A new participant may also be added by clicking on “New Participant...”. **First** and **Last Name** are the only required fields. Click “Add” to add the new participate to the list. Click “Update Project” to confirm all of the changes.
 
-![EditProjParticipant1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img25_editProjParticipant.png)
-![EditProjParticipant2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img26_editProjParticipant.png)
+![EditProjParticipant1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img25_editProjParticipant.png)
+![EditProjParticipant2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img26_editProjParticipant.png)
 
 ### Project -> Edit Projects -> Multimedia
 Click **Multimedia** tab to edit the media files for an existing project. Select a project from the drop-down list to view the existing media files. Type in the path of the file or click “Choose a file” to select the file that you would like to add. Select a file type from the drop down list. Provide a file name. Click “Add Media” to add the file to the list for the new project. Click “Remove Media” to remove the file from the list. Files that are added here are shortcuts with absolute paths to the file. In the current version of the application, files are not copied to the application folder. It also will not be accessible on a separate system from where the file is stored. Select a file and click “View Media” to open the file using its native application.
 
-![EditProjMult1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img27_editProjMult.png)
-![EditProjMult2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img28_editProjMult.png)
+![EditProjMult1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img27_editProjMult.png)
+![EditProjMult2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img28_editProjMult.png)
 
 ### Project -> View Projects
 Click the **View Projects** tab display the full list of active projects in the FIL database. Sort the table by clicking on a column header. Click on a project in the table to view its general information. Selecting a project from this list will also automatically set the project selected for the **General Info**, **Participants**, and **Multimedia** in the sub-View Project tabs.
 
-![ViewProject](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img29_viewProj.png)
+![ViewProject](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img29_viewProj.png)
 
 ### Project -> View Projects -> General Info
 Click on the **General Info** tab to view information such as project name, short description general description, status, categories, location, start/end date, scope, and outcome for a selected project. Projects may be selected from the drop-down list. Click the “View Printable Information” button to print the information for the selected project. Changing a selected project on this page also changes the selected project on the **Participants** and **Multimedia** pages.
 
-![ViewProjectGenInfo](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img30_viewProjGenInfo.png)
+![ViewProjectGenInfo](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img30_viewProjGenInfo.png)
 
 ### Project -> View Projects -> Participants
 Click on the **Participants** tab to view the list of participants for a selected project. Select a project using the drop-down list. Filter the list by role using the drop-down list. Sort the table by clicking on the column header. Click “View Printable Information” to print the list of participants for the selected project. Changing a selected project on this page also changes the selected project on the **General Info** and **Multimedia** pages.
 
 Click on a participant in the table to view the **View Participant Details** page. Sort the table by clicking on a column header. Click “Return to Project Participants” to return to the previous page. Click on a project in the table to view its general information.
 
-![ViewProjectParticipant1](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img31_viewProjParticipant.png)
-![ViewProjectParticipant2](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img32_viewProjParticipant.png)
+![ViewProjectParticipant1](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img31_viewProjParticipant.png)
+![ViewProjectParticipant2](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img32_viewProjParticipant.png)
 
 ### Multimedia
 Click on the **Multimedia** tab to view the media attachment files for an existing project. Select a project from the drop-down list to view the existing media files. Select a file and click “View Media” to open the file using its native application. Changing a selected project on this page also changes the selected project on the **Participants** and **General Info** pages.
 
-![Multimedia](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img33_mult.png)
+![Multimedia](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img33_mult.png)
 
 ## Users
 The **Users** tab is a blank page for the current version of the application.
 
-![Users](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img34_users.png)
+![Users](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img34_users.png)
 
 ### Add New User
 Click the **Add New User** tab to create a new administrative or viewer user. All fields must be filled out for the user to be created successfully. Phone number must be entered in the following format: 5555555. Click the “Add” button to confirm the creation of the new user.
 
-![NewUser](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img35_newUser.png)
+![NewUser](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img35_newUser.png)
 
 ### View All Users
 Click the **View All Users** tab to view all the registered users in the FIL database. Select a user from the table and click “Delete” to remove the user from the database permanently.
 
-![ViewAllUser](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img36_viewAllUser.png)
+![ViewAllUser](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img36_viewAllUser.png)
 
 ## Explore
 The **Explore** tab itself is a blank page for the current version of the application.
 
-![Explore](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img37_explore.png)
+![Explore](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img37_explore.png)
 
 ### Search
 Fill in the text field and click on the **Search** tab to query for an existing project using keywords from the project name and/or description. Sort results by clicking on the column headers. Click on a project in the results list to view the **General Info** page for the selected project. 
 
-![Search](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img38_search.png)
+![Search](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img38_search.png)
 
 ### Advanced Search	
 Click the **Advanced Search** tab to query for a project using multiple search parameters. Each parameter entered will be used concurrently to filter the search results. Sort the search results by clicking on the column headers. Click on a project in the search result to view the **General Info** page for the selected project. 
 
-![AdvSearch](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img39_advSearch.png)
+![AdvSearch](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img39_advSearch.png)
 
 ## Edit (Select All/Cut/Copy/Paste)
 Select text from the a textfield on a page and click the **Edit** menu item in the menu bar of the application allows users to select, cut, copy, and paste text to and from the application. On a PC, use CTRL-A, CTRL-X, CTRL-C, CTRL-V to select all, cut, copy, and paste text. On a MAC, use COMMAND-A, COMMAND-X, COMMAND-C, COMMAND-V to select all, cut, copy, and paste text outside the application. Always use the CTRL shortcuts inside the application.
 
-![Edit](https://github.com/hinsenchan/fil_project_management_app_v2/blob/master/readme/img40_edit.png)
+![Edit](https://github.com/hinsenchan/fil_project_mgmt_app_v2/blob/master/readme/img40_edit.png)
 
 # Database Tables
 
